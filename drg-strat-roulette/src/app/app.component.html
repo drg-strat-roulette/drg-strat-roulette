@@ -1,1 +1,8 @@
-hello
+<div *ngFor="let tag of tags" data-toggle="tooltip" [title]="'Include strategies which ' + tag.tooltipDetails">
+    <input class="form-check-input" type="checkbox" [id]="tag.type" [(ngModel)]="tag.checked">
+    {{ tag.type }}
+</div>
+<br>
+<button (click)="rollStrat()">Roll</button>
+<br>
+<pre>{{ strat | json }}</pre>
