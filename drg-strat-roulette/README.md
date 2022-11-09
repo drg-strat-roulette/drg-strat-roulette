@@ -2,6 +2,23 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
+## Planned features
+
+-   [x] Roll a random strategy
+-   [x] Exclude strategies with certain tags
+-   [ ] Roll strategies which are possible given a pre-defined mission
+    -   [ ] Higher weight on strategies which have met requirements
+-   [ ] Option to automatically make necessary RNG choices
+    -   (e.g. "who is the designated medic?")
+-   [ ] Roll another strategy without clearing the currently displayed one(s)
+-   [ ] Bug reports, feature requests, and strategy submissions
+-   [ ] Provide common definitions from consolidated source
+    -   (e.g. What are the "large enemies")
+-   [ ] Provide possible ways to determine who does what
+-   [ ] Select difficulty range for generated strategies
+    -   [ ] Mode to continually increase difficulty until a strategy is failed
+    -   [ ] Provide feedback to increase/decrease a strategy's listed difficulty
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
