@@ -1,4 +1,3 @@
-import { Build } from './build.interface';
 import { Mission } from './missions.interface';
 import { Settings } from './settings.interface';
 import { Team } from './team.interface';
@@ -76,8 +75,7 @@ export enum ExclusionCategory {
 }
 
 export interface StratRequirements {
-	// build?: ((build: Build) => boolean)[]; // TODO: Not needed?
-	mission?: (mission: Mission) => boolean; // e.g. Biome must be Azure Weald, Mission type must be elimination
-	team?: (team: Team) => boolean; // e.g. team must have 3+ players, and 1 gunner
+	mission?: (mission: Mission) => boolean;
+	team?: (team: Team) => boolean;
 	settings?: (settings: Settings) => boolean;
 }
