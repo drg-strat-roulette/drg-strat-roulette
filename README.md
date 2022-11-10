@@ -6,6 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 -   [x] Roll a random strategy
 -   [x] Exclude strategies with certain tags
+-   [x] Exclude strategies based on team setup
 -   [ ] Roll strategies which are possible given a pre-defined mission
     -   [ ] Higher weight on strategies which have met requirements
 -   [ ] Option to automatically make necessary RNG choices
