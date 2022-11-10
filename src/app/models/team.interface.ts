@@ -4,8 +4,8 @@ export interface Team {
 }
 
 export interface Dwarf {
-	name: string;
-	type: DwarfType;
+	name?: string;
+	type?: DwarfType;
 }
 
 export enum DwarfType {

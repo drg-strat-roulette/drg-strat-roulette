@@ -12,7 +12,7 @@ import { Dwarf, DwarfType } from './models/team.interface';
 export class AppComponent {
 	title = 'drg-strat-roulette';
 	strat: Strategy | undefined;
-	dwarves: Partial<Dwarf>[] = [];
+	dwarves: Dwarf[] = [];
 	dwarfTypes: DwarfType[] = Object.values(DwarfType);
 	tags: StratTagObject[] = stratTagInfo.map((tagInfo) => ({
 		...tagInfo,
@@ -20,8 +20,27 @@ export class AppComponent {
 	}));
 
 	rollStrat() {
+		// Filter out strategies based on tags
 		const excludedTags = this.tags.filter((tag) => !tag.checked).map((tag) => tag.type);
-		const candidateStrats = strategies.filter((strat) => !strat.tags?.some((tag) => excludedTags.includes(tag)));
+		let candidateStrats = strategies.filter((strat) => !strat.tags?.some((tag) => excludedTags.includes(tag)));
+
+		// If team details have not been properly filled out, auto-populate with some data
+		this.dwarves.forEach((dwarf, i) => {
+			dwarf.name = (dwarf.name ?? '').length === 0 ? `Dwarf #${i + 1}` : dwarf.name;
+			dwarf.type = dwarf.type ?? DwarfType.flexible;
+		});
+
+		// Filter out strategies based on team details
+		candidateStrats = candidateStrats.filter((strat) => {
+			const func = strat.requirements?.team;
+			if (func && this.dwarves.length > 0) {
+				return func({ dwarves: this.dwarves });
+			} else {
+				return true;
+			}
+		});
+
+		// Pick a random strategy from the candidate list
 		this.strat = lodash.sample(candidateStrats);
 	}
 
