@@ -36,7 +36,7 @@ export const stratTagInfo: StratTagInfo[] = [
 		type: StratTag.loadout,
 		description:
 			'This strategy requires bringing a particular loadout. You will need to modify a loadout slot to complete it.',
-		tooltipDetails: 'will require me to change my equipment loadout.',
+		tooltipDetails: 'require changing equipment loadout.',
 	},
 	{
 		type: StratTag.time,
@@ -52,7 +52,7 @@ export const stratTagInfo: StratTagInfo[] = [
 		type: StratTag.queue,
 		description:
 			'This strategy relies on RNG to be attempted. As such, they should be queued up and attempted when the opportunity presents itself.',
-		tooltipDetails: 'must be queued.',
+		tooltipDetails: 'must be queued. (Relies on random events)',
 	},
 	{
 		type: StratTag.nausea,
