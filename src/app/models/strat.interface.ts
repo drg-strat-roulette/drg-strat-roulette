@@ -23,7 +23,6 @@ export enum StratTag {
 	communication = 'Communication',
 	queue = 'Queue',
 	nausea = 'Nausea',
-	class = 'Class',
 }
 
 export const stratTagInfo: StratTagInfo[] = [
@@ -58,11 +57,6 @@ export const stratTagInfo: StratTagInfo[] = [
 		type: StratTag.nausea,
 		description: 'This strategy has the potential to cause nausea for some players.',
 		tooltipDetails: 'may cause nausea.',
-	},
-	{
-		type: StratTag.class,
-		description: 'This strategy requires multiple dwarves to play as the same class.',
-		tooltipDetails: 'require multiple dwarves to play as the same class.',
 	},
 ];
 

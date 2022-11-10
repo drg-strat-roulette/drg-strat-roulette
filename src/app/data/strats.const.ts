@@ -64,28 +64,48 @@ export const strategies: Strategy[] = [
 		name: 'Firing Squad',
 		summary: `All dwarves must play as ${DwarfType.gunner}.`,
 		details: '',
-		tags: [StratTag.class],
+		requirements: {
+			team: (t) =>
+				t.dwarves.length >= 2 &&
+				t.dwarves.every((dwarf) => dwarf.type === DwarfType.gunner || dwarf.type === DwarfType.flexible),
+		},
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfType.gunner}.`,
 	},
 	{
 		id: 9,
 		name: "Drill 'Em and Grill 'Em",
 		summary: `All dwarves must play as ${DwarfType.driller}.`,
 		details: '',
-		tags: [StratTag.class],
+		requirements: {
+			team: (t) =>
+				t.dwarves.length >= 2 &&
+				t.dwarves.every((dwarf) => dwarf.type === DwarfType.driller || dwarf.type === DwarfType.flexible),
+		},
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfType.driller}.`,
 	},
 	{
 		id: 10,
 		name: 'Swinger Party',
 		summary: `All dwarves must play as ${DwarfType.scout}.`,
 		details: '',
-		tags: [StratTag.class],
+		requirements: {
+			team: (t) =>
+				t.dwarves.length >= 2 &&
+				t.dwarves.every((dwarf) => dwarf.type === DwarfType.scout || dwarf.type === DwarfType.flexible),
+		},
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfType.scout}.`,
 	},
 	{
 		id: 11,
 		name: 'Engineer Is Engi-here',
 		summary: `All dwarves must play as ${DwarfType.engineer}.`,
 		details: '',
-		tags: [StratTag.class],
+		requirements: {
+			team: (t) =>
+				t.dwarves.length >= 2 &&
+				t.dwarves.every((dwarf) => dwarf.type === DwarfType.engineer || dwarf.type === DwarfType.flexible),
+		},
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfType.engineer}.`,
 	},
 	{
 		id: 12,
@@ -653,10 +673,14 @@ export const strategies: Strategy[] = [
 	{
 		id: 73,
 		name: 'Hoxxes Is Not Wheelchair Accessible',
-		summary: `All ${DwarfType.scout}s. Can't move while grounded.`,
+		summary: `All dwarves must play as ${DwarfType.scout}. Cannot move while grounded.`,
 		details:
 			'You may use movement keys to strafe while in the air, but should remain stationary while on the ground.',
-		tags: [StratTag.class],
+		requirements: {
+			team: (t) =>
+				t.dwarves.every((dwarf) => dwarf.type === DwarfType.scout || dwarf.type === DwarfType.flexible),
+		},
+		writtenRequirements: `All dwarves must be willing to play as ${DwarfType.scout}.`,
 	},
 	{
 		id: 74,
@@ -978,7 +1002,6 @@ export const strategies: Strategy[] = [
 		summary: 'Bunker any time swarm music is playing.',
 		details:
 			'Whenever swarm music is playing, you must enter a bunker and remain there until the swarm music is over. You may not do anything (shoot bugs, mine, or revive) until you are in your bunker.',
-		tags: [StratTag.class],
 		requirements: {
 			team: (t) => t.dwarves.some((d) => d.type === DwarfType.engineer || d.type === DwarfType.flexible),
 		},
@@ -987,13 +1010,15 @@ export const strategies: Strategy[] = [
 	{
 		id: 108,
 		name: 'The Best Offense',
-		summary: `Everyone must play as ${DwarfType.engineer} with gemini turrets and at least one of each: turret whip, EM discharge, turret arc.`,
+		summary: `All dwarves must play as ${DwarfType.engineer} with gemini turrets and at least one of each: turret whip, EM discharge, turret arc.`,
 		details: '',
-		tags: [StratTag.loadout, StratTag.class],
+		tags: [StratTag.loadout],
 		requirements: {
-			team: (t) => t.dwarves.length >= 2,
+			team: (t) =>
+				t.dwarves.length >= 2 &&
+				t.dwarves.every((dwarf) => dwarf.type === DwarfType.engineer || dwarf.type === DwarfType.flexible),
 		},
-		writtenRequirements: 'Team must have 2+ dwarves.',
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfType.engineer}.`,
 	},
 	{
 		id: 109,
@@ -1461,10 +1486,14 @@ export const strategies: Strategy[] = [
 	{
 		id: 158,
 		name: 'Keep It Up',
-		summary: `All dwarves are ${DwarfType.scout}. You must remain in the air as much as possible.`,
+		summary: `All dwarves must play as ${DwarfType.scout}. You must remain in the air as much as possible.`,
 		details:
 			"Recommended to use hoverclock, boomstick w/ special powder, and/or hover boots if you're concerned you can't complete this challenge. You may take advantage of low gravity missions if there is one. You may make exceptions for actions that require you to be grounded such as resupplying, depositing, or uplinks/refueling.",
-		tags: [StratTag.class],
+		requirements: {
+			team: (t) =>
+				t.dwarves.every((dwarf) => dwarf.type === DwarfType.scout || dwarf.type === DwarfType.flexible),
+		},
+		writtenRequirements: `All dwarves must be willing to play as ${DwarfType.scout}.`,
 	},
 	{
 		id: 159,
@@ -1606,11 +1635,13 @@ export const strategies: Strategy[] = [
 		name: 'Mutually-Assured Destruction',
 		summary: 'Everyone run fat boy pgl with "nails and tape" and "proximity trigger".',
 		details: '',
-		tags: [StratTag.loadout, StratTag.class],
+		tags: [StratTag.loadout],
 		requirements: {
-			team: (t) => t.dwarves.length >= 2,
+			team: (t) =>
+				t.dwarves.length >= 2 &&
+				t.dwarves.every((dwarf) => dwarf.type === DwarfType.engineer || dwarf.type === DwarfType.flexible),
 		},
-		writtenRequirements: 'Team must have 2+ dwarves.',
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfType.engineer}.`,
 	},
 	{
 		id: 174,
