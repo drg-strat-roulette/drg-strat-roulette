@@ -1,3 +1,4 @@
+import { ActivePerkType, PassivePerkType } from '../models/build.interface';
 import {
 	AnomalyType,
 	BiomeType,
@@ -12,9 +13,13 @@ export const strategies: Strategy[] = [
 	{
 		id: 1,
 		name: 'Surgical team',
-		summary: 'All living dwarves move revive downed players together.',
+		summary: 'All living dwarves move revive downed dwarves together.',
 		details:
 			'If a dwarf goes down, all dwarves still standing must gather around their corpse. They may not start reviving until all dwarves are present and must begin reviving at the same time.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 3,
+		},
+		writtenRequirements: 'Team must have 3+ dwarves.',
 	},
 	{
 		id: 2,
@@ -52,33 +57,33 @@ export const strategies: Strategy[] = [
 		id: 7,
 		name: 'Advanced Darkness',
 		summary: 'No lights (flashlight, flare, or flare gun).',
-		details: "Turn off your flashlight and don't throw any flares. If scout, you may not use your flare gun.",
+		details: `Turn off your flashlight and don't throw any flares. If ${DwarfType.scout}, you may not use your flare gun.`,
 	},
 	{
 		id: 8,
 		name: 'Firing Squad',
-		summary: 'All players must play as Gunner.',
+		summary: `All dwarves must play as ${DwarfType.gunner}.`,
 		details: '',
 		tags: [StratTag.class],
 	},
 	{
 		id: 9,
 		name: "Drill 'Em and Grill 'Em",
-		summary: 'All players must play as Driller.',
+		summary: `All dwarves must play as ${DwarfType.driller}.`,
 		details: '',
 		tags: [StratTag.class],
 	},
 	{
 		id: 10,
 		name: 'Swinger Party',
-		summary: 'All players must play as Scout.',
+		summary: `All dwarves must play as ${DwarfType.scout}.`,
 		details: '',
 		tags: [StratTag.class],
 	},
 	{
 		id: 11,
 		name: 'Engineer Is Engi-here',
-		summary: 'All players must play as Engineer.',
+		summary: `All dwarves must play as ${DwarfType.engineer}.`,
 		details: '',
 		tags: [StratTag.class],
 	},
@@ -86,8 +91,7 @@ export const strategies: Strategy[] = [
 		id: 12,
 		name: 'Trouble Getting Around',
 		summary: 'No traversal tools.',
-		details:
-			"No using traversal tools for any reason. This includes driller's drills for combat. Unbind your traversal tool key.",
+		details: `No using traversal tools for any reason. This includes ${DwarfType.driller}'s drills for combat.`,
 	},
 	{
 		id: 13,
@@ -176,8 +180,9 @@ export const strategies: Strategy[] = [
 				m.biome === BiomeType.sandblastedCorridors ||
 				m.biome === BiomeType.radioactiveExclusionZone ||
 				m.secondary === SecondaryObjective.gunkSeed,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: 'Mission biome must have heavy minerals or gunk seeds.',
+		writtenRequirements: 'Mission biome must have heavy minerals or gunk seeds. Team must have 2+ dwarves.',
 	},
 	{
 		id: 24,
@@ -214,13 +219,14 @@ export const strategies: Strategy[] = [
 	{
 		id: 29,
 		name: 'Follow the Leader',
-		summary: 'One player leads, and the rest must follow.',
+		summary: 'One dwarf leads, and the rest must follow.',
 		details:
-			'All players must remain within 10m of the leader. If they exit this range for any reason, they cannot mine, attack, or revive until they come closer again.',
+			'All dwarves must remain within 10m of the leader. If they exit this range for any reason, they cannot mine, attack, or revive until they come closer again.',
 		requirements: {
 			mission: (m) => m.primary !== PrimaryObjective.escortDuty,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must not be ${PrimaryObjective.escortDuty}.`,
+		writtenRequirements: `Mission primary objective must not be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 30,
@@ -234,8 +240,12 @@ export const strategies: Strategy[] = [
 		name: 'Equal Opportunity Destroyer',
 		summary: 'Take turns to kill.',
 		details:
-			'Any player may not have a longer than 30-second window to kill enemies. You may, at any time during your turn, "pass" to the next player.',
+			'Any dwarf may not have a longer than 30-second window to kill enemies. You may, at any time during your turn, "pass" to the next dwarf.',
 		tags: [StratTag.communication],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 32,
@@ -245,8 +255,9 @@ export const strategies: Strategy[] = [
 			'Both hacking pods in an industrial sabotage mission must be started at the same time. Should one be stopped, it must either be immediately restarted, or the other must stop being defended and stop as soon as possible. If the latter is chosen, they must be restarted at the same time.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.industrialSabotage,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.industrialSabotage}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.industrialSabotage}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 33,
@@ -268,20 +279,22 @@ export const strategies: Strategy[] = [
 		requirements: {
 			mission: (m) =>
 				m.primary !== PrimaryObjective.pointExtraction && m.primary !== PrimaryObjective.onSiteRefining,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: 'Mission must have Molly.',
+		writtenRequirements: 'Mission must have Molly. Team must have 2+ dwarves.',
 	},
 	{
 		id: 35,
 		name: 'Designated Driver',
 		summary:
-			'One chosen player must remain on the Drilldozer for the whole mission until the heartstone is deposited.',
+			'One chosen dwarf must remain on the Drilldozer for the whole mission until the heartstone is deposited.',
 		details:
 			'One person must remain on the Drilldozer for an entire mission. If they fall off, they should get back on immediately.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.escortDuty,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 36,
@@ -294,8 +307,7 @@ export const strategies: Strategy[] = [
 		id: 37,
 		name: 'Caught With Your Pick Out',
 		summary: 'Pickaxe may not be used unless power-picking.',
-		details:
-			'You may not use your pickaxe for mining, combat, or otherwise. You can use your power attack. (Hint: Berserker perk is allowed). Driller recommended.',
+		details: `You may not use your pickaxe for mining, combat, or otherwise. You can use your power attack. (Hint: ${ActivePerkType.berzerker} perk is allowed). ${DwarfType.driller} recommended.`,
 	},
 	{
 		id: 38,
@@ -314,22 +326,24 @@ export const strategies: Strategy[] = [
 		name: 'Coordinated Effort',
 		summary: 'Pull all eggs at same time.',
 		details:
-			'All eggs must be pulled within 30 seconds of each other. This means you may have to prepare in order for all to be pulled at once.',
+			'All eggs must be pulled within 30 seconds of each other. You may need to prepare in order for all to be pulled at once.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.eggHunt,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.eggHunt}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.eggHunt}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 41,
 		name: "You've Got This Covered",
 		summary: 'Everyone takes a turn with killing bugs during Ommoran phase(s).',
 		details:
-			'Each player is assigned phase(s) of the Ommoran. During your phase, only you may kill bugs. Others may defend themselves from bugs immediately targeting them, but otherwise cannot contribute to the Ommoran fight. Anyone may repair the Drilldozer.',
+			'Each dwarf is assigned phase(s) of the Ommoran. During your phase, only you may kill bugs. Others may defend themselves from bugs immediately targeting them, but otherwise cannot contribute to the Ommoran fight. Anyone may repair the Drilldozer.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.escortDuty,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 42,
@@ -375,8 +389,7 @@ export const strategies: Strategy[] = [
 		id: 47,
 		name: 'Bottom To Top',
 		summary: 'Do mining mission backwards.',
-		details:
-			'Drill to the end of the mining mission at the very beginning. You may not mine anything on your way there or kill any stationary enemies (unless you are unable to revive a dwarf otherwise) even in the starting room. Do your best to not pay attention to the caves if you happen to pass through any part. The end of the mining mission is always southwest from the start of the mission. Dig this way at a downward angle, using the terrain scanner to try to stay near the cave system. If you must pass through because you ran out of drill ammo, you may. It might be a good idea to bring more than one driller if the mission is particularly long.',
+		details: `Drill or run to the end of the mining mission as soon as possible. You may not mine anything on your way there or kill any stationary enemies (unless you are unable to revive a dwarf otherwise) even in the starting room. Do your best to not pay attention to the caves if you happen to pass through any part. The end of the mining mission is always southwest from the start of the mission. Dig this way at a downward angle, using the terrain scanner to try to stay near the cave system. If you must pass through because you ran out of drill ammo, you may. It might be a good idea to bring more than one ${DwarfType.driller} if the mission is particularly long.`,
 		tags: [StratTag.time],
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.miningExpedition,
@@ -410,13 +423,13 @@ export const strategies: Strategy[] = [
 	{
 		id: 50,
 		name: 'What Took You So Long?',
-		summary: 'One player must rush to the Ommoran and wait there.',
-		details:
-			'One player (presumably the driller) must rush to the Ommoran heartstone and wait there for the rest of the team to catch up.',
+		summary: 'One dwarf must rush to the Ommoran and wait there.',
+		details: `One dwarf (presumably the ${DwarfType.driller} ) must rush to the Ommoran heartstone and wait there for the rest of the team to catch up.`,
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.escortDuty,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 51,
@@ -426,8 +439,9 @@ export const strategies: Strategy[] = [
 		tags: [StratTag.time],
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.salvageOperation,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 52,
@@ -489,8 +503,9 @@ export const strategies: Strategy[] = [
 		tags: [StratTag.time],
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.escortDuty,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 58,
@@ -508,6 +523,10 @@ export const strategies: Strategy[] = [
 		name: 'Finders Keepers',
 		summary: 'Cannot attack bugs that have person in clutches.',
 		details: '',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 60,
@@ -525,6 +544,10 @@ export const strategies: Strategy[] = [
 		summary: 'May only move to an area that another dwarf pings.',
 		details:
 			"Any dwarf may command any/all dwarves except for themselves. You may not ask someone to command you to go somewhere. Positioning is not very strict. You may mine minerals and kill things on the way to your target location and get there in your own time. (As long as you don't go too far out of the way) Once you reach the target location, you may do whatever you want but are confined to ~10m radius around the ping.",
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 62,
@@ -540,7 +563,7 @@ export const strategies: Strategy[] = [
 		id: 63,
 		name: "Won't Make It Through Customs",
 		summary: 'Bring bough cones and tumbleweeds with you.',
-		details: 'At least 1 per player, but more encouraged.',
+		details: 'At least 1 per dwarf, but more encouraged.',
 		requirements: {
 			mission: (m) => m.biome === BiomeType.hollowBough,
 		},
@@ -565,6 +588,10 @@ export const strategies: Strategy[] = [
 		summary: "Everyone decides someone else's build.",
 		details: '',
 		tags: [StratTag.loadout],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 67,
@@ -607,6 +634,10 @@ export const strategies: Strategy[] = [
 			'Everyone must contribute to death of large enemies. If you kill before everyone has contributed, the team must kill you.',
 		details: '',
 		tags: [StratTag.communication],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 72,
@@ -622,7 +653,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 73,
 		name: 'Hoxxes Is Not Wheelchair Accessible',
-		summary: "All scouts. Can't move while grounded.",
+		summary: `All ${DwarfType.scout}s. Can't move while grounded.`,
 		details:
 			'You may use movement keys to strafe while in the air, but should remain stationary while on the ground.',
 		tags: [StratTag.class],
@@ -631,15 +662,15 @@ export const strategies: Strategy[] = [
 		id: 74,
 		name: 'Aerial Support',
 		summary: 'Gunners must stay on ziplines.',
-		details:
-			'Gunners can take some time to clear initial enemies and set up ziplines. Set up ASAP and get up. Must stay up until drop-pod is called. If killed, must get back on ASAP. Can go down for resupplies if needed.',
+		details: `${DwarfType.gunner}s can take some time to clear initial enemies and set up ziplines. Set up ASAP and get up. Must stay up until drop-pod is called. If killed, must get back on ASAP. Can go down for resupplies if needed.`,
 		requirements: {
 			mission: (m) =>
 				m.primary === PrimaryObjective.eggHunt ||
 				m.primary === PrimaryObjective.pointExtraction ||
 				m.primary === PrimaryObjective.onSiteRefining,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.eggHunt}, ${PrimaryObjective.pointExtraction}, or ${PrimaryObjective.onSiteRefining}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.eggHunt}, ${PrimaryObjective.pointExtraction}, or ${PrimaryObjective.onSiteRefining}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 75,
@@ -662,29 +693,40 @@ export const strategies: Strategy[] = [
 	{
 		id: 77,
 		name: 'Bound Familiar',
-		summary: 'Everyone runs beast master, you may only engage in combat while your Steeve is alive.',
-		details:
-			'Beast master perk is required. When your Steeve dies, you must avoid all combat, but may still contribute to objectives by gathering resources. Additionally, you must pet Steeve every time you gain health.',
+		summary: `Everyone runs ${ActivePerkType.beastMaster}, you may only engage in combat while your Steeve is alive.`,
+		details: `${ActivePerkType.beastMaster} perk is required. When your Steeve dies, you must avoid all combat, but may still contribute to objectives by gathering resources. Additionally, you must pet Steeve every time you gain health.`,
 		tags: [StratTag.loadout],
 	},
 	{
 		id: 78,
 		name: 'Conscientious Objector',
-		summary: 'One player is a conscientious objector (no killing).',
+		summary: 'One dwarf is a conscientious objector (no killing).',
 		details:
 			'The Conscientious objector is encouraged to help out in any way they can, but must live a life of non-violence. Any loadout configuration which may cause accidental damage to enemies is not allowed (e.g. Thorns). Weapons can be used as utility (e.g. EPC mining, drilling/exploding tunnels, boomstick w/ special powder, hoverclock). There is backup order of Conscientious objectors who will not be able to kill enemies if the main Conscientious objector is killed, so it in your best interest to keep them alive. There will always be at least one living dwarf who is not allowed to kill enemies.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 79,
 		name: 'All For One',
 		summary: 'Private resupply pods.',
-		details: 'The player who calls a resupply pod is the only one who can take ammo from it.',
+		details: 'The dwarf who calls a resupply pod is the only one who can take ammo from it.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 80,
 		name: 'Make Your Own Way',
 		summary: "Cannot use other's traversal tools (including drill tunnels)",
 		details: 'Does not include simple tunnels through dirt.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 81,
@@ -712,6 +754,10 @@ export const strategies: Strategy[] = [
 		name: 'Four Peas in a Pod',
 		summary: 'Everyone sticks together.',
 		details: 'Everyone must stay within 10m of all other dwarves at all times.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 85,
@@ -719,6 +765,10 @@ export const strategies: Strategy[] = [
 		summary: 'Must stay away from your teammates.',
 		details:
 			'Must try to stay 15m away from all teammates at all times. You may only get close to revive. Social Distancing also applies to machine events.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 86,
@@ -727,6 +777,10 @@ export const strategies: Strategy[] = [
 		details:
 			"All dwarves must pick an element for their build and cannot have any means of applying elements that belong to someone else's build. Elements include fire, ice, electric, corrosive, poison, and radiation.",
 		tags: [StratTag.loadout],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 87,
@@ -745,6 +799,10 @@ export const strategies: Strategy[] = [
 		details:
 			'Perks should be claimed round-robin. Be selfish. Claim the perks you want most personally with regard for team synergy.',
 		tags: [StratTag.loadout],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 89,
@@ -770,6 +828,10 @@ export const strategies: Strategy[] = [
 		summary: 'Cannot kill anything aggro on you.',
 		details:
 			'You must call your teammates to kill any enemies which are targeting you, or run away. You cannot attack them yourself.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 92,
@@ -786,8 +848,11 @@ export const strategies: Strategy[] = [
 		id: 93,
 		name: 'Hitching a Ride',
 		summary: 'No using your own traversal tools.',
-		details:
-			'Driller may make a tunnel, but must backtrack and not use the tunnel after is it completed. Driller may use drills for combat. Engineer may not step on their own platforms. Scout may use their grappling hook to launch another player, but must return to where they started after. Driller may dig through dirt.',
+		details: `${DwarfType.driller} may make a tunnel, but must backtrack and not use the tunnel after is it completed. ${DwarfType.driller} may use drills for combat. ${DwarfType.engineer} may not step on their own platforms. ${DwarfType.scout} may use their grappling hook to launch another dwarf, but must return to where they started after. ${DwarfType.driller} may dig through dirt.`,
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 94,
@@ -817,8 +882,9 @@ export const strategies: Strategy[] = [
 		requirements: {
 			mission: (m) =>
 				m.primary !== PrimaryObjective.pointExtraction && m.primary !== PrimaryObjective.onSiteRefining,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: 'Mission must have Molly.',
+		writtenRequirements: 'Mission must have Molly. Team must have 2+ dwarves.',
 	},
 	{
 		id: 98,
@@ -831,7 +897,7 @@ export const strategies: Strategy[] = [
 		name: 'All The Groceries In One Trip',
 		summary: 'Cannot deposit anything until the team has collectively completed secondary.',
 		details:
-			'"Collectively completed" entails the necessary amount to complete the secondary objective stored in the mineral bags of any number of dwarves. Gunk seeds can be gathered in one spot to be considered "collectively competed". If only 2 players and the secondary is dystrum, you\'ll have to use perks and/or armor upgrades such that you have 100 total bag capacity.',
+			'"Collectively completed" entails the necessary amount to complete the secondary objective stored in the mineral bags of any number of dwarves. Gunk seeds can be gathered in one spot to be considered "collectively competed". If only 2 dwarves and the secondary is dystrum, you\'ll have to use perks and/or armor upgrades such that you have 100 total bag capacity.',
 		tags: [StratTag.time],
 	},
 	{
@@ -864,11 +930,12 @@ export const strategies: Strategy[] = [
 		name: 'Designated Miner',
 		summary: 'Only one person can mine for everyone but cannot deposit.',
 		details:
-			'The designated miner is the only one who is allowed to mine any resources. Their bag will likely be full before others are able to start getting minerals. The designated miner can deposit if the primary objective cannot be completed without their resources. Other players can still mine dirt/terrain and pick up resources that are not mined with a pickaxe. The designated miner must be the one to exhume large minerals such as jadiz, compressed gold, etc.',
+			'The designated miner is the only one who is allowed to mine any resources. Their bag will likely be full before others are able to start getting minerals. The designated miner can deposit if the primary objective cannot be completed without their resources. Other dwarves can still mine dirt/terrain and pick up resources that are not mined with a pickaxe. The designated miner must be the one to exhume large minerals such as jadiz, compressed gold, etc.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.miningExpedition,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.miningExpedition}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.miningExpedition}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 104,
@@ -876,32 +943,41 @@ export const strategies: Strategy[] = [
 		summary:
 			'Can only attack enemies which are aggressive towards you. Your fellow dwarves must fend for themselves.',
 		details: 'Enemies which are attacking or approaching you with reasonable suspicion may be attacked.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 105,
 		name: 'Commander',
 		summary: "One person in charge of everyone's actions.",
-		details: 'Do a rig minigame to determine commander?',
+		details: '',
 		tags: [StratTag.communication],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 106,
 		name: 'Private Bunkers',
 		summary: 'During fuel cells and uplinks, everyone stays in their own private bunker.',
-		details:
-			'During fuel cells and uplinks, each dwarf must stay in their own private bunker. You may not exit your bunker for any reason until the progress bar has been completed, though you may expand your bunker. At least one engineer is required.',
+		details: `During fuel cells and uplinks, each dwarf must stay in their own private bunker. You may not exit your bunker for any reason until the progress bar has been completed, though you may expand your bunker.`,
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.salvageOperation,
-			team: (t) => t.dwarves.some((d) => d.type === DwarfType.engineer || d.type === DwarfType.flexible),
+			team: (t) =>
+				t.dwarves.length >= 2 &&
+				t.dwarves.some((d) => d.type === DwarfType.engineer || d.type === DwarfType.flexible),
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}, and at least one dwarf must play as ${DwarfType.engineer}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}. Team must have 2+ dwarves, and at least one dwarf must play as ${DwarfType.engineer}.`,
 	},
 	{
 		id: 107,
 		name: 'To My Happy Place',
 		summary: 'Bunker any time swarm music is playing.',
 		details:
-			'Whenever swarm music is playing, you must enter a bunker and remain there until the swarm music is over. You may not do anything (shoot bugs, mine, or revive) until you are in your bunker. At least one engineer is required.',
+			'Whenever swarm music is playing, you must enter a bunker and remain there until the swarm music is over. You may not do anything (shoot bugs, mine, or revive) until you are in your bunker.',
 		tags: [StratTag.class],
 		requirements: {
 			team: (t) => t.dwarves.some((d) => d.type === DwarfType.engineer || d.type === DwarfType.flexible),
@@ -911,17 +987,24 @@ export const strategies: Strategy[] = [
 	{
 		id: 108,
 		name: 'The Best Offense',
-		summary:
-			'Everyone must play as engineer with gemini turrets and at least one of each: turret whip, EM discharge, turret arc.',
+		summary: `Everyone must play as ${DwarfType.engineer} with gemini turrets and at least one of each: turret whip, EM discharge, turret arc.`,
 		details: '',
 		tags: [StratTag.loadout, StratTag.class],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 109,
 		name: 'Designated Medic',
 		summary: 'Determine a designated medic who is the only one who can revive.',
 		details:
-			'Before starting, an order is also determined for "back-up" medics if the primary medic is down. The highest ranking living medic is always the only player who can revive others.',
+			'Before starting, an order is also determined for "back-up" medics if the primary medic is down. The highest ranking living medic is always the only dwarf who can revive others.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 3,
+		},
+		writtenRequirements: 'Team must have 3+ dwarves.',
 	},
 	{
 		id: 110,
@@ -940,11 +1023,12 @@ export const strategies: Strategy[] = [
 		name: 'Divide and Conquer',
 		summary: 'Split the cave and only take care of your zone.',
 		details:
-			'For Point Extraction, split the cave into equal-sized slices centered on mine-head. 1 player per zone. For Escort, split the map into port and starboard sides of Doretta. 1-2 players per zone.',
+			'For Point Extraction, split the cave into equal-sized slices centered on mine-head. 1 dwarf per zone. For Escort, split the map into port and starboard sides of Doretta. 1-2 dwarves per zone.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.pointExtraction || m.primary === PrimaryObjective.escortDuty,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.pointExtraction} or ${PrimaryObjective.escortDuty}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.pointExtraction} or ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 113,
@@ -954,8 +1038,9 @@ export const strategies: Strategy[] = [
 			'Each of the following minerals will be randomly assigned to a dwarf: morkite, nitra, secondary objective, (crafting minerals + gold + phazyonite). You may not collect or deposit anything not assigned to you. This includes shooting down gunk seeds or exhuming jadiz/enor pearls.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.miningExpedition,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.miningExpedition}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.miningExpedition}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 114,
@@ -964,8 +1049,9 @@ export const strategies: Strategy[] = [
 		details: 'Cannot ping the ghost or acknowledge its existence in text/voice chats.',
 		requirements: {
 			mission: (m) => m.warnings.includes(WarningType.hauntedCave),
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission warnings must include ${WarningType.hauntedCave}.`,
+		writtenRequirements: `Mission warnings must include ${WarningType.hauntedCave}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 115,
@@ -1000,7 +1086,11 @@ export const strategies: Strategy[] = [
 		name: 'Cruelty-Free Slaughterhouse',
 		summary: 'Everyone must pet loot-bugs before killing them.',
 		details:
-			'All players must pet loot-bugs before killing them, but you must kill them. No exceptions for hard-to-reach loot-bugs!',
+			'All dwarves must pet loot-bugs before killing them, but you must kill them. No exceptions for hard-to-reach loot-bugs!',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 119,
@@ -1032,8 +1122,8 @@ export const strategies: Strategy[] = [
 	{
 		id: 123,
 		name: 'The Only Way To Be Born',
-		summary: 'Only reload with born ready.',
-		details: 'May not use weapons without a reload.',
+		summary: `Only reload with ${PassivePerkType.bornReady}.`,
+		details: 'May not use weapons that cannot be reloaded.',
 		tags: [StratTag.loadout],
 	},
 	{
@@ -1041,14 +1131,23 @@ export const strategies: Strategy[] = [
 		name: 'Fair Fights',
 		summary: "Can't attack things others have already attacked.",
 		details: "Doesn't apply to dreadnoughts.",
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 125,
 		name: 'I Need A Medic Up Here',
-		summary: 'Scouts job to die in inconvenient places.',
-		details:
-			'Scout must down themselves in an inconvenient place after (a) Every swarm (or b) After the primary, and again after the secondary objectives are completed. Scout must be revived.',
+		summary: `${DwarfType.scout}'s job to die in inconvenient places.`,
+		details: `${DwarfType.scout} must down themselves in an inconvenient place after (a) Every swarm (or b) After the primary, and again after the secondary objectives are completed. ${DwarfType.scout} must be revived.`,
 		tags: [StratTag.time],
+		requirements: {
+			team: (t) =>
+				t.dwarves.length >= 2 &&
+				t.dwarves.some((dwarf) => dwarf.type === DwarfType.scout || dwarf.type === DwarfType.flexible),
+		},
+		writtenRequirements: `Team must have 2+ dwarves, and one of them must be willing to play as ${DwarfType.scout}`,
 	},
 	{
 		id: 126,
@@ -1061,7 +1160,7 @@ export const strategies: Strategy[] = [
 		id: 127,
 		name: 'Scrawny Green-beard',
 		summary:
-			'One player can have no upgrades, OCs, default weapons. Roll a dice. What you get is what level you pretend to be. One perk slot each.',
+			'One dwarf can have no upgrades, OCs, default weapons. Roll a dice. What you get is what level you pretend to be. One perk slot each.',
 		details:
 			'primary/traversal: 1,4,8,12,(16)\nsecondary/armor/support: 1,5,10,15,(20)\npickaxe: 4,8\ngrenade: 1,5,10\nOnly perks in the first three tiers',
 		tags: [StratTag.loadout],
@@ -1070,7 +1169,7 @@ export const strategies: Strategy[] = [
 		id: 128,
 		name: 'Take One Down, Pass It Around',
 		summary: 'Everyone has to pass around heavy minerals before depositing.',
-		details: 'Only once the heavy mineral has been held by all players may it be deposited. Includes gunk seeds.',
+		details: 'Only once the heavy mineral has been held by all dwarves may it be deposited. Includes gunk seeds.',
 		requirements: {
 			mission: (m) =>
 				m.primary === PrimaryObjective.pointExtraction ||
@@ -1081,15 +1180,19 @@ export const strategies: Strategy[] = [
 				m.biome === BiomeType.sandblastedCorridors ||
 				m.biome === BiomeType.radioactiveExclusionZone ||
 				m.secondary === SecondaryObjective.gunkSeed,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission must contain heavy minerals or gunk seeds.`,
+		writtenRequirements: `Mission must contain heavy minerals or gunk seeds. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 129,
 		name: 'To The Fallen',
 		summary: 'You must bury your dead and pay respects before reviving them.',
-		details:
-			'Dig a hole under downed players (and cover it if an engineer is alive). Have a funeral procession and pay respects before digging up and reviving the downed player.',
+		details: `Dig a hole under downed dwarves (and cover it if an ${DwarfType.engineer} is alive). Have a funeral procession and pay respects before digging up and reviving the downed dwarf.`,
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 130,
@@ -1103,18 +1206,17 @@ export const strategies: Strategy[] = [
 		name: 'The Circle of Life',
 		summary: 'Each dwarf has a dedicated reviver and revivee.',
 		details:
-			'Each player may only revive a particular player. e.g. A revives B. B revives C. C revives D. D revives A. Order must be determined in advance.',
+			'Each dwarf may only revive a particular dwarf. e.g. A revives B. B revives C. C revives D. D revives A. Order must be determined in advance.',
 		requirements: {
 			team: (t) => t.dwarves.length >= 3,
 		},
-		writtenRequirements: `Team must have 3 or more players.`,
+		writtenRequirements: 'Team must have 3+ dwarves.',
 	},
 	{
 		id: 132,
 		name: 'Raising Livestock',
 		summary: 'Minerals must be fed to loot-bugs before being picked up.',
-		details:
-			'Make your best effort to mine minerals with EPC, C4 or drills and not pick them up until they are eaten first. May want to bring more than 1 driller.',
+		details: `Make your best effort to mine minerals with EPC, C4 or drills and not pick them up until they are eaten first. May want to bring more than 1 ${DwarfType.driller}.`,
 		tags: [StratTag.time],
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.onSiteRefining,
@@ -1134,20 +1236,32 @@ export const strategies: Strategy[] = [
 		name: 'Carrion Flies',
 		summary: "Can't kill the bugs aggro'd on a downed dwarf.",
 		details: '',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 135,
 		name: 'Med-kits',
 		summary: 'Only one revive per resupply (max one at time).',
 		details:
-			"All players start with one imaginary med-kit. When you revive another player, your imaginary med-kit is consumed. You can only get another by resupplying. The maximum number of held imaginary med-kits is one per dwarf, so if you resupply when you already have one - you still just have one. If you're out of med-kits, you may not revive a player. If the only med-kits left are held by downed players, they may be revived but it will consume their med-kit. If all players are out of med-kits, the remaining players better stay alive and figure out how to call a resupply soon.",
+			"All dwarves start with one imaginary med-kit. When you revive another dwarf, your imaginary med-kit is consumed. You can only get another by resupplying. The maximum number of held imaginary med-kits is one per dwarf, so if you resupply when you already have one - you still just have one. If you're out of med-kits, you may not revive a dwarf. If the only med-kits left are held by downed dwarves, they may be revived but it will consume their med-kit. If all dwarves are out of med-kits, the remaining dwarves better stay alive and figure out how to call a resupply soon.",
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 136,
 		name: "I'm Busy Here",
 		summary: 'Cannot revive during swarm or boss/miniboss.',
 		details:
-			'If swarm music is playing or a boss bar is visible, players may not be revived. During escort duty, players may be revived during phases 2 and 4 of the Ommoran heartstone.',
+			'If swarm music is playing or a boss bar is visible, dwarves may not be revived. During escort duty, dwarves may be revived during phases 2 and 4 of the Ommoran heartstone.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 137,
@@ -1155,6 +1269,10 @@ export const strategies: Strategy[] = [
 		summary: 'Cannot unfreeze yourself.',
 		details:
 			'You must get a fellow dwarf to unfreeze you. You cannot contribute to the thawing process by pressing A or D. You may also not warm yourself up in hot springs or with fire damage.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 138,
@@ -1164,8 +1282,9 @@ export const strategies: Strategy[] = [
 			"Don't look at your fellow dwarves. Avoid having them visible on your screen unless 20m apart. If over 20m apart, avoid having them in or near your reticle. Make your best effort. If you violate one of the rules, you may comment on how ugly they are.",
 		requirements: {
 			mission: (m) => m.biome === BiomeType.glacialStrata,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission biome must be ${BiomeType.glacialStrata}.`,
+		writtenRequirements: `Mission biome must be ${BiomeType.glacialStrata}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 139,
@@ -1216,7 +1335,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 144,
 		name: 'Bring the B-Tiers',
-		summary: 'No iw, dash, resupplier, or field medic, born ready.',
+		summary: `No ${ActivePerkType.ironWill}, ${ActivePerkType.dash}, ${PassivePerkType.resupplier}, ${ActivePerkType.fieldMedic}, or ${PassivePerkType.bornReady}.`,
 		details: '',
 		tags: [StratTag.loadout],
 	},
@@ -1239,7 +1358,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.salvageOperation,
 			team: (t) => t.dwarves.some((d) => d.type === DwarfType.driller || d.type === DwarfType.flexible),
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}, and the team must have at least one driller.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}, and the team must have at least one ${DwarfType.driller}.`,
 	},
 	{
 		id: 147,
@@ -1280,8 +1399,7 @@ export const strategies: Strategy[] = [
 		id: 151,
 		name: 'Flashbang',
 		summary: 'Swap F and G keybinds.',
-		details:
-			'Run grenades that are capable of friendly fire (HE grenades for driller, plasma bursters for engineer, and cryo grenades for scout).',
+		details: `Run grenades that are capable of friendly fire (HE grenades for ${DwarfType.driller}, plasma bursters for ${DwarfType.engineer}, and cryo grenades for ${DwarfType.scout}).`,
 		tags: [StratTag.settings],
 	},
 	{
@@ -1315,7 +1433,11 @@ export const strategies: Strategy[] = [
 		name: 'Unfriendly Fire',
 		summary: 'Settle your differences when friendly-fire occurs.',
 		details:
-			'If you shoot or are shot by a teammate, you and your teammate must engage in a death match without hesitation. Any amount of friendly fire counts. Both players are required to fight; one dwarf may not choose to not fight back.\nWhen in doubt, shoot them anyway.',
+			'If you shoot or are shot by a teammate, you and your teammate must engage in a death match without hesitation. Any amount of friendly fire counts. Both dwarves are required to fight; one dwarf may not choose to not fight back.\nWhen in doubt, shoot them anyway.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: `Team must have 2+ dwarves.`,
 	},
 	{
 		id: 156,
@@ -1339,7 +1461,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 158,
 		name: 'Keep It Up',
-		summary: 'All players are scout. You must remain in the air as much as possible.',
+		summary: `All dwarves are ${DwarfType.scout}. You must remain in the air as much as possible.`,
 		details:
 			"Recommended to use hoverclock, boomstick w/ special powder, and/or hover boots if you're concerned you can't complete this challenge. You may take advantage of low gravity missions if there is one. You may make exceptions for actions that require you to be grounded such as resupplying, depositing, or uplinks/refueling.",
 		tags: [StratTag.class],
@@ -1348,11 +1470,12 @@ export const strategies: Strategy[] = [
 		id: 159,
 		name: 'Ant Raid',
 		summary: 'Fight dreadnoughts in tunnels dug by hand/drill or previous dreadnoughts.',
-		details: 'Recommended bringing at least 2 drillers.',
+		details: `Recommended bringing at least 2 ${DwarfType.driller}s.`,
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.elimination,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}. Team must have 2+ dwarves.`,
 	},
 	{
 		id: 160,
@@ -1374,8 +1497,11 @@ export const strategies: Strategy[] = [
 		id: 162,
 		name: 'You Had One Job',
 		summary: 'Can only satisfy your team role.',
-		details:
-			'e.g. Scout picks off high priority targets (large enemies, spitters) and bugs about to nip a dwarf, Driller handles fodder enemies like grunts and swarmers, etc.',
+		details: `e.g. ${DwarfType.scout} picks off high priority targets (large enemies, spitters) and bugs about to nip a dwarf, ${DwarfType.driller} handles fodder enemies like grunts and swarmers, etc.`,
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 163,
@@ -1406,8 +1532,9 @@ export const strategies: Strategy[] = [
 		requirements: {
 			mission: (m) =>
 				m.primary !== PrimaryObjective.onSiteRefining && m.primary !== PrimaryObjective.pointExtraction,
+			team: (t) => t.dwarves.length >= 2,
 		},
-		writtenRequirements: 'Mission must have Molly.',
+		writtenRequirements: 'Mission must have Molly. Team must have 2+ dwarves.',
 	},
 	{
 		id: 166,
@@ -1427,7 +1554,7 @@ export const strategies: Strategy[] = [
 		id: 167,
 		name: 'Extended Mag',
 		summary: 'Must empty both guns before reloading, then reload both before firing.',
-		details: 'No drak, cryo cannon, EPC, wave cooker, minigun, shard diffractor, or born ready.',
+		details: `No drak, cryo cannon, EPC, wave cooker, minigun, shard diffractor, or ${PassivePerkType.bornReady}.`,
 		tags: [StratTag.loadout],
 	},
 	{
@@ -1459,9 +1586,13 @@ export const strategies: Strategy[] = [
 	{
 		id: 171,
 		name: 'The Silent Treatment',
-		summary: 'No voice or text comms throughout the mission (incl external).',
+		summary: 'No voice or text comms throughout the mission.',
 		details:
-			"You may use any other in-game communication methods (shouting, pinging, etc.) You may continue to use comms for non-mission related conversation. You may use use comms to get someone's attention for something in-game.",
+			"Includes external voice-chat applications. You may use any other in-game communication methods (shouting, pinging, etc.) You may continue to use comms for non-mission related conversation. You may use use comms to get someone's attention for something in-game.",
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 172,
@@ -1475,7 +1606,11 @@ export const strategies: Strategy[] = [
 		name: 'Mutually-Assured Destruction',
 		summary: 'Everyone run fat boy pgl with "nails and tape" and "proximity trigger".',
 		details: '',
-		tags: [StratTag.loadout],
+		tags: [StratTag.loadout, StratTag.class],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 174,
@@ -1519,9 +1654,13 @@ export const strategies: Strategy[] = [
 	{
 		id: 178,
 		name: 'Big Game Hunter',
-		summary: 'One player is responsible for taking out all big targets.',
+		summary: 'One dwarf is responsible for taking out all big targets.',
 		details:
 			'One dwarf is designated as the "Big Game Hunter". They are the only one who may take out praetorians, oppressors, or bulk detonators.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 179,
@@ -1551,9 +1690,13 @@ export const strategies: Strategy[] = [
 	{
 		id: 182,
 		name: "The King's Guard",
-		summary: 'One player is the "Dwarf King" and must be protected at all costs.',
+		summary: 'One dwarf is the "Dwarf King" and must be protected at all costs.',
 		details:
-			'One player is the "Dwarf King" and must be protected at all costs. The Dwarf King has no responsibilities for contributing to the objective and actively seeks out danger. If the Dwarf King is killed, whoever they deem to have failed them the most must be executed/suicided. The executed player is then revived and joins the King\'s Guard as a "new hire". The other guards are encouraged to mock the ("dead") ex-guard. The drop pod may not leave without the Dwarf King.',
+			'One dwarf is the "Dwarf King" and must be protected at all costs. The Dwarf King has no responsibilities for contributing to the objective and actively seeks out danger. If the Dwarf King is killed, whoever they deem to have failed them the most must be executed/suicided. The executed dwarf is then revived and joins the King\'s Guard as a "new hire". The other guards are encouraged to mock the ("dead") ex-guard. The drop pod may not leave without the Dwarf King.',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 183,
@@ -1603,13 +1746,14 @@ export const strategies: Strategy[] = [
 		id: 188,
 		name: 'Let Them Come',
 		summary: 'Must fight all dreadnoughts without leaving spawn room.',
-		details:
-			"You cannot leave the starting room until all dreadnoughts are dead. You must pop them using The Mole on gunner's coil gun.",
+		details: `You cannot leave the starting room until all dreadnoughts are dead. You must pop them using The Mole on ${DwarfType.gunner}'s coil gun.`,
 		tags: [StratTag.loadout],
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.elimination,
+			team: (t) =>
+				t.dwarves.some((dwarf) => dwarf.type === DwarfType.gunner || dwarf.type === DwarfType.flexible),
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}. At least one dwarf must play as ${DwarfType.gunner}.`,
 	},
 	{
 		id: 189,
@@ -1632,8 +1776,7 @@ export const strategies: Strategy[] = [
 		id: 191,
 		name: 'Uncovered Manhole',
 		summary: 'Dig holes in spawn and fight dreadnoughts there without falling in.',
-		details:
-			'Fight dreadnoughts in spawn. Dig many holes straight down that are deep enough to get stuck. Any mix of drill-sized and pick-sized holes will suffice. Engineers are encouraged to cover manholes if their fellow dwarves fall in.',
+		details: `Fight dreadnoughts in spawn. Dig many holes straight down that are deep enough to get stuck. Any mix of drill-sized and pick-sized holes will suffice. ${DwarfType.engineer}s are encouraged to cover manholes if their fellow dwarves fall in.`,
 		tags: [StratTag.time],
 	},
 	{
@@ -1667,6 +1810,10 @@ export const strategies: Strategy[] = [
 		details:
 			'Next time a tritilyte deposit is discovered, all nanite bombs must be passed between all dwarves before being thrown at the deposit.',
 		tags: [StratTag.queue],
+		requirements: {
+			team: (t) => t.dwarves.length >= 3,
+		},
+		writtenRequirements: 'Team must have 3+ dwarves.',
 	},
 	{
 		id: 196,
@@ -1695,8 +1842,9 @@ export const strategies: Strategy[] = [
 		tags: [StratTag.loadout],
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.elimination,
+			team: (t) => t.dwarves.length >= 3,
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}. Team must have 3+ dwarves.`,
 	},
 	{
 		id: 199,
@@ -1725,6 +1873,10 @@ export const strategies: Strategy[] = [
 			'The next Mactera Grabber cannot be attacked. You must let it grab and voluntarily release someone first.',
 		details: '',
 		tags: [StratTag.queue],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 202,
@@ -1732,6 +1884,10 @@ export const strategies: Strategy[] = [
 		summary: 'You may only use traversal tools to reach a location another dwarf has already reached.',
 		details:
 			'For example, someone will have to pick and climb up to ledges, or drop down into chasms before another dwarf can use their traversal tools to make them more navigable. Can use traversal tools for non-traversal purposes (i.e. making a roof or drilling bugs)',
+		requirements: {
+			team: (t) => t.dwarves.length >= 2,
+		},
+		writtenRequirements: 'Team must have 2+ dwarves.',
 	},
 	{
 		id: 203,
@@ -1750,9 +1906,13 @@ export const strategies: Strategy[] = [
 	{
 		id: 205,
 		name: 'Role Reversal',
-		summary: 'Everyone must swap classes and loadouts with another player.',
+		summary: 'Everyone must swap classes and loadouts with another dwarf.',
 		details: '',
 		tags: [StratTag.loadout],
+		requirements: {
+			team: (t) => t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.type === DwarfType.flexible),
+		},
+		writtenRequirements: 'Team must have 2+ dwarves and all be flexible about which class they play.',
 	},
 	{
 		id: 206,
