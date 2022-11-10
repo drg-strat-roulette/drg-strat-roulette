@@ -14,6 +14,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [ ] Bug reports, feature requests, and strategy submissions
 -   [ ] Provide common definitions from consolidated source
     -   (e.g. What are the "large enemies")
+-   [ ] Dark mode
 -   [ ] Provide possible ways to determine who does what
 -   [ ] Select difficulty range for generated strategies
     -   [ ] Mode to continually increase difficulty until a strategy is failed
