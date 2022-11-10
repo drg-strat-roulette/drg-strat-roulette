@@ -1951,4 +1951,15 @@ export const strategies: Strategy[] = [
 		summary: 'Perform the next mission as fast as possible.',
 		details: 'Skip unnecessary minerals, push all buttons immediately, etc.',
 	},
+	{
+		id: 207,
+		name: 'Lone Wolf',
+		summary: 'Leave Bosco behind.',
+		details:
+			'Bosco can be left in the space rig by unchecking the checkbox in the bottom left corner of the Bosco upgrades terminal.',
+		requirements: {
+			team: (t) => t.dwarves.length === 1,
+		},
+		writtenRequirements: 'Team must be a single dwarf.',
+	},
 ];
