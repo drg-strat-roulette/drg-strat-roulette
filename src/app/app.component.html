@@ -1,6 +1,7 @@
 <div class="container">
     <h1>Strat roulette settings</h1>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row strat-settings">
+        <!-- Tag selection -->
         <div class="container">
             <h2>Tags</h2>
             <div *ngFor="let tag of tags" data-toggle="tooltip" [title]="'Include strategies which ' + tag.tooltipDetails">
@@ -8,6 +9,8 @@
                 {{ tag.type }}
             </div>
         </div>
+
+        <!-- Team configuration -->
         <div class="container">
             <h2>Team details</h2>
             <div data-toggle="tooltip" [title]="dwarves.length >= 4 ? 'Team is full' : ''">
@@ -15,10 +18,20 @@
             </div>
             <div *ngFor="let dwarf of dwarves; let i = index">
                 <div class="d-flex flex-col">
-                    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="dwarf.name">
-                    <select class="form-select form-select-sm" [(ngModel)]="dwarf.type">
-                        <option [value]="undefined" selected>--Select class--</option>
-                        <option [value]="dwarfType" *ngFor="let dwarfType of dwarfTypes">{{dwarfType}}</option>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Name"
+                        [(ngModel)]="dwarf.name">
+                    <select
+                        class="form-select form-select-sm"
+                        [(ngModel)]="dwarf.type">
+                        <option [ngValue]="undefined" selected>
+                            --Select class--
+                        </option>
+                        <option [ngValue]="dwarfType" *ngFor="let dwarfType of dwarfTypes">
+                            {{ dwarfType }}
+                        </option>
                     </select>
                     <button class="btn btn-danger" (click)="removeDwarf(i)">X</button>
                 </div>
@@ -26,7 +39,11 @@
         </div>
     </div>
     <hr/>
+
+    <!-- Roll a strategy -->
     <button class="btn btn-primary btn-sm" (click)="rollStrat()">Roll a strategy</button>
     <br>
+
+    <!-- Rolled strategy -->
     <pre style="white-space: pre-wrap;">{{ strat | json }}</pre>
 </div>
