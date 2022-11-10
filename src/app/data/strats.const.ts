@@ -1237,7 +1237,7 @@ export const strategies: Strategy[] = [
 		details: 'Can be carved out with C4s or drilling. Must be at least 10m deep. Cannot be turned into a bunker.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.salvageOperation,
-			team: (t) => t.dwarves.some((d) => d.type === DwarfType.driller),
+			team: (t) => t.dwarves.some((d) => d.type === DwarfType.driller || d.type === DwarfType.flexible),
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}, and the team must have at least one driller.`,
 	},
