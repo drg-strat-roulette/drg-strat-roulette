@@ -18,6 +18,8 @@ export class AppComponent {
 		...tagInfo,
 		checked: true,
 	}));
+	settingsMenuCollapsed = false;
+	specificMissions = false;
 
 	rollStrat() {
 		// Filter out strategies based on tags

@@ -1,47 +1,71 @@
-<div class="container">
-    <h1>Strat roulette settings</h1>
-    <div class="d-flex flex-row strat-settings">
-        <!-- Tag selection -->
-        <div class="container">
-            <h2>Tags</h2>
-            <div *ngFor="let tag of tags" data-toggle="tooltip" [title]="'Include strategies which ' + tag.tooltipDetails">
-                <input class="form-check-input" type="checkbox" [id]="tag.type" [(ngModel)]="tag.checked">
-                {{ tag.type }}
-            </div>
-        </div>
+<div class="container p-2">
 
-        <!-- Team configuration -->
-        <div class="container">
-            <h2>Team details</h2>
-            <div data-toggle="tooltip" [title]="dwarves.length >= 4 ? 'Team is full' : ''">
-                <button class="btn btn-primary btn-sm" [disabled]="dwarves.length >= 4" (click)="addDwarf()">Add a dwarf</button>
+    <!-- Settings collapsible -->
+    <div [collapse]="settingsMenuCollapsed" [isAnimated]="true">
+        <div class="d-flex flex-row">
+            <div class="container">
+                <!-- Tags selection -->
+                <h2>Tags</h2>
+                <div *ngFor="let tag of tags" data-toggle="tooltip" [title]="'Include strategies which ' + tag.tooltipDetails" class="m-1">
+                    <input class="form-check-input" type="checkbox" [id]="tag.type" [(ngModel)]="tag.checked">
+                    {{ tag.type }}
+                </div>
+
+                <!-- Specific missions selection -->
+                <h2>Missions</h2>
+                <div data-toggle="tooltip" title="Roll for strategies that are compatible with a specific pre-determined mission" class="m-1">
+                    <input class="form-check-input" type="checkbox" id="specific-missions-checkbox" [(ngModel)]="specificMissions">
+                        Specific missions
+                </div>
             </div>
-            <div *ngFor="let dwarf of dwarves; let i = index">
-                <div class="d-flex flex-col">
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Name"
-                        [(ngModel)]="dwarf.name">
-                    <select
-                        class="form-select form-select-sm"
-                        [(ngModel)]="dwarf.type">
-                        <option [ngValue]="undefined" selected>
-                            --Select class--
-                        </option>
-                        <option [ngValue]="dwarfType" *ngFor="let dwarfType of dwarfTypes">
-                            {{ dwarfType }}
-                        </option>
-                    </select>
-                    <button class="btn btn-danger" (click)="removeDwarf(i)">X</button>
+
+            <!-- Team configuration -->
+            <div class="container">
+                <h2>Team details</h2>
+
+                <!-- Add a dwarf -->
+                <div data-toggle="tooltip" [title]="dwarves.length >= 4 ? 'Team is full' : ''">
+                    <button class="btn btn-primary btn-sm" [disabled]="dwarves.length >= 4" (click)="addDwarf()">Add a dwarf</button>
+                </div>
+
+                <!-- Dwarf info -->
+                <div *ngFor="let dwarf of dwarves; let i = index">
+                    <div class="d-flex flex-col">
+                        <input
+                            type="text"
+                            class="form-control m-1"
+                            placeholder="Name"
+                            [(ngModel)]="dwarf.name">
+                        <select
+                            class="form-select form-select-sm m-1"
+                            [(ngModel)]="dwarf.type">
+                            <option [ngValue]="undefined" selected>
+                                --Select class--
+                            </option>
+                            <option [ngValue]="dwarfType" *ngFor="let dwarfType of dwarfTypes">
+                                {{ dwarfType }}
+                            </option>
+                        </select>
+                        <button class="btn btn-danger m-1" (click)="removeDwarf(i)">X</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <hr/>
     </div>
-    <hr/>
+
+    <!-- Title and settings button -->
+    <div class="d-flex flex-row justify-content-between">
+        <h1>DRG Strat Roulette</h1>
+        <button class="btn btn-secondary btn-sm settings-btn" (click)="settingsMenuCollapsed = !settingsMenuCollapsed">
+            <i class="bi bi-sliders"></i>
+        </button>
+    </div>
 
     <!-- Roll a strategy -->
-    <button class="btn btn-primary btn-sm" (click)="rollStrat()">Roll a strategy</button>
+    <div>
+        <button class="btn btn-primary btn-sm" (click)="rollStrat()">Roll a strategy</button>
+    </div>
     <br>
 
     <!-- Rolled strategy -->
