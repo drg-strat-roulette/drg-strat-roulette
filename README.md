@@ -7,11 +7,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Roll a random strategy
 -   [x] Exclude strategies with certain tags
 -   [x] Exclude strategies based on team setup
+-   [x] Select multiple dwarves you would be comfortable being
 -   [ ] Roll strategies which are possible given a pre-defined mission
     -   [ ] Higher weight on strategies which have met requirements
 -   [ ] Cache config data (tags, team, current strat(s), etc.)
     -   Could be sharable via links too for certain data
--   [ ] Select multiple dwarves you would be comfortable being
 -   [ ] Copy to clipboard for intro and/or current strat explanations
 -   [ ] Option to automatically make necessary RNG choices
     -   (e.g. "who is the designated medic?")
