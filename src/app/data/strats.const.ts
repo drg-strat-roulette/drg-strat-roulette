@@ -1962,4 +1962,15 @@ export const strategies: Strategy[] = [
 		},
 		writtenRequirements: 'Team must be a single dwarf.',
 	},
+	{
+		id: 208,
+		name: 'Realistic Grapple Physics',
+		summary: `All dwarves must play as ${DwarfType.scout}. You cannot grapple downwards.`,
+		details: '',
+		requirements: {
+			team: (t) =>
+				t.dwarves.every((dwarf) => dwarf.type === DwarfType.scout || dwarf.type === DwarfType.flexible),
+		},
+		writtenRequirements: `All dwarves must be willing to play as ${DwarfType.scout}.`,
+	},
 ];
