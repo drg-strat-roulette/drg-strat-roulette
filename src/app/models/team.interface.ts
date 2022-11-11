@@ -5,11 +5,10 @@ export interface Team {
 
 export interface Dwarf {
 	name?: string;
-	type?: DwarfType;
+	classes: DwarfClass[];
 }
 
-export enum DwarfType {
-	flexible = 'Flexible', // Willing to play as any dwarf as-needed
+export enum DwarfClass {
 	driller = 'Driller',
 	engineer = 'Engineer',
 	gunner = 'Gunner',

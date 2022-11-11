@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { strategies } from './data/strats.const';
 import * as lodash from 'lodash';
 import { Strategy, stratTagInfo, StratTagObject } from './models/strat.interface';
-import { Dwarf, DwarfType } from './models/team.interface';
+import { Dwarf, DwarfClass } from './models/team.interface';
 
 @Component({
 	selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent {
 	title = 'drg-strat-roulette';
 	strat: Strategy | undefined;
 	dwarves: Dwarf[] = [];
-	dwarfTypes: DwarfType[] = Object.values(DwarfType);
+	dwarfClasses: DwarfClass[] = Object.values(DwarfClass);
 	tags: StratTagObject[] = stratTagInfo.map((tagInfo) => ({
 		...tagInfo,
 		checked: true,
@@ -26,10 +26,9 @@ export class AppComponent {
 		const excludedTags = this.tags.filter((tag) => !tag.checked).map((tag) => tag.type);
 		let candidateStrats = strategies.filter((strat) => !strat.tags?.some((tag) => excludedTags.includes(tag)));
 
-		// If team details have not been properly filled out, auto-populate with some data
+		// If dwarf names have not been properly filled out, auto-populate with some data
 		this.dwarves.forEach((dwarf, i) => {
 			dwarf.name = (dwarf.name ?? '').length === 0 ? `Dwarf #${i + 1}` : dwarf.name;
-			dwarf.type = dwarf.type ?? DwarfType.flexible;
 		});
 
 		// Filter out strategies based on team details
@@ -47,7 +46,9 @@ export class AppComponent {
 	}
 
 	addDwarf() {
-		this.dwarves.push({});
+		this.dwarves.push({
+			classes: Object.values(DwarfClass),
+		});
 	}
 
 	removeDwarf(index: number) {

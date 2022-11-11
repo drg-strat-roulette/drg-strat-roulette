@@ -6,16 +6,28 @@
             <div class="container">
                 <!-- Tags selection -->
                 <h2>Tags</h2>
-                <div *ngFor="let tag of tags" data-toggle="tooltip" [title]="'Include strategies which ' + tag.tooltipDetails" class="m-1">
-                    <input class="form-check-input" type="checkbox" [id]="tag.type" [(ngModel)]="tag.checked">
-                    {{ tag.type }}
+                <div *ngFor="let tag of tags" class="m-1">
+                    <mat-checkbox
+                        [(ngModel)]="tag.checked"
+                        #tooltip="matTooltip"
+                        [matTooltip]="'Include strategies which ' + tag.tooltipDetails"
+                        matTooltipPosition="right"
+                        matTooltipShowDelay="250">
+                        {{ tag.type }}
+                    </mat-checkbox>
                 </div>
 
                 <!-- Specific missions selection -->
                 <h2>Missions</h2>
-                <div data-toggle="tooltip" title="Roll for strategies that are compatible with a specific mission entered by the user" class="m-1">
-                    <input class="form-check-input" type="checkbox" id="specific-missions-checkbox" [(ngModel)]="specificMissions">
+                <div class="m-1">
+                    <mat-checkbox
+                        [(ngModel)]="specificMissions"
+                        #tooltip="matTooltip"
+                        matTooltip="Roll for strategies that are compatible with a specific mission entered by the user"
+                        matTooltipPosition="right"
+                        matTooltipShowDelay="250">
                         Specific missions
+                    </mat-checkbox>
                 </div>
             </div>
 
@@ -25,28 +37,21 @@
 
                 <!-- Add a dwarf -->
                 <div data-toggle="tooltip" [title]="dwarves.length >= 4 ? 'Team is full' : ''">
-                    <button class="btn btn-primary btn-sm" [disabled]="dwarves.length >= 4" (click)="addDwarf()">Add a dwarf</button>
+                    <button mat-raised-button color="primary" [disabled]="dwarves.length >= 4" (click)="addDwarf()">Add a dwarf</button>
                 </div>
 
                 <!-- Dwarf info -->
                 <div *ngFor="let dwarf of dwarves; let i = index">
                     <div class="d-flex flex-col">
-                        <input
-                            type="text"
-                            class="form-control m-1"
-                            placeholder="Name"
-                            [(ngModel)]="dwarf.name">
-                        <select
-                            class="form-select form-select-sm m-1"
-                            [(ngModel)]="dwarf.type">
-                            <option [ngValue]="undefined" selected>
-                                --Select class--
-                            </option>
-                            <option [ngValue]="dwarfType" *ngFor="let dwarfType of dwarfTypes">
-                                {{ dwarfType }}
-                            </option>
-                        </select>
-                        <button class="btn btn-danger m-1" (click)="removeDwarf(i)">X</button>
+                        <mat-form-field appearance="fill" class="m-1">
+                            <input matInput type="text" placeholder="Name" [(ngModel)]="dwarf.name">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="m-1 dwarf-class-select">
+                            <mat-select placeholder="--Select class--" [(ngModel)]="dwarf.classes" multiple>
+                                <mat-option [value]="dwarfClass" *ngFor="let dwarfClass of dwarfClasses" [disabled]="dwarf.classes.length === 1 && dwarf.classes.includes(dwarfClass)">{{ dwarfClass }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-icon-button color="warn" class="m-1" (click)="removeDwarf(i)"><mat-icon>close</mat-icon></button>
                     </div>
                 </div>
             </div>
@@ -57,14 +62,12 @@
     <!-- Title and settings button -->
     <div class="d-flex flex-row justify-content-between">
         <h1>DRG Strat Roulette</h1>
-        <button class="btn btn-secondary btn-sm settings-btn" (click)="settingsMenuCollapsed = !settingsMenuCollapsed">
-            <i class="bi bi-sliders"></i>
-        </button>
+        <button mat-icon-button (click)="settingsMenuCollapsed = !settingsMenuCollapsed"><mat-icon>settings</mat-icon></button>
     </div>
 
     <!-- Roll a strategy -->
     <div>
-        <button class="btn btn-primary btn-sm" (click)="rollStrat()">Roll a strategy</button>
+        <button mat-raised-button color="primary" (click)="rollStrat()">Roll a strategy</button>
     </div>
     <br>
 
