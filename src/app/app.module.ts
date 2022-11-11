@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -19,11 +21,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
+		ClipboardModule,
 		CollapseModule.forRoot(),
 		MatButtonModule,
 		MatCheckboxModule,
 		MatIconModule,
 		MatInputModule,
+		MatMenuModule,
 		MatSelectModule,
 		MatTooltipModule,
 		FormsModule,

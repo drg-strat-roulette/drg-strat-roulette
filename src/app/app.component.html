@@ -72,5 +72,30 @@
     <br>
 
     <!-- Rolled strategy -->
-    <pre style="white-space: pre-wrap;">{{ strat | json }}</pre>
+    <div class="position-relative">
+        <pre style="white-space: pre-wrap;">{{ strat | json }}</pre>
+        <button
+            *ngIf="strat"
+            class="copy-strat-to-clipboard"
+            mat-icon-button
+            [matMenuTriggerFor]="clipboardMenu"
+            #tooltip="matTooltip"
+            matTooltip="Copy to clipboard"
+            matTooltipShowDelay="250">
+            <mat-icon>content_copy</mat-icon>
+        </button>
+
+        <!-- Copy intro/strategy to clipboard -->
+        <mat-menu #clipboardMenu="matMenu">
+            <button mat-menu-item (click)="copyText(false, true)">
+                Strat
+            </button>
+            <button mat-menu-item (click)="copyText(true, false)">
+                Intro
+            </button>
+            <button mat-menu-item (click)="copyText(true, true)">
+                Both
+            </button>
+          </mat-menu>
+    </div>
 </div>

@@ -3,6 +3,7 @@ import { strategies } from './data/strats.const';
 import * as lodash from 'lodash';
 import { Strategy, stratTagInfo, StratTagObject } from './models/strat.interface';
 import { Dwarf, DwarfClass } from './models/team.interface';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
 	selector: 'app-root',
@@ -20,6 +21,8 @@ export class AppComponent {
 	}));
 	settingsMenuCollapsed = false;
 	specificMissions = false;
+
+	constructor(private clipboard: Clipboard) {}
 
 	rollStrat() {
 		// Filter out strategies based on tags
@@ -53,5 +56,19 @@ export class AppComponent {
 
 	removeDwarf(index: number) {
 		this.dwarves.splice(index, 1);
+	}
+
+	copyText(copyIntro: boolean, copyStrat: boolean) {
+		let stringToCopy = '';
+		if (copyIntro) {
+			stringToCopy += 'INTRO';
+		}
+		if (copyIntro && copyStrat) {
+			stringToCopy += '\n\n';
+		}
+		if (copyStrat) {
+			stringToCopy += JSON.stringify(this.strat);
+		}
+		this.clipboard.copy(stringToCopy);
 	}
 }

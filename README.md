@@ -22,11 +22,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [ ] Provide common definitions from consolidated source
     -   (e.g. What are the "large enemies")
 -   [ ] Make the UI prettier (DRG themed)
--   [ ] Block specific strategies that you don't like
 -   [ ] Strat history, count of each played
     -   [ ] Bias the rolls based on past data
     -   [ ] Tell you which strats are "new" to you
     -   [ ] Tell you which strats are "new" in general
+-   [ ] Block (and unblock) specific strategies that you don't like
 -   [ ] Way to see the list of of all strategies
 -   [ ] Provide possible ways to determine who does what
 -   [ ] Prevent multiple strategies that conflict with one another (how?)
