@@ -13,7 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [ ] Cache config data (settings and current strat(s))
 -   [ ] Share mission via links (automatic query params and/or share button)
 -   [ ] **WIP** Copy to clipboard for intro and/or current strat explanations
--   [ ] Option to automatically make necessary RNG choices
+-   [ ] **WIP** Option to automatically make necessary RNG choices
     -   (e.g. "who is the designated medic?")
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Persist queued strategies
