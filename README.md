@@ -11,8 +11,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Roll strategies which are possible given a pre-defined mission
     -   [ ] Higher weight on strategies which have met requirements
 -   [x] Cache config data (settings and current strat(s))
--   [x] Share mission via links (automatic query params)
--   [ ] Share missions/site via links (share button)
+-   [x] Share strategy via links (manually copy/paste URL)
+-   [x] Share strategy via links (share button to clipboard)
 -   [ ] **WIP** Copy to clipboard for intro and/or current strat explanations
 -   [ ] **WIP** Option to automatically make necessary RNG choices
     -   (e.g. "who is the designated medic?")
