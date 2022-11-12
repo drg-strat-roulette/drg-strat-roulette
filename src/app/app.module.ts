@@ -1,23 +1,34 @@
+// Defaults
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// @Angular
 import { FormsModule } from '@angular/forms';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
+
+// Angular Material
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+// Angular CDK
+import { ClipboardModule } from '@angular/cdk/clipboard';
+
+// 3rd party
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+
+// Custom components
+import { AppComponent } from './app.component';
+import { SnackbarWithIconComponent } from './components/snackbar-with-icon/snackbar-with-icon.component';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, SnackbarWithIconComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,

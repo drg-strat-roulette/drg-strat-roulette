@@ -16,6 +16,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Settings } from './models/settings.interface';
 import { StoredKeys } from './models/local-storage.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+	SnackbarConfig,
+	SnackbarWithIconComponent,
+} from './components/snackbar-with-icon/snackbar-with-icon.component';
 
 @Component({
 	selector: 'app-root',
@@ -216,13 +220,13 @@ export class AppComponent implements OnInit {
 			stringToCopy += JSON.stringify(this.strat);
 		}
 		this.clipboard.copy(stringToCopy);
-		this.snackbar.open(
-			`${copyIntro ? (copyStrat ? 'Intro and strategy' : 'Intro') : 'Strategy'} copied to clipboard.`,
-			undefined,
-			{
-				duration: 5000,
-			}
-		);
+		this.snackbar.openFromComponent(SnackbarWithIconComponent, {
+			duration: 5000,
+			data: {
+				text: `${copyIntro ? (copyStrat ? 'Intro and strategy' : 'Intro') : 'Strategy'} copied to clipboard.`,
+				prefixIcon: 'assignment',
+			} as SnackbarConfig,
+		});
 	}
 
 	/**
@@ -235,13 +239,13 @@ export class AppComponent implements OnInit {
 			: 'Check out DRG Strategy Roulette!\n';
 		stringToCopy += window.location.href;
 		this.clipboard.copy(stringToCopy);
-		this.snackbar.open(
-			`Link to ${this.strat ? 'current strategy' : 'DRG Strat Roulette'} copied to clipboard.`,
-			undefined,
-			{
-				duration: 5000,
-			}
-		);
+		this.snackbar.openFromComponent(SnackbarWithIconComponent, {
+			duration: 5000,
+			data: {
+				text: `Link to ${this.strat ? 'current strategy' : 'DRG Strat Roulette'} copied to clipboard.`,
+				prefixIcon: 'assignment',
+			} as SnackbarConfig,
+		});
 	}
 
 	/**
