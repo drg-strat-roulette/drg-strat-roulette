@@ -30,18 +30,20 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [ ] Way to see the list of of all strategies
 -   [ ] Mark strategies as successfully completed or failed.
     -   [ ] Some surprise if every strat is succeeded.
+-   [ ] Way to clear all cached data?
+-   [ ] Way to reset settings to defaults?
 -   [ ] Provide possible ways to determine who does what
 -   [ ] Prevent multiple strategies that conflict with one another (how?)
 
-## Possible features
+## Backend features
 
 -   [ ] Like/dislike strategies to globally tweak their weightings
     -   Store total positive, total negative
--   [ ] Select difficulty range for generated strategies
+-   [ ] Provide feedback to increase/decrease a strategy's listed difficulty
+    -   Store total votes, and total difficulty points. Divide in UI.
+    -   [ ] Select difficulty range for generated strategies
     -   [ ] Mode to continually increase difficulty until a strategy is failed
-    -   [ ] Provide feedback to increase/decrease a strategy's listed difficulty
-        -   Store total votes, and total difficulty points. Divide in UI.
--   [ ] Shared sessions
+-   [ ] Shared sessions (stretch)
 
 ## Development server
 
