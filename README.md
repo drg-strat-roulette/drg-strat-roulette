@@ -10,8 +10,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Select multiple dwarves you would be comfortable being
 -   [x] Roll strategies which are possible given a pre-defined mission
     -   [ ] Higher weight on strategies which have met requirements
--   [ ] Cache config data (settings and current strat(s))
--   [ ] Share mission via links (automatic query params and/or share button)
+-   [x] Cache config data (settings and current strat(s))
+-   [x] Share mission via links (automatic query params)
+-   [ ] Share missions/site via links (share button)
 -   [ ] **WIP** Copy to clipboard for intro and/or current strat explanations
 -   [ ] **WIP** Option to automatically make necessary RNG choices
     -   (e.g. "who is the designated medic?")
@@ -33,6 +34,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [ ] Way to clear all cached data?
 -   [ ] Way to reset settings to defaults?
 -   [ ] Provide possible ways to determine who does what
+-   [ ] Full mobile support (compress team inputs, or wrap below tags)
 -   [ ] Prevent multiple strategies that conflict with one another (how?)
 
 ## Backend features

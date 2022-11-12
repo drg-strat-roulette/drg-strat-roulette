@@ -1,8 +1,14 @@
+import { Mission } from './missions.interface';
 import { StratTag } from './strat.interface';
+import { Dwarf } from './team.interface';
 
 export interface Settings {
-	excludedTags: StratTag[]; // Strategies with these tags should be excluded from the selection pool
-	missionFirst: boolean; // Whether the mission is chosen before the strategy // TODO: Needed or can be inferred?
+	version: number;
+	excludedTags: StratTag[];
+	dwarves: Dwarf[];
+	preChosenMissions: boolean;
+	makeStratDecisionsAutomatically: boolean;
+	mission: Mission;
 }
 
 export enum SelectionMode {

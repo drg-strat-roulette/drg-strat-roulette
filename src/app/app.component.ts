@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { strategies } from './data/strats.const';
 import * as lodash from 'lodash';
 import { Strategy, stratTagInfo, StratTagObject } from './models/strat.interface';
@@ -12,13 +12,16 @@ import {
 	SecondaryObjective,
 	WarningType,
 } from './models/missions.interface';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Settings } from './models/settings.interface';
+import { StoredKeys } from './models/local-storage.interface';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 	// Static data
 	dwarfClasses: DwarfClass[] = Object.values(DwarfClass);
 	missionPrimaryObjectives: PrimaryObjective[] = Object.values(PrimaryObjective);
@@ -59,7 +62,37 @@ export class AppComponent {
 		anomaly: null,
 	};
 
-	constructor(private clipboard: Clipboard) {}
+	constructor(private route: ActivatedRoute, private router: Router, private clipboard: Clipboard) {}
+
+	ngOnInit(): void {
+		// Subscribe to query parameters (in order to load a strategy by its Id)
+		this.route.queryParamMap.subscribe((params) => {
+			const strategyId = params.get('strategyId');
+			const strategy = strategies.find((strat) => strat.id === parseInt(strategyId ?? ''));
+			if (strategy) {
+				// If a matching strategy was found, display it
+				this.strat = strategy;
+			} else if (strategyId) {
+				// If no matching strategy was found, but a strategyId was provided, clear the invalid strategyId
+				this.router.navigate([], {
+					queryParams: {
+						strategy: null,
+					},
+					queryParamsHandling: 'merge',
+				});
+			}
+		});
+
+		// Check for cached settings to be loaded
+		const settings: Settings = JSON.parse(localStorage.getItem(StoredKeys.settings) ?? '');
+		if (settings) {
+			this.tags.forEach((tag) => (tag.checked = !settings.excludedTags.includes(tag.type)));
+			this.dwarves = settings.dwarves;
+			this.makeStratDecisionsAutomatically = settings.makeStratDecisionsAutomatically;
+			this.preChosenMissions = settings.preChosenMissions;
+			this.mission = settings.mission;
+		}
+	}
 
 	/**
 	 * Roll for a random strategy to be performed
@@ -71,12 +104,8 @@ export class AppComponent {
 		const excludedTags = this.tags.filter((tag) => !tag.checked).map((tag) => tag.type);
 		let candidateStrats = strategies.filter((strat) => !strat.tags?.some((tag) => excludedTags.includes(tag)));
 
-		// If dwarf names have not been properly filled out, auto-populate with some data
-		this.dwarves.forEach((dwarf, i) => {
-			dwarf.name = (dwarf.name ?? '').length === 0 ? `Dwarf #${i + 1}` : dwarf.name;
-		});
-		// If mission length or complexity are out of bounds, clamp them to the appropriate range
-		this.clampMissionLengthAndComplexity();
+		// Correct invalid inputs before rolling for a strategy
+		this.correctInvalidInputs();
 
 		// Filter out strategies based on team requirements
 		if (this.dwarves.length > 0) {
@@ -104,6 +133,15 @@ export class AppComponent {
 
 		// Pick a random strategy from the candidate list
 		this.strat = lodash.sample(candidateStrats);
+
+		// Add strategyId to query params
+		this.router.navigate([], {
+			relativeTo: this.route,
+			queryParams: {
+				strategyId: this.strat?.id,
+			},
+			queryParamsHandling: 'merge',
+		});
 	}
 
 	/**
@@ -114,6 +152,7 @@ export class AppComponent {
 		this.dwarves.push({
 			classes: Object.values(DwarfClass),
 		});
+		this.saveSettings();
 	}
 
 	/**
@@ -122,6 +161,36 @@ export class AppComponent {
 	 */
 	removeDwarf(index: number): void {
 		this.dwarves.splice(index, 1);
+		this.saveSettings();
+	}
+
+	/**
+	 * Saves the latest settings to browser cache so it can be persisted across sessions
+	 */
+	saveSettings(): void {
+		const settings: Settings = {
+			version: 1,
+			excludedTags: this.tags.filter((tag) => !tag.checked).map((tag) => tag.type),
+			dwarves: this.dwarves,
+			preChosenMissions: this.preChosenMissions,
+			makeStratDecisionsAutomatically: this.makeStratDecisionsAutomatically,
+			mission: this.mission,
+		};
+		localStorage.setItem(StoredKeys.settings, JSON.stringify(settings));
+	}
+
+	/**
+	 * Correct any invalid inputs in settings or mission.
+	 * This allows us to always roll a strategy and avoid form validation.
+	 */
+	correctInvalidInputs(): void {
+		// If dwarf names have not been properly filled out, auto-populate with some data
+		this.dwarves.forEach((dwarf, i) => {
+			dwarf.name = (dwarf.name ?? '').length === 0 ? `Dwarf #${i + 1}` : dwarf.name;
+		});
+		// If mission length or complexity are out of bounds, clamp them to the appropriate range
+		this.clampMissionLengthAndComplexity();
+		this.saveSettings();
 	}
 
 	/**

@@ -9,6 +9,7 @@
                 <div *ngFor="let tag of tags" class="m-1 ms-4">
                     <mat-checkbox
                         [(ngModel)]="tag.checked"
+                        (ngModelChange)="saveSettings()"
                         #tooltip="matTooltip"
                         [matTooltip]="'Include strategies which ' + tag.tooltipDetails"
                         matTooltipPosition="right"
@@ -22,6 +23,7 @@
                 <div class="m-1 ms-4">
                     <mat-checkbox
                         [(ngModel)]="makeStratDecisionsAutomatically"
+                        (ngModelChange)="saveSettings()"
                         #tooltip="matTooltip"
                         matTooltip="Randomly make strategy-specific decisions for me. (e.g. Some strategies require selecting one dwarf to perform a specific role)"
                         matTooltipPosition="right"
@@ -35,6 +37,7 @@
                 <div class="m-1 ms-4">
                     <mat-checkbox
                         [(ngModel)]="preChosenMissions"
+                        (ngModelChange)="saveSettings()"
                         #tooltip="matTooltip"
                         matTooltip="Roll for strategies that are compatible with the mission entered below."
                         matTooltipPosition="right"
@@ -58,11 +61,11 @@
                     <div class="d-flex flex-col">
                         <mat-form-field appearance="fill" class="m-1">
                             <mat-label>Name</mat-label>
-                            <input matInput type="text" [(ngModel)]="dwarf.name">
+                            <input matInput type="text" [(ngModel)]="dwarf.name" (ngModelChange)="saveSettings()">
                         </mat-form-field>
                         <mat-form-field appearance="fill" class="m-1 dwarf-class-select">
                             <mat-label>Classes</mat-label>
-                            <mat-select [(ngModel)]="dwarf.classes" multiple>
+                            <mat-select [(ngModel)]="dwarf.classes" (ngModelChange)="saveSettings()" multiple>
                                 <mat-option [value]="dwarfClass" *ngFor="let dwarfClass of dwarfClasses" [disabled]="dwarf.classes.length === 1 && dwarf.classes.includes(dwarfClass)">{{ dwarfClass }}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -85,7 +88,7 @@
         <div class="d-flex flex-row flex-wrap mt-2">
             <mat-form-field appearance="fill" class="m-1 flex-mission-input">
                 <mat-label>Primary objective</mat-label>
-                <mat-select [(ngModel)]="mission.primary">
+                <mat-select [(ngModel)]="mission.primary" (ngModelChange)="saveSettings()">
                     <mat-option *ngFor="let primaryObjective of missionPrimaryObjectives" [value]="primaryObjective">
                         {{ primaryObjective }}
                     </mat-option>
@@ -93,7 +96,7 @@
             </mat-form-field>
             <mat-form-field appearance="fill" class="m-1 flex-mission-input">
                 <mat-label>Secondary objective</mat-label>
-                <mat-select [(ngModel)]="mission.secondary">
+                <mat-select [(ngModel)]="mission.secondary" (ngModelChange)="saveSettings()">
                     <mat-option *ngFor="let secondaryObjective of missionSecondaryObjectives" [value]="secondaryObjective">
                         {{ secondaryObjective }}
                     </mat-option>
@@ -101,7 +104,7 @@
             </mat-form-field>
             <mat-form-field appearance="fill" class="m-1 flex-mission-input">
                 <mat-label>Biome</mat-label>
-                <mat-select [(ngModel)]="mission.biome">
+                <mat-select [(ngModel)]="mission.biome" (ngModelChange)="saveSettings()">
                     <mat-option *ngFor="let biome of biomes" [value]="biome">
                         {{ biome }}
                     </mat-option>
@@ -115,7 +118,8 @@
                     min="1"
                     max="3"
                     id="mission-length"
-                    [(ngModel)]="mission.length">
+                    [(ngModel)]="mission.length"
+                    (ngModelChange)="saveSettings()">
             </mat-form-field>
             <mat-form-field appearance="fill" class="mission-number-input m-1">
                 <mat-label>Complexity</mat-label>
@@ -125,11 +129,12 @@
                     min="1"
                     max="3"
                     id="mission-complexity"
-                    [(ngModel)]="mission.complexity">
+                    [(ngModel)]="mission.complexity"
+                    (ngModelChange)="saveSettings()">
             </mat-form-field>
             <mat-form-field appearance="fill" class="m-1 flex-mission-input">
                 <mat-label>Warnings</mat-label>
-                <mat-select [(ngModel)]="mission.warnings" multiple>
+                <mat-select [(ngModel)]="mission.warnings" (ngModelChange)="saveSettings()" multiple>
                     <mat-option
                         [value]="warning"
                         *ngFor="let warning of warnings"
@@ -140,7 +145,7 @@
             </mat-form-field>
             <mat-form-field appearance="fill" class="m-1 flex-mission-input">
                 <mat-label>Anomaly</mat-label>
-                <mat-select [(ngModel)]="mission.anomaly">
+                <mat-select [(ngModel)]="mission.anomaly" (ngModelChange)="saveSettings()">
                     <mat-option [value]="null">
                         None
                     </mat-option>
