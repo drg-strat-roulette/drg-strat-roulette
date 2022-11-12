@@ -80,7 +80,10 @@
     <!-- Title and settings button -->
     <div class="d-flex flex-row justify-content-between">
         <h1>DRG Strat Roulette</h1>
-        <button mat-icon-button (click)="settingsMenuCollapsed = !settingsMenuCollapsed"><mat-icon>settings</mat-icon></button>
+        <div>
+            <button mat-icon-button (click)="copyShareText()"><mat-icon>share</mat-icon></button>
+            <button mat-icon-button (click)="settingsMenuCollapsed = !settingsMenuCollapsed"><mat-icon>settings</mat-icon></button>
+        </div>
     </div>
 
     <!-- Mission details -->

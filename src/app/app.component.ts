@@ -15,6 +15,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Settings } from './models/settings.interface';
 import { StoredKeys } from './models/local-storage.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-root',
@@ -62,7 +63,12 @@ export class AppComponent implements OnInit {
 		anomaly: null,
 	};
 
-	constructor(private route: ActivatedRoute, private router: Router, private clipboard: Clipboard) {}
+	constructor(
+		private route: ActivatedRoute,
+		private router: Router,
+		private clipboard: Clipboard,
+		private snackbar: MatSnackBar
+	) {}
 
 	ngOnInit(): void {
 		// Subscribe to query parameters (in order to load a strategy by its Id)
@@ -210,6 +216,32 @@ export class AppComponent implements OnInit {
 			stringToCopy += JSON.stringify(this.strat);
 		}
 		this.clipboard.copy(stringToCopy);
+		this.snackbar.open(
+			`${copyIntro ? (copyStrat ? 'Intro and strategy' : 'Intro') : 'Strategy'} copied to clipboard.`,
+			undefined,
+			{
+				duration: 5000,
+			}
+		);
+	}
+
+	/**
+	 * Copy text and current URL to clipboard
+	 * to enable quickly sharing site
+	 */
+	copyShareText(): void {
+		let stringToCopy = this.strat
+			? 'Join us for this strategy on DRG Strategy Roulette!\n'
+			: 'Check out DRG Strategy Roulette!\n';
+		stringToCopy += window.location.href;
+		this.clipboard.copy(stringToCopy);
+		this.snackbar.open(
+			`Link to ${this.strat ? 'current strategy' : 'DRG Strat Roulette'} copied to clipboard.`,
+			undefined,
+			{
+				duration: 5000,
+			}
+		);
 	}
 
 	/**

@@ -14,6 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { MatMenuModule } from '@angular/material/menu';
 		MatInputModule,
 		MatMenuModule,
 		MatSelectModule,
+		MatSnackBarModule,
 		MatTooltipModule,
 	],
 	providers: [],
