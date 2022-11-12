@@ -2,6 +2,8 @@ import { Mission } from './missions.interface';
 import { StratTag } from './strat.interface';
 import { Dwarf } from './team.interface';
 
+export const settingsVersion = 1;
+
 export interface Settings {
 	version: number;
 	excludedTags: StratTag[];

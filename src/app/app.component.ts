@@ -13,7 +13,7 @@ import {
 	WarningType,
 } from './models/missions.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Settings } from './models/settings.interface';
+import { Settings, settingsVersion } from './models/settings.interface';
 import { StoredKeys } from './models/local-storage.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
@@ -96,11 +96,16 @@ export class AppComponent implements OnInit {
 		// Check for cached settings to be loaded
 		const settings: Settings = JSON.parse(localStorage.getItem(StoredKeys.settings) ?? '');
 		if (settings) {
-			this.tags.forEach((tag) => (tag.checked = !settings.excludedTags.includes(tag.type)));
-			this.dwarves = settings.dwarves;
-			this.makeStratDecisionsAutomatically = settings.makeStratDecisionsAutomatically;
-			this.preChosenMissions = settings.preChosenMissions;
-			this.mission = settings.mission;
+			if (settings.version !== settingsVersion) {
+				// Delete old settings if version is outdated
+				localStorage.removeItem(StoredKeys.settings);
+			} else {
+				this.tags.forEach((tag) => (tag.checked = !settings.excludedTags.includes(tag.type)));
+				this.dwarves = settings.dwarves;
+				this.makeStratDecisionsAutomatically = settings.makeStratDecisionsAutomatically;
+				this.preChosenMissions = settings.preChosenMissions;
+				this.mission = settings.mission;
+			}
 		}
 	}
 
@@ -179,7 +184,7 @@ export class AppComponent implements OnInit {
 	 */
 	saveSettings(): void {
 		const settings: Settings = {
-			version: 1,
+			version: settingsVersion,
 			excludedTags: this.tags.filter((tag) => !tag.checked).map((tag) => tag.type),
 			dwarves: this.dwarves,
 			preChosenMissions: this.preChosenMissions,
