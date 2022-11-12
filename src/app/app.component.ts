@@ -31,7 +31,7 @@ export class AppComponent {
 	strat: Strategy | undefined;
 
 	// True if the settings menu is collapsed, false otherwise
-	settingsMenuCollapsed = false;
+	settingsMenuCollapsed = true;
 
 	// List of all possible strategy tags, and whether they are included or excluded
 	tags: StratTagObject[] = stratTagInfo.map((tagInfo) => ({
@@ -43,7 +43,7 @@ export class AppComponent {
 	dwarves: Dwarf[] = [];
 
 	// True if a mission is to be chosen before a strategy, false otherwise
-	preChosenMissions = true;
+	preChosenMissions = false;
 
 	// True if strategy-related decisions are made automatically for the user
 	makeStratDecisionsAutomatically = true;
