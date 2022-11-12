@@ -10,24 +10,26 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Select multiple dwarves you would be comfortable being
 -   [x] Roll strategies which are possible given a pre-defined mission
     -   [ ] Higher weight on strategies which have met requirements
--   [ ] Cache config data (tags, team, current strat(s), etc.)
-    -   Could be sharable via links too for certain data
--   [ ] Copy to clipboard for intro and/or current strat explanations
+-   [ ] Cache config data (settings and current strat(s))
+-   [ ] Share mission via links (automatic query params and/or share button)
+-   [ ] **WIP** Copy to clipboard for intro and/or current strat explanations
 -   [ ] Option to automatically make necessary RNG choices
     -   (e.g. "who is the designated medic?")
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Persist queued strategies
--   [ ] Add strategy hints as a revealable "spoiler"
+-   [ ] Add strategy hints as revealable "spoilers"
 -   [ ] Bug reports, feature requests, and strategy submissions
 -   [ ] Provide common definitions from consolidated source
     -   (e.g. What are the "large enemies")
 -   [ ] Make the UI prettier (DRG themed)
--   [ ] Strat history, count of each played
+-   [ ] Strat history, count of each played, other stats
     -   [ ] Bias the rolls based on past data
     -   [ ] Tell you which strats are "new" to you
     -   [ ] Tell you which strats are "new" in general
 -   [ ] Block (and unblock) specific strategies that you don't like
 -   [ ] Way to see the list of of all strategies
+-   [ ] Mark strategies as successfully completed or failed.
+    -   [ ] Some surprise if every strat is succeeded.
 -   [ ] Provide possible ways to determine who does what
 -   [ ] Prevent multiple strategies that conflict with one another (how?)
 
