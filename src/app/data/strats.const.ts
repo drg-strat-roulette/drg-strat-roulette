@@ -134,8 +134,12 @@ export const strategies: Strategy[] = [
 	{
 		id: 16,
 		name: 'Double Trouble',
-		summary: 'Double modifier',
-		details: 'Do whatever mission has a double modifier.',
+		summary: 'Do a double warning mission.',
+		details: '',
+		requirements: {
+			mission: (m) => !m,
+		},
+		writtenRequirements: 'Mission must have 2 warnings.',
 	},
 	{
 		id: 17,
@@ -315,7 +319,7 @@ export const strategies: Strategy[] = [
 		name: 'Shoot Your Way Out',
 		summary: 'Only primary and secondary weapons for combat.',
 		details:
-			'You may only use your primary and secondary weapons for combat. This means grenades, drills, sentries, and flare guns may not be used for combat.',
+			'You may only use your primary and secondary weapons for combat. This means grenades, pickaxes, drills, sentries, and flare guns may not be used for combat.',
 	},
 	{
 		id: 37,
@@ -805,7 +809,7 @@ export const strategies: Strategy[] = [
 		summary: 'Standard grunts can only be killed by pick.',
 		details: '',
 		requirements: {
-			mission: (m) => m.anomalies.includes(AnomalyType.criticalWeakness), // Or Skull Crusher Ale on tap... :shrug:
+			mission: (m) => m.anomaly === AnomalyType.criticalWeakness, // Or Skull Crusher Ale on tap... :shrug:
 		},
 		writtenRequirements: `Mission anomalies must include ${AnomalyType.criticalWeakness}.`,
 	},
@@ -894,7 +898,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 97,
 		name: 'Monogamous Relationship',
-		summary: 'Only one person can call molly.',
+		summary: 'Only one person can call Molly.',
 		details: '',
 		requirements: {
 			mission: (m) =>
@@ -908,6 +912,10 @@ export const strategies: Strategy[] = [
 		name: 'A Long and Complex Strategy',
 		summary: 'The next mission must be length 3, complexity 3.',
 		details: '',
+		requirements: {
+			mission: (m) => !m,
+		},
+		writtenRequirements: 'Mission must be length 3, complexity 3.',
 	},
 	{
 		id: 99,
@@ -920,8 +928,9 @@ export const strategies: Strategy[] = [
 	{
 		id: 100,
 		name: 'Endangered Species',
-		summary: "Can't kill bulk detonators.",
+		summary: 'Cannot kill the next encountered bulk detonator.',
 		details: '',
+		tags: [StratTag.queue],
 	},
 	{
 		id: 101,
@@ -1068,6 +1077,10 @@ export const strategies: Strategy[] = [
 		name: 'New High Score',
 		summary: 'Do whatever mission has the highest warning bonus.',
 		details: '',
+		requirements: {
+			mission: (m) => !m,
+		},
+		writtenRequirements: 'Must choose the mission with the highest warning bonus.',
 	},
 	{
 		id: 116,
@@ -1224,7 +1237,7 @@ export const strategies: Strategy[] = [
 		id: 132,
 		name: 'Raising Livestock',
 		summary: 'Minerals must be fed to loot-bugs before being picked up.',
-		details: `Make your best effort to mine minerals with EPC, C4 or drills and not pick them up until they are eaten first. May want to bring more than 1 ${DwarfClass.driller}.`,
+		details: `Make your best effort to mine minerals with EPC, C4 or drills and not pick them up until they are eaten first. May be helpful to bring more than 1 ${DwarfClass.driller}.`,
 		tags: [StratTag.time],
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.onSiteRefining,
@@ -1571,9 +1584,13 @@ export const strategies: Strategy[] = [
 	{
 		id: 168,
 		name: 'REALLY Make It Count',
-		summary: '3/3 no resupply.',
+		summary: '3-3 no resupply.',
 		details:
-			'You must do a 3-3 mission with no resupply. You may not call resupplies even to damage enemies. Broken resupply pods are allowed.',
+			'You must do a length 3, complexity 3 mission without calling resupply pods. Broken resupply pods are allowed.',
+		requirements: {
+			mission: (m) => m.length === 3 && m.complexity === 3,
+		},
+		writtenRequirements: 'Mission length and complexity must both be 3.',
 	},
 	{
 		id: 169,
@@ -1615,7 +1632,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 173,
 		name: 'Mutually-Assured Destruction',
-		summary: 'Everyone run fat boy pgl with "nails and tape" and "proximity trigger".',
+		summary: 'Everyone run fat boy PGL with "nails and tape" and "proximity trigger".',
 		details: '',
 		tags: [StratTag.loadout],
 		requirements: {
@@ -1660,7 +1677,7 @@ export const strategies: Strategy[] = [
 		name: 'Going Legit',
 		summary: 'Fight the next OMEN without any cheese strats.',
 		details:
-			"Next time an OMEN tower machine event is discovered, no cheese strats may be employed to float above the radius pulse gun's lasers. This includes using Molly, platforms, or ziplines.",
+			"Next time an OMEN tower machine event is discovered, no cheese strats may be employed to float above the radius pulse gun's lasers. This includes using Molly, platforms, resupplies, or ziplines.",
 		tags: [StratTag.queue],
 	},
 	{
@@ -1739,7 +1756,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 186,
 		name: 'Tight Schedule',
-		summary: 'Must do events while the drill-dozer is out.',
+		summary: 'Must do the next machine event while the drill-dozer is vulnerable.',
 		details: 'Do any events after the dozer has been started but before completing the Ommoran heartstone.',
 		tags: [StratTag.queue],
 		requirements: {
@@ -1847,7 +1864,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 198,
 		name: 'Just Like Me Mum',
-		summary: 'Slow down dreadnought as much as possible.',
+		summary: 'Slow down dreadnoughts as much as possible.',
 		details:
 			'Combine sludge, electric dot, neuro-lasso, IFG, cwc slowdown, pheromone, neurotoxin, stun, and cryo to make dreadnoughts as slow as possible.',
 		tags: [StratTag.loadout],

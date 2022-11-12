@@ -1,11 +1,11 @@
 export interface Mission {
 	primary: PrimaryObjective;
 	secondary: SecondaryObjective;
+	biome: BiomeType;
 	length: number;
 	complexity: number;
 	warnings: WarningType[];
-	anomalies: AnomalyType[];
-	biome: BiomeType;
+	anomaly: AnomalyType | null;
 }
 
 export enum PrimaryObjective {

@@ -6,7 +6,7 @@
             <div class="container">
                 <!-- Tags selection -->
                 <h2>Tags</h2>
-                <div *ngFor="let tag of tags" class="m-1">
+                <div *ngFor="let tag of tags" class="m-1 ms-4">
                     <mat-checkbox
                         [(ngModel)]="tag.checked"
                         #tooltip="matTooltip"
@@ -17,13 +17,26 @@
                     </mat-checkbox>
                 </div>
 
+                <!-- Make strategy-specific decisions -->
+                <h2>Strategy decisions</h2>
+                <div class="m-1 ms-4">
+                    <mat-checkbox
+                        [(ngModel)]="makeStratDecisionsAutomatically"
+                        #tooltip="matTooltip"
+                        matTooltip="Randomly make strategy-specific decisions for me. (e.g. Some strategies require selecting one dwarf to perform a specific role)"
+                        matTooltipPosition="right"
+                        matTooltipShowDelay="250">
+                        Choose for me
+                    </mat-checkbox>
+                </div>
+
                 <!-- Specific missions selection -->
                 <h2>Missions</h2>
-                <div class="m-1">
+                <div class="m-1 ms-4">
                     <mat-checkbox
-                        [(ngModel)]="specificMissions"
+                        [(ngModel)]="preChosenMissions"
                         #tooltip="matTooltip"
-                        matTooltip="Roll for strategies that are compatible with a specific mission entered by the user"
+                        matTooltip="Roll for strategies that are compatible with the mission entered below."
                         matTooltipPosition="right"
                         matTooltipShowDelay="250">
                         Specific missions
@@ -44,10 +57,12 @@
                 <div *ngFor="let dwarf of dwarves; let i = index">
                     <div class="d-flex flex-col">
                         <mat-form-field appearance="fill" class="m-1">
-                            <input matInput type="text" placeholder="Name" [(ngModel)]="dwarf.name">
+                            <mat-label>Name</mat-label>
+                            <input matInput type="text" [(ngModel)]="dwarf.name">
                         </mat-form-field>
                         <mat-form-field appearance="fill" class="m-1 dwarf-class-select">
-                            <mat-select placeholder="--Select class--" [(ngModel)]="dwarf.classes" multiple>
+                            <mat-label>Classes</mat-label>
+                            <mat-select [(ngModel)]="dwarf.classes" multiple>
                                 <mat-option [value]="dwarfClass" *ngFor="let dwarfClass of dwarfClasses" [disabled]="dwarf.classes.length === 1 && dwarf.classes.includes(dwarfClass)">{{ dwarfClass }}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -65,9 +80,87 @@
         <button mat-icon-button (click)="settingsMenuCollapsed = !settingsMenuCollapsed"><mat-icon>settings</mat-icon></button>
     </div>
 
+    <!-- Mission details -->
+    <div *ngIf="preChosenMissions">
+        <div class="d-flex flex-row flex-wrap mt-2">
+            <mat-form-field appearance="fill" class="m-1 flex-mission-input">
+                <mat-label>Primary objective</mat-label>
+                <mat-select [(ngModel)]="mission.primary">
+                    <mat-option *ngFor="let primaryObjective of missionPrimaryObjectives" [value]="primaryObjective">
+                        {{ primaryObjective }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="m-1 flex-mission-input">
+                <mat-label>Secondary objective</mat-label>
+                <mat-select [(ngModel)]="mission.secondary">
+                    <mat-option *ngFor="let secondaryObjective of missionSecondaryObjectives" [value]="secondaryObjective">
+                        {{ secondaryObjective }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="m-1 flex-mission-input">
+                <mat-label>Biome</mat-label>
+                <mat-select [(ngModel)]="mission.biome">
+                    <mat-option *ngFor="let biome of biomes" [value]="biome">
+                        {{ biome }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="mission-number-input m-1">
+                <mat-label>Length</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    min="1"
+                    max="3"
+                    id="mission-length"
+                    [(ngModel)]="mission.length">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="mission-number-input m-1">
+                <mat-label>Complexity</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    min="1"
+                    max="3"
+                    id="mission-complexity"
+                    [(ngModel)]="mission.complexity">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="m-1 flex-mission-input">
+                <mat-label>Warnings</mat-label>
+                <mat-select [(ngModel)]="mission.warnings" multiple>
+                    <mat-option
+                        [value]="warning"
+                        *ngFor="let warning of warnings"
+                        [disabled]="mission.warnings.length === 2 && !mission.warnings.includes(warning)">
+                        {{ warning }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="m-1 flex-mission-input">
+                <mat-label>Anomaly</mat-label>
+                <mat-select [(ngModel)]="mission.anomaly">
+                    <mat-option [value]="null">
+                        None
+                    </mat-option>
+                    <mat-option *ngFor="let anomaly of anomalies" [value]="anomaly">
+                        {{ anomaly }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+
     <!-- Roll a strategy -->
     <div>
-        <button mat-raised-button color="primary" (click)="rollStrat()">Roll a strategy</button>
+        <button
+            mat-raised-button
+            color="primary"
+            (click)="rollStrat()">
+            Roll a strategy
+        </button>
     </div>
     <br>
 
