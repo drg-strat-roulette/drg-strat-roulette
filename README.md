@@ -13,28 +13,29 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Cache config data (settings and current strat(s))
 -   [x] Share strategy via links (manually copy/paste URL)
 -   [x] Share strategy via links (share button to clipboard)
+-   [x] Make the UI prettier (DRG themed)
+    -   [ ] Background images?
 -   [ ] **WIP** Copy to clipboard for intro and/or current strat explanations
 -   [ ] **WIP** Option to automatically make necessary RNG choices
     -   (e.g. "who is the designated medic?")
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Persist queued strategies
--   [ ] Add strategy hints as revealable "spoilers"
 -   [ ] Bug reports, feature requests, and strategy submissions
 -   [ ] Provide common definitions from consolidated source
     -   (e.g. What are the "large enemies")
--   [ ] Make the UI prettier (DRG themed)
+-   [ ] Add strategy hints as revealable "spoilers"
 -   [ ] Strat history, count of each played, other stats
     -   [ ] Bias the rolls based on past data
     -   [ ] Tell you which strats are "new" to you
     -   [ ] Tell you which strats are "new" in general
 -   [ ] Block (and unblock) specific strategies that you don't like
 -   [ ] Way to see the list of of all strategies
--   [ ] Mark strategies as successfully completed or failed.
-    -   [ ] Some surprise if every strat is succeeded.
+-   [ ] Full mobile support (compress team inputs, or wrap below tags)
 -   [ ] Way to clear all cached data?
 -   [ ] Way to reset settings to defaults?
 -   [ ] Provide possible ways to determine who does what
--   [ ] Full mobile support (compress team inputs, or wrap below tags)
+-   [ ] Mark strategies as successfully completed or failed.
+    -   [ ] Some surprise if every strat is succeeded.
 -   [ ] Prevent multiple strategies that conflict with one another (how?)
 
 ## Backend features

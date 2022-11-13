@@ -452,7 +452,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 51,
 		name: 'Shoddy Connection',
-		summary: 'Only one person can stand in the uplink/refuel zone at a time.',
+		summary: 'Only one dwarf can stand in the uplink/refuel zone at a time.',
 		details: '',
 		tags: [StratTag.time],
 		requirements: {
@@ -516,7 +516,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 57,
 		name: 'Work Zone Speed Limit',
-		summary: 'Only one person in range of dozer while in-transit.',
+		summary: 'Only one dwarf can be in range of the dozer while it is in-transit.',
 		details: '',
 		tags: [StratTag.time],
 		requirements: {
@@ -898,7 +898,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 97,
 		name: 'Monogamous Relationship',
-		summary: 'Only one person can call Molly.',
+		summary: 'Only one dwarf can call Molly.',
 		details: '',
 		requirements: {
 			mission: (m) =>
@@ -954,7 +954,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 103,
 		name: 'Designated Miner',
-		summary: 'Only one person can mine for everyone but cannot deposit.',
+		summary: 'Only one dwarf can mine, but they cannot deposit.',
 		details:
 			'The designated miner is the only one who is allowed to mine any resources. Their bag will likely be full before others are able to start getting minerals. The designated miner can deposit if the primary objective cannot be completed without their resources. Other dwarves can still mine dirt/terrain and pick up resources that are not mined with a pickaxe. The designated miner must be the one to exhume large minerals such as jadiz, compressed gold, etc.',
 		requirements: {

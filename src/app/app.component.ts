@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { strategies } from './data/strats.const';
 import * as lodash from 'lodash';
 import { Strategy, stratTagInfo, StratTagObject } from './models/strat.interface';
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 	strat: Strategy | undefined;
 
 	// True if the settings menu is collapsed, false otherwise
-	settingsMenuCollapsed = true;
+	settingsMenuCollapsed = false;
 
 	// List of all possible strategy tags, and whether they are included or excluded
 	tags: StratTagObject[] = stratTagInfo.map((tagInfo) => ({
@@ -67,6 +67,13 @@ export class AppComponent implements OnInit {
 		anomaly: null,
 	};
 
+	// Hide DRG logo when page is too small to fit
+	hideLogo = false;
+	@HostListener('window:resize')
+	onResize() {
+		this.hideLogo = window.innerWidth < 500;
+	}
+
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
@@ -75,6 +82,7 @@ export class AppComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		this.hideLogo = window.innerWidth < 500;
 		// Subscribe to query parameters (in order to load a strategy by its Id)
 		this.route.queryParamMap.subscribe((params) => {
 			const strategyId = params.get('strategyId');

@@ -1,11 +1,61 @@
+.header-bar {
+    background-color: #191B1C;
+    height: 74px;
+    border-bottom: 1px solid rgb(64, 64, 64);
+}
+
+.drg-logo {
+    width: 160px;
+    margin: 8px;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+.strat-roulette-title {
+    font-size: 32px;
+    margin: 0 !important;
+}
+
+.header-controls {
+    padding-left: 84px;
+}
+
+.page-container {
+    // TODO: Decide if we should use blurred background images (uncomment below to see)
+    // background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/assets/bg/1.jpg');
+    // width: auto;
+    // background-size: cover;
+
+    background-color: #191B1C;
+    height: calc(100% - 122px);
+    padding: 12px;
+    margin-top: 24px;
+    border-radius: 12px;
+    overflow: auto;
+
+    // Hide scrollbar
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.add-dwarf-button-container {
+    width: fit-content;
+}
+
 .dwarf-class-select {
     width: 240px;
 }
 
-.copy-strat-to-clipboard {
-    position:absolute;
-    right:0;
-    bottom:0;
+.fake-dwarf-info {
+    max-height: 0px;
+    height: 0px;
+    overflow: hidden;
 }
 
 .mission-number-input {
