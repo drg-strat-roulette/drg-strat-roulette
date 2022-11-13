@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // @Angular
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 // Angular Material
@@ -30,11 +31,12 @@ import { SnackbarWithIconComponent } from './components/snackbar-with-icon/snack
 @NgModule({
 	declarations: [AppComponent, SnackbarWithIconComponent],
 	imports: [
-		BrowserModule,
 		AppRoutingModule,
+		BrowserModule,
 		BrowserAnimationsModule,
 		ClipboardModule,
 		CollapseModule.forRoot(),
+		CommonModule,
 		FormsModule,
 		MatButtonModule,
 		MatCheckboxModule,

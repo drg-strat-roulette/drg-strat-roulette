@@ -11,6 +11,7 @@ export interface Settings {
 	preChosenMissions: boolean;
 	makeStratDecisionsAutomatically: boolean;
 	mission: Mission;
+	background: string;
 }
 
 export enum SelectionMode {

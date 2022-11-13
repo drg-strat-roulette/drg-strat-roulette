@@ -26,7 +26,9 @@
     </div>
 </div>
 
-<div class="container p-2 page-container">
+<div class="container p-2 page-container" [ngStyle]="{
+    backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/assets/bg/' + background + ')'
+}">
 
     <!-- Settings collapsible -->
     <div [collapse]="settingsMenuCollapsed" [isAnimated]="true">
@@ -72,6 +74,24 @@
                         matTooltipShowDelay="250">
                         Specific missions
                     </mat-checkbox>
+                </div>
+
+                <!-- Background image -->
+                <h2>Background image</h2>
+                <div>
+                    <button
+                        mat-icon-button
+                        (click)="cycleBackground(-1)"
+                        class="m-1">
+                        <mat-icon class="white-icon">arrow_left</mat-icon>
+                    </button>
+                    {{ background.split('.')[0] }}
+                    <button
+                        mat-icon-button
+                        (click)="cycleBackground(1)"
+                        class="m-1">
+                        <mat-icon class="white-icon">arrow_right</mat-icon>
+                    </button>
                 </div>
             </div>
 

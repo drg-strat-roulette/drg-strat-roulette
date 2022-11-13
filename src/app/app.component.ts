@@ -34,12 +34,16 @@ export class AppComponent implements OnInit {
 	biomes: BiomeType[] = Object.values(BiomeType);
 	warnings: WarningType[] = Object.values(WarningType);
 	anomalies: AnomalyType[] = Object.values(AnomalyType);
+	backgrounds = ['0.png', '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
+
+	// Current background image
+	background: string = this.backgrounds[0];
 
 	// Most recently rolled strategy
 	strat: Strategy | undefined;
 
 	// True if the settings menu is collapsed, false otherwise
-	settingsMenuCollapsed = false;
+	settingsMenuCollapsed = true;
 
 	// List of all possible strategy tags, and whether they are included or excluded
 	tags: StratTagObject[] = stratTagInfo.map((tagInfo) => ({
@@ -102,8 +106,9 @@ export class AppComponent implements OnInit {
 		});
 
 		// Check for cached settings to be loaded
-		const settings: Settings = JSON.parse(localStorage.getItem(StoredKeys.settings) ?? '');
-		if (settings) {
+		const settingsString = localStorage.getItem(StoredKeys.settings);
+		if (settingsString) {
+			const settings: Settings = JSON.parse(settingsString);
 			if (settings.version !== settingsVersion) {
 				// Delete old settings if version is outdated
 				localStorage.removeItem(StoredKeys.settings);
@@ -113,6 +118,7 @@ export class AppComponent implements OnInit {
 				this.makeStratDecisionsAutomatically = settings.makeStratDecisionsAutomatically;
 				this.preChosenMissions = settings.preChosenMissions;
 				this.mission = settings.mission;
+				this.background = settings.background;
 			}
 		}
 	}
@@ -188,6 +194,21 @@ export class AppComponent implements OnInit {
 	}
 
 	/**
+	 * Cycles through the set of background images, or no  background image
+	 * @param direction +1 to cycle forwards, and -1 to cycle backwards
+	 */
+	cycleBackground(direction: number): void {
+		let newIndex = this.backgrounds.indexOf(this.background) + direction;
+		if (newIndex >= this.backgrounds.length) {
+			newIndex = 0;
+		} else if (newIndex < 0) {
+			newIndex = this.backgrounds.length - 1;
+		}
+		this.background = this.backgrounds[newIndex];
+		this.saveSettings();
+	}
+
+	/**
 	 * Saves the latest settings to browser cache so it can be persisted across sessions
 	 */
 	saveSettings(): void {
@@ -198,6 +219,7 @@ export class AppComponent implements OnInit {
 			preChosenMissions: this.preChosenMissions,
 			makeStratDecisionsAutomatically: this.makeStratDecisionsAutomatically,
 			mission: this.mission,
+			background: this.background,
 		};
 		localStorage.setItem(StoredKeys.settings, JSON.stringify(settings));
 	}

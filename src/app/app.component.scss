@@ -24,11 +24,8 @@
 }
 
 .page-container {
-    // TODO: Decide if we should use blurred background images (uncomment below to see)
-    // background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/assets/bg/1.jpg');
-    // width: auto;
-    // background-size: cover;
-
+    width: auto;
+    background-size: cover;
     background-color: #191B1C;
     height: calc(100% - 122px);
     padding: 12px;
