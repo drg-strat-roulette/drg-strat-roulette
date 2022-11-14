@@ -9,7 +9,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Exclude strategies based on team setup
 -   [x] Select multiple dwarves you would be comfortable being
 -   [x] Roll strategies which are possible given a pre-defined mission
-    -   [ ] Higher weight on strategies which have met requirements
 -   [x] Cache config data (settings and current strat(s))
 -   [x] Share strategy via links (manually copy/paste URL)
 -   [x] Share strategy via links (share button to clipboard)
@@ -24,6 +23,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Persist queued strategies
 -   [ ] Bug reports, feature requests, and strategy submissions
+-   [ ] Higher weight on strategies which have met requirements
+    -   (add a est %likelihood for each strat w/ mission requirements, and multiply weight by inverse)
 -   [ ] Provide common definitions from consolidated source
     -   (e.g. What are the "large enemies")
 -   [ ] Add strategy hints as revealable "spoilers"
