@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { strategies } from './data/strats.const';
-import * as lodash from 'lodash';
+import { sample } from 'lodash-es';
 import { Strategy, stratTagInfo, StratTagObject } from './models/strat.interface';
 import { Dwarf, DwarfClass } from './models/team.interface';
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -20,6 +20,7 @@ import {
 	SnackbarConfig,
 	SnackbarWithIconComponent,
 } from './components/snackbar-with-icon/snackbar-with-icon.component';
+import { backgroundImages } from './data/backgrounds.const';
 
 @Component({
 	selector: 'app-root',
@@ -34,10 +35,9 @@ export class AppComponent implements OnInit {
 	biomes: BiomeType[] = Object.values(BiomeType);
 	warnings: WarningType[] = Object.values(WarningType);
 	anomalies: AnomalyType[] = Object.values(AnomalyType);
-	backgrounds = ['0.png', '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
 
 	// Current background image
-	background: string = this.backgrounds[0];
+	background: string = backgroundImages[0];
 
 	// Most recently rolled strategy
 	strat: Strategy | undefined;
@@ -118,9 +118,11 @@ export class AppComponent implements OnInit {
 				this.makeStratDecisionsAutomatically = settings.makeStratDecisionsAutomatically;
 				this.preChosenMissions = settings.preChosenMissions;
 				this.mission = settings.mission;
-				this.background = settings.background;
 			}
 		}
+
+		// Update background image
+		this.updateBackgroundImage();
 	}
 
 	/**
@@ -161,7 +163,7 @@ export class AppComponent implements OnInit {
 		}
 
 		// Pick a random strategy from the candidate list
-		this.strat = lodash.sample(candidateStrats);
+		this.strat = sample(candidateStrats);
 
 		// Add strategyId to query params
 		this.router.navigate([], {
@@ -194,18 +196,12 @@ export class AppComponent implements OnInit {
 	}
 
 	/**
-	 * Cycles through the set of background images, or no  background image
-	 * @param direction +1 to cycle forwards, and -1 to cycle backwards
+	 * Sets the background image to a random image from the gallery
+	 * The current background image is cycled on a daily basis
 	 */
-	cycleBackground(direction: number): void {
-		let newIndex = this.backgrounds.indexOf(this.background) + direction;
-		if (newIndex >= this.backgrounds.length) {
-			newIndex = 0;
-		} else if (newIndex < 0) {
-			newIndex = this.backgrounds.length - 1;
-		}
-		this.background = this.backgrounds[newIndex];
-		this.saveSettings();
+	updateBackgroundImage(): void {
+		const backgroundImageIndex = Math.floor(new Date().getTime() / (1000 * 60 * 60 * 24)) % backgroundImages.length;
+		this.background = backgroundImages[backgroundImageIndex];
 	}
 
 	/**
@@ -219,7 +215,6 @@ export class AppComponent implements OnInit {
 			preChosenMissions: this.preChosenMissions,
 			makeStratDecisionsAutomatically: this.makeStratDecisionsAutomatically,
 			mission: this.mission,
-			background: this.background,
 		};
 		localStorage.setItem(StoredKeys.settings, JSON.stringify(settings));
 	}

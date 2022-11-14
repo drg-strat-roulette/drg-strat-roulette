@@ -24,12 +24,18 @@
 }
 
 .page-container {
+    width: 100%;
+    height: calc(100% - 74px);
+    padding-top: 24px;
     width: auto;
     background-size: cover;
-    background-color: #191B1C;
+}
+
+.page-contents-container {
+    width: auto;
+    background-color: rgba(25, 27, 28, 0.3);
     height: calc(100% - 122px);
     padding: 12px;
-    margin-top: 24px;
     border-radius: 12px;
     overflow: auto;
 
