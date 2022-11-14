@@ -14,7 +14,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Share strategy via links (manually copy/paste URL)
 -   [x] Share strategy via links (share button to clipboard)
 -   [x] Make the UI prettier (DRG themed)
-    -   [ ] Background images?
+    -   [x] Background images
 -   [ ] **WIP** Copy to clipboard for intro and/or current strat explanations
 -   [ ] **WIP** Option to automatically make necessary RNG choices
     -   (e.g. "who is the designated medic?")
