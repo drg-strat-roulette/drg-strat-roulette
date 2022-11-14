@@ -1,7 +1,7 @@
 export interface Build {
-	primary: PrimaryWeapon;
-	secondary: SecondaryWeapon;
-	perks: Perks;
+	primary?: PrimaryWeapon;
+	secondary?: SecondaryWeapon;
+	perks?: Perks;
 }
 
 export interface Perks {

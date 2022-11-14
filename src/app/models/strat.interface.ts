@@ -13,6 +13,7 @@ export interface Strategy {
 	requirements?: StratRequirements;
 	writtenRequirements?: string;
 	exclusionCategory?: ExclusionCategory[];
+	generatedContent?: (t: Team) => string;
 }
 
 export enum StratTag {

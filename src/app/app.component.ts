@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
 	preChosenMissions = false;
 
 	// True if strategy-related decisions are made automatically for the user
-	makeStratDecisionsAutomatically = true;
+	makeStratDecisionsAutomatically = true; // TODO: Is there any point to allowing this to be disabled?
 
 	// Pre-chosen mission configuration
 	mission: Mission = {
@@ -131,6 +131,13 @@ export class AppComponent implements OnInit {
 	 * Default values will be applied to any inputs which are improperly configured (rather than preventing rolling)
 	 */
 	rollStrat(): void {
+		// Log tests to make sure generatedContent works TODO: Remove
+		strategies
+			.filter((strat) => !!strat.generatedContent)
+			.forEach((strat) =>
+				console.log(strat.generatedContent ? strat.generatedContent({ dwarves: this.dwarves }) : strat)
+			);
+
 		// Filter out strategies based on unselected tags
 		const excludedTags = this.tags.filter((tag) => !tag.checked).map((tag) => tag.type);
 		let candidateStrats = strategies.filter((strat) => !strat.tags?.some((tag) => excludedTags.includes(tag)));

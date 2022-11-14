@@ -8,12 +8,13 @@ import {
 } from '../models/missions.interface';
 import { Strategy, StratTag } from '../models/strat.interface';
 import { DwarfClass } from '../models/team.interface';
+import { sample, shuffle } from 'lodash-es';
 
 export const strategies: Strategy[] = [
 	{
 		id: 1,
-		name: 'Surgical team',
-		summary: 'All living dwarves move revive downed dwarves together.',
+		name: 'Surgical Team',
+		summary: 'All living dwarves must revive downed dwarves together.',
 		details:
 			'If a dwarf goes down, all dwarves still standing must gather around their corpse. They may not start reviving until all dwarves are present and must begin reviving at the same time.',
 		requirements: {
@@ -122,9 +123,9 @@ export const strategies: Strategy[] = [
 	{
 		id: 15,
 		name: 'Take Your Pick',
-		summary: 'Fight one dreadnought with pickaxes, drills, and axes.',
+		summary: 'Fight one dreadnought using only pickaxes, drills, and axes.',
 		details:
-			"Must fight one dreadnought with your only pickaxe, drills, and axes. Dealer's choice if 1 or both twins are required, and if hiveguard sentinels have to be melee'd too.",
+			"Must fight one dreadnought using only your only pickaxe, drills, and axes. Dealer's choice if 1 or both twins are required. Weapons may be used on Glyphid Spawn and Glyphid Sentinels.",
 		tags: [StratTag.time],
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.elimination,
@@ -245,6 +246,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must not be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Leader.`,
 	},
 	{
 		id: 30,
@@ -300,6 +302,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Mission must have Molly. Team must have 2+ dwarves.',
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Molly-rider.`,
 	},
 	{
 		id: 35,
@@ -313,6 +316,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Designated Driver.`,
 	},
 	{
 		id: 36,
@@ -441,13 +445,13 @@ export const strategies: Strategy[] = [
 	{
 		id: 50,
 		name: 'What Took You So Long?',
-		summary: 'One dwarf must rush to the Ommoran and wait there.',
-		details: `One dwarf (presumably the ${DwarfClass.driller} ) must rush to the Ommoran heartstone and wait there for the rest of the team to catch up.`,
+		summary: `${DwarfClass.driller} must rush to the Ommoran and wait there.`,
+		details: `${DwarfClass.driller} must rush to the Ommoran heartstone and wait there for the rest of the team to catch up.`,
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.escortDuty,
-			team: (t) => t.dwarves.length >= 2,
+			team: (t) => t.dwarves.length >= 2 && t.dwarves.some((dwarf) => dwarf.classes.includes(DwarfClass.driller)),
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves, one of which must be willing to play as ${DwarfClass.driller}`,
 	},
 	{
 		id: 51,
@@ -460,6 +464,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}. Team must have 2+ dwarves.`,
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the only one allowed in the uplink/refuel zone.`,
 	},
 	{
 		id: 52,
@@ -524,6 +529,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the one who can be in-range of the dozer.`,
 	},
 	{
 		id: 58,
@@ -610,13 +616,28 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
+		generatedContent: (t) => {
+			let result = '';
+			const shuffled = shuffle(t.dwarves);
+			shuffled.forEach(
+				(dwarf, i) =>
+					(result += `${i === 0 ? '' : `${dwarf.name}. `}${dwarf.name} will decide for ${
+						i === shuffled.length - 1 ? `${shuffled[0].name}.` : ''
+					}`)
+			);
+			return result;
+		},
 	},
 	{
 		id: 67,
-		name: 'Rolling The Dice',
-		summary: "All weapons, oc's and mods are chosen at random.",
+		name: 'Rolling the Dice',
+		summary: 'All weapons, OCs and mods are chosen at random.',
 		details: '',
 		tags: [StratTag.loadout],
+		generatedContent: (t) => {
+			// TODO: Generate random builds. Pick a class for each dwarf. Try to have 1 of each dwarf if possible.
+			return '';
+		},
 	},
 	{
 		id: 68,
@@ -689,16 +710,16 @@ export const strategies: Strategy[] = [
 				m.primary === PrimaryObjective.eggHunt ||
 				m.primary === PrimaryObjective.pointExtraction ||
 				m.primary === PrimaryObjective.onSiteRefining,
-			team: (t) => t.dwarves.length >= 2,
+			team: (t) => t.dwarves.length >= 2 && t.dwarves.some((dwarf) => dwarf.classes.includes(DwarfClass.gunner)),
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.eggHunt}, ${PrimaryObjective.pointExtraction}, or ${PrimaryObjective.onSiteRefining}. Team must have 2+ dwarves.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.eggHunt}, ${PrimaryObjective.pointExtraction}, or ${PrimaryObjective.onSiteRefining}. Team must have 2+ dwarves, at least one of which must be willing to play as ${DwarfClass.gunner}`,
 	},
 	{
 		id: 75,
 		name: 'The Floor Is Lava',
 		summary: 'Must avoid touching cave floors.',
 		details:
-			'Everyone can only walk on platforms (or provided things: dozer, refinery mine-head, loot-bugs silicates harvesters, gem outcrops, geysers, etc.)',
+			'Everyone must walk on platforms or provided things (dozer, refinery mine-head, loot-bugs, silicates harvesters, gem outcrops, geysers, etc.)',
 		tags: [StratTag.time],
 		requirements: {
 			mission: (m) => m.primary !== PrimaryObjective.miningExpedition,
@@ -728,6 +749,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Conscientious Objector.`,
 	},
 	{
 		id: 79,
@@ -906,6 +928,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Mission must have Molly. Team must have 2+ dwarves.',
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the only one who can call Molly.`,
 	},
 	{
 		id: 98,
@@ -962,6 +985,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.miningExpedition}. Team must have 2+ dwarves.`,
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the only one who can mine, but they may not deposit.`,
 	},
 	{
 		id: 104,
@@ -976,7 +1000,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 105,
-		name: 'Commander',
+		name: 'Team Commander',
 		summary: "One person in charge of everyone's actions.",
 		details: '',
 		tags: [StratTag.communication],
@@ -984,6 +1008,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Team Commander.`,
 	},
 	{
 		id: 106,
@@ -1024,6 +1049,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 3,
 		},
 		writtenRequirements: 'Team must have 3+ dwarves.',
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Designated Medic.`,
 	},
 	{
 		id: 110,
@@ -1060,6 +1086,21 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.miningExpedition}. Team must have 2+ dwarves.`,
+		generatedContent: (t) => {
+			const responsibilities = [
+				'gather Morkite',
+				'gather Nitra',
+				'gather all other resources',
+				'perform the secondary objective',
+			];
+			const shuffled = shuffle(t.dwarves);
+			return responsibilities
+				.map(
+					(responsibility, i) =>
+						`${shuffled[i % shuffled.length]?.name} is the only one who may ${responsibility}.`
+				)
+				.join(' ');
+		},
 	},
 	{
 		id: 114,
@@ -1163,7 +1204,7 @@ export const strategies: Strategy[] = [
 		id: 125,
 		name: 'I Need A Medic Up Here',
 		summary: `${DwarfClass.scout}'s job to die in inconvenient places.`,
-		details: `${DwarfClass.scout} must down themselves in an inconvenient place after (a) Every swarm (or b) After the primary, and again after the secondary objectives are completed. ${DwarfClass.scout} must be revived.`,
+		details: `${DwarfClass.scout} must down themselves in an inconvenient place after [Choose] (a) Every swarm (or b) After the primary, and again after the secondary objectives are completed. ${DwarfClass.scout} must be revived.`,
 		tags: [StratTag.time],
 		requirements: {
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.scout)),
@@ -1181,10 +1222,14 @@ export const strategies: Strategy[] = [
 		id: 127,
 		name: 'Scrawny Green-beard',
 		summary:
-			'One dwarf can have no upgrades, OCs, default weapons. Roll a dice. What you get is what level you pretend to be. One perk slot each.',
+			'One dwarf must use no upgrades, no OCs, no additional perk slots (only 1 passive and 1 active), and default weapons.',
 		details:
-			'primary/traversal: 1,4,8,12,(16)\nsecondary/armor/support: 1,5,10,15,(20)\npickaxe: 4,8\ngrenade: 1,5,10\nOnly perks in the first three tiers',
+			'Roll a dice. Pretend to be leveled at [Roll] * 4. Recall, mods are unlocked at the following levels:\nPrimary/traversal: 1,4,8,12,(16)\nSecondary/armor/support: 1,5,10,15,(20)\nPickaxe: 4,8\nGrenade: 1,5,10\n',
 		tags: [StratTag.loadout],
+		generatedContent: (t) =>
+			`${sample(t.dwarves)?.name} is the Scrawny Green-Beard. They must pretend to be level ${sample([
+				4, 8, 12, 16, 20, 24,
+			])}.`,
 	},
 	{
 		id: 128,
@@ -1232,6 +1277,17 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 3,
 		},
 		writtenRequirements: 'Team must have 3+ dwarves.',
+		generatedContent: (t) => {
+			let result = '';
+			const shuffled = shuffle(t.dwarves);
+			shuffled.forEach(
+				(dwarf, i) =>
+					(result += `${i === 0 ? '' : `${dwarf.name}. `}${dwarf.name} can only revive ${
+						i === shuffled.length - 1 ? `${shuffled[0].name}.` : ''
+					}`)
+			);
+			return result;
+		},
 	},
 	{
 		id: 132,
@@ -1343,8 +1399,9 @@ export const strategies: Strategy[] = [
 			'You may not dismount the zipline unless you are knocked down by a dreadnought attack. Exception may be made for a downed teammate, but you may not shoot while on the ground and must both return ASAP.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.elimination,
+			team: (t) => t.dwarves.some((dwarf) => dwarf.classes.includes(DwarfClass.gunner)),
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}. At least 1 dwarf must play as ${DwarfClass.gunner}.`,
 	},
 	{
 		id: 143,
@@ -1430,6 +1487,13 @@ export const strategies: Strategy[] = [
 		details:
 			'Use random number generator to determine how to remap non-movement and non-mouse keybinds (1, 2, 3, 4, 5, Q, E, R, F, G, X, C, V, M, Ctrl).',
 		tags: [StratTag.settings, StratTag.nausea],
+		generatedContent: (_) => {
+			const controls = ['1', '2', '3', '4', '5', 'Q', 'E', 'R', 'F', 'G', 'X', 'C', 'V', 'M', 'Ctrl'];
+			const remappedControls = shuffle(controls);
+			return controls
+				.map((control, i) => `"${control}" should be remapped to "${remappedControls[i]}".`)
+				.join(' ');
+		},
 	},
 	{
 		id: 153,
@@ -1551,7 +1615,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 165,
 		name: 'Nurse Molly',
-		summary: 'Can only revive when molly is there.',
+		summary: 'Can only revive when Molly is present.',
 		details: 'Must have the M.U.L.E. sitting on a downed dwarf before they can be revived.',
 		requirements: {
 			mission: (m) =>
@@ -1690,6 +1754,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Big Game Hunter.`,
 	},
 	{
 		id: 179,
@@ -1726,6 +1791,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
+		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Dwarf King.`,
 	},
 	{
 		id: 183,
@@ -1836,7 +1902,7 @@ export const strategies: Strategy[] = [
 		name: 'Hot Potato',
 		summary: 'Make an assembly line to destroy your next tritilyte deposit.',
 		details:
-			'Next time a tritilyte deposit is discovered, all nanite bombs must be passed between all dwarves before being thrown at the deposit.',
+			'Next time a tritilyte deposit is discovered, all nanite bombs must be passed between all dwarves before being thrown at the deposit. (The final dwarf may also shoot the nanite bombs if needed)',
 		tags: [StratTag.queue],
 		requirements: {
 			team: (t) => t.dwarves.length >= 3,
@@ -1941,6 +2007,17 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.length >= 2),
 		},
 		writtenRequirements: 'Team must have 2+ dwarves and all be flexible about which class they play.',
+		generatedContent: (t) => {
+			let result = '';
+			const shuffled = shuffle(t.dwarves);
+			shuffled.forEach(
+				(dwarf, i) =>
+					(result += `${i === 0 ? '' : `${dwarf.name}'s loadout. `}${dwarf.name} must take ${
+						i === shuffled.length - 1 ? `${shuffled[0].name}'s loadout.` : ''
+					}`)
+			);
+			return result;
+		},
 	},
 	{
 		id: 206,
@@ -1951,7 +2028,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 207,
 		name: 'Lone Wolf',
-		summary: 'Leave Bosco behind.',
+		summary: 'Leave Bosco at the space rig.',
 		details:
 			'Bosco can be left in the space rig by unchecking the checkbox in the bottom left corner of the Bosco upgrades terminal.',
 		requirements: {
