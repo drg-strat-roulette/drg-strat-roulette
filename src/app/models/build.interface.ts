@@ -3,11 +3,13 @@ import { getRandomInt, selectMultipleDistinct } from '../utilities/general-funct
 import { DwarfClass } from './team.interface';
 
 export class RandomBuild {
+	dwarfClass: DwarfClass;
 	equipment: EquipmentConfig[] = [];
 	activePerks: ActivePerkType[] = [];
 	passivePerks: PassivePerkType[] = [];
 
 	constructor(dwarfClass: DwarfClass) {
+		this.dwarfClass = dwarfClass;
 		// For each type of equipment that can be brought on missions
 		Object.values(EquipmentType).forEach((equipmentType) => {
 			// Pick a random item of that equipment type which can be brought by dwarves of this class
@@ -34,7 +36,7 @@ export class RandomBuild {
 
 	// Return a string describing all equipment and perk configurations
 	toString(): string {
-		let output = '';
+		let output = `Class is ${this.dwarfClass}.\n`;
 		this.equipment.forEach((item) => {
 			output += `${item.type !== item.name ? `${item.type} is ` : ''}${item.name}${
 				item.mods ? ` with mods: ${item.mods.join(',')}` : ''
