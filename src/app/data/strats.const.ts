@@ -1,4 +1,4 @@
-import { ActivePerkType, PassivePerkType } from '../models/build.interface';
+import { ActivePerkType, PassivePerkType, RandomBuild } from '../models/build.interface';
 import {
 	AnomalyType,
 	BiomeType,
@@ -9,6 +9,7 @@ import {
 import { Strategy, StratTag } from '../models/strat.interface';
 import { DwarfClass } from '../models/team.interface';
 import { sample, shuffle } from 'lodash-es';
+import { getAllCombinations } from '../utilities/general-functions.utils';
 
 export const strategies: Strategy[] = [
 	{
@@ -631,12 +632,24 @@ export const strategies: Strategy[] = [
 	{
 		id: 67,
 		name: 'Rolling the Dice',
-		summary: 'All weapons, OCs and mods are chosen at random.',
+		summary: "All dwarves' builds are chosen at random",
 		details: '',
 		tags: [StratTag.loadout],
 		generatedContent: (t) => {
-			// TODO: Generate random builds. Pick a class for each dwarf. Try to have 1 of each dwarf if possible.
-			return '';
+			let bestCombo: DwarfClass[];
+			// Select a class for every dwarf. Maximize number of distinct classes.
+			if (t.dwarves.length > 1) {
+				const allCombos = shuffle(getAllCombinations<DwarfClass>(t.dwarves.map((dwarf) => dwarf.classes)));
+				bestCombo = allCombos.reduce((best, combo) =>
+					new Set(best).size > new Set(combo).size ? best : combo
+				);
+			} else {
+				bestCombo = t.dwarves.map((dwarf) => sample(dwarf.classes)!);
+			}
+			// Generate a randomized build for each dwarf and return their descriptions.
+			return t.dwarves
+				.map((dwarf, i) => `Build for ${dwarf.name}:\n` + new RandomBuild(bestCombo[i]).toString())
+				.join('\n');
 		},
 	},
 	{

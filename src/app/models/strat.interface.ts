@@ -3,7 +3,6 @@ import { Settings } from './settings.interface';
 import { Team } from './team.interface';
 
 export interface Strategy {
-	// TODO: How can we generate additional content? e.g. Roll RNG
 	id: number;
 	name: string;
 	summary: string;
