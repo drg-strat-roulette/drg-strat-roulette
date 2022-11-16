@@ -1056,8 +1056,7 @@ export const strategies: Strategy[] = [
 		id: 109,
 		name: 'Designated Medic',
 		summary: 'Determine a designated medic who is the only one who can revive.',
-		details:
-			'Before starting, an order is also determined for "back-up" medics if the primary medic is down. The highest ranking living medic is always the only dwarf who can revive others.',
+		details: 'If the designated medic is downed, they can only be revived if all living dwarves revive together.',
 		requirements: {
 			team: (t) => t.dwarves.length >= 3,
 		},
