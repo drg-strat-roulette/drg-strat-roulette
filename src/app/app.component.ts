@@ -41,6 +41,15 @@ export class AppComponent implements OnInit {
 
 	// Most recently rolled strategy
 	strat: Strategy | undefined;
+	set strategy(s: Strategy) {
+		this.strat = s;
+		if (s.generatedContent && this.dwarves.length > 0) {
+			this.generatedContent = s.generatedContent({ dwarves: this.dwarves })
+		} else {
+			this.generatedContent = null;
+		}
+	}
+	generatedContent: string | null = null;
 
 	// True if the settings menu is collapsed, false otherwise
 	settingsMenuCollapsed = true;
@@ -71,7 +80,7 @@ export class AppComponent implements OnInit {
 		anomaly: null,
 	};
 
-	// Hide DRG logo when page is too small to fit
+	// Hide DRG logo when page is too small to fit it
 	hideLogo = false;
 	@HostListener('window:resize')
 	onResize() {
@@ -87,13 +96,14 @@ export class AppComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.hideLogo = window.innerWidth < 500;
+		
 		// Subscribe to query parameters (in order to load a strategy by its Id)
 		this.route.queryParamMap.subscribe((params) => {
 			const strategyId = params.get('strategyId');
 			const strategy = strategies.find((strat) => strat.id === parseInt(strategyId ?? ''));
 			if (strategy) {
 				// If a matching strategy was found, display it
-				this.strat = strategy;
+				this.strategy = strategy;
 			} else if (strategyId) {
 				// If no matching strategy was found, but a strategyId was provided, clear the invalid strategyId
 				this.router.navigate([], {
@@ -118,6 +128,7 @@ export class AppComponent implements OnInit {
 				this.makeStratDecisionsAutomatically = settings.makeStratDecisionsAutomatically;
 				this.preChosenMissions = settings.preChosenMissions;
 				this.mission = settings.mission;
+				this.correctInvalidInputs();
 			}
 		}
 
@@ -131,19 +142,12 @@ export class AppComponent implements OnInit {
 	 * Default values will be applied to any inputs which are improperly configured (rather than preventing rolling)
 	 */
 	rollStrat(): void {
-		// Log tests to make sure generatedContent works TODO: Remove
-		strategies
-			.filter((strat) => !!strat.generatedContent)
-			.forEach((strat) =>
-				console.log(strat.generatedContent ? strat.generatedContent({ dwarves: this.dwarves }) : strat)
-			);
+		// Correct invalid inputs before rolling for a strategy
+		this.correctInvalidInputs();
 
 		// Filter out strategies based on unselected tags
 		const excludedTags = this.tags.filter((tag) => !tag.checked).map((tag) => tag.type);
 		let candidateStrats = strategies.filter((strat) => !strat.tags?.some((tag) => excludedTags.includes(tag)));
-
-		// Correct invalid inputs before rolling for a strategy
-		this.correctInvalidInputs();
 
 		// Filter out strategies based on team requirements
 		if (this.dwarves.length > 0) {
@@ -170,7 +174,7 @@ export class AppComponent implements OnInit {
 		}
 
 		// Pick a random strategy from the candidate list
-		this.strat = sample(candidateStrats);
+		this.strategy = sample(candidateStrats) ?? strategies[0];
 
 		// Add strategyId to query params
 		this.router.navigate([], {
