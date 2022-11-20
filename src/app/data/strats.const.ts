@@ -992,7 +992,7 @@ export const strategies: Strategy[] = [
 		name: 'Designated Miner',
 		summary: 'Only one dwarf can mine, but they cannot deposit.',
 		details:
-			'The designated miner is the only one who is allowed to mine any resources. Their bag will likely be full before others are able to start getting minerals. The designated miner can deposit if the primary objective cannot be completed without their resources. Other dwarves can still mine dirt/terrain and pick up resources that are not mined with a pickaxe. The designated miner must be the one to exhume large minerals such as jadiz, compressed gold, etc.',
+			'The designated miner is the only one who is allowed to mine any resources. Their bag will likely be full before others are able to start getting minerals. The designated miner can deposit if the primary objective cannot be completed without their resources. Other dwarves can still mine dirt/terrain and pick up resources that are not mined with a pickaxe. The designated miner must be the one to dig up large minerals such as jadiz, compressed gold, etc.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.miningExpedition,
 			team: (t) => t.dwarves.length >= 2,
