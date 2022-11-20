@@ -12,14 +12,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Cache config data (settings and current strat(s))
 -   [x] Share strategy via links (manually copy/paste URL)
 -   [x] Share strategy via links (share button to clipboard)
+-   [x] Option to automatically make necessary RNG choices
+    -   (e.g. "who is the designated medic?")
 -   [ ] **WIP** Make the UI prettier
     -   [x] DRG themed
     -   [x] Background images
     -   [x] Favicon
     -   [ ] Clean display of selected strat
 -   [ ] **WIP** Copy to clipboard for intro and/or current strat explanations
--   [ ] **WIP** Option to automatically make necessary RNG choices
-    -   (e.g. "who is the designated medic?")
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Persist queued strategies
 -   [ ] Bug reports, feature requests, and strategy submissions
