@@ -16,11 +16,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Copy to clipboard for intro and/or current strat explanations
     -   (e.g. "who is the designated medic?")
 -   [x] Option to re-roll generated content
--   [ ] **WIP** Make the UI prettier
+-   [x] Make the UI prettier
     -   [x] DRG themed
     -   [x] Background images
     -   [x] Favicon
-    -   [ ] Clean display of selected strat
+    -   [x] Clean display of selected strat
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Persist queued strategies
 -   [ ] Bug reports, feature requests, and strategy submissions
