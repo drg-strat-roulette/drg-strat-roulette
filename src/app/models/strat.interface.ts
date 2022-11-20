@@ -7,11 +7,11 @@ export interface Strategy {
 	name: string;
 	summary: string;
 	details: string;
-	difficultyPoints?: number;
 	tags?: StratTag[];
 	requirements?: StratRequirements;
 	writtenRequirements?: string;
-	exclusionCategory?: ExclusionCategory[];
+	// difficultyPoints?: number;
+	// exclusionCategory?: ExclusionCategory[];
 	generatedContent?: (t: Team) => string;
 }
 

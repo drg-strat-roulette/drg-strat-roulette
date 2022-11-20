@@ -506,7 +506,7 @@ export const strategies: Strategy[] = [
 		name: 'Nature Conservationist',
 		summary: 'Cannot destroy environmental hazards.',
 		details:
-			"You cannot destroy environmental hazards through intentional means (you will know if it was intentional or not). This includes the following, divided into biomes: \n* Crystalline Caverns: Electrocrystals or cobwebs\n* Salt Pits: Unstable crystal or unstable platform\n* Fungus Bogs: Steam geysers, exploding plants, sticky goo, poison spores, glyphid eggs, hanging grassy vines\n* Radioactive Exclusion Zone: Volatile uranium, spider webs\n* Dense Biozone: Exploding plants, ejector cacti, spider webs, glyphid eggs, cave urchins, trapactus\n* Glacial Strata: Cryo bulbs, unstable ice, deep snow, crevasse cracks (don't cover them)\n* Hollow Bough: Creeper vines, bloated vines, thorn pots, goo sacks\n* Magma Core: Exploding plants, lava geysers, hot rock, small lava geysers.",
+			"You cannot destroy environmental hazards through intentional means (you will know if it was intentional or not). This includes the following: \n* Crystalline Caverns: Electrocrystals or cobwebs\n* Salt Pits: Unstable crystal or unstable platform\n* Fungus Bogs: Steam geysers, exploding plants, sticky goo, poison spores, glyphid eggs, hanging grassy vines\n* Radioactive Exclusion Zone: Volatile uranium, spider webs\n* Dense Biozone: Exploding plants, ejector cacti, spider webs, glyphid eggs, cave urchins, trapactus\n* Glacial Strata: Cryo bulbs, unstable ice, deep snow, crevasse cracks (don't cover them)\n* Hollow Bough: Creeper vines, bloated vines, thorn pots, goo sacks\n* Magma Core: Exploding plants, lava geysers, hot rock, small lava geysers.",
 		requirements: {
 			mission: (m) => m.biome !== BiomeType.azureWeald,
 		},
@@ -1236,7 +1236,7 @@ export const strategies: Strategy[] = [
 		summary:
 			'One dwarf must use no upgrades, no OCs, no additional perk slots (only 1 passive and 1 active), and default weapons.',
 		details:
-			'Roll a dice. Pretend to be leveled at [Roll] * 4. Recall, mods are unlocked at the following levels:\nPrimary/traversal: 1,4,8,12,(16)\nSecondary/armor/support: 1,5,10,15,(20)\nPickaxe: 4,8\nGrenade: 1,5,10\n',
+			'Roll a 6-sided die. Pretend to be leveled at [Roll] * 4. Recall, mods are unlocked at the following levels:\nPrimary/traversal: 1,4,8,12,(16)\nSecondary/armor/support: 1,5,10,15,(20)\nPickaxe: 4,8\nGrenade: 1,5,10',
 		tags: [StratTag.loadout],
 		generatedContent: (t) =>
 			`${sample(t.dwarves)?.name} is the Scrawny Green-Beard. They must pretend to be level ${sample([

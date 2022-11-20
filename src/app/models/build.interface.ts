@@ -36,14 +36,14 @@ export class RandomBuild {
 
 	// Return a string describing all equipment and perk configurations
 	toString(): string {
-		let output = `Class is ${this.dwarfClass}.\n`;
+		let output = `\tClass is ${this.dwarfClass}.\n`;
 		this.equipment.forEach((item) => {
-			output += `${item.type !== item.name ? `${item.type} is ` : ''}${item.name}${
+			output += `\t${item.type !== item.name ? `${item.type} is ` : ''}${item.name}${
 				item.mods ? ` with mods: ${item.mods.join(',')}` : ''
 			}${item.overclock ? ` and overclock: ${item.overclock}` : ''}.\n`;
 		});
-		output += `Passive perks are: ${this.passivePerks.join(', ')}.\n`;
-		output += `Active perks are: ${this.activePerks.join(', ')}.\n`;
+		output += `\tPassive perks are: ${this.passivePerks.join(', ')}.\n`;
+		output += `\tActive perks are: ${this.activePerks.join(', ')}.\n`;
 		return output;
 	}
 }

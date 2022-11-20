@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
 	strat: Strategy | undefined;
 	set strategy(s: Strategy) {
 		this.strat = s;
-		if (s.generatedContent && this.dwarves.length > 0) {
+		if (this.makeStratDecisionsAutomatically && s.generatedContent && this.dwarves.length > 0) {
 			this.generatedContent = s.generatedContent({ dwarves: this.dwarves })
 		} else {
 			this.generatedContent = null;
@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
 	preChosenMissions = false;
 
 	// True if strategy-related decisions are made automatically for the user
-	makeStratDecisionsAutomatically = true; // TODO: Is there any point to allowing this to be disabled?
+	makeStratDecisionsAutomatically = true;
 
 	// Pre-chosen mission configuration
 	mission: Mission = {
@@ -252,13 +252,23 @@ export class AppComponent implements OnInit {
 	copyText(copyIntro: boolean, copyStrat: boolean): void {
 		let stringToCopy = '';
 		if (copyIntro) {
-			stringToCopy += 'INTRO';
+			stringToCopy += "Welcome! We're playing DRG Strategy Roulette. Every mission has a randomly chosen strategy that we have to follow.";
 		}
 		if (copyIntro && copyStrat) {
 			stringToCopy += '\n\n';
 		}
 		if (copyStrat) {
-			stringToCopy += JSON.stringify(this.strat);
+			stringToCopy += `This mission's strategy is #${this.strat?.id}: ${this.strat?.name}.\n`;
+			stringToCopy += `Summary: ${this.strat?.summary}`;
+			if (this.strat?.details) {
+				stringToCopy += `\nAdditional details: ${this.strat?.details}`;
+			}
+			if (this.strat?.writtenRequirements) {
+				stringToCopy += `\nRequirements: ${this.strat?.writtenRequirements}`;
+			}
+			if (this.generatedContent) {
+				stringToCopy += `\nThis time around: ${this.generatedContent}`;
+			}
 		}
 		this.clipboard.copy(stringToCopy);
 		this.snackbar.openFromComponent(SnackbarWithIconComponent, {
