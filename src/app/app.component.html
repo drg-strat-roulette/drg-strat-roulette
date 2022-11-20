@@ -226,21 +226,31 @@
                 #tooltip="matTooltip"
                 matTooltip="Copy to clipboard"
                 matTooltipShowDelay="500">
-            <mat-icon class="white-icon">content_copy</mat-icon>
-        </button>
+                <mat-icon class="white-icon">content_copy</mat-icon>
+            </button>
+            <button
+                *ngIf="strat?.generatedContent"
+                mat-icon-button
+                #tooltip="matTooltip"
+                [matTooltip]="(strat?.generatedContent && generatedContent ? 'Re-' : '') + 'Generate randomized strategy decisions'"
+                matTooltipShowDelay="500"
+                (click)="generateDynamicContent()">
+                <!-- TODO: Use proper icon here if "reload" doesn't look right -->
+                <mat-icon class="white-icon">reload</mat-icon>
+            </button>
 
-        <!-- Copy intro/strategy to clipboard -->
-        <mat-menu #clipboardMenu="matMenu">
-            <button mat-menu-item (click)="copyText(false, true)">
-                Strat
-            </button>
-            <button mat-menu-item (click)="copyText(true, false)">
-                Intro
-            </button>
-            <button mat-menu-item (click)="copyText(true, true)">
-                Both
-            </button>
-        </mat-menu>
+            <!-- Copy intro/strategy to clipboard -->
+            <mat-menu #clipboardMenu="matMenu">
+                <button mat-menu-item (click)="copyText(false, true)">
+                    Strat
+                </button>
+                <button mat-menu-item (click)="copyText(true, false)">
+                    Intro
+                </button>
+                <button mat-menu-item (click)="copyText(true, true)">
+                    Both
+                </button>
+            </mat-menu>
         </div>
 
         <!-- Rolled strategy -->

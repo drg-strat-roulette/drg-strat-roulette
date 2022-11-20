@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
 	set strategy(s: Strategy) {
 		this.strat = s;
 		if (this.makeStratDecisionsAutomatically && s.generatedContent && this.dwarves.length > 0) {
-			this.generatedContent = s.generatedContent({ dwarves: this.dwarves })
+			this.generateDynamicContent();
 		} else {
 			this.generatedContent = null;
 		}
@@ -242,6 +242,16 @@ export class AppComponent implements OnInit {
 		// If mission length or complexity are out of bounds, clamp them to the appropriate range
 		this.clampMissionLengthAndComplexity();
 		this.saveSettings();
+	}
+
+	/**
+	 * Generates the dynamic contents associated with the active strategy
+	 * (e.g. "Who is the Designated Medic?")
+	 */
+	generateDynamicContent(): void {
+		if (this.strat?.generatedContent) {
+			this.generatedContent = this.strat.generatedContent({ dwarves: this.dwarves });
+		}
 	}
 
 	/**
