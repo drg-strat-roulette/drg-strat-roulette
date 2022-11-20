@@ -15,13 +15,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Option to automatically make necessary RNG choices
 -   [x] Copy to clipboard for intro and/or current strat explanations
     -   (e.g. "who is the designated medic?")
+-   [x] Option to re-roll generated content
 -   [ ] **WIP** Make the UI prettier
     -   [x] DRG themed
     -   [x] Background images
     -   [x] Favicon
     -   [ ] Clean display of selected strat
--   [ ] Option to re-roll generated content
-    -   (Refresh button to the right of strat copy that only appears if relevant)
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Persist queued strategies
 -   [ ] Bug reports, feature requests, and strategy submissions
