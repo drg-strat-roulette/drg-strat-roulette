@@ -232,7 +232,7 @@
                 *ngIf="strat?.generatedContent"
                 mat-icon-button
                 #tooltip="matTooltip"
-                [matTooltip]="(strat?.generatedContent && generatedContent ? 'Re-' : '') + 'Generate randomized strategy decisions'"
+                [matTooltip]="(strat?.generatedContent && generatedContent ? 'Re-g' : 'g') + 'enerate randomized strategy decisions'"
                 matTooltipShowDelay="500"
                 (click)="generateDynamicContent()">
                 <!-- TODO: Use proper icon here if "reload" doesn't look right -->
