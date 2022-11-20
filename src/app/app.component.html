@@ -255,8 +255,21 @@
 
         <!-- Rolled strategy -->
         <div>
-            <pre style="white-space: pre-wrap;">{{ strat | json }}</pre>
-            <pre style="white-space: pre-wrap;">{{ generatedContent }}</pre>
+            <h1 class="text-align-center"><b>#{{ strat?.id }}: {{ strat?.name }}</b></h1>
+            <div><u>Summary</u></div>
+            <div>{{ strat?.summary }}</div>
+            <div *ngIf="strat?.details">
+                <div><u>Additional details</u></div>
+                <div>{{ strat?.details }}</div>
+            </div>
+            <div *ngIf="strat?.writtenRequirements">
+                <div><u>Requirements</u></div>
+                <div>{{ strat?.writtenRequirements }}</div>
+            </div>
+            <div *ngIf="generatedContent">
+                <div><u>This time around</u></div>
+                <div>{{ generatedContent }}</div>
+            </div>
         </div>
     </div>
 </div>
