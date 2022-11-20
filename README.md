@@ -20,6 +20,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     -   [x] Background images
     -   [x] Favicon
     -   [ ] Clean display of selected strat
+-   [ ] Option to re-roll generated content
+    -   (Refresh button to the right of strat copy that only appears if relevant)
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Persist queued strategies
 -   [ ] Bug reports, feature requests, and strategy submissions
