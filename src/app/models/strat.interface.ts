@@ -12,7 +12,8 @@ export interface Strategy {
 	writtenRequirements?: string;
 	// difficultyPoints?: number;
 	// exclusionCategory?: ExclusionCategory[];
-	generatedContent?: (t: Team) => string;
+	generateDynamicContent?: (t: Team) => string;
+	dynamicContent?: string;
 }
 
 export enum StratTag {

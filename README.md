@@ -24,6 +24,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Persist queued strategies
 -   [ ] Bug reports, feature requests, and strategy submissions
+-   [ ] Deploy to public location
 -   [ ] Higher weight on strategies which have met requirements
     -   (add a est %likelihood for each strat w/ mission requirements, and multiply weight by inverse)
 -   [ ] Provide common definitions from consolidated source

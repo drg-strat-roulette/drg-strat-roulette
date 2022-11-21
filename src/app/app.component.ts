@@ -42,14 +42,19 @@ export class AppComponent implements OnInit {
 	// Most recently rolled strategy
 	strat: Strategy | undefined;
 	set strategy(s: Strategy) {
+		// Set the strategy
 		this.strat = s;
-		if (this.makeStratDecisionsAutomatically && s.generatedContent && this.dwarves.length > 0) {
+
+		// Generate dynamic content for the chosen strategy
+		if (this.makeStratDecisionsAutomatically && s.generateDynamicContent && this.dwarves.length > 0) {
 			this.generateDynamicContent();
 		} else {
-			this.generatedContent = null;
+			this.strat.dynamicContent = undefined;
 		}
+
+		// TODO: If it was a queued strategy, add it to the list of queued strategies
 	}
-	generatedContent: string | null = null;
+	queuedStrats: Strategy[] = [];
 
 	// True if the settings menu is collapsed, false otherwise
 	settingsMenuCollapsed = true;
@@ -132,6 +137,8 @@ export class AppComponent implements OnInit {
 			}
 		}
 
+		// TODO: Load cached queuedStrategies
+
 		// Update background image
 		this.updateBackgroundImage();
 	}
@@ -172,6 +179,8 @@ export class AppComponent implements OnInit {
 				}
 			});
 		}
+
+		// TODO: Prevent a presently queued strategy from being re-chosen
 
 		// Pick a random strategy from the candidate list
 		this.strategy = sample(candidateStrats) ?? strategies[0];
@@ -249,9 +258,11 @@ export class AppComponent implements OnInit {
 	 * (e.g. "Who is the Designated Medic?")
 	 */
 	generateDynamicContent(): void {
-		if (this.strat?.generatedContent) {
-			this.generatedContent = this.strat.generatedContent({ dwarves: this.dwarves });
+		if (this.strat?.generateDynamicContent) {
+			this.strat.dynamicContent = this.strat.generateDynamicContent({ dwarves: this.dwarves });
 		}
+
+		// TODO: Add/update queuedStrategies in cache
 	}
 
 	/**
@@ -276,8 +287,8 @@ export class AppComponent implements OnInit {
 			if (this.strat?.writtenRequirements) {
 				stringToCopy += `\nRequirements: ${this.strat?.writtenRequirements}`;
 			}
-			if (this.generatedContent) {
-				stringToCopy += `\nThis time around: ${this.generatedContent}`;
+			if (this.strat?.dynamicContent) {
+				stringToCopy += `\nThis time around: ${this.strat.dynamicContent}`;
 			}
 		}
 		this.clipboard.copy(stringToCopy);

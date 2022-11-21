@@ -247,7 +247,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must not be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Leader.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the Leader.`,
 	},
 	{
 		id: 30,
@@ -303,7 +303,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Mission must have Molly. Team must have 2+ dwarves.',
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Molly-rider.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the Molly-rider.`,
 	},
 	{
 		id: 35,
@@ -317,7 +317,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Designated Driver.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the Designated Driver.`,
 	},
 	{
 		id: 36,
@@ -465,7 +465,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}. Team must have 2+ dwarves.`,
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the only one allowed in the uplink/refuel zone.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the only one allowed in the uplink/refuel zone.`,
 	},
 	{
 		id: 52,
@@ -530,7 +530,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the one who can be in-range of the dozer.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the one who can be in-range of the dozer.`,
 	},
 	{
 		id: 58,
@@ -617,7 +617,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
-		generatedContent: (t) => {
+		generateDynamicContent: (t) => {
 			let result = '';
 			const shuffled = shuffle(t.dwarves);
 			shuffled.forEach(
@@ -635,7 +635,7 @@ export const strategies: Strategy[] = [
 		summary: "All dwarves' builds are chosen at random",
 		details: '',
 		tags: [StratTag.loadout],
-		generatedContent: (t) => {
+		generateDynamicContent: (t) => {
 			let bestCombo: DwarfClass[];
 			// Select a class for every dwarf. Maximize number of distinct classes.
 			if (t.dwarves.length > 1) {
@@ -762,7 +762,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Conscientious Objector.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the Conscientious Objector.`,
 	},
 	{
 		id: 79,
@@ -941,7 +941,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Mission must have Molly. Team must have 2+ dwarves.',
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the only one who can call Molly.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the only one who can call Molly.`,
 	},
 	{
 		id: 98,
@@ -998,7 +998,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.miningExpedition}. Team must have 2+ dwarves.`,
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the only one who can mine, but they may not deposit.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the only one who can mine, but they may not deposit.`,
 	},
 	{
 		id: 104,
@@ -1021,7 +1021,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Team Commander.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the Team Commander.`,
 	},
 	{
 		id: 106,
@@ -1061,7 +1061,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 3,
 		},
 		writtenRequirements: 'Team must have 3+ dwarves.',
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Designated Medic.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the Designated Medic.`,
 	},
 	{
 		id: 110,
@@ -1098,7 +1098,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.miningExpedition}. Team must have 2+ dwarves.`,
-		generatedContent: (t) => {
+		generateDynamicContent: (t) => {
 			const responsibilities = [
 				'gather Morkite',
 				'gather Nitra',
@@ -1238,7 +1238,7 @@ export const strategies: Strategy[] = [
 		details:
 			'Roll a 6-sided die. Pretend to be leveled at [Roll] * 4. Recall, mods are unlocked at the following levels:\nPrimary/traversal: 1,4,8,12,(16)\nSecondary/armor/support: 1,5,10,15,(20)\nPickaxe: 4,8\nGrenade: 1,5,10',
 		tags: [StratTag.loadout],
-		generatedContent: (t) =>
+		generateDynamicContent: (t) =>
 			`${sample(t.dwarves)?.name} is the Scrawny Green-Beard. They must pretend to be level ${sample([
 				4, 8, 12, 16, 20, 24,
 			])}.`,
@@ -1289,7 +1289,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 3,
 		},
 		writtenRequirements: 'Team must have 3+ dwarves.',
-		generatedContent: (t) => {
+		generateDynamicContent: (t) => {
 			let result = '';
 			const shuffled = shuffle(t.dwarves);
 			shuffled.forEach(
@@ -1499,7 +1499,7 @@ export const strategies: Strategy[] = [
 		details:
 			'Use random number generator to determine how to remap non-movement and non-mouse keybinds (1, 2, 3, 4, 5, Q, E, R, F, G, X, C, V, M, Ctrl).',
 		tags: [StratTag.settings, StratTag.nausea],
-		generatedContent: (_) => {
+		generateDynamicContent: (_) => {
 			const controls = ['1', '2', '3', '4', '5', 'Q', 'E', 'R', 'F', 'G', 'X', 'C', 'V', 'M', 'Ctrl'];
 			const remappedControls = shuffle(controls);
 			return controls
@@ -1766,7 +1766,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Big Game Hunter.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the Big Game Hunter.`,
 	},
 	{
 		id: 179,
@@ -1803,7 +1803,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Team must have 2+ dwarves.',
-		generatedContent: (t) => `${sample(t.dwarves)?.name} is the Dwarf King.`,
+		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the Dwarf King.`,
 	},
 	{
 		id: 183,
@@ -2019,7 +2019,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.length >= 2),
 		},
 		writtenRequirements: 'Team must have 2+ dwarves and all be flexible about which class they play.',
-		generatedContent: (t) => {
+		generateDynamicContent: (t) => {
 			let result = '';
 			const shuffled = shuffle(t.dwarves);
 			shuffled.forEach(
