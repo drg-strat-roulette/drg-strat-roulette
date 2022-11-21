@@ -51,8 +51,6 @@ export class AppComponent implements OnInit {
 		} else {
 			this.strat.dynamicContent = undefined;
 		}
-
-		// TODO: If it was a queued strategy, add it to the list of queued strategies
 	}
 	queuedStrats: Strategy[] = [];
 
@@ -262,7 +260,7 @@ export class AppComponent implements OnInit {
 			this.strat.dynamicContent = this.strat.generateDynamicContent({ dwarves: this.dwarves });
 		}
 
-		// TODO: Add/update queuedStrategies in cache
+		// TODO: Add/update queuedStrategies in cache and memory
 	}
 
 	/**
