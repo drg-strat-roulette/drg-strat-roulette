@@ -107,16 +107,27 @@ export class AppComponent implements OnInit {
 		
 		// Subscribe to query parameters (in order to load a strategy by its Id)
 		this.route.queryParamMap.subscribe((params) => {
-			const strategyId = params.get('strategyId');
-			const strategy = strategies.find((strat) => strat.id === parseInt(strategyId ?? ''));
+			const strategyId = parseInt(params.get('strategyId') ?? '');
+			// If this strategy is already active, exit early
+			if (this.strat?.id === strategyId) {
+				return;
+			}
+			const strategy = strategies.find((strat) => strat.id === strategyId);
 			if (strategy) {
 				// If a matching strategy was found, display it
-				this.strategy = strategy;
+				const dynamicContent = params.get('dynamicContent') ?? undefined;
+				if (dynamicContent) {
+					strategy.dynamicContent = dynamicContent;
+					this.strat = strategy;
+				} else {
+					this.strategy = strategy;
+				}
 			} else if (strategyId) {
 				// If no matching strategy was found, but a strategyId was provided, clear the invalid strategyId
 				this.router.navigate([], {
 					queryParams: {
 						strategy: null,
+						dynamicContent: null
 					},
 					queryParamsHandling: 'merge',
 				});
@@ -167,8 +178,6 @@ export class AppComponent implements OnInit {
 		// Correct invalid inputs before rolling for a strategy
 		this.correctInvalidInputs();
 
-		console.log(this.queuedStrats);
-
 		// Filter out strategies based on unselected tags
 		const excludedTags = this.tags.filter((tag) => !tag.checked).map((tag) => tag.type);
 		let candidateStrats = strategies.filter((strat) => !strat.tags?.some((tag) => excludedTags.includes(tag)));
@@ -198,7 +207,10 @@ export class AppComponent implements OnInit {
 		}
 
 		// Prevent a presently queued strategy from being re-chosen
-		candidateStrats = candidateStrats.filter(strat => !this.queuedStrats.some(queue => queue.id === strat.id))
+		candidateStrats = candidateStrats.filter(strat => !this.queuedStrats.some(queue => queue.id === strat.id));
+		
+		// Prevent the current strategy from being re-chosen
+		candidateStrats = candidateStrats.filter(strat => strat.id !== this.strat?.id);
 
 		// Pick a random strategy from the candidate list
 		const chosenStrategy = sample(candidateStrats) ?? strategies[0];
@@ -208,6 +220,7 @@ export class AppComponent implements OnInit {
 			relativeTo: this.route,
 			queryParams: {
 				strategyId: chosenStrategy?.id,
+				dynamicContent: null
 			},
 			queryParamsHandling: 'merge',
 		});
@@ -278,6 +291,12 @@ export class AppComponent implements OnInit {
 	generateDynamicContent(): void {
 		if (this.strat?.generateDynamicContent) {
 			this.strat.dynamicContent = this.strat.generateDynamicContent({ dwarves: this.dwarves });
+			this.router.navigate([], {
+				queryParams: {
+					dynamicContent: this.strat.dynamicContent,
+				},
+				queryParamsHandling: 'merge',
+			});
 		}
 	}
 
