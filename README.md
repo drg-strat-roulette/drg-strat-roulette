@@ -23,8 +23,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     -   [x] Clean display of selected strat
 -   [x] Mobile support
 -   [ ] Persist queued strategies
+-   [ ] Seed generatedContent and include seed in URL
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Bug reports, feature requests, and strategy submissions
+    -   [ ] Enable "Discussions" on repo, and use "Issues" for bugs. Link to them from site with templates and/or a G-Form
 -   [ ] Deploy to public location
 -   [ ] Prevent past X strategies from being rolled again
 -   [ ] Higher weight on strategies which have met requirements
