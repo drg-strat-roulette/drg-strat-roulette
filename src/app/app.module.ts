@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -44,6 +45,7 @@ import { SnackbarWithIconComponent } from './components/snackbar-with-icon/snack
 		MatInputModule,
 		MatMenuModule,
 		MatSelectModule,
+		MatSidenavModule,
 		MatSnackBarModule,
 		MatTooltipModule,
 	],
