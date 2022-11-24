@@ -36,11 +36,11 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [ ] **WIP** Display info about the active strategy's tags
 -   [ ] **WIP** Define rules and how to play
     -   Display on first visit and provide a way to re-open it
+-   [ ] **WIP** Higher weight on strategies which have met requirements
+    -   (add a est %likelihood for each strat w/ mission requirements, and multiply weight by inverse)
 -   [ ] Bug reports, feature requests, and strategy submissions
     -   [ ] Enable "Discussions" on repo, and use "Issues" for bugs. Link to them from site with templates and/or a G-Form
 -   [ ] Deploy to public location
--   [ ] Higher weight on strategies which have met requirements
-    -   (add a est %likelihood for each strat w/ mission requirements, and multiply weight by inverse)
 -   [ ] Add strategy hints as revealable "spoilers"
 -   [ ] Provide possible ways to determine who does what
 
