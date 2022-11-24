@@ -14,7 +14,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Share strategy via links (share button to clipboard)
 -   [x] Option to automatically make necessary RNG choices
 -   [x] Copy to clipboard for intro and/or current strat explanations
-    -   (e.g. "who is the designated medic?")
 -   [x] Option to re-roll generated content
 -   [x] Make the UI prettier
     -   [x] DRG themed
@@ -27,9 +26,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Prevent past X strategies from being rolled again
 -   [x] Way to clear all cached data
 -   [x] Way to reset settings to defaults
--   [ ] **WIP** Provide common definitions from consolidated source
-    -   (e.g. What are the "large enemies")
+-   [x] Provide common definitions from consolidated source
 -   [ ] **WIP** Display info about the active strategy's tags
+-   [ ] Define rules and how to play (keep them vague, and mention the goal is to have fun)
+    -   Display on first visit and provide a way to re-open it
 -   [ ] Bug reports, feature requests, and strategy submissions
     -   [ ] Enable "Discussions" on repo, and use "Issues" for bugs. Link to them from site with templates and/or a G-Form
 -   [ ] Deploy to public location

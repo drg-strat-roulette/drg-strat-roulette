@@ -11,11 +11,11 @@ import { DwarfClass } from '../models/team.interface';
 import { sample, shuffle } from 'lodash-es';
 import { getAllCombinations } from '../utilities/general-functions.utils';
 
-enum CommonStratDefinitions { // TODO: Fill out and use
-	largeEnemies = 'Large enemies includes: ',
-	stationaryEnemies = 'Stationary enemies includes: ',
-	environmentalHazards ='Environmental hazards includes: ',
-	heavyMinerals = 'Heavy minerals includes: ', // ?
+enum CommonStratDefinitions {
+	largeEnemies = 'Large enemies are: Praetorians, Oppressors, Bulk/Crassus Detonators, Naedocyte breeders, Spitball Infectors, and Glyphid Menaces.', // TODO: Confirm
+	stationaryEnemies = 'Stationary enemies are: Cave Leeches, Spitball Infectors, Glyphid Brood Nexus, Stabber Vines, Deeptora Honeycombs, and Deeptora Bough Wasp Nests.',
+	environmentalHazards ="Environmental hazards are: \n- Crystalline Caverns: Electrocrystals or cobwebs\n- Salt Pits: Unstable crystal or unstable platform\n- Fungus Bogs: Steam geysers, exploding plants, sticky goo, poison spores, glyphid eggs, hanging grassy vines\n- Radioactive Exclusion Zone: Volatile uranium, spider webs\n- Dense Biozone: Exploding plants, ejector cacti, spider webs, glyphid eggs, cave urchins, trapactus\n- Glacial Strata: Cryo bulbs, unstable ice, deep snow, crevasse cracks (don't cover them)\n* Hollow Bough: Creeper vines, bloated vines, thorn pots, goo sacks\n* Magma Core: Exploding plants, lava geysers, hot rock, small lava geysers.",
+	heavyMinerals = 'Heavy minerals are: compressed gold, bittergems, aquarqs, enor pearls, jadiz, or gunk seeds in a pinch.',
 }
 
 export const strategies: Strategy[] = [
@@ -196,7 +196,7 @@ export const strategies: Strategy[] = [
 		name: 'Beast of Burden',
 		summary: 'A heavy mineral must be carried for the whole mission.',
 		details:
-			"As soon as a heavy mineral is discovered, it must be mined and carried for the entirety of the mission. The heavy mineral can be handed off to another dwarf but must not touch the ground. Don't let the heavy mineral be dropped! Heavy minerals include compressed gold, bittergems, aquarqs, enor pearls, jadiz, or gunk seeds in a pinch.",
+			`As soon as a heavy mineral is discovered, it must be mined and carried for the entirety of the mission. The heavy mineral can be handed off to another dwarf but must not touch the ground. Don't let the heavy mineral be dropped! ${CommonStratDefinitions.heavyMinerals}`,
 		requirements: {
 			mission: (m) =>
 				m.primary === PrimaryObjective.pointExtraction ||
@@ -664,7 +664,7 @@ export const strategies: Strategy[] = [
 		name: 'Avoid & Evade',
 		summary: 'No killing stationary enemies.',
 		details:
-			"Stationary enemies include Cave Leech, Spitball Infector, Glyphid Brood Nexus, Stabber Vine, Deeptora Honeycomb, and Deeptora Bough Wasp Nest. You'll have to get creative with platform shields, tunnels, and drawing fire for your teammates. Exceptions can be made for The Caretaker, Korlok Tyrant-Weed, and all Rival Tech.",
+			`${CommonStratDefinitions.stationaryEnemies} You'll have to get creative with platform shields, tunnels, and drawing fire for your teammates. Exceptions can be made for The Caretaker, Korlok Tyrant-Weed, and all Rival Tech.`,
 	},
 	{
 		id: 69,
@@ -691,7 +691,7 @@ export const strategies: Strategy[] = [
 		name: 'Team Take Down',
 		summary:
 			'Everyone must contribute to death of large enemies. If you kill before everyone has contributed, the team must kill you.',
-		details: '',
+		details: `${CommonStratDefinitions.largeEnemies}`,
 		tags: [StratTag.communication],
 		requirements: {
 			team: (t) => t.dwarves.length >= 2,
@@ -978,8 +978,8 @@ export const strategies: Strategy[] = [
 	{
 		id: 101,
 		name: 'Small Game Hunting',
-		summary: "Can't kill big targets.",
-		details: 'Cannot kill praetorians, oppressors, bulks, etc. Dreadnoughts may still be killed.', // TODO: Define "big targets"
+		summary: "Can't kill large enemies.",
+		details: `${CommonStratDefinitions.largeEnemies}`,
 		requirements: {
 			mission: (m) =>
 				m.primary !== PrimaryObjective.escortDuty &&
@@ -999,7 +999,7 @@ export const strategies: Strategy[] = [
 		name: 'Designated Miner',
 		summary: 'Only one dwarf can mine, but they cannot deposit.',
 		details:
-			'The designated miner is the only one who is allowed to mine any resources. Their bag will likely be full before others are able to start getting minerals. The designated miner can deposit if the primary objective cannot be completed without their resources. Other dwarves can still mine dirt/terrain and pick up resources that are not mined with a pickaxe. The designated miner must be the one to dig up large minerals such as jadiz, compressed gold, etc.',
+			'The designated miner is the only one who is allowed to mine any resources. Their bag will likely be full before others are able to start getting minerals. The designated miner can deposit if the primary objective cannot be completed without their resources. Other dwarves can still mine dirt/terrain and pick up resources that are not mined with a pickaxe. The designated miner must be the one to dig up large minerals.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.miningExpedition,
 			team: (t) => t.dwarves.length >= 2,
@@ -1099,7 +1099,7 @@ export const strategies: Strategy[] = [
 		name: "That's Not My Job",
 		summary: 'One person designated for each type of mineral.',
 		details:
-			'Each of the following minerals will be randomly assigned to a dwarf: morkite, nitra, secondary objective, (crafting minerals + gold + phazyonite). You may not collect or deposit anything not assigned to you. This includes shooting down gunk seeds or exhuming jadiz/enor pearls.',
+			'Each of the following minerals will be randomly assigned to a dwarf: morkite, nitra, secondary objective, and all other resources. You may not collect or deposit anything not assigned to you. This includes shooting down gunk seeds or mining heavy minerals.',
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.miningExpedition,
 			team: (t) => t.dwarves.length >= 2,
@@ -1199,8 +1199,8 @@ export const strategies: Strategy[] = [
 	{
 		id: 122,
 		name: 'A Successful Hunt',
-		summary: 'Rock and stone after every large enemy killed.',
-		details: '',
+		summary: `Rock and stone after every large enemy killed.`,
+		details: `${CommonStratDefinitions.largeEnemies}`,
 	},
 	{
 		id: 123,
@@ -1254,7 +1254,7 @@ export const strategies: Strategy[] = [
 		id: 128,
 		name: 'Take One Down, Pass It Around',
 		summary: 'Everyone has to pass around heavy minerals before depositing.',
-		details: 'Only once the heavy mineral has been held by all dwarves may it be deposited. Includes gunk seeds.',
+		details: `Only once the heavy mineral has been held by all dwarves may it be deposited. ${CommonStratDefinitions.heavyMinerals}`,
 		requirements: {
 			mission: (m) =>
 				m.primary === PrimaryObjective.pointExtraction ||
@@ -1766,9 +1766,9 @@ export const strategies: Strategy[] = [
 	{
 		id: 178,
 		name: 'Big Game Hunter',
-		summary: 'One dwarf is responsible for taking out all big targets.',
+		summary: 'One dwarf is responsible for killing all large enemies.',
 		details:
-			'One dwarf is designated as the "Big Game Hunter". They are the only one who may take out praetorians, oppressors, or bulk detonators.',
+			`One dwarf is designated as the "Big Game Hunter". They are the only one who may kill large enemies. ${CommonStratDefinitions.largeEnemies}`,
 		requirements: {
 			team: (t) => t.dwarves.length >= 2,
 		},
