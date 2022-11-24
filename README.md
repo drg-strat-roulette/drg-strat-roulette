@@ -22,7 +22,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     -   [x] Favicon
     -   [x] Clean display of selected strat
 -   [x] Mobile support
--   [ ] Persist queued strategies
+-   [x] Persist and display queued strategies
 -   [ ] Seed generatedContent and include seed in URL
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Bug reports, feature requests, and strategy submissions
