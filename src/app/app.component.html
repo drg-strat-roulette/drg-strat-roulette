@@ -325,10 +325,9 @@
                         <div class="strat-info-section">
                             <h2 class="strat-info-section-title">Summary</h2>
                             <div>{{ strat.summary }}</div>
-                            <div>
+                            <div class="d-flex flex-row">
                                 <div *ngFor="let tag of tags">
                                     <ng-container *ngIf="strat?.tags?.includes(tag.type)">
-                                        {{ tag.type }}
                                         <mat-icon
                                             class="white-icon"
                                             #tooltip="matTooltip"

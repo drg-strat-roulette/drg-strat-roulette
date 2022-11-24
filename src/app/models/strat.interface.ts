@@ -44,7 +44,7 @@ export const stratTagInfo: StratTagInfo[] = [
 		type: StratTag.time,
 		description: 'This strategy may significantly increase the time taken to complete a mission.',
 		tooltipDetails: 'may significantly increase the mission time.',
-		icon: 'clock_3' // TODO: Find something
+		icon: 'schedule'
 	},
 	{
 		type: StratTag.communication,
@@ -63,7 +63,7 @@ export const stratTagInfo: StratTagInfo[] = [
 		type: StratTag.nausea,
 		description: 'This strategy has the potential to cause nausea for some players.',
 		tooltipDetails: 'may cause nausea.',
-		icon: 'sick' // TODO: Find something better
+		icon: 'sick'
 	},
 ];
 

@@ -33,7 +33,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Way to clear all cached data
 -   [x] Way to reset settings to defaults
 -   [x] Provide common definitions from consolidated source
--   [ ] **WIP** Display info about the active strategy's tags
+-   [x] Display info about the active strategy's tags
 -   [ ] **WIP** Define rules and how to play
     -   Display on first visit and provide a way to re-open it
 -   [ ] **WIP** Higher weight on strategies which have met requirements
