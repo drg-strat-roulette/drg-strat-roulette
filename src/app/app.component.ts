@@ -22,6 +22,8 @@ import {
 } from './components/snackbar-with-icon/snackbar-with-icon.component';
 import { backgroundImages } from './data/backgrounds.const';
 
+const RECENT_STRAT_MAX_COUNT = 10;
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -58,6 +60,7 @@ export class AppComponent implements OnInit {
 		}
 	}
 	queuedStrats: Strategy[] = [];
+	recentStrats: number[] = [];
 
 	// True if the settings menu is collapsed, false otherwise
 	settingsMenuCollapsed = true;
@@ -122,6 +125,7 @@ export class AppComponent implements OnInit {
 				} else {
 					this.strategy = strategy;
 				}
+				this.updateRecentStrategies();
 			} else if (strategyId) {
 				// If no matching strategy was found, but a strategyId was provided, clear the invalid strategyId
 				this.router.navigate([], {
@@ -162,6 +166,15 @@ export class AppComponent implements OnInit {
 				} else {
 					this.queuedStrats = cachedQueuedStrats.queue;
 				}
+			}
+		}
+
+		// Load list of recently chosen strategies from cache
+		const recentStrategiesString = localStorage.getItem(StoredKeys.recentStrategies);
+		if (recentStrategiesString) {
+			const recentStrategies: number[] = JSON.parse(recentStrategiesString);
+			if (recentStrategies) {
+				this.recentStrats = recentStrategies;
 			}
 		}
 
@@ -209,8 +222,8 @@ export class AppComponent implements OnInit {
 		// Prevent a presently queued strategy from being re-chosen
 		candidateStrats = candidateStrats.filter(strat => !this.queuedStrats.some(queue => queue.id === strat.id));
 		
-		// Prevent the current strategy from being re-chosen
-		candidateStrats = candidateStrats.filter(strat => strat.id !== this.strat?.id);
+		// Prevent recently chosen strategies from being re-chosen
+		candidateStrats = candidateStrats.filter(strat => !this.recentStrats.includes(strat.id));
 
 		// Pick a random strategy from the candidate list
 		const chosenStrategy = sample(candidateStrats) ?? strategies[0];
@@ -320,6 +333,20 @@ export class AppComponent implements OnInit {
 		if (!this.strat || this.queuedStrats.some(strat => strat.id === this.strat?.id)) { return; }
 		this.queuedStrats.push(this.strat);
 		this.updateQueuedStrategies();
+	}
+
+	/**
+	 * Adds the active strategyId to the list of recently chosen strategies
+	 * If the list of recently chosen strategies exceeds the length limit, the
+	 * oldest item will be removed.
+	 */
+	updateRecentStrategies() {
+		if (!this.strat) { return; }
+		if (this.recentStrats.length === RECENT_STRAT_MAX_COUNT) {
+			this.recentStrats.splice(0, 1); // Remove oldest item
+		}
+		this.recentStrats.push(this.strat?.id);
+		localStorage.setItem(StoredKeys.recentStrategies, JSON.stringify(this.recentStrats));
 	}
 	
 	/**

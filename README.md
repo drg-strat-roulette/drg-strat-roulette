@@ -23,31 +23,33 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     -   [x] Clean display of selected strat
 -   [x] Mobile support
 -   [x] Persist and display queued strategies
--   [ ] Store generatedContent in URL for sharing purposes
--   [ ] Roll another strategy without clearing the currently displayed one(s)
+-   [x] Store generatedContent in URL for sharing purposes
+-   [x] Prevent past X strategies from being rolled again
 -   [ ] Bug reports, feature requests, and strategy submissions
     -   [ ] Enable "Discussions" on repo, and use "Issues" for bugs. Link to them from site with templates and/or a G-Form
 -   [ ] Deploy to public location
--   [ ] Prevent past X strategies from being rolled again
 -   [ ] Higher weight on strategies which have met requirements
     -   (add a est %likelihood for each strat w/ mission requirements, and multiply weight by inverse)
 -   [ ] Provide common definitions from consolidated source
     -   (e.g. What are the "large enemies")
+-   [ ] Display info about the active strategy's tags
 -   [ ] Add strategy hints as revealable "spoilers"
+-   [ ] Way to clear all cached data
+-   [ ] Way to reset settings to defaults
+-   [ ] Provide possible ways to determine who does what
+
+## Possible features
+
+-   [ ] Way to see the list of of all strategies
 -   [ ] Strat history, count of each played, other stats
     -   [ ] Bias the rolls based on past data
     -   [ ] Tell you which strats are "new" to you
     -   [ ] Tell you which strats are "new" in general
+-   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Block (and unblock) specific strategies that you don't like
--   [ ] Way to see the list of of all strategies
--   [ ] Way to clear all cached data?
--   [ ] Way to reset settings to defaults?
--   [ ] Provide possible ways to determine who does what
--   [ ] Mark strategies as successfully completed or failed.
-    -   [ ] Some surprise if every strat is succeeded.
--   [ ] Prevent multiple strategies that conflict with one another (how?)
+-   [ ] Prevent multiple strategies that conflict with one another (only applicable if multiple strategies can be active at once)
 
-## Backend features
+#### Backend-supported features
 
 -   [ ] Like/dislike strategies to globally tweak their weightings
     -   Store total positive, total negative
@@ -55,7 +57,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     -   Store total votes, and total difficulty points. Divide in UI.
     -   [ ] Select difficulty range for generated strategies
     -   [ ] Mode to continually increase difficulty until a strategy is failed
--   [ ] Shared sessions (stretch)
 
 ## Development server
 
