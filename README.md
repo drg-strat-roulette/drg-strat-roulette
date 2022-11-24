@@ -21,8 +21,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     -   [x] Background images
     -   [x] Favicon
     -   [x] Clean display of selected strat
--   [ ] Roll another strategy without clearing the currently displayed one(s)
+-   [x] Mobile support
 -   [ ] Persist queued strategies
+-   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Bug reports, feature requests, and strategy submissions
 -   [ ] Deploy to public location
 -   [ ] Prevent past X strategies from being rolled again
@@ -37,7 +38,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     -   [ ] Tell you which strats are "new" in general
 -   [ ] Block (and unblock) specific strategies that you don't like
 -   [ ] Way to see the list of of all strategies
--   [ ] Full mobile support (compress team inputs, or wrap below tags)
 -   [ ] Way to clear all cached data?
 -   [ ] Way to reset settings to defaults?
 -   [ ] Provide possible ways to determine who does what

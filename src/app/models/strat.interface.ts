@@ -80,3 +80,8 @@ export interface StratRequirements {
 	team?: (team: Team) => boolean;
 	settings?: (settings: Settings) => boolean;
 }
+
+export interface CachedQueuedStrats {
+	queue: Strategy[];
+	version: number;
+}

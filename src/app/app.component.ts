@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { strategies } from './data/strats.const';
 import { sample } from 'lodash-es';
-import { Strategy, stratTagInfo, StratTagObject } from './models/strat.interface';
+import { CachedQueuedStrats, Strategy, StratTag, stratTagInfo, StratTagObject } from './models/strat.interface';
 import { Dwarf, DwarfClass } from './models/team.interface';
 import { Clipboard } from '@angular/cdk/clipboard';
 import {
@@ -14,7 +14,7 @@ import {
 } from './models/missions.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Settings, settingsVersion } from './models/settings.interface';
-import { StoredKeys } from './models/local-storage.interface';
+import { queuedStrategiesVersion, StoredKeys } from './models/local-storage.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
 	SnackbarConfig,
@@ -50,6 +50,11 @@ export class AppComponent implements OnInit {
 			this.generateDynamicContent();
 		} else {
 			this.strat.dynamicContent = undefined;
+		}
+
+		// Update list of queued strategies
+		if (s.tags?.includes(StratTag.queue)) {
+			this.addQueuedStrategy();
 		}
 	}
 	queuedStrats: Strategy[] = [];
@@ -135,7 +140,19 @@ export class AppComponent implements OnInit {
 			}
 		}
 
-		// TODO: Load cached queuedStrategies
+		// Load cached queued strategies
+		const queuedStrategiesString = localStorage.getItem(StoredKeys.queuedStrategies);
+		if (queuedStrategiesString) {
+			const cachedQueuedStrats: CachedQueuedStrats = JSON.parse(queuedStrategiesString);
+			if (cachedQueuedStrats) {
+				if (cachedQueuedStrats.version !== queuedStrategiesVersion) {
+					// Delete old queued strategies if version is outdated
+					localStorage.removeItem(StoredKeys.queuedStrategies);
+				} else {
+					this.queuedStrats = cachedQueuedStrats.queue;
+				}
+			}
+		}
 
 		// Update background image
 		this.updateBackgroundImage();
@@ -149,6 +166,8 @@ export class AppComponent implements OnInit {
 	rollStrat(): void {
 		// Correct invalid inputs before rolling for a strategy
 		this.correctInvalidInputs();
+
+		console.log(this.queuedStrats);
 
 		// Filter out strategies based on unselected tags
 		const excludedTags = this.tags.filter((tag) => !tag.checked).map((tag) => tag.type);
@@ -178,16 +197,17 @@ export class AppComponent implements OnInit {
 			});
 		}
 
-		// TODO: Prevent a presently queued strategy from being re-chosen
+		// Prevent a presently queued strategy from being re-chosen
+		candidateStrats = candidateStrats.filter(strat => !this.queuedStrats.some(queue => queue.id === strat.id))
 
 		// Pick a random strategy from the candidate list
-		this.strategy = sample(candidateStrats) ?? strategies[0];
+		const chosenStrategy = sample(candidateStrats) ?? strategies[0];
 
 		// Add strategyId to query params
 		this.router.navigate([], {
 			relativeTo: this.route,
 			queryParams: {
-				strategyId: this.strat?.id,
+				strategyId: chosenStrategy?.id,
 			},
 			queryParamsHandling: 'merge',
 		});
@@ -259,8 +279,40 @@ export class AppComponent implements OnInit {
 		if (this.strat?.generateDynamicContent) {
 			this.strat.dynamicContent = this.strat.generateDynamicContent({ dwarves: this.dwarves });
 		}
+	}
 
-		// TODO: Add/update queuedStrategies in cache and memory
+	/**
+	 * Updates the cached queued strategies to match the latest in-memory queued strats
+	 */
+	updateQueuedStrategies(): void {
+		// Update queuedStrategies in cache
+		const cachedQueuedStrats: CachedQueuedStrats = {
+			version: queuedStrategiesVersion,
+			queue: this.queuedStrats
+		}
+		localStorage.setItem(StoredKeys.queuedStrategies, JSON.stringify(cachedQueuedStrats));
+	}
+
+	/**
+	 * Add a queued strategy to the list
+	 */
+	addQueuedStrategy(): void {
+		// Exit early if there is no active strategy, or if the active strategy is already queued
+		if (!this.strat || this.queuedStrats.some(strat => strat.id === this.strat?.id)) { return; }
+		this.queuedStrats.push(this.strat);
+		this.updateQueuedStrategies();
+	}
+	
+	/**
+	 * Remove a queued strategy from the list
+	 * @param id - ID of the strategy to be removed
+	 */
+	removeQueuedStrategy(id: number): void {
+		const queuedStratIndex = this.queuedStrats.findIndex(strat => strat.id === id);
+		if (queuedStratIndex !== -1) {
+			this.queuedStrats.splice(queuedStratIndex, 1);
+		}
+		this.updateQueuedStrategies();
 	}
 
 	/**
