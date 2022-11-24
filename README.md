@@ -46,6 +46,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     -   [ ] Tell you which strats are "new" to you
     -   [ ] Tell you which strats are "new" in general
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
+-   [ ] Localization
 -   [ ] Block (and unblock) specific strategies that you don't like
 -   [ ] Prevent multiple strategies that conflict with one another (only applicable if multiple strategies can be active at once)
 
