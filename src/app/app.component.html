@@ -36,14 +36,19 @@
                 matTooltip="Queued strategies rely on RNG to be attempted. As such, they are queued up and can be attempted when the opportunity presents itself. They can be done in any order. Click on a queued strategy to view it again, and check it off to remove it from queue.">help</mat-icon>
         </h2>
         <!-- List of queued strategies -->
-        <div *ngFor="let queuedStrat of queuedStrats" class="queued-strat" (click)="strategy = queuedStrat; drawer.toggle()">
+        <div
+            *ngFor="let queuedStrat of queuedStrats"
+            class="queued-strat d-flex flex-row"
+            (click)="strategy = queuedStrat; drawer.toggle()">
             <button
                 mat-icon-button
                 class="m-1"
                 (click)="removeQueuedStrategy(queuedStrat.id)">
                 <mat-icon>check</mat-icon>
             </button>
-            {{ queuedStrat.name }}
+            <div class="queued-strat-name">
+                {{ queuedStrat.name }}
+            </div>
         </div>
     </mat-drawer>
 
