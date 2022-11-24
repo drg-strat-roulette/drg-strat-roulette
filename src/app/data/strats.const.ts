@@ -11,6 +11,13 @@ import { DwarfClass } from '../models/team.interface';
 import { sample, shuffle } from 'lodash-es';
 import { getAllCombinations } from '../utilities/general-functions.utils';
 
+enum CommonStratDefinitions { // TODO: Fill out and use
+	largeEnemies = 'Large enemies includes: ',
+	stationaryEnemies = 'Stationary enemies includes: ',
+	environmentalHazards ='Environmental hazards includes: ',
+	heavyMinerals = 'Heavy minerals includes: ', // ?
+}
+
 export const strategies: Strategy[] = [
 	{
 		id: 1,
@@ -189,7 +196,7 @@ export const strategies: Strategy[] = [
 		name: 'Beast of Burden',
 		summary: 'A heavy mineral must be carried for the whole mission.',
 		details:
-			"As soon as a heavy mineral is discovered, it must be carried for the entirety of the mission. The heavy mineral can be handed off to another dwarf but must not touch the ground. Don't let the heavy mineral be dropped! Heavy minerals include compressed gold, bittergems, aquarqs, enor pearls, jadiz, or gunk seeds in a pinch.",
+			"As soon as a heavy mineral is discovered, it must be mined and carried for the entirety of the mission. The heavy mineral can be handed off to another dwarf but must not touch the ground. Don't let the heavy mineral be dropped! Heavy minerals include compressed gold, bittergems, aquarqs, enor pearls, jadiz, or gunk seeds in a pinch.",
 		requirements: {
 			mission: (m) =>
 				m.primary === PrimaryObjective.pointExtraction ||
@@ -241,7 +248,7 @@ export const strategies: Strategy[] = [
 		name: 'Follow the Leader',
 		summary: 'One dwarf leads, and the rest must follow.',
 		details:
-			'All dwarves must remain within 10m of the leader. If they exit this range for any reason, they cannot mine, attack, or revive until they come closer again.',
+			'All dwarves must remain within 10m cylinder centered on the leader. If they exit this range for any reason, they cannot mine, attack, or revive until they come closer again.',
 		requirements: {
 			mission: (m) => m.primary !== PrimaryObjective.escortDuty,
 			team: (t) => t.dwarves.length >= 2,
@@ -322,7 +329,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 36,
 		name: 'Shoot Your Way Out',
-		summary: 'Only primary and secondary weapons for combat.',
+		summary: 'Only primary and secondary weapons may be used for combat.',
 		details:
 			'You may only use your primary and secondary weapons for combat. This means grenades, pickaxes, drills, sentries, and flare guns may not be used for combat.',
 	},
@@ -829,7 +836,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 86,
 		name: 'Water, Earth, Fire, Air',
-		summary: 'Everyone does different elemental build.',
+		summary: 'Everyone runs a different elemental build.',
 		details:
 			"All dwarves must pick an element for their build and cannot have any means of applying elements that belong to someone else's build. Elements include fire, ice, electric, corrosive, poison, and radiation.",
 		tags: [StratTag.loadout],
@@ -1014,7 +1021,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 105,
 		name: 'Team Commander',
-		summary: "One person in charge of everyone's actions.",
+		summary: "One person is in charge of everyone's actions.",
 		details: '',
 		tags: [StratTag.communication],
 		requirements: {
@@ -1043,7 +1050,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 108,
 		name: 'The Best Offense',
-		summary: `All dwarves must play as ${DwarfClass.engineer} with gemini turrets and at least one of each: turret whip, EM discharge, turret arc.`,
+		summary: `All dwarves must play as ${DwarfClass.engineer} with gemini turrets and at least one of: turret whip, EM discharge, turret arc.`,
 		details: '',
 		tags: [StratTag.loadout],
 		requirements: {
@@ -1226,7 +1233,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 126,
 		name: 'Down to the Wire',
-		summary: 'Cant start machine event until drop pod is on the way.',
+		summary: 'Cant start the next machine event until drop pod is on the way.',
 		details: 'If a machine event is there, you must do it, but cannot start it until the drop pod has been called.',
 		tags: [StratTag.queue],
 	},
@@ -1640,7 +1647,7 @@ export const strategies: Strategy[] = [
 		id: 166,
 		name: 'Elitist',
 		summary: 'No killing elites.',
-		details: 'Exceptions can be made for mactera.',
+		details: 'Exceptions can be made for mactera and grunt slashers.',
 		requirements: {
 			mission: (m) =>
 				m.warnings.includes(WarningType.eliteThreat) &&
@@ -1955,7 +1962,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 199,
 		name: 'Flyswatter',
-		summary: 'Must only use melee to kill flying enemies',
+		summary: 'Must kill flying enemies using only melee attacks',
 		details: '',
 	},
 	{
