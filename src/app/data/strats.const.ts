@@ -1150,8 +1150,8 @@ export const strategies: Strategy[] = [
 			const responsibilities = [
 				'gather Morkite',
 				'gather Nitra',
-				'gather all other resources',
 				'perform the secondary objective',
+				'gather all other resources',
 			];
 			const shuffled = shuffle(t.dwarves);
 			return responsibilities
