@@ -2140,6 +2140,12 @@ export const strategies: Strategy[] = [
 		},
 		writtenRequirements: `All dwarves must be willing to play as ${DwarfClass.scout}.`,
 	},
+	// Leave lithophage until the ned
+	// Break lithophage by hand (C4, drills, pickaxe)
+	// Rockpox enemies must be melee'd
+	// Bombardier - throw prox mines, run to them and pick them up
+	// If triggered, wait for it to depleted then continue
+	// Meteor event with only 1 rock cracker (queue)
 ];
 
 /*

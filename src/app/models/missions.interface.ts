@@ -24,6 +24,7 @@ export enum SecondaryObjective {
 	apocaBlooms = 'Apoca Blooms',
 	booloCap = 'Boolo Caps',
 	ebonut = 'Ebonuts',
+	dystrum = 'Dystrum',
 	festerFleas = 'Fester Fleas',
 	gunkSeed = 'Gunk Seeds',
 	hollomite = 'Hollomite',
