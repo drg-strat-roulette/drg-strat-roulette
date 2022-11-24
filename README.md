@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
+## How to play
+
+Welcome to DRG Strategy Roulette! Before getting started, it's recommended to visit the settings to configure which kinds of strategies to exclude, whether you want strategies that are compatible with a specific mission, as well as your team and the classes they're willing to play as. Once thats's done, you're ready to click "Roll a strategy". A strategy compatible with your provided settings will be chosen at random and displayed every time you roll a new strategy. Your team's job is to successfully complete a mission while following the chosen strategy. The chosen strategy can be shared with your team by sharing the URL, using the copy to clipboard functionality, or by reading the details aloud.
+
+Some strategies have specific mission or team requirements, but otherwise there are no official rules to follow. You're encouraged to follow the chosen strategy to the best of your abilities. Many strategies will require some level of "Scout's honor" (so try to be honest!). At the end of the day, the goal is to have fun - so feel free to bend the rules however you see fit.
+
 ## Planned features
 
 -   [x] Roll a random strategy
@@ -28,7 +34,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Way to reset settings to defaults
 -   [x] Provide common definitions from consolidated source
 -   [ ] **WIP** Display info about the active strategy's tags
--   [ ] Define rules and how to play (keep them vague, and mention the goal is to have fun)
+-   [ ] **WIP** Define rules and how to play
     -   Display on first visit and provide a way to re-open it
 -   [ ] Bug reports, feature requests, and strategy submissions
     -   [ ] Enable "Discussions" on repo, and use "Issues" for bugs. Link to them from site with templates and/or a G-Form
