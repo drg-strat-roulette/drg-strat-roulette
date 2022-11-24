@@ -1561,11 +1561,11 @@ export const strategies: Strategy[] = [
 			'Use random number generator to determine how to remap non-movement and non-mouse keybinds (1, 2, 3, 4, 5, Q, E, R, F, G, X, C, V, M, Ctrl).',
 		tags: [StratTag.settings, StratTag.nausea],
 		generateDynamicContent: (_) => {
-			const controls = ['1', '2', '3', '4', '5', 'Q', 'E', 'R', 'F', 'G', 'X', 'C', 'V', 'M', 'Ctrl'];
+			const controls = ['Primary weapon (default: 1)', 'Secondary weapon (default: 2)', 'Traversal tool (default: 3)', 'Support tool (default: 4)', 'Resupply (default: 5)', 'Previous item (default: Q)', 'Activate (default: E)', 'Reload (default: R)', 'Flare (default: F)', 'Grenade (default: G)', 'Shout (default: X)', 'Call MULE (default: C)', 'Salute (default: V)', 'Map (default: M)', 'Laser pointer (default: Ctrl'];
 			const remappedControls = shuffle(controls);
 			return controls
 				.map((control, i) => `"${control}" should be remapped to "${remappedControls[i]}".`)
-				.join(' ');
+				.join('\n');
 		},
 	},
 	{
