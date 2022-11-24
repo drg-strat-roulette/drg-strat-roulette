@@ -106,26 +106,30 @@
                             </div>
 
                             <h2>Other</h2>
-                            <button
-                                class="other-settings-button"
-                                mat-raised-button
-                                #tooltip="matTooltip"
-                                matTooltip="Resets all settings to their default configurations"
-                                matTooltipShowDelay="500"
-                                color="primary"
-                                (click)="resetAllSettings()">
-                                Reset all
-                            </button>
-                            <button
-                                class="other-settings-button"
-                                mat-raised-button
-                                #tooltip="matTooltip"
-                                matTooltip="Clears all data from browser cache"
-                                matTooltipShowDelay="500"
-                                color="primary"
-                                (click)="clearAllCachedData()">
-                                Clear cache
-                            </button>
+                            <div>
+                                <button
+                                    class="other-settings-button"
+                                    mat-raised-button
+                                    #tooltip="matTooltip"
+                                    matTooltip="Resets all settings to their default configurations"
+                                    matTooltipShowDelay="500"
+                                    color="primary"
+                                    (click)="resetAllSettings()">
+                                    Reset all
+                                </button>
+                            </div>
+                            <div>
+                                <button
+                                    class="other-settings-button"
+                                    mat-raised-button
+                                    #tooltip="matTooltip"
+                                    matTooltip="Clears all data from browser cache"
+                                    matTooltipShowDelay="500"
+                                    color="primary"
+                                    (click)="clearAllCachedData()">
+                                    Clear cache
+                                </button>
+                            </div>
                         </div>
         
                         <!-- Team configuration -->
