@@ -104,6 +104,28 @@
                                     Specific missions
                                 </mat-checkbox>
                             </div>
+
+                            <h2>Other</h2>
+                            <button
+                                class="other-settings-button"
+                                mat-raised-button
+                                #tooltip="matTooltip"
+                                matTooltip="Resets all settings to their default configurations"
+                                matTooltipShowDelay="500"
+                                color="primary"
+                                (click)="resetAllSettings()">
+                                Reset all
+                            </button>
+                            <button
+                                class="other-settings-button"
+                                mat-raised-button
+                                #tooltip="matTooltip"
+                                matTooltip="Clears all data from browser cache"
+                                matTooltipShowDelay="500"
+                                color="primary"
+                                (click)="clearAllCachedData()">
+                                Clear cache
+                            </button>
                         </div>
         
                         <!-- Team configuration -->
@@ -299,6 +321,20 @@
                         <div class="strat-info-section">
                             <h2 class="strat-info-section-title">Summary</h2>
                             <div>{{ strat.summary }}</div>
+                            <div>
+                                <div *ngFor="let tag of tags">
+                                    <ng-container *ngIf="strat?.tags?.includes(tag.type)">
+                                        {{ tag.type }}
+                                        <mat-icon
+                                            class="white-icon"
+                                            #tooltip="matTooltip"
+                                            [matTooltip]="tag.description"
+                                            matTooltipShowDelay="250">
+                                            {{ tag.icon }}
+                                        </mat-icon>
+                                    </ng-container>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div *ngIf="strat?.details" class="strat-info-section">

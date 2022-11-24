@@ -240,6 +240,31 @@ export class AppComponent implements OnInit {
 	}
 
 	/**
+	 * Resets all settings to their default configurations and reloads the page
+	 */
+	resetAllSettings(): void {
+		localStorage.removeItem(StoredKeys.settings);
+		location.reload();
+	}
+
+	/**
+	 * Clears all items from localStorage and reloads the page
+	 */
+	clearAllCachedData(): void {
+		for (let key of Object.values(StoredKeys)) {
+			localStorage.removeItem(key);
+		}
+		this.router.navigate([], {
+			queryParams: {
+				dynamicContent: null,
+				strategyId: null
+			},
+			queryParamsHandling: 'merge',
+		});
+		setTimeout(() => location.reload());
+	}
+
+	/**
 	 * Adds another dwarf to the team
 	 * New dwarves are created with no name, and willing to play all classes
 	 */

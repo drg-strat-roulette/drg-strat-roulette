@@ -25,17 +25,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   [x] Persist and display queued strategies
 -   [x] Store generatedContent in URL for sharing purposes
 -   [x] Prevent past X strategies from being rolled again
+-   [x] Way to clear all cached data
+-   [x] Way to reset settings to defaults
+-   [ ] **WIP** Provide common definitions from consolidated source
+    -   (e.g. What are the "large enemies")
+-   [ ] **WIP** Display info about the active strategy's tags
 -   [ ] Bug reports, feature requests, and strategy submissions
     -   [ ] Enable "Discussions" on repo, and use "Issues" for bugs. Link to them from site with templates and/or a G-Form
 -   [ ] Deploy to public location
 -   [ ] Higher weight on strategies which have met requirements
     -   (add a est %likelihood for each strat w/ mission requirements, and multiply weight by inverse)
--   [ ] Provide common definitions from consolidated source
-    -   (e.g. What are the "large enemies")
--   [ ] Display info about the active strategy's tags
 -   [ ] Add strategy hints as revealable "spoilers"
--   [ ] Way to clear all cached data
--   [ ] Way to reset settings to defaults
 -   [ ] Provide possible ways to determine who does what
 
 ## Possible features
