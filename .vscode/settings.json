@@ -11,6 +11,7 @@
     "bittergems",
     "Blacklock",
     "Boltshark",
+    "boolo",
     "boomstick",
     "Bosco",
     "Brundles",
@@ -27,6 +28,7 @@
     "Drilldozer",
     "Dwarfsicle",
     "dystrum",
+    "ebonut",
     "Ebonuts",
     "Electrocrystals",
     "Engi",
@@ -54,7 +56,9 @@
     "minigame",
     "minigun",
     "morkite",
+    "Naedocyte",
     "nanite",
+    "Nayaka",
     "neuro",
     "Nishanka",
     "nitra",
@@ -74,6 +78,7 @@
     "resupplier",
     "revivee",
     "Safehouse",
+    "Shellbacks",
     "Speedrun",
     "Spiderman",
     "springloaded",
@@ -92,5 +97,5 @@
     "WASD",
     "zipline",
     "ziplines"
-]
+  ]
 }

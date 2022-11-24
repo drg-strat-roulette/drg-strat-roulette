@@ -10,10 +10,11 @@ export interface Strategy {
 	tags?: StratTag[];
 	requirements?: StratRequirements;
 	writtenRequirements?: string;
-	// difficultyPoints?: number;
-	// exclusionCategory?: ExclusionCategory[];
+	missionRequirementsLikelihood?: number;
 	generateDynamicContent?: (t: Team) => string;
 	dynamicContent?: string;
+	// difficultyPoints?: number;
+	// exclusionCategory?: ExclusionCategory[];
 }
 
 export enum StratTag {
