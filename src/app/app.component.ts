@@ -107,7 +107,7 @@ export class AppComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.hideLogo = window.innerWidth < 500;
-		
+
 		// Subscribe to query parameters (in order to load a strategy by its Id)
 		this.route.queryParamMap.subscribe((params) => {
 			const strategyId = parseInt(params.get('strategyId') ?? '');
@@ -131,7 +131,7 @@ export class AppComponent implements OnInit {
 				this.router.navigate([], {
 					queryParams: {
 						strategy: null,
-						dynamicContent: null
+						dynamicContent: null,
 					},
 					queryParamsHandling: 'merge',
 				});
@@ -220,10 +220,10 @@ export class AppComponent implements OnInit {
 		}
 
 		// Prevent a presently queued strategy from being re-chosen
-		candidateStrats = candidateStrats.filter(strat => !this.queuedStrats.some(queue => queue.id === strat.id));
-		
+		candidateStrats = candidateStrats.filter((strat) => !this.queuedStrats.some((queue) => queue.id === strat.id));
+
 		// Prevent recently chosen strategies from being re-chosen
-		candidateStrats = candidateStrats.filter(strat => !this.recentStrats.includes(strat.id));
+		candidateStrats = candidateStrats.filter((strat) => !this.recentStrats.includes(strat.id));
 
 		// Pick a random strategy from the candidate list
 		const chosenStrategy = sample(candidateStrats) ?? strategies[0];
@@ -233,7 +233,7 @@ export class AppComponent implements OnInit {
 			relativeTo: this.route,
 			queryParams: {
 				strategyId: chosenStrategy?.id,
-				dynamicContent: null
+				dynamicContent: null,
 			},
 			queryParamsHandling: 'merge',
 		});
@@ -257,7 +257,7 @@ export class AppComponent implements OnInit {
 		this.router.navigate([], {
 			queryParams: {
 				dynamicContent: null,
-				strategyId: null
+				strategyId: null,
 			},
 			queryParamsHandling: 'merge',
 		});
@@ -345,8 +345,8 @@ export class AppComponent implements OnInit {
 		// Update queuedStrategies in cache
 		const cachedQueuedStrats: CachedQueuedStrats = {
 			version: queuedStrategiesVersion,
-			queue: this.queuedStrats
-		}
+			queue: this.queuedStrats,
+		};
 		localStorage.setItem(StoredKeys.queuedStrategies, JSON.stringify(cachedQueuedStrats));
 	}
 
@@ -355,7 +355,9 @@ export class AppComponent implements OnInit {
 	 */
 	addQueuedStrategy(): void {
 		// Exit early if there is no active strategy, or if the active strategy is already queued
-		if (!this.strat || this.queuedStrats.some(strat => strat.id === this.strat?.id)) { return; }
+		if (!this.strat || this.queuedStrats.some((strat) => strat.id === this.strat?.id)) {
+			return;
+		}
 		this.queuedStrats.push(this.strat);
 		this.updateQueuedStrategies();
 	}
@@ -366,20 +368,22 @@ export class AppComponent implements OnInit {
 	 * oldest item will be removed.
 	 */
 	updateRecentStrategies() {
-		if (!this.strat) { return; }
+		if (!this.strat) {
+			return;
+		}
 		if (this.recentStrats.length === RECENT_STRAT_MAX_COUNT) {
 			this.recentStrats.splice(0, 1); // Remove oldest item
 		}
 		this.recentStrats.push(this.strat?.id);
 		localStorage.setItem(StoredKeys.recentStrategies, JSON.stringify(this.recentStrats));
 	}
-	
+
 	/**
 	 * Remove a queued strategy from the list
 	 * @param id - ID of the strategy to be removed
 	 */
 	removeQueuedStrategy(id: number): void {
-		const queuedStratIndex = this.queuedStrats.findIndex(strat => strat.id === id);
+		const queuedStratIndex = this.queuedStrats.findIndex((strat) => strat.id === id);
 		if (queuedStratIndex !== -1) {
 			this.queuedStrats.splice(queuedStratIndex, 1);
 		}
@@ -394,7 +398,8 @@ export class AppComponent implements OnInit {
 	copyText(copyIntro: boolean, copyStrat: boolean): void {
 		let stringToCopy = '';
 		if (copyIntro) {
-			stringToCopy += "Welcome! We're playing DRG Strategy Roulette. Every mission has a randomly chosen strategy that we have to follow.";
+			stringToCopy +=
+				"Welcome! We're playing DRG Strategy Roulette. Every mission has a randomly chosen strategy that we have to follow.";
 		}
 		if (copyIntro && copyStrat) {
 			stringToCopy += '\n\n';

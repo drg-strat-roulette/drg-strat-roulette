@@ -15,7 +15,7 @@ import { getAllCombinations } from '../utilities/general-functions.utils';
 enum CommonStratDefinitions {
 	largeEnemies = "Large enemies are: Praetorians, Oppressors, Wardens, Nayaka Trawlers, Q'ronar Shellbacks, Bulk/Crassus Detonators, Dreadnoughts, Naedocyte breeders, Spitball Infectors, Glyphid Menaces, Glyphid Brood Nexus, Stabber Vines, and Nemesis.",
 	stationaryEnemies = 'Stationary enemies are: Cave Leeches, Spitball Infectors, Glyphid Brood Nexus, Stabber Vines, Deeptora Honeycombs, and Deeptora Bough Wasp Nests.',
-	environmentalHazards ="Environmental hazards are: \n- Crystalline Caverns: Electrocrystals and cobwebs\n- Salt Pits: Unstable crystal and unstable platform\n- Fungus Bogs: Steam geysers, exploding plants, sticky goo, poison spores, glyphid eggs, and hanging grassy vines\n- Radioactive Exclusion Zone: Volatile uranium and spider webs\n- Dense Biozone: Exploding plants, ejector cacti, spider webs, glyphid eggs, cave urchins, and trapactus\n- Glacial Strata: Cryo bulbs, unstable ice, deep snow, and crevasse cracks (don't cover them)\n* Hollow Bough: Creeper vines, bloated vines, thorn pots, and goo sacks\n* Magma Core: Exploding plants, small/large lava geysers, and hot rock.",
+	environmentalHazards = "Environmental hazards are: \n- Crystalline Caverns: Electrocrystals and cobwebs\n- Salt Pits: Unstable crystal and unstable platform\n- Fungus Bogs: Steam geysers, exploding plants, sticky goo, poison spores, glyphid eggs, and hanging grassy vines\n- Radioactive Exclusion Zone: Volatile uranium and spider webs\n- Dense Biozone: Exploding plants, ejector cacti, spider webs, glyphid eggs, cave urchins, and trapactus\n- Glacial Strata: Cryo bulbs, unstable ice, deep snow, and crevasse cracks (don't cover them)\n* Hollow Bough: Creeper vines, bloated vines, thorn pots, and goo sacks\n* Magma Core: Exploding plants, small/large lava geysers, and hot rock.",
 	heavyMinerals = 'Heavy minerals are: Compressed gold, Bittergems, Aquarqs, Enor pearls, Jadiz, or Gunk seeds in a pinch.',
 }
 
@@ -60,7 +60,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 6,
-		name: "Got Any AAs?",
+		name: 'Got Any AAs?',
 		summary: 'No flashlight.',
 		details: 'Turn off your flashlight for the whole mission.',
 	},
@@ -141,7 +141,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.elimination,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}.`,
-		missionRequirementsLikelihood: specificPrimaries(1)
+		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
 		id: 16,
@@ -198,8 +198,7 @@ export const strategies: Strategy[] = [
 		id: 23,
 		name: 'Beast of Burden',
 		summary: 'A heavy mineral must be carried for the whole mission.',
-		details:
-			`As soon as a heavy mineral is discovered, it must be mined and carried for the entirety of the mission. The heavy mineral can be handed off to another dwarf but must not touch the ground. Don't let the heavy mineral be dropped! ${CommonStratDefinitions.heavyMinerals}`,
+		details: `As soon as a heavy mineral is discovered, it must be mined and carried for the entirety of the mission. The heavy mineral can be handed off to another dwarf but must not touch the ground. Don't let the heavy mineral be dropped! ${CommonStratDefinitions.heavyMinerals}`,
 		requirements: {
 			mission: (m) =>
 				m.primary === PrimaryObjective.pointExtraction ||
@@ -213,7 +212,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: 'Mission biome must have heavy minerals or gunk seeds. Team must have 2+ dwarves.',
-		missionRequirementsLikelihood: mustMeetAny(specificPrimaries(1), specificBiomes(6), specificSecondaries(1))
+		missionRequirementsLikelihood: mustMeetAny(specificPrimaries(1), specificBiomes(6), specificSecondaries(1)),
 	},
 	{
 		id: 24,
@@ -538,7 +537,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.biome !== BiomeType.azureWeald,
 		},
 		writtenRequirements: `Mission biome must not be ${BiomeType.azureWeald}.`,
-		missionRequirementsLikelihood: specificNotBiomes(1)
+		missionRequirementsLikelihood: specificNotBiomes(1),
 	},
 	{
 		id: 56,
@@ -559,7 +558,7 @@ export const strategies: Strategy[] = [
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
 		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the one who can be in-range of the dozer.`,
-		missionRequirementsLikelihood: specificPrimaries(1)
+		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
 		id: 58,
@@ -571,7 +570,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.escortDuty,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}.`,
-		missionRequirementsLikelihood: specificPrimaries(1)
+		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
 		id: 59,
@@ -592,7 +591,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.elimination,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.elimination}.`,
-		missionRequirementsLikelihood: specificPrimaries(1)
+		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
 		id: 61,
@@ -614,7 +613,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.biome === BiomeType.azureWeald,
 		},
 		writtenRequirements: `Mission biome must be ${BiomeType.azureWeald}.`,
-		missionRequirementsLikelihood: specificBiomes(1)
+		missionRequirementsLikelihood: specificBiomes(1),
 	},
 	{
 		id: 63,
@@ -625,7 +624,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.biome === BiomeType.hollowBough,
 		},
 		writtenRequirements: `Mission biome must be ${BiomeType.hollowBough}.`,
-		missionRequirementsLikelihood: specificBiomes(1)
+		missionRequirementsLikelihood: specificBiomes(1),
 	},
 	{
 		id: 64,
@@ -689,8 +688,7 @@ export const strategies: Strategy[] = [
 		id: 68,
 		name: 'Avoid & Evade',
 		summary: 'No killing stationary enemies.',
-		details:
-			`${CommonStratDefinitions.stationaryEnemies} You'll have to get creative with platform shields, tunnels, and drawing fire for your teammates. Exceptions can be made for The Caretaker, Korlok Tyrant-Weed, and all Rival Tech.`,
+		details: `${CommonStratDefinitions.stationaryEnemies} You'll have to get creative with platform shields, tunnels, and drawing fire for your teammates. Exceptions can be made for The Caretaker, Korlok Tyrant-Weed, and all Rival Tech.`,
 	},
 	{
 		id: 69,
@@ -701,7 +699,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.caveLeechCluster),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.caveLeechCluster}.`,
-		missionRequirementsLikelihood: 1 // TODO: Educated guess
+		missionRequirementsLikelihood: 1, // TODO: Educated guess
 	},
 	{
 		id: 70,
@@ -712,7 +710,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.industrialSabotage,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.industrialSabotage}.`,
-		missionRequirementsLikelihood: specificPrimaries(1)
+		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
 		id: 71,
@@ -736,7 +734,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.salvageOperation,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}.`,
-		missionRequirementsLikelihood: specificPrimaries(1)
+		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
 		id: 73,
@@ -762,7 +760,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.some((dwarf) => dwarf.classes.includes(DwarfClass.gunner)),
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.eggHunt}, ${PrimaryObjective.pointExtraction}, or ${PrimaryObjective.onSiteRefining}. Team must have 2+ dwarves, at least one of which must be willing to play as ${DwarfClass.gunner}`,
-		missionRequirementsLikelihood: specificPrimaries(3)
+		missionRequirementsLikelihood: specificPrimaries(3),
 	},
 	{
 		id: 75,
@@ -775,7 +773,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary !== PrimaryObjective.miningExpedition,
 		},
 		writtenRequirements: `Mission primary objective must not be ${PrimaryObjective.miningExpedition}.`,
-		missionRequirementsLikelihood: specificNotPrimaries(1)
+		missionRequirementsLikelihood: specificNotPrimaries(1),
 	},
 	{
 		id: 76,
@@ -885,7 +883,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.anomaly === AnomalyType.criticalWeakness, // Or Skull Crusher Ale on tap... :shrug:
 		},
 		writtenRequirements: `Mission anomalies must include ${AnomalyType.criticalWeakness}.`,
-		missionRequirementsLikelihood: 1 // TODO: Educated guess
+		missionRequirementsLikelihood: 1, // TODO: Educated guess
 	},
 	{
 		id: 88,
@@ -909,7 +907,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.salvageOperation,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}.`,
-		missionRequirementsLikelihood: specificPrimaries(1)
+		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
 		id: 90,
@@ -939,7 +937,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.exploderInfestation),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.exploderInfestation}.`,
-		missionRequirementsLikelihood: 1 // TODO: Educated guess
+		missionRequirementsLikelihood: 1, // TODO: Educated guess
 	},
 	{
 		id: 93,
@@ -983,7 +981,7 @@ export const strategies: Strategy[] = [
 		},
 		writtenRequirements: 'Mission must have Molly. Team must have 2+ dwarves.',
 		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the only one who can call Molly.`,
-		missionRequirementsLikelihood: specificNotPrimaries(2)
+		missionRequirementsLikelihood: specificNotPrimaries(2),
 	},
 	{
 		id: 98,
@@ -994,7 +992,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => !m,
 		},
 		writtenRequirements: 'Mission must be length 3, complexity 3.',
-		missionRequirementsLikelihood: 1
+		missionRequirementsLikelihood: 1,
 	},
 	{
 		id: 99,
@@ -1023,7 +1021,7 @@ export const strategies: Strategy[] = [
 				m.primary !== PrimaryObjective.salvageOperation,
 		},
 		writtenRequirements: `Mission primary objective must not be ${PrimaryObjective.escortDuty}, ${PrimaryObjective.industrialSabotage}, or ${PrimaryObjective.salvageOperation}.`,
-		missionRequirementsLikelihood: specificNotPrimaries(3)
+		missionRequirementsLikelihood: specificNotPrimaries(3),
 	},
 	{
 		id: 102,
@@ -1043,7 +1041,8 @@ export const strategies: Strategy[] = [
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.miningExpedition}. Team must have 2+ dwarves.`,
 		missionRequirementsLikelihood: specificPrimaries(1),
-		generateDynamicContent: (t) => `${sample(t.dwarves)?.name} is the only one who can mine, but they may not deposit.`,
+		generateDynamicContent: (t) =>
+			`${sample(t.dwarves)?.name} is the only one who can mine, but they may not deposit.`,
 	},
 	{
 		id: 104,
@@ -1077,7 +1076,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.salvageOperation,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}.`,
-		missionRequirementsLikelihood: specificPrimaries(1)
+		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
 		id: 107,
@@ -1132,7 +1131,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.pointExtraction} or ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves.`,
-		missionRequirementsLikelihood: specificPrimaries(2)
+		missionRequirementsLikelihood: specificPrimaries(2),
 	},
 	{
 		id: 113,
@@ -1172,7 +1171,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.hauntedCave}. Team must have 2+ dwarves.`,
-		missionRequirementsLikelihood: 1 // TODO: Educated guess
+		missionRequirementsLikelihood: 1, // TODO: Educated guess
 	},
 	{
 		id: 115,
@@ -1183,7 +1182,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => !m,
 		},
 		writtenRequirements: 'Must choose the mission with the highest warning bonus.',
-		missionRequirementsLikelihood: 1
+		missionRequirementsLikelihood: 1,
 	},
 	{
 		id: 116,
@@ -1544,7 +1543,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.exploderInfestation),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.exploderInfestation}.`,
-		missionRequirementsLikelihood: 1 // TODO: Educated guess
+		missionRequirementsLikelihood: 1, // TODO: Educated guess
 	},
 	{
 		id: 151,
@@ -1561,7 +1560,23 @@ export const strategies: Strategy[] = [
 			'Use random number generator to determine how to remap non-movement and non-mouse keybinds (1, 2, 3, 4, 5, Q, E, R, F, G, X, C, V, M, Ctrl).',
 		tags: [StratTag.settings, StratTag.nausea],
 		generateDynamicContent: (_) => {
-			const controls = ['Primary weapon (default: 1)', 'Secondary weapon (default: 2)', 'Traversal tool (default: 3)', 'Support tool (default: 4)', 'Resupply (default: 5)', 'Previous item (default: Q)', 'Activate (default: E)', 'Reload (default: R)', 'Flare (default: F)', 'Grenade (default: G)', 'Shout (default: X)', 'Call MULE (default: C)', 'Salute (default: V)', 'Map (default: M)', 'Laser pointer (default: Ctrl'];
+			const controls = [
+				'Primary weapon (default: 1)',
+				'Secondary weapon (default: 2)',
+				'Traversal tool (default: 3)',
+				'Support tool (default: 4)',
+				'Resupply (default: 5)',
+				'Previous item (default: Q)',
+				'Activate (default: E)',
+				'Reload (default: R)',
+				'Flare (default: F)',
+				'Grenade (default: G)',
+				'Shout (default: X)',
+				'Call MULE (default: C)',
+				'Salute (default: V)',
+				'Map (default: M)',
+				'Laser pointer (default: Ctrl',
+			];
 			const remappedControls = shuffle(controls);
 			return controls
 				.map((control, i) => `"${control}" should be remapped to "${remappedControls[i]}".`)
@@ -1656,7 +1671,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.macteraPlague),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.macteraPlague}.`,
-		missionRequirementsLikelihood: 1 // TODO: Educated guess
+		missionRequirementsLikelihood: 1, // TODO: Educated guess
 	},
 	{
 		id: 162,
@@ -1677,7 +1692,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.swarmageddon),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.swarmageddon}.`,
-		missionRequirementsLikelihood: 1 // TODO: Educated guess
+		missionRequirementsLikelihood: 1, // TODO: Educated guess
 	},
 	{
 		id: 164,
@@ -1689,7 +1704,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.regenerativeBugs),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.regenerativeBugs}.`,
-		missionRequirementsLikelihood: 1 // TODO: Educated guess
+		missionRequirementsLikelihood: 1, // TODO: Educated guess
 	},
 	{
 		id: 165,
@@ -1736,7 +1751,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.length === 3 && m.complexity === 3,
 		},
 		writtenRequirements: 'Mission length and complexity must both be 3.',
-		missionRequirementsLikelihood: 1/3 * 1/3
+		missionRequirementsLikelihood: ((1 / 3) * 1) / 3,
 	},
 	{
 		id: 169,
@@ -1833,8 +1848,7 @@ export const strategies: Strategy[] = [
 		id: 178,
 		name: 'Big Game Hunter',
 		summary: 'One dwarf is responsible for killing all large enemies.',
-		details:
-			`One dwarf is designated as the "Big Game Hunter". They are the only one who may kill large enemies. ${CommonStratDefinitions.largeEnemies}. Exception can be made for dreadnoughts on ${PrimaryObjective.elimination} missions.`,
+		details: `One dwarf is designated as the "Big Game Hunter". They are the only one who may kill large enemies. ${CommonStratDefinitions.largeEnemies}. Exception can be made for dreadnoughts on ${PrimaryObjective.elimination} missions.`,
 		requirements: {
 			team: (t) => t.dwarves.length >= 2,
 		},
@@ -2052,7 +2066,7 @@ export const strategies: Strategy[] = [
 					m.primary === PrimaryObjective.pointExtraction),
 		},
 		writtenRequirements: `Mission biome must be ${BiomeType.azureWeald}, and mission primary objective must be ${PrimaryObjective.eggHunt}, ${PrimaryObjective.onSiteRefining}, or ${PrimaryObjective.pointExtraction}.`,
-		missionRequirementsLikelihood: mustMeetAll(specificBiomes(1), specificPrimaries(3))
+		missionRequirementsLikelihood: mustMeetAll(specificBiomes(1), specificPrimaries(3)),
 	},
 	{
 		id: 201,
@@ -2157,8 +2171,8 @@ export const strategies: Strategy[] = [
  * @param n - The number of specific allowed primary objectives
  * @returns - The estimated likelihood that any given mission meets the requirements
  */
- function specificPrimaries(n: number) {
-	return n / Object.keys(PrimaryObjective).length
+function specificPrimaries(n: number) {
+	return n / Object.keys(PrimaryObjective).length;
 }
 
 /**
@@ -2166,15 +2180,15 @@ export const strategies: Strategy[] = [
  * @returns - The estimated likelihood that any given mission meets the requirements
  */
 function specificNotPrimaries(n: number) {
-	return (Object.keys(PrimaryObjective).length - n) / Object.keys(PrimaryObjective).length
+	return (Object.keys(PrimaryObjective).length - n) / Object.keys(PrimaryObjective).length;
 }
 
 /**
  * @param n - The number of specific allowed secondary objectives
  * @returns - The estimated likelihood that any given mission meets the requirements
  */
- function specificSecondaries(n: number) {
-	return n / Object.keys(SecondaryObjective).length
+function specificSecondaries(n: number) {
+	return n / Object.keys(SecondaryObjective).length;
 }
 
 /**
@@ -2182,7 +2196,7 @@ function specificNotPrimaries(n: number) {
  * @returns - The estimated likelihood that any given mission meets the requirements
  */
 function specificNotSecondaries(n: number) {
-	return (Object.keys(SecondaryObjective).length - n) / Object.keys(SecondaryObjective).length
+	return (Object.keys(SecondaryObjective).length - n) / Object.keys(SecondaryObjective).length;
 }
 
 /**
@@ -2190,7 +2204,7 @@ function specificNotSecondaries(n: number) {
  * @returns - The estimated likelihood that any given mission meets the requirements
  */
 function specificBiomes(n: number) {
-	return n / Object.keys(BiomeType).length
+	return n / Object.keys(BiomeType).length;
 }
 
 /**
@@ -2198,7 +2212,7 @@ function specificBiomes(n: number) {
  * @returns - The estimated likelihood that any given mission meets the requirements
  */
 function specificNotBiomes(n: number) {
-	return (Object.keys(BiomeType).length - n) / Object.keys(BiomeType).length
+	return (Object.keys(BiomeType).length - n) / Object.keys(BiomeType).length;
 }
 
 /**
@@ -2206,10 +2220,8 @@ function specificNotBiomes(n: number) {
  * @returns - The likelihood of any one of the input odds being met
  */
 function mustMeetAny(...numbers: number[]) {
-	if (numbers.length === 0)
-		console.error('No numbers were provided');
-	if (numbers.some(n => n > 1 || n < 0))
-		console.error('Numbers must be within range [0, 1]');
+	if (numbers.length === 0) console.error('No numbers were provided');
+	if (numbers.some((n) => n > 1 || n < 0)) console.error('Numbers must be within range [0, 1]');
 	return numbers.reduce((a, b) => a + b - a * b);
 }
 
@@ -2217,10 +2229,8 @@ function mustMeetAny(...numbers: number[]) {
  * @param numbers - A list of independent odds
  * @returns - The likelihood of all of the input odds being met
  */
- function mustMeetAll(...numbers: number[]) {
-	if (numbers.length === 0)
-		console.error('No numbers were provided');
-	if (numbers.some(n => n > 1 || n < 0))
-		console.error('Numbers must be within range [0, 1]');
+function mustMeetAll(...numbers: number[]) {
+	if (numbers.length === 0) console.error('No numbers were provided');
+	if (numbers.some((n) => n > 1 || n < 0)) console.error('Numbers must be within range [0, 1]');
 	return numbers.reduce((a, b) => a * b, 1);
 }

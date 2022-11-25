@@ -7,26 +7,31 @@ $my-custom-warn: mat-palette($mat-red);
 $my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
 
 @function my-mat-light-theme-foreground($color) {
-    @return (
-        base:              $color,
-        divider:           $white-12-opacity,
-        dividers:          $white-12-opacity,
-        disabled:          rgba($color, 0.38),
-        disabled-button:   rgba($color, 0.38),
-        disabled-text:     rgba($color, 0.38),
-        hint-text:         rgba($color, 0.38),
-        secondary-text:    rgba($color, 0.54),
-        icon:              rgba($color, 0.54),
-        icons:             rgba($color, 0.54),
-        text:              rgba($color, 0.87),
-        slider-off:        rgba($color, 0.26),
-        slider-off-active: rgba($color, 0.38),
-        slider-min:        rgba($color, 0.38)
-    );
-};
+	@return (
+		base: $color,
+		divider: $white-12-opacity,
+		dividers: $white-12-opacity,
+		disabled: rgba($color, 0.38),
+		disabled-button: rgba($color, 0.38),
+		disabled-text: rgba($color, 0.38),
+		hint-text: rgba($color, 0.38),
+		secondary-text: rgba($color, 0.54),
+		icon: rgba($color, 0.54),
+		icons: rgba($color, 0.54),
+		text: rgba($color, 0.87),
+		slider-off: rgba($color, 0.26),
+		slider-off-active: rgba($color, 0.38),
+		slider-min: rgba($color, 0.38)
+	);
+}
 
 $white-foreground: my-mat-light-theme-foreground(white);
-$my-app-theme-custom: map-merge($my-custom-theme, (foreground: $white-foreground));
+$my-app-theme-custom: map-merge(
+	$my-custom-theme,
+	(
+		foreground: $white-foreground,
+	)
+);
 
 @include angular-material-theme($my-app-theme-custom);
 

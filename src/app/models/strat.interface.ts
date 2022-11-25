@@ -31,39 +31,39 @@ export const stratTagInfo: StratTagInfo[] = [
 		type: StratTag.settings,
 		description: 'This strategy requires changing in-game settings.',
 		tooltipDetails: 'require changing in-game settings.',
-		icon: 'settings'
+		icon: 'settings',
 	},
 	{
 		type: StratTag.loadout,
 		description:
 			'This strategy requires bringing a particular loadout. You will need to modify a loadout slot to complete it.',
 		tooltipDetails: 'require changing equipment loadout.',
-		icon: 'inventory'
+		icon: 'inventory',
 	},
 	{
 		type: StratTag.time,
 		description: 'This strategy may significantly increase the time taken to complete a mission.',
 		tooltipDetails: 'may significantly increase the mission time.',
-		icon: 'schedule'
+		icon: 'schedule',
 	},
 	{
 		type: StratTag.communication,
 		description: 'This strategy requires a high level of communication. Voice-chat is strongly recommended.',
 		tooltipDetails: 'necessitate voice communications.',
-		icon: 'headset_mic'
+		icon: 'headset_mic',
 	},
 	{
 		type: StratTag.queue,
 		description:
 			'This strategy relies on RNG to be attempted. As such, they should be queued up and attempted when the opportunity presents itself.',
 		tooltipDetails: 'must be queued. (Relies on random events)',
-		icon: 'list_alt'
+		icon: 'list_alt',
 	},
 	{
 		type: StratTag.nausea,
 		description: 'This strategy has the potential to cause nausea for some players.',
 		tooltipDetails: 'may cause nausea.',
-		icon: 'sick'
+		icon: 'sick',
 	},
 ];
 

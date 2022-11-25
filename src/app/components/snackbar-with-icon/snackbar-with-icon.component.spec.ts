@@ -10,13 +10,8 @@ describe('SnackbarWithIconComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [
-				SnackbarWithIconComponent
-			],
-			imports: [
-				BrowserAnimationsModule,
-				MatIconModule,
-			],
+			declarations: [SnackbarWithIconComponent],
+			imports: [BrowserAnimationsModule, MatIconModule],
 			providers: [
 				{
 					provide: MAT_SNACK_BAR_DATA,
@@ -25,8 +20,8 @@ describe('SnackbarWithIconComponent', () => {
 						prefixIcon: 'settings',
 						suffixIcon: 'list',
 					},
-				}
-			]
+				},
+			],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(SnackbarWithIconComponent);

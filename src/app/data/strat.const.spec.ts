@@ -1,4 +1,4 @@
-/** 
+/**
  * TODO: Tests
  * - All strategies with requirements must have written requirements.
  * - All strategies with mission requirements must have odds
@@ -6,4 +6,4 @@
  * - Ids must be unique
  * - The words "dwarf" or "dwarves" should be present in writtenRequirements if strat has team requirements
  * - The word "Mission" should be present in writtenRequirements if strat has mission requirements
-*/
+ */

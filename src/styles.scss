@@ -1,24 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
-    height: 100%;
-    background-color: #141516;
+html,
+body {
+	height: 100%;
+	background-color: #141516;
 }
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    color: white;
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+	color: white;
 }
 
 /* Custom classes*/
 .white-icon {
-    color: white;
+	color: white;
 }
 .white-icon svg {
-    fill: white;
+	fill: white;
 }
 
 /* Angular overrides */
-.mat-select-panel, .mat-menu-panel {
-    background-color: #191B1C !important;
+.mat-select-panel,
+.mat-menu-panel {
+	background-color: #191b1c !important;
 }
