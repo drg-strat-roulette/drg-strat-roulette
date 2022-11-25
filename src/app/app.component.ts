@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { strategies } from './data/strats.const';
 import { sample } from 'lodash-es';
 import { CachedQueuedStrats, Strategy, StratTag, stratTagInfo, StratTagObject } from './models/strat.interface';
@@ -21,6 +21,7 @@ import {
 	SnackbarWithIconComponent,
 } from './components/snackbar-with-icon/snackbar-with-icon.component';
 import { backgroundImages } from './data/backgrounds.const';
+import { MatDrawer } from '@angular/material/sidenav';
 
 const RECENT_STRAT_MAX_COUNT = 10;
 
@@ -30,6 +31,8 @@ const RECENT_STRAT_MAX_COUNT = 10;
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+	@ViewChild('drawer') drawer: MatDrawer | undefined;
+
 	// Static data
 	dwarfClasses: DwarfClass[] = Object.values(DwarfClass);
 	missionPrimaryObjectives: PrimaryObjective[] = Object.values(PrimaryObjective);
@@ -342,6 +345,10 @@ export class AppComponent implements OnInit {
 	 * Updates the cached queued strategies to match the latest in-memory queued strats
 	 */
 	updateQueuedStrategies(): void {
+		// Close drawer if all queued strats have been removed
+		if (this.queuedStrats.length === 0) {
+			this.drawer?.close();
+		}
 		// Update queuedStrategies in cache
 		const cachedQueuedStrats: CachedQueuedStrats = {
 			version: queuedStrategiesVersion,
