@@ -7,6 +7,16 @@
 	<div class="header-controls d-flex flex-row">
 		<button
 			#tooltip="matTooltip"
+			matTooltip="Info"
+			matTooltipShowDelay="500"
+			mat-icon-button
+			(click)="openWelcomeDialog()"
+			class="m-1"
+		>
+			<mat-icon class="white-icon"> info </mat-icon>
+		</button>
+		<button
+			#tooltip="matTooltip"
 			matTooltip="Share"
 			matTooltipShowDelay="500"
 			mat-icon-button
@@ -30,7 +40,7 @@
 
 <mat-drawer-container class="drawer-container">
 	<!-- Queued strategies drawer -->
-	<mat-drawer #drawer mode="over" class="queued-strats-drawer">
+	<mat-drawer #queuedStratsDrawer mode="over" class="queued-strats-drawer">
 		<h2 class="queued-strats-drawer-header d-flex flex-row justify-content-between">
 			Queued strategies
 			<mat-icon
@@ -43,7 +53,7 @@
 		<div
 			*ngFor="let queuedStrat of queuedStrats"
 			class="queued-strat d-flex flex-row"
-			(click)="strategy = queuedStrat; drawer.toggle()"
+			(click)="strategy = queuedStrat; queuedStratsDrawer.toggle()"
 		>
 			<button mat-icon-button class="m-1" (click)="removeQueuedStrategy(queuedStrat.id)">
 				<mat-icon>check</mat-icon>
@@ -318,7 +328,7 @@
 						#tooltip="matTooltip"
 						matTooltip="Show queued strategies"
 						matTooltipShowDelay="500"
-						(click)="drawer.toggle()"
+						(click)="queuedStratsDrawer.toggle()"
 					>
 						<mat-icon class="white-icon">list_alt</mat-icon>
 					</button>
@@ -353,7 +363,9 @@
 						</h1>
 						<hr />
 						<div class="strat-info-section">
-							<div class="strat-info-section-title d-flex flex-row justify-content-between margin-bottom-16">
+							<div
+								class="strat-info-section-title d-flex flex-row justify-content-between margin-bottom-16"
+							>
 								<h2 class="no-margin">Summary</h2>
 								<div class="d-flex flex-row strat-tags-container">
 									<div *ngFor="let tag of tags">

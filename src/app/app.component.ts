@@ -22,6 +22,8 @@ import {
 } from './components/snackbar-with-icon/snackbar-with-icon.component';
 import { backgroundImages } from './data/backgrounds.const';
 import { MatDrawer } from '@angular/material/sidenav';
+import { MatDialog } from '@angular/material/dialog';
+import { WelcomeDialogComponent } from './components/welcome-dialog/welcome-dialog.component';
 
 const RECENT_STRAT_MAX_COUNT = 10;
 
@@ -31,7 +33,7 @@ const RECENT_STRAT_MAX_COUNT = 10;
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-	@ViewChild('drawer') drawer: MatDrawer | undefined;
+	@ViewChild('drawer') queuedStratsDrawer: MatDrawer | undefined;
 
 	// Static data
 	dwarfClasses: DwarfClass[] = Object.values(DwarfClass);
@@ -105,7 +107,8 @@ export class AppComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private clipboard: Clipboard,
-		private snackbar: MatSnackBar
+		private snackbar: MatSnackBar,
+		public dialog: MatDialog
 	) {}
 
 	ngOnInit(): void {
@@ -179,6 +182,12 @@ export class AppComponent implements OnInit {
 			if (recentStrategies) {
 				this.recentStrats = recentStrategies;
 			}
+		}
+
+		// Display welcome dialog to new users
+		const hasSeenWelcomeDialog = localStorage.getItem(StoredKeys.hasSeenWelcomeDialog);
+		if (hasSeenWelcomeDialog !== 'true') {
+			this.openWelcomeDialog();
 		}
 
 		// Update background image
@@ -347,7 +356,7 @@ export class AppComponent implements OnInit {
 	updateQueuedStrategies(): void {
 		// Close drawer if all queued strats have been removed
 		if (this.queuedStrats.length === 0) {
-			this.drawer?.close();
+			this.queuedStratsDrawer?.close();
 		}
 		// Update queuedStrategies in cache
 		const cachedQueuedStrats: CachedQueuedStrats = {
@@ -451,6 +460,14 @@ export class AppComponent implements OnInit {
 				prefixIcon: 'assignment',
 			} as SnackbarConfig,
 		});
+	}
+
+	/**
+	 * Opens the welcome dialog which explains how to use the app
+	 */
+	openWelcomeDialog(): void {
+		const welcomeDialog = this.dialog.open(WelcomeDialogComponent);
+		welcomeDialog.afterClosed().subscribe(() => localStorage.setItem(StoredKeys.hasSeenWelcomeDialog, 'true'));
 	}
 
 	/**

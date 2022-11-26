@@ -966,7 +966,7 @@ export const strategies: Strategy[] = [
 		name: 'Agoraphobia',
 		summary: "Can't travel the cave using the cave.",
 		details:
-			"You heard me. You must drill your own way to everything and can't travel any distance using the pre-generated cave. You can drill into existing caves for reconnaissance to spot minerals, but you'll have to find another way to get to them.",
+			"You must drill your own way to everything and can't travel any distance using the pre-generated cave. You can drill into existing cave to spot minerals, but you'll have to find another way to get to them.",
 		tags: [StratTag.time],
 	},
 	{
@@ -1558,7 +1558,7 @@ export const strategies: Strategy[] = [
 		summary: 'Randomly re-mapped controls (non movement or pickaxe).',
 		details:
 			'Use random number generator to determine how to remap non-movement and non-mouse keybinds (1, 2, 3, 4, 5, Q, E, R, F, G, X, C, V, M, Ctrl).',
-		tags: [StratTag.settings, StratTag.nausea],
+		tags: [StratTag.settings],
 		generateDynamicContent: (_) => {
 			const controls = [
 				'Primary weapon (default: 1)',
