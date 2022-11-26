@@ -34,8 +34,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Way to reset settings to defaults
 -   [x] Provide common definitions from consolidated source
 -   [x] Display info about the active strategy's tags
--   [ ] **WIP** Define rules and how to play
-    -   Display on first visit and provide a way to re-open it
+-   [x] Welcome dialog explaining how to use
 -   [ ] **WIP** Higher weight on strategies which have met requirements
     -   (add a est %likelihood for each strat w/ mission requirements, and multiply weight by inverse)
 -   [ ] Bug reports, feature requests, and strategy submissions
