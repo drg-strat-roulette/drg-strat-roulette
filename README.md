@@ -66,6 +66,14 @@ Some strategies have specific mission or team requirements, but otherwise there 
 
 ## Development server
 
+#### Setup
+
+1. Install Git, and Node.js.
+1. Clone this repository to a local drive.
+1. Navigate to the project root, and run `npm i`.
+
+#### Start
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Build
