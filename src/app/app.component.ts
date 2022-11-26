@@ -33,7 +33,7 @@ const RECENT_STRAT_MAX_COUNT = 10;
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-	@ViewChild('drawer') queuedStratsDrawer: MatDrawer | undefined;
+	@ViewChild('queuedStratsDrawer') queuedStratsDrawer: MatDrawer | undefined;
 
 	// Static data
 	dwarfClasses: DwarfClass[] = Object.values(DwarfClass);
