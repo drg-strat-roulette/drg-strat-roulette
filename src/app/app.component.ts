@@ -327,7 +327,7 @@ export class AppComponent implements OnInit {
 	correctInvalidInputs(): void {
 		// If dwarf names have not been properly filled out, auto-populate with some data
 		this.dwarves.forEach((dwarf, i) => {
-			dwarf.name = (dwarf.name ?? '').length === 0 ? `Dwarf #${i + 1}` : dwarf.name;
+			dwarf.name = (dwarf.name ?? '').trim().length === 0 ? `Dwarf #${i + 1}` : dwarf.name;
 		});
 		// If mission length or complexity are out of bounds, clamp them to the appropriate range
 		this.clampMissionLengthAndComplexity();
