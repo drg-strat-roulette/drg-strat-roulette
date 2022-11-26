@@ -33,6 +33,7 @@
 		"@angular/compiler-cli": "^14.2.0",
 		"@types/jasmine": "~4.0.0",
 		"@types/lodash-es": "^4.17.6",
+		"angular-cli-ghpages": "^1.0.5",
 		"eslint": "^8.27.0",
 		"jasmine-core": "~4.3.0",
 		"karma": "~6.4.0",
