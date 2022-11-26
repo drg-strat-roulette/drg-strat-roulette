@@ -115,7 +115,19 @@
 	white-space: pre-line;
 }
 
+.strat-tags-container {
+	margin: 3px 6px 0 0;
+}
+
 .strat-info-section-title {
 	padding-left: 6px;
 	background-color: rgba(200, 200, 200, 0.1);
+}
+
+.no-margin {
+	margin: 0 !important;
+}
+
+.margin-bottom-16 {
+	margin-bottom: 16px;
 }
