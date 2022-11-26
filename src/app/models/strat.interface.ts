@@ -13,8 +13,6 @@ export interface Strategy {
 	missionRequirementsLikelihood?: number;
 	generateDynamicContent?: (t: Team) => string;
 	dynamicContent?: string;
-	// difficultyPoints?: number;
-	// exclusionCategory?: ExclusionCategory[];
 }
 
 export enum StratTag {
@@ -76,11 +74,6 @@ export interface StratTagInfo {
 
 export interface StratTagObject extends StratTagInfo {
 	checked: boolean;
-}
-
-export enum ExclusionCategory {
-	specificClasses = 'Specific classes',
-	// TODO: Others, and add them to strats
 }
 
 export interface StratRequirements {

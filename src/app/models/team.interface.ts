@@ -1,4 +1,3 @@
-// TODO: Is Team a necessary interface? What else would it store?
 export interface Team {
 	dwarves: Dwarf[];
 }
