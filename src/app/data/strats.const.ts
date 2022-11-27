@@ -2158,7 +2158,7 @@ export const strategies: Strategy[] = [
 	// Leave lithophage until the end
 	// Break lithophage by hand (C4, drills, pickaxe)
 	// Rockpox enemies must be melee'd
-	// Bombardier - throw prox mines, run to them and pick them up. If triggered, wait for it to depleted then continue
+	// Bombardier - throw prox mines, run to them and pick them up. If triggered, wait for it to depleted then continue // Too boring?
 	// Meteor event with only 1 rock cracker (queue)
 ];
 

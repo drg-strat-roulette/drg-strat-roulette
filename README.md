@@ -59,7 +59,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [ ] Like/dislike strategies to globally tweak their weightings
     -   Store total positive, total negative
 -   [ ] Provide feedback to increase/decrease a strategy's listed difficulty
-    -   Store total votes, and total difficulty points. Divide in UI.
+    -   Store total votes, and total difficulty points.
     -   [ ] Select difficulty range for generated strategies
     -   [ ] Mode to continually increase difficulty until a strategy is failed
 
