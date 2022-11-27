@@ -78,7 +78,7 @@ export const strategies: Strategy[] = [
 		requirements: {
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.gunner)),
 		},
-		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfClass.gunner}.`,
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must play as ${DwarfClass.gunner}.`,
 	},
 	{
 		id: 9,
@@ -89,7 +89,7 @@ export const strategies: Strategy[] = [
 			team: (t) =>
 				t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.driller)),
 		},
-		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfClass.driller}.`,
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must play as ${DwarfClass.driller}.`,
 	},
 	{
 		id: 10,
@@ -99,7 +99,7 @@ export const strategies: Strategy[] = [
 		requirements: {
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.scout)),
 		},
-		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfClass.scout}.`,
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must play as ${DwarfClass.scout}.`,
 	},
 	{
 		id: 11,
@@ -110,7 +110,7 @@ export const strategies: Strategy[] = [
 			team: (t) =>
 				t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.engineer)),
 		},
-		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfClass.engineer}.`,
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must play as ${DwarfClass.engineer}.`,
 	},
 	{
 		id: 12,
@@ -152,17 +152,18 @@ export const strategies: Strategy[] = [
 			mission: (m) => !m,
 		},
 		writtenRequirements: 'Mission must have 2 warnings.',
+		missionRequirementsLikelihood: 1,
 	},
 	{
 		id: 17,
-		name: 'Back To Basics (Primary)',
+		name: 'Back to Basics (Primary)',
 		summary: 'No mods or overclocks on primary weapons.',
 		details: '',
 		tags: [StratTag.loadout],
 	},
 	{
 		id: 18,
-		name: 'Back To Basics (Secondary)',
+		name: 'Back to Basics (Secondary)',
 		summary: 'No mods or overclocks on secondary weapons.',
 		details: '',
 		tags: [StratTag.loadout],
@@ -235,7 +236,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 27,
-		name: 'Forgot To Bring Protection',
+		name: 'Forgot to Bring Protection',
 		summary: 'No armor upgrades.',
 		details: 'Unequip all armor upgrades. If the daily special is Red Rock Blaster, you may not order it.',
 		tags: [StratTag.loadout],
@@ -394,7 +395,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 43,
-		name: 'Drinking On The Job',
+		name: 'Drinking on the Job',
 		summary: 'Must play the mission drunk.',
 		details:
 			"For maximum drunkenness:\nIf buying the daily special, sober up afterwards (via Leaf Lover's Special, Blackout Stout, or suicide) before buying the following drinks: Gut Wrecker, Blacklock Lager, and Oily Oaf. This will take you to 99% drunkenness.\nAs host (if the host wants additional challenge), press Q to delete these drinks. You will instead drink a Blackout Stout right before getting into the pod (with everyone already in) for 100% drunkenness.",
@@ -428,7 +429,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 47,
-		name: 'Bottom To Top',
+		name: 'Bottom to Top',
 		summary: 'Do mining mission backwards.',
 		details: `Drill or run to the end of the mining mission as soon as possible. You may not mine anything on your way there or kill any stationary enemies (unless you are unable to revive a dwarf otherwise) even in the starting room. Do your best to not pay attention to the caves if you happen to pass through any part. The end of the mining mission is always southwest from the start of the mission. Dig this way at a downward angle, using the terrain scanner to try to stay near the cave system. If you must pass through because you ran out of drill ammo, you may. It might be a good idea to bring more than one ${DwarfClass.driller} if the mission is particularly long.`,
 		tags: [StratTag.time],
@@ -440,7 +441,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 48,
-		name: 'Taking The Scenic Route',
+		name: 'Taking the Scenic Route',
 		summary: 'Each pipe has to wrap around the other two pumpjacks.',
 		details:
 			'Before connecting a pipe to a pumpjack, it must wrap around each of the other two pumpjacks. You may not un-build a pipe after it has been wrapped around a pumpjack.',
@@ -473,7 +474,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.escortDuty,
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.some((dwarf) => dwarf.classes.includes(DwarfClass.driller)),
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves, one of which must be willing to play as ${DwarfClass.driller}`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.escortDuty}. Team must have 2+ dwarves, one of which must play as ${DwarfClass.driller}`,
 		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
@@ -516,10 +517,10 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 54,
-		name: 'All Your Eggs In One Basket',
+		name: 'All Your Eggs in One Basket',
 		summary: 'Carry all your eggs/aquarqs together without depositing.',
 		details:
-			'Every gathered egg/aquarq must be carried to the next egg/aquarq until enough to complete the primary objective have been gathered in one location. From then they may be deposited in Molly (Eggs) or brought to the Mine-head (e.g. You must carry 9 aquarqs to the 10th before returning them all in a length 3 mission). The "Egg basket" may not be left completely unattended, but other dwarves may perform reconnaissance to find the optimal next egg/aquarq.',
+			'Every gathered egg/aquarq must be carried to the next egg/aquarq until enough to complete the primary objective have been gathered in one location. From then they may be deposited in Molly (Eggs) or brought to the Mine-head (e.g. You must carry all 4 aquarqs to the 5th, and so on). The "Egg basket" may not be left completely unattended, but other dwarves may perform reconnaissance to find the optimal next egg/aquarq.',
 		tags: [StratTag.time],
 		requirements: {
 			mission: (m) => m.primary === PrimaryObjective.eggHunt || m.primary === PrimaryObjective.pointExtraction,
@@ -595,7 +596,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 61,
-		name: 'Driller To C-4',
+		name: 'Driller to C-4',
 		summary: 'May only move to an area that another dwarf pings.',
 		details:
 			"Any dwarf may command any/all dwarves except for themselves. You may not ask someone to command you to go somewhere. Positioning is not very strict. You may mine minerals and kill things on the way to your target location and get there in your own time. (As long as you don't go too far out of the way) Once you reach the target location, you may do whatever you want but are confined to ~10m radius around the ping.",
@@ -703,7 +704,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 70,
-		name: 'Cutting Back on e-Waste',
+		name: 'Cutting Back on E-Waste',
 		summary: 'Industrial sabotage no killing turrets',
 		details: 'Exception can be made for ceiling turrets in the Caretaker room.',
 		requirements: {
@@ -726,7 +727,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 72,
-		name: 'Hold Down The Fort',
+		name: 'Hold Down the Fort',
 		summary: 'Cannot move while in uplink/refuel.',
 		details:
 			'You may not press movement keys while uplink/refuel is in progress. You also may not create a bunker.',
@@ -745,7 +746,7 @@ export const strategies: Strategy[] = [
 		requirements: {
 			team: (t) => t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.scout)),
 		},
-		writtenRequirements: `All dwarves must be willing to play as ${DwarfClass.scout}.`,
+		writtenRequirements: `All dwarves must play as ${DwarfClass.scout}.`,
 	},
 	{
 		id: 74,
@@ -759,7 +760,7 @@ export const strategies: Strategy[] = [
 				m.primary === PrimaryObjective.onSiteRefining,
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.some((dwarf) => dwarf.classes.includes(DwarfClass.gunner)),
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.eggHunt}, ${PrimaryObjective.pointExtraction}, or ${PrimaryObjective.onSiteRefining}. Team must have 2+ dwarves, at least one of which must be willing to play as ${DwarfClass.gunner}`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.eggHunt}, ${PrimaryObjective.pointExtraction}, or ${PrimaryObjective.onSiteRefining}. Team must have 2+ dwarves, at least one of which must play as ${DwarfClass.gunner}`,
 		missionRequirementsLikelihood: specificPrimaries(3),
 	},
 	{
@@ -802,7 +803,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 79,
-		name: 'All For One',
+		name: 'All for One',
 		summary: 'Private resupply pods.',
 		details: 'The dwarf who calls a resupply pod is the only one who can take ammo from it.',
 		requirements: {
@@ -996,7 +997,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 99,
-		name: 'All The Groceries In One Trip',
+		name: 'All the Groceries in One Trip',
 		summary: 'Cannot deposit anything until the team has collectively completed secondary.',
 		details:
 			'"Collectively completed" entails the necessary amount to complete the secondary objective stored in the mineral bags of any number of dwarves. Gunk seeds can be gathered in one spot to be considered "collectively competed". If only 2 dwarves and the secondary is dystrum, you\'ll have to use perks and/or armor upgrades such that you have 100 total bag capacity.',
@@ -1095,7 +1096,7 @@ export const strategies: Strategy[] = [
 			team: (t) =>
 				t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.engineer)),
 		},
-		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfClass.engineer}.`,
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must play as ${DwarfClass.engineer}.`,
 	},
 	{
 		id: 109,
@@ -1186,7 +1187,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 116,
-		name: 'Crunchy On the Outside, Gooey On the Inside',
+		name: 'Crunchy on the Outside, Gooey on the Inside',
 		summary: "Must pickaxe q'ronars to death.",
 		details: '',
 		requirements: {
@@ -1248,7 +1249,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 123,
-		name: 'The Only Way To Be Born',
+		name: 'The Only Way to Be Born',
 		summary: `Only reload with ${PassivePerkType.bornReady}.`,
 		details: 'May not use weapons that cannot be reloaded.',
 		tags: [StratTag.loadout],
@@ -1265,14 +1266,14 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 125,
-		name: 'I Need A Medic Up Here',
+		name: 'I Need a Medic Up Here',
 		summary: `${DwarfClass.scout}'s job to die in inconvenient places.`,
 		details: `${DwarfClass.scout} must down themselves in an inconvenient place after [Choose] (a) Every swarm (or b) After the primary, and again after the secondary objectives are completed. ${DwarfClass.scout} must be revived.`,
 		tags: [StratTag.time],
 		requirements: {
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.scout)),
 		},
-		writtenRequirements: `Team must have 2+ dwarves, and one of them must be willing to play as ${DwarfClass.scout}`,
+		writtenRequirements: `Team must have 2+ dwarves, and one of them must play as ${DwarfClass.scout}`,
 	},
 	{
 		id: 126,
@@ -1316,7 +1317,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 129,
-		name: 'To The Fallen',
+		name: 'To the Fallen',
 		summary: 'You must bury your dead and pay respects before reviving them.',
 		details: `Dig a hole under downed dwarves (and cover it if an ${DwarfClass.engineer} is alive). Have a funeral procession and pay respects before digging up and reviving the downed dwarf.`,
 		requirements: {
@@ -1438,7 +1439,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 140,
-		name: '12 Peas In A Pod',
+		name: '12 Peas in a Pod',
 		summary: 'Gunk seeds can only be deposited in the drop pod.',
 		details: 'The secondary objective must be completed.',
 		tags: [StratTag.time],
@@ -1506,7 +1507,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.primary === PrimaryObjective.salvageOperation,
 			team: (t) => t.dwarves.length >= 2 && t.dwarves.some((dwarf) => dwarf.classes.includes(DwarfClass.driller)),
 		},
-		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}, and the team must have at least one ${DwarfClass.driller}.`,
+		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.salvageOperation}, and at least 1 dwarf must play as ${DwarfClass.driller}.`,
 		missionRequirementsLikelihood: specificPrimaries(1),
 	},
 	{
@@ -1519,7 +1520,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 148,
-		name: 'Slow But Steady',
+		name: 'Slow but Steady',
 		summary: 'Play with low sensitivity/DPI.',
 		details:
 			"(By adjusting in-game sensitivity, mouse DPI, and/or cursor speed in OS settings) You must set your total sensitivity to 1/4th the setting you normally play at. If you can't go that low, just crank everything to minimum.",
@@ -1642,7 +1643,7 @@ export const strategies: Strategy[] = [
 		requirements: {
 			team: (t) => t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.scout)),
 		},
-		writtenRequirements: `All dwarves must be willing to play as ${DwarfClass.scout}.`,
+		writtenRequirements: `All dwarves must play as ${DwarfClass.scout}.`,
 	},
 	{
 		id: 159,
@@ -1748,10 +1749,10 @@ export const strategies: Strategy[] = [
 		details:
 			'You must do a length 3, complexity 3 mission without calling resupply pods. Broken resupply pods are allowed.',
 		requirements: {
-			mission: (m) => m.length === 3 && m.complexity === 3,
+			mission: (m) => !m,
 		},
 		writtenRequirements: 'Mission length and complexity must both be 3.',
-		missionRequirementsLikelihood: ((1 / 3) * 1) / 3,
+		missionRequirementsLikelihood: 1,
 	},
 	{
 		id: 169,
@@ -1801,7 +1802,7 @@ export const strategies: Strategy[] = [
 			team: (t) =>
 				t.dwarves.length >= 2 && t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.engineer)),
 		},
-		writtenRequirements: `Team must have 2+ dwarves. All dwarves must be willing to play as ${DwarfClass.engineer}.`,
+		writtenRequirements: `Team must have 2+ dwarves. All dwarves must play as ${DwarfClass.engineer}.`,
 	},
 	{
 		id: 174,
@@ -2055,7 +2056,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 200,
-		name: 'Touched By An Angel',
+		name: 'Touched by an Angel',
 		summary: 'Must escape to the drop-pod by riding a cave angel.',
 		details: '',
 		requirements: {
@@ -2152,19 +2153,18 @@ export const strategies: Strategy[] = [
 		requirements: {
 			team: (t) => t.dwarves.every((dwarf) => dwarf.classes.includes(DwarfClass.scout)),
 		},
-		writtenRequirements: `All dwarves must be willing to play as ${DwarfClass.scout}.`,
+		writtenRequirements: `All dwarves must play as ${DwarfClass.scout}.`,
 	},
-	// Leave lithophage until the ned
+	// Leave lithophage until the end
 	// Break lithophage by hand (C4, drills, pickaxe)
 	// Rockpox enemies must be melee'd
-	// Bombardier - throw prox mines, run to them and pick them up
-	// If triggered, wait for it to depleted then continue
+	// Bombardier - throw prox mines, run to them and pick them up. If triggered, wait for it to depleted then continue
 	// Meteor event with only 1 rock cracker (queue)
 ];
 
 /*
  * Helper functions for estimating likelihood of mission requirements being met
- * Note: These functions (falsely) assume that all objectives and biomes have equal probabilities
+ * Note: These functions (falsely) assume that all objectives and biomes are equally likely
  */
 
 /**
