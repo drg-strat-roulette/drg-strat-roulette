@@ -2,8 +2,8 @@ export interface Mission {
 	primary: PrimaryObjective;
 	secondary: SecondaryObjective;
 	biome: BiomeType;
-	length: number;
-	complexity: number;
+	length: number; // Currently unused
+	complexity: number; // Currently unused
 	warnings: WarningType[];
 	anomaly: AnomalyType | null;
 }

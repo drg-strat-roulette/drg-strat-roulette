@@ -271,7 +271,8 @@
 								</mat-option>
 							</mat-select>
 						</mat-form-field>
-						<mat-form-field appearance="fill" class="mission-number-input m-1">
+                        <!-- Currently unused -->
+						<!-- <mat-form-field appearance="fill" class="mission-number-input m-1">
 							<mat-label>Length</mat-label>
 							<input
 								matInput
@@ -294,7 +295,7 @@
 								[(ngModel)]="mission.complexity"
 								(ngModelChange)="saveSettings()"
 							/>
-						</mat-form-field>
+						</mat-form-field> -->
 						<mat-form-field appearance="fill" class="m-1 flex-mission-input">
 							<mat-label>Warnings</mat-label>
 							<mat-select [(ngModel)]="mission.warnings" (ngModelChange)="saveSettings()" multiple>
