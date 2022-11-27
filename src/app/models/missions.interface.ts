@@ -9,22 +9,22 @@ export interface Mission {
 }
 
 export enum PrimaryObjective {
-	miningExpedition = 'Mining Expedition',
 	eggHunt = 'Egg Hunt',
-	onSiteRefining = 'On-site Refining',
-	salvageOperation = 'Salvage Operation',
-	pointExtraction = 'Point Extraction',
-	escortDuty = 'Escort Duty',
 	elimination = 'Elimination',
+	escortDuty = 'Escort Duty',
 	industrialSabotage = 'Industrial Sabotage',
+	miningExpedition = 'Mining Expedition',
+	onSiteRefining = 'On-site Refining',
+	pointExtraction = 'Point Extraction',
+	salvageOperation = 'Salvage Operation',
 }
 
 export enum SecondaryObjective {
 	alienFossils = 'Alien Fossils',
 	apocaBlooms = 'Apoca Blooms',
 	booloCap = 'Boolo Caps',
-	ebonut = 'Ebonuts',
 	dystrum = 'Dystrum',
+	ebonut = 'Ebonuts',
 	festerFleas = 'Fester Fleas',
 	gunkSeed = 'Gunk Seeds',
 	hollomite = 'Hollomite',
@@ -58,14 +58,14 @@ export enum AnomalyType {
 }
 
 export enum BiomeType {
+	azureWeald = 'Azure Weald',
 	crystallineCaverns = 'Crystalline Caverns',
 	denseBiozone = 'Dense Biozone',
 	fungusBogs = 'Fungus Bogs',
 	glacialStrata = 'Glacial Strata',
+	hollowBough = 'Hollow Bough',
 	magmaCore = 'Magma Core',
 	radioactiveExclusionZone = 'Radioactive Exclusion Zone',
 	saltPits = 'Salt Pits',
 	sandblastedCorridors = 'Sandblasted Corridors',
-	hollowBough = 'Hollow Bough',
-	azureWeald = 'Azure Weald',
 }
