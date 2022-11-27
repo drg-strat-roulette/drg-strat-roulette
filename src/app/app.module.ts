@@ -28,11 +28,12 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 // Custom components
 import { AppComponent } from './app.component';
+import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
 import { SnackbarWithIconComponent } from './components/snackbar-with-icon/snackbar-with-icon.component';
 import { WelcomeDialogComponent } from './components/welcome-dialog/welcome-dialog.component';
 
 @NgModule({
-	declarations: [AppComponent, SnackbarWithIconComponent, WelcomeDialogComponent],
+	declarations: [AppComponent, FeedbackDialogComponent, SnackbarWithIconComponent, WelcomeDialogComponent],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,

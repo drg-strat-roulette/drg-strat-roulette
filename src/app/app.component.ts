@@ -24,6 +24,7 @@ import { backgroundImages } from './data/backgrounds.const';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeDialogComponent } from './components/welcome-dialog/welcome-dialog.component';
+import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
 
 const RECENT_STRAT_MAX_COUNT = 10;
 
@@ -468,6 +469,13 @@ export class AppComponent implements OnInit {
 	openWelcomeDialog(): void {
 		const welcomeDialog = this.dialog.open(WelcomeDialogComponent);
 		welcomeDialog.afterClosed().subscribe(() => localStorage.setItem(StoredKeys.hasSeenWelcomeDialog, 'true'));
+	}
+
+	/**
+	 * Opens the feedback dialog
+	 */
+	openFeedbackDialog(): void {
+		this.dialog.open(FeedbackDialogComponent);
 	}
 
 	/**

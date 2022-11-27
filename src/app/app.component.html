@@ -7,13 +7,23 @@
 	<div class="header-controls d-flex flex-row">
 		<button
 			#tooltip="matTooltip"
+			matTooltip="Feedback"
+			matTooltipShowDelay="500"
+			mat-icon-button
+			(click)="openFeedbackDialog()"
+			class="m-1"
+		>
+			<mat-icon class="white-icon">feedback</mat-icon>
+		</button>
+		<button
+			#tooltip="matTooltip"
 			matTooltip="Info"
 			matTooltipShowDelay="500"
 			mat-icon-button
 			(click)="openWelcomeDialog()"
 			class="m-1"
 		>
-			<mat-icon class="white-icon"> info </mat-icon>
+			<mat-icon class="white-icon">info</mat-icon>
 		</button>
 		<button
 			#tooltip="matTooltip"

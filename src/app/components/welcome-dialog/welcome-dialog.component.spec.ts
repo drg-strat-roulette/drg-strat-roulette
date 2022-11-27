@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogRef } from '@angular/material/dialog';
 
 import { WelcomeDialogComponent } from './welcome-dialog.component';
 
@@ -10,12 +9,6 @@ describe('WelcomeDialogComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [WelcomeDialogComponent],
-			providers: [
-				{
-					provide: MatDialogRef,
-					useValue: {},
-				},
-			],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(WelcomeDialogComponent);
