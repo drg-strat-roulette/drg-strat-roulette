@@ -40,7 +40,6 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [ ] **WIP** Higher weight on strategies which have met requirements
     -   (add a est %likelihood for each strat w/ mission requirements, and multiply weight by inverse)
 -   [ ] Add strategy hints as revealable "spoilers"
--   [ ] Provide possible ways to determine who does what
 
 ## Possible features
 
@@ -51,6 +50,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
     -   [ ] Tell you which strats are "new" in general
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
 -   [ ] Localization
+-   [ ] Provide possible ways to determine who does what (e.g. space-rig mini-games)
 -   [ ] Block (and unblock) specific strategies that you don't like
 -   [ ] Prevent multiple strategies that conflict with one another (only applicable if multiple strategies can be active at once)
 
