@@ -81,7 +81,7 @@ describe('Strategy list', () => {
 			}
 		});
 
-		it('should have a mission compatibility likelihood defined on all strategies with mission requirements', () => {
+		it('should have a mission requirement chance defined on all strategies with mission requirements', () => {
 			for (const strat of strats) {
 				if (strat.requirements?.mission) {
 					expect(strat.missionReqChance).toBeDefined();

@@ -37,7 +37,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Welcome dialog explaining how to use
 -   [x] Deploy to public location
 -   [x] Bug reports, feature requests, and strategy submissions
--   [x] Weight strategies based on likelihood of mission requirements being met
+-   [x] Weight strategies based on chance of mission requirements being met
 -   [ ] Add strategy hints as revealable "spoilers"
 
 ## Possible features

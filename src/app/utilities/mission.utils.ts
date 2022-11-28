@@ -7,7 +7,7 @@ import {
 } from '../models/missions.interface';
 
 /*
- * Constants and helper functions for estimating the likelihood of mission requirements being met
+ * Constants and helper functions for estimating the chance of mission requirements being met
  * - Many of these (perhaps falsely) assume that all possibilities are equally likely
  * - Anomaly/warning chances are based on a small sample size of data
  * - Precision is not super important, because reality will always be biased by player preference
@@ -26,7 +26,7 @@ export const LITHOPHAGE_WARNING_CHANCE = 0.171;
 
 /**
  * @param n - The number of specific allowed primary objectives
- * @returns - The estimated likelihood that any given mission meets the requirements
+ * @returns - The estimated chance that any given mission meets the requirements
  */
 export function specificPrimaries(n: number) {
 	return n / Object.keys(PrimaryObjective).length;
@@ -34,7 +34,7 @@ export function specificPrimaries(n: number) {
 
 /**
  * @param n - The number of specific disallowed primary objectives
- * @returns - The estimated likelihood that any given mission meets the requirements
+ * @returns - The estimated chance that any given mission meets the requirements
  */
 export function specificNotPrimaries(n: number) {
 	return (Object.keys(PrimaryObjective).length - n) / Object.keys(PrimaryObjective).length;
@@ -42,7 +42,7 @@ export function specificNotPrimaries(n: number) {
 
 /**
  * @param n - The number of specific allowed secondary objectives
- * @returns - The estimated likelihood that any given mission meets the requirements
+ * @returns - The estimated chance that any given mission meets the requirements
  */
 export function specificSecondaries(n: number) {
 	return n / Object.keys(SecondaryObjective).length;
@@ -50,7 +50,7 @@ export function specificSecondaries(n: number) {
 
 /**
  * @param n - The number of specific disallowed secondary objectives
- * @returns - The estimated likelihood that any given mission meets the requirements
+ * @returns - The estimated chance that any given mission meets the requirements
  */
 export function specificNotSecondaries(n: number) {
 	return (Object.keys(SecondaryObjective).length - n) / Object.keys(SecondaryObjective).length;
@@ -58,7 +58,7 @@ export function specificNotSecondaries(n: number) {
 
 /**
  * @param n - The number of specific allowed biomes
- * @returns - The estimated likelihood that any given mission meets the requirements
+ * @returns - The estimated chance that any given mission meets the requirements
  */
 export function specificBiomes(n: number) {
 	return n / Object.keys(BiomeType).length;
@@ -66,7 +66,7 @@ export function specificBiomes(n: number) {
 
 /**
  * @param n - The number of specific disallowed biomes
- * @returns - The estimated likelihood that any given mission meets the requirements
+ * @returns - The estimated chance that any given mission meets the requirements
  */
 export function specificNotBiomes(n: number) {
 	return (Object.keys(BiomeType).length - n) / Object.keys(BiomeType).length;
@@ -74,7 +74,7 @@ export function specificNotBiomes(n: number) {
 
 /**
  * @param numbers - A list of independent odds
- * @returns - The likelihood of any one of the input odds being met
+ * @returns - The chance of any one of the input odds being met
  */
 export function mustMeetAny(...numbers: number[]) {
 	if (numbers.length === 0) console.error('No numbers were provided');
@@ -84,7 +84,7 @@ export function mustMeetAny(...numbers: number[]) {
 
 /**
  * @param numbers - A list of independent odds
- * @returns - The likelihood of all of the input odds being met
+ * @returns - The chance of all of the input odds being met
  */
 export function mustMeetAll(...numbers: number[]) {
 	if (numbers.length === 0) console.error('No numbers were provided');
