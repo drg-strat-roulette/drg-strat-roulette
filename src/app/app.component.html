@@ -6,7 +6,7 @@
 	</div>
 	<div class="d-flex flex-row">
 		<button
-			#tooltip="matTooltip"
+			#feedbackTooltip="matTooltip"
 			matTooltip="Feedback"
 			matTooltipShowDelay="500"
 			mat-icon-button
@@ -16,7 +16,7 @@
 			<mat-icon class="white-icon">feedback</mat-icon>
 		</button>
 		<button
-			#tooltip="matTooltip"
+			#infoTooltip="matTooltip"
 			matTooltip="Info"
 			matTooltipShowDelay="500"
 			mat-icon-button
@@ -26,7 +26,7 @@
 			<mat-icon class="white-icon">info</mat-icon>
 		</button>
 		<button
-			#tooltip="matTooltip"
+			#shareTooltip="matTooltip"
 			matTooltip="Share"
 			matTooltipShowDelay="500"
 			mat-icon-button
@@ -36,7 +36,7 @@
 			<mat-icon class="white-icon">share</mat-icon>
 		</button>
 		<button
-			#tooltip="matTooltip"
+			#settingsTooltip="matTooltip"
 			matTooltip="Settings"
 			matTooltipShowDelay="500"
 			mat-icon-button
@@ -54,9 +54,9 @@
 		<h2 class="queued-strats-drawer-header d-flex flex-row justify-content-between">
 			Queued strategies
 			<mat-icon
-				#tooltip="matTooltip"
+				#queuedStrategiesTooltip="matTooltip"
 				matTooltip="Queued strategies rely on RNG to be attempted. As such, they are queued up and can be attempted when the opportunity presents itself. They can be done in any order. Click on a queued strategy to view it again, and check it off to remove it from queue."
-                (click)="tooltip.show()"
+                (click)="queuedStrategiesTooltip.show()"
 				>help</mat-icon
 			>
 		</h2>
@@ -95,7 +95,7 @@
 								<mat-checkbox
 									[(ngModel)]="tag.checked"
 									(ngModelChange)="saveSettings()"
-									#tooltip="matTooltip"
+									#tagCheckboxTooltip="matTooltip"
 									[matTooltip]="'Include strategies which ' + tag.tooltipDetails"
 									matTooltipPosition="right"
 									matTooltipShowDelay="250"
@@ -110,7 +110,7 @@
 								<mat-checkbox
 									[(ngModel)]="preChosenMissions"
 									(ngModelChange)="saveSettings()"
-									#tooltip="matTooltip"
+									#preChooseMissionTooltip="matTooltip"
 									matTooltip="Roll for strategies that are compatible with the mission entered below."
 									matTooltipPosition="right"
 									matTooltipShowDelay="250"
@@ -125,7 +125,7 @@
 								<button
 									class="other-settings-button"
 									mat-raised-button
-									#tooltip="matTooltip"
+									#resetSettingsTooltip="matTooltip"
 									matTooltip="Resets all settings to their default configurations"
 									matTooltipShowDelay="500"
 									color="primary"
@@ -136,7 +136,7 @@
 								<button
 									class="other-settings-button"
 									mat-raised-button
-									#tooltip="matTooltip"
+									#clearCacheTooltip="matTooltip"
 									matTooltip="Clears all data from browser cache"
 									matTooltipShowDelay="500"
 									color="primary"
@@ -151,9 +151,9 @@
 						<div>
 							<h2>Team config
                                 <mat-icon
-                                    #tooltip="matTooltip"
+                                    #teamConfigTooltip="matTooltip"
                                     matTooltip="Only strategies compatible with the team config can be rolled. Dwarf names will be used for some strategies."
-                                    (click)="tooltip.show()">
+                                    (click)="teamConfigTooltip.show()">
                                     help
                                 </mat-icon
                             ></h2>
@@ -161,7 +161,7 @@
 							<!-- Add a dwarf -->
 							<div
 								class="add-dwarf-button-container"
-								#tooltip="matTooltip"
+								#addDwarfDisabled="matTooltip"
 								[matTooltip]="dwarves.length >= 4 ? 'Team is full' : ''"
 								matTooltipPosition="right"
 								matTooltipShowDelay="250"
@@ -319,7 +319,7 @@
 						*ngIf="strat"
 						mat-icon-button
 						[matMenuTriggerFor]="clipboardMenu"
-						#tooltip="matTooltip"
+						#copyStratTooltip="matTooltip"
 						matTooltip="Copy to clipboard"
 						matTooltipShowDelay="500"
 					>
@@ -328,7 +328,7 @@
 					<button
 						*ngIf="queuedStrats.length > 0"
 						mat-icon-button
-						#tooltip="matTooltip"
+						#showQueuedStratsTooltip="matTooltip"
 						matTooltip="Show queued strategies"
 						matTooltipShowDelay="500"
 						(click)="queuedStratsDrawer.toggle()"
@@ -338,7 +338,7 @@
 					<button
 						*ngIf="strat?.generateDynamicContent"
 						mat-icon-button
-						#tooltip="matTooltip"
+						#regenerateDynamicContentTooltip="matTooltip"
 						[matTooltip]="
 							strat?.generateDynamicContent && strat?.dynamicContent
 								? 'Re-generate randomized strategy decisions'
@@ -375,7 +375,8 @@
 										<ng-container *ngIf="strat?.tags?.includes(tag.type)">
 											<mat-icon
 												class="white-icon"
-												#tooltip="matTooltip"
+												#stratTagTooltip="matTooltip"
+                                                (click)="stratTagTooltip.show()"
 												[matTooltip]="tag.description"
 												matTooltipShowDelay="250"
 											>
