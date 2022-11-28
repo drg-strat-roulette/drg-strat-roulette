@@ -10,6 +10,19 @@ import { Strategy, StratTag } from '../models/strat.interface';
 import { DwarfClass } from '../models/team.interface';
 import { sample, shuffle } from 'lodash-es';
 import { getAllCombinations } from '../utilities/general-functions.utils';
+import {
+	specificPrimaries,
+	specificNotPrimaries,
+	specificSecondaries,
+	specificNotSecondaries,
+	specificBiomes,
+	specificNotBiomes,
+	SPECIFIC_ANOMALY_CHANCE,
+	SPECIFIC_WARNING_CHANCE,
+	LITHOPHAGE_WARNING_CHANCE,
+	mustMeetAll,
+	mustMeetAny,
+} from '../utilities/mission.utils';
 
 // Common definitions which may be shared across multiple strategies.
 enum CommonStratDefinitions {
@@ -146,7 +159,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 16,
 		name: 'Double Trouble',
-		summary: 'Do a double warning mission.',
+		summary: 'Do the double warning mission.',
 		details: '',
 		requirements: {
 			mission: (m) => !m,
@@ -700,7 +713,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.caveLeechCluster),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.caveLeechCluster}.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_WARNING_CHANCE,
 	},
 	{
 		id: 70,
@@ -884,7 +897,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.anomaly === AnomalyType.criticalWeakness, // Or Skull Crusher Ale on tap... :shrug:
 		},
 		writtenRequirements: `Mission anomalies must include ${AnomalyType.criticalWeakness}.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_ANOMALY_CHANCE,
 	},
 	{
 		id: 88,
@@ -938,7 +951,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.exploderInfestation),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.exploderInfestation}.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_WARNING_CHANCE,
 	},
 	{
 		id: 93,
@@ -1172,7 +1185,7 @@ export const strategies: Strategy[] = [
 			team: (t) => t.dwarves.length >= 2,
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.hauntedCave}. Team must have 2+ dwarves.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_WARNING_CHANCE,
 	},
 	{
 		id: 115,
@@ -1207,7 +1220,7 @@ export const strategies: Strategy[] = [
 				m.primary === PrimaryObjective.industrialSabotage || m.warnings.includes(WarningType.rivalPresence),
 		},
 		writtenRequirements: `Mission primary objective must be ${PrimaryObjective.industrialSabotage}, or mission warnings must include ${WarningType.rivalPresence}.`,
-		missionRequirementsLikelihood: mustMeetAny(specificPrimaries(1), 1), // TODO: Educated guess on warnings
+		missionRequirementsLikelihood: mustMeetAny(specificPrimaries(1), SPECIFIC_WARNING_CHANCE),
 	},
 	{
 		id: 118,
@@ -1544,7 +1557,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.exploderInfestation),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.exploderInfestation}.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_WARNING_CHANCE,
 	},
 	{
 		id: 151,
@@ -1672,7 +1685,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.macteraPlague),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.macteraPlague}.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_WARNING_CHANCE,
 	},
 	{
 		id: 162,
@@ -1693,7 +1706,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.swarmageddon),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.swarmageddon}.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_WARNING_CHANCE,
 	},
 	{
 		id: 164,
@@ -1705,7 +1718,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.regenerativeBugs),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.regenerativeBugs}.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_WARNING_CHANCE,
 	},
 	{
 		id: 165,
@@ -1733,7 +1746,7 @@ export const strategies: Strategy[] = [
 				m.primary !== PrimaryObjective.salvageOperation,
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.eliteThreat}, and mission primary objective must not be ${PrimaryObjective.escortDuty}, ${PrimaryObjective.industrialSabotage}, or ${PrimaryObjective.salvageOperation}.`,
-		missionRequirementsLikelihood: mustMeetAll(specificNotPrimaries(3), 1), // TODO: Educated guess on warning
+		missionRequirementsLikelihood: mustMeetAll(specificNotPrimaries(3), SPECIFIC_WARNING_CHANCE),
 	},
 	{
 		id: 167,
@@ -1814,7 +1827,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.rivalPresence),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.rivalPresence}.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_WARNING_CHANCE,
 	},
 	{
 		id: 175,
@@ -1826,7 +1839,7 @@ export const strategies: Strategy[] = [
 			mission: (m) => m.warnings.includes(WarningType.lowOxygen),
 		},
 		writtenRequirements: `Mission warnings must include ${WarningType.lowOxygen}.`,
-		missionRequirementsLikelihood: 1, // TODO: Educated guess
+		missionRequirementsLikelihood: SPECIFIC_WARNING_CHANCE,
 	},
 	{
 		id: 176,
@@ -2161,76 +2174,3 @@ export const strategies: Strategy[] = [
 	// Bombardier - throw prox mines, run to them and pick them up. If triggered, wait for it to depleted then continue // Too boring?
 	// Meteor event with only 1 rock cracker (queue)
 ];
-
-/*
- * Helper functions for estimating likelihood of mission requirements being met
- * Note: These functions (falsely) assume that all objectives and biomes are equally likely
- */
-
-/**
- * @param n - The number of specific allowed primary objectives
- * @returns - The estimated likelihood that any given mission meets the requirements
- */
-function specificPrimaries(n: number) {
-	return n / Object.keys(PrimaryObjective).length;
-}
-
-/**
- * @param n - The number of specific disallowed primary objectives
- * @returns - The estimated likelihood that any given mission meets the requirements
- */
-function specificNotPrimaries(n: number) {
-	return (Object.keys(PrimaryObjective).length - n) / Object.keys(PrimaryObjective).length;
-}
-
-/**
- * @param n - The number of specific allowed secondary objectives
- * @returns - The estimated likelihood that any given mission meets the requirements
- */
-function specificSecondaries(n: number) {
-	return n / Object.keys(SecondaryObjective).length;
-}
-
-/**
- * @param n - The number of specific disallowed secondary objectives
- * @returns - The estimated likelihood that any given mission meets the requirements
- */
-function specificNotSecondaries(n: number) {
-	return (Object.keys(SecondaryObjective).length - n) / Object.keys(SecondaryObjective).length;
-}
-
-/**
- * @param n - The number of specific allowed biomes
- * @returns - The estimated likelihood that any given mission meets the requirements
- */
-function specificBiomes(n: number) {
-	return n / Object.keys(BiomeType).length;
-}
-
-/**
- * @param n - The number of specific disallowed biomes
- * @returns - The estimated likelihood that any given mission meets the requirements
- */
-function specificNotBiomes(n: number) {
-	return (Object.keys(BiomeType).length - n) / Object.keys(BiomeType).length;
-}
-
-/**
- * @param numbers - A list of independent odds
- * @returns - The likelihood of any one of the input odds being met
- */
-function mustMeetAny(...numbers: number[]) {
-	if (numbers.length === 0) console.error('No numbers were provided');
-	if (numbers.some((n) => n > 1 || n < 0)) console.error('Numbers must be within range [0, 1]');
-	return numbers.reduce((a, b) => a + b - a * b);
-}
-
-/**
- * @param numbers - A list of independent odds
- * @returns - The likelihood of all of the input odds being met
- */
-function mustMeetAll(...numbers: number[]) {
-	if (numbers.length === 0) console.error('No numbers were provided');
-	if (numbers.some((n) => n > 1 || n < 0)) console.error('Numbers must be within range [0, 1]');
-	return numbers.reduce((a, b) => a * b, 1);
-}
