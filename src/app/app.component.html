@@ -23,7 +23,7 @@
 			(click)="openWelcomeDialog()"
 			class="m-1"
 		>
-			<mat-icon class="white-icon">info</mat-icon>
+			<mat-icon class="white-icon">help</mat-icon>
 		</button>
 		<button
 			#tooltip="matTooltip"
@@ -133,6 +133,7 @@
 								</mat-checkbox>
 							</div>
 
+                            <!-- Other settings (settings reset and cache clear) -->
 							<h2>Other</h2>
 							<div>
 								<button
@@ -144,7 +145,7 @@
 									color="primary"
 									(click)="resetAllSettings()"
 								>
-									Reset all
+									Reset settings
 								</button>
 							</div>
 							<div>
