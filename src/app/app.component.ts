@@ -113,7 +113,7 @@ export class AppComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.hideLogo = window.innerWidth < 600;
+		this.hideLogo = window.innerWidth < 500;
 
 		// Subscribe to query parameters (in order to load a strategy by its Id)
 		this.route.queryParamMap.subscribe((params) => {
