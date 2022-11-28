@@ -84,9 +84,9 @@ describe('Strategy list', () => {
 		it('should have a mission compatibility likelihood defined on all strategies with mission requirements', () => {
 			for (const strat of strats) {
 				if (strat.requirements?.mission) {
-					expect(strat.missionRequirementsLikelihood).toBeDefined();
-					expect(strat.missionRequirementsLikelihood).toBeGreaterThanOrEqual(0.01);
-					expect(strat.missionRequirementsLikelihood).toBeLessThanOrEqual(1);
+					expect(strat.missionReqChance).toBeDefined();
+					expect(strat.missionReqChance).toBeGreaterThanOrEqual(0.01);
+					expect(strat.missionReqChance).toBeLessThanOrEqual(1);
 				}
 			}
 		});

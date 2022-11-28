@@ -1,5 +1,5 @@
 import { sample } from 'lodash-es';
-import { getRandomInt, selectMultipleDistinct } from '../utilities/general-functions.utils';
+import { getRandomInt, sampleMultipleDistinct } from '../utilities/general-functions.utils';
 import { DwarfClass } from './team.interface';
 
 export class RandomBuild {
@@ -30,8 +30,8 @@ export class RandomBuild {
 			this.equipment.push(equipmentConfig);
 		});
 		// Select 2 distinct active perks, and 3 distinct passive perks
-		this.activePerks = selectMultipleDistinct(Object.values(ActivePerkType), 2);
-		this.passivePerks = selectMultipleDistinct(Object.values(PassivePerkType), 3);
+		this.activePerks = sampleMultipleDistinct(Object.values(ActivePerkType), 2);
+		this.passivePerks = sampleMultipleDistinct(Object.values(PassivePerkType), 3);
 	}
 
 	// Return a string describing all equipment and perk configurations

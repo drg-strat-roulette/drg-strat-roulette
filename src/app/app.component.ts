@@ -25,6 +25,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeDialogComponent } from './components/welcome-dialog/welcome-dialog.component';
 import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
+import { sampleWithWeights } from './utilities/general-functions.utils';
 
 const RECENT_STRAT_MAX_COUNT = 10;
 
@@ -238,8 +239,16 @@ export class AppComponent implements OnInit {
 		// Prevent recently chosen strategies from being re-chosen
 		candidateStrats = candidateStrats.filter((strat) => !this.recentStrats.includes(strat.id));
 
-		// Pick a random strategy from the candidate list
-		const chosenStrategy = sample(candidateStrats) ?? strategies[0];
+		// Pick a strategy from the candidate list
+		let chosenStrategy: Strategy | undefined;
+		if (this.preChosenMissions) {
+			// Apply weights to the list of candidate strategies in order to balance when choosing missions before strategy
+			const strategyWeights = candidateStrats.map((s) => (s.missionReqChance ? 1 / s.missionReqChance : 1));
+			chosenStrategy = sampleWithWeights(candidateStrats, strategyWeights);
+		} else {
+			// Apply equal weights to all candidate strategies
+			chosenStrategy = sample(candidateStrats);
+		}
 
 		// Add strategyId to query params
 		this.router.navigate([], {

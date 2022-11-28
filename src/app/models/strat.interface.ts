@@ -10,7 +10,7 @@ export interface Strategy {
 	tags?: StratTag[];
 	requirements?: StratRequirements;
 	writtenRequirements?: string;
-	missionRequirementsLikelihood?: number;
+	missionReqChance?: number;
 	generateDynamicContent?: (t: Team) => string;
 	dynamicContent?: string;
 }
