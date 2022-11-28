@@ -336,7 +336,7 @@
 						<mat-icon class="white-icon">list_alt</mat-icon>
 					</button>
 					<button
-						*ngIf="strat?.generateDynamicContent"
+						*ngIf="strat?.generateDynamicContent && dwarves.length > 0"
 						mat-icon-button
 						#regenerateDynamicContentTooltip="matTooltip"
 						[matTooltip]="
