@@ -72,8 +72,10 @@ export function sampleWithWeights<T>(sourceList: T[], weights: number[]): T | un
  * Takes an array of sub-arrays and returns every possible combination of 1 element chosen from each sub-array
  * @param lists - Array of sub-arrays to be selected from
  */
-export function getAllCombinations<T>(lists: any[][]): T[][] {
-	return lists.reduce((a, b) => a.reduce((r, v) => r.concat(b.map((w) => [].concat(v as any, w as any)) as any), []));
+export function getAllCombinations<T>(lists: T[][]): T[][] {
+	return lists.reduce((a, b) =>
+		a.reduce((r, v) => r.concat(b.map((w) => [].concat(v as any, w as any)) as any), [])
+	) as any;
 }
 
 /**
