@@ -16,12 +16,12 @@ export interface Strategy {
 }
 
 export enum StratTag {
-	settings = 'Settings',
-	loadout = 'Loadout',
-	time = 'Time',
-	communication = 'Communication',
-	queue = 'Queue',
-	nausea = 'Nausea',
+	settings = 'Require changing settings',
+	loadout = 'Require changing loadout',
+	time = 'May take a long time',
+	communication = 'Require voice chat',
+	queue = 'Are queued',
+	nausea = 'May cause nausea',
 }
 
 export const stratTagInfo: StratTagInfo[] = [
@@ -47,7 +47,7 @@ export const stratTagInfo: StratTagInfo[] = [
 	{
 		type: StratTag.communication,
 		description: 'This strategy requires a high level of communication. Voice-chat is strongly recommended.',
-		tooltipDetails: 'necessitate voice communications.',
+		tooltipDetails: 'require voice communications.',
 		icon: 'headset_mic',
 	},
 	{

@@ -9,7 +9,6 @@ export interface Settings {
 	excludedTags: StratTag[];
 	dwarves: Dwarf[];
 	preChosenMissions: boolean;
-	makeStratDecisionsAutomatically: boolean;
 	mission: Mission;
 }
 

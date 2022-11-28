@@ -56,6 +56,7 @@
 			<mat-icon
 				#tooltip="matTooltip"
 				matTooltip="Queued strategies rely on RNG to be attempted. As such, they are queued up and can be attempted when the opportunity presents itself. They can be done in any order. Click on a queued strategy to view it again, and check it off to remove it from queue."
+                (click)="tooltip.show()"
 				>help</mat-icon
 			>
 		</h2>
@@ -89,7 +90,7 @@
 					<div class="d-flex flex-row flex-wrap justify-content-between">
 						<div>
 							<!-- Tags selection -->
-							<h2>Tags</h2>
+							<h2>Include strategies that</h2>
 							<div *ngFor="let tag of tags" class="m-1 ms-4">
 								<mat-checkbox
 									[(ngModel)]="tag.checked"
@@ -100,21 +101,6 @@
 									matTooltipShowDelay="250"
 								>
 									{{ tag.type }}
-								</mat-checkbox>
-							</div>
-
-							<!-- Make strategy-specific decisions -->
-							<h2>Strategy decisions</h2>
-							<div class="m-1 ms-4">
-								<mat-checkbox
-									[(ngModel)]="makeStratDecisionsAutomatically"
-									(ngModelChange)="saveSettings()"
-									#tooltip="matTooltip"
-									matTooltip="Randomly make strategy-specific decisions for me. (e.g. Some strategies require selecting one dwarf to perform a specific role)"
-									matTooltipPosition="right"
-									matTooltipShowDelay="250"
-								>
-									Choose for me
 								</mat-checkbox>
 							</div>
 
@@ -129,13 +115,13 @@
 									matTooltipPosition="right"
 									matTooltipShowDelay="250"
 								>
-									Specific missions
+									I have a specific mission
 								</mat-checkbox>
 							</div>
 
                             <!-- Other settings (settings reset and cache clear) -->
 							<h2>Other</h2>
-							<div>
+							<div class="d-flex flex-row flex-wrap">
 								<button
 									class="other-settings-button"
 									mat-raised-button
@@ -147,8 +133,6 @@
 								>
 									Reset settings
 								</button>
-							</div>
-							<div>
 								<button
 									class="other-settings-button"
 									mat-raised-button

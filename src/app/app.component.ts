@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
 		this.strat = s;
 
 		// Generate dynamic content for the chosen strategy
-		if (this.makeStratDecisionsAutomatically && s.generateDynamicContent && this.dwarves.length > 0) {
+		if (s.generateDynamicContent && this.dwarves.length > 0) {
 			this.generateDynamicContent();
 		} else {
 			this.strat.dynamicContent = undefined;
@@ -83,9 +83,6 @@ export class AppComponent implements OnInit {
 
 	// True if a mission is to be chosen before a strategy, false otherwise
 	preChosenMissions = false;
-
-	// True if strategy-related decisions are made automatically for the user
-	makeStratDecisionsAutomatically = true;
 
 	// Pre-chosen mission configuration
 	mission: Mission = {
@@ -156,7 +153,6 @@ export class AppComponent implements OnInit {
 			} else {
 				this.tags.forEach((tag) => (tag.checked = !settings.excludedTags.includes(tag.type)));
 				this.dwarves = settings.dwarves;
-				this.makeStratDecisionsAutomatically = settings.makeStratDecisionsAutomatically;
 				this.preChosenMissions = settings.preChosenMissions;
 				this.mission = settings.mission;
 				this.correctInvalidInputs();
@@ -324,7 +320,6 @@ export class AppComponent implements OnInit {
 			excludedTags: this.tags.filter((tag) => !tag.checked).map((tag) => tag.type),
 			dwarves: this.dwarves,
 			preChosenMissions: this.preChosenMissions,
-			makeStratDecisionsAutomatically: this.makeStratDecisionsAutomatically,
 			mission: this.mission,
 		};
 		localStorage.setItem(StoredKeys.settings, JSON.stringify(settings));
