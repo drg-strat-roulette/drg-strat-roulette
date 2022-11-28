@@ -683,13 +683,15 @@ export const strategies: Strategy[] = [
 		tags: [StratTag.loadout],
 		generateDynamicContent: (t) => {
 			let bestCombo: DwarfClass[];
-			// Select a class for every dwarf. Maximize number of distinct classes.
+			// Select a class for every dwarf, while taking into account what they're willing to play as and maximizing the number of distinct classes.
 			if (t.dwarves.length > 1) {
+				// Shuffle is not necessary, but it randomizes the result in the event of a tie
 				const allCombos = shuffle(getAllCombinations<DwarfClass>(t.dwarves.map((dwarf) => dwarf.classes)));
 				bestCombo = allCombos.reduce((best, combo) =>
 					new Set(best).size > new Set(combo).size ? best : combo
 				);
 			} else {
+				// If just one dwarf, just pick a random class they're willing to play as
 				bestCombo = t.dwarves.map((dwarf) => sample(dwarf.classes)!);
 			}
 			// Generate a randomized build for each dwarf and return their descriptions.

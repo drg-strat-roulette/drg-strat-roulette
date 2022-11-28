@@ -51,3 +51,14 @@ export function selectMultipleDistinct<T>(sourceList: T[], num: number): T[] {
 export function getAllCombinations<T>(lists: any[][]): T[][] {
 	return lists.reduce((a, b) => a.reduce((r, v) => r.concat(b.map((w) => [].concat(v as any, w as any)) as any), []));
 }
+
+/**
+ * Clamps a number to fall within a specified range
+ * @param num - Number to be clamped
+ * @param min - Minimum value for resulting number
+ * @param max - Maximum value for resulting number
+ * @returns The resulting number after the clamp has been applied to the input
+ */
+export function clamp(num: number, min: number, max: number): number {
+	return Math.min(Math.max(num, min), max);
+}

@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { strategies } from './data/strats.const';
-import { sample } from 'lodash-es';
+import { clamp, sample } from 'lodash-es';
 import { CachedQueuedStrats, Strategy, StratTag, stratTagInfo, StratTagObject } from './models/strat.interface';
 import { Dwarf, DwarfClass } from './models/team.interface';
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -488,18 +488,7 @@ export class AppComponent implements OnInit {
 		if (!this.mission.complexity) {
 			this.mission.complexity = 1;
 		}
-		this.mission.length = this.clamp(this.mission.length, 1, 3);
-		this.mission.complexity = this.clamp(this.mission.complexity, 1, 3);
-	}
-
-	/**
-	 * Clamps a number to fall within a specified range
-	 * @param num - Number to be clamped
-	 * @param min - Minimum value for resulting number
-	 * @param max - Maximum value for resulting number
-	 * @returns The resulting number after the clamp has been applied to the input
-	 */
-	private clamp(num: number, min: number, max: number): number {
-		return Math.min(Math.max(num, min), max);
+		this.mission.length = clamp(this.mission.length, 1, 3);
+		this.mission.complexity = clamp(this.mission.complexity, 1, 3);
 	}
 }
