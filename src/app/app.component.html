@@ -23,7 +23,7 @@
 			(click)="openWelcomeDialog()"
 			class="m-1"
 		>
-			<mat-icon class="white-icon">help</mat-icon>
+			<mat-icon class="white-icon">info</mat-icon>
 		</button>
 		<button
 			#tooltip="matTooltip"
@@ -115,7 +115,7 @@
 									matTooltipPosition="right"
 									matTooltipShowDelay="250"
 								>
-									I have a specific mission
+									Specify mission
 								</mat-checkbox>
 							</div>
 
@@ -149,7 +149,14 @@
 
 						<!-- Team configuration -->
 						<div>
-							<h2>Team details</h2>
+							<h2>Team config
+                                <mat-icon
+                                    #tooltip="matTooltip"
+                                    matTooltip="Only strategies compatible with the team config can be rolled. Dwarf names will be used for some strategies."
+                                    (click)="tooltip.show()">
+                                    help
+                                </mat-icon
+                            ></h2>
 
 							<!-- Add a dwarf -->
 							<div
