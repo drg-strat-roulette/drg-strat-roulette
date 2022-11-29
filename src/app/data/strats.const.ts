@@ -1794,7 +1794,7 @@ export const strategies: Strategy[] = [
 		name: 'The Silent Treatment',
 		summary: 'No voice or text comms throughout the mission.',
 		details:
-			"Includes external voice-chat applications. You may use any other in-game communication methods (shouting, pinging, etc.) You may continue to use comms for non-mission related conversation. You may use use comms to get someone's attention for something in-game.",
+			"Includes external voice-chat applications. You may use any other in-game communication methods (shouting, pinging, etc.) You may continue to use comms for non-mission related conversation. You may not use comms to get someone's attention for something in-game.",
 		requirements: {
 			team: (t) => t.dwarves.length >= 2,
 		},
