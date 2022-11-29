@@ -420,7 +420,7 @@ export class AppComponent implements OnInit {
 		let stringToCopy = '';
 		if (copyIntro) {
 			stringToCopy +=
-				"Welcome! We're playing DRG Strategy Roulette. Every mission has a randomly chosen strategy that we have to follow.";
+				"Welcome! We're playing DRG Strat Roulette. Every mission has a randomly chosen strategy that we have to follow.";
 		}
 		if (copyIntro && copyStrat) {
 			stringToCopy += '\n\n';
@@ -454,8 +454,8 @@ export class AppComponent implements OnInit {
 	 */
 	copyShareText(): void {
 		let stringToCopy = this.strat
-			? 'Join us for this strategy on DRG Strategy Roulette!\n'
-			: 'Check out DRG Strategy Roulette!\n';
+			? 'Join us for this strategy on DRG Strat Roulette!\n'
+			: 'Check out DRG Strat Roulette!\n';
 		stringToCopy += window.location.href;
 		this.clipboard.copy(stringToCopy);
 		this.snackbar.openFromComponent(SnackbarWithIconComponent, {
