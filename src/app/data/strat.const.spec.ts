@@ -1,5 +1,6 @@
-import { cloneDeep, rest, words } from 'lodash-es';
+import { cloneDeep } from 'lodash-es';
 import { Strategy } from '../models/strat.interface';
+import { validLowerInTitleCase } from '../utilities/general-functions.utils';
 import { strategies } from './strats.const';
 
 describe('Strategy list', () => {
@@ -31,18 +32,19 @@ describe('Strategy list', () => {
 			}
 		});
 
-		it('should have Capital Cased names for each strategy', () => {
-			// Articles, conjunctions, and short prepositions should not be capitalized in titles (unless they're the first or last word)
-			const validLower = ['a', 'an', 'the', 'and', 'but', 'for', 'or', 'nor', 'at', 'by', 'to', 'in', 'of', 'on'];
+		it('should have Title Cased names for each strategy', () => {
 			for (const strat of strats) {
 				const wordsInName = strat.name.replace(/[^a-z0-9 ]/gi, '').split(' ');
 				for (const [idx, word] of wordsInName.entries()) {
 					const firstLetter = word[0];
 					if (firstLetter) {
 						const shouldBeLower =
-							idx !== 0 && idx !== wordsInName.length - 1 && validLower.includes(word.toLowerCase());
+							idx !== 0 &&
+							idx !== wordsInName.length - 1 &&
+							validLowerInTitleCase.includes(word.toLowerCase());
 						const isLower = firstLetter !== firstLetter.toUpperCase();
-						if (shouldBeLower !== isLower) console.error(strat.name);
+						if (shouldBeLower !== isLower)
+							console.error(`Invalid strategy name: "${strat.name}" on word: "${word}"`);
 						expect(shouldBeLower).toBe(isLower);
 					}
 				}

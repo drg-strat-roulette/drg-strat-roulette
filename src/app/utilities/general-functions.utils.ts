@@ -78,3 +78,25 @@ export function sampleWithWeights<T>(sourceList: T[], weights: number[]): T | un
 export function clamp(num: number, min: number, max: number): number {
 	return Math.min(Math.max(num, min), max);
 }
+
+/**
+ * Articles, conjunctions, and short prepositions should not be capitalized in titles (unless they're the first or last word)
+ */
+export const validLowerInTitleCase = [
+	'a',
+	'an',
+	'the',
+	'and',
+	'but',
+	'for',
+	'or',
+	'nor',
+	'at',
+	'by',
+	'to',
+	'in',
+	'of',
+	'on',
+	'as',
+	'per',
+];
