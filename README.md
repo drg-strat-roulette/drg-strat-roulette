@@ -38,29 +38,19 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Deploy to public location
 -   [x] Bug reports, feature requests, and strategy submissions
 -   [x] Weight strategies based on chance of mission requirements being met
--   [ ] Add strategy hints as revealable "spoilers"
+-   [ ] Achievements? :eyes:
 
-## Possible features
+## Potential features
 
 -   [ ] Way to see the list of of all strategies
+-   [ ] Add strategy hints as revealable "spoilers"
+-   [ ] Block (and unblock) specific strategies that you don't like
 -   [ ] Strat history, count of each played, other stats
     -   [ ] Bias the rolls based on past data
     -   [ ] Tell you which strats are "new" to you
     -   [ ] Tell you which strats are "new" in general
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
--   [ ] Localization
--   [ ] Provide possible ways to determine who does what (e.g. space-rig mini-games)
--   [ ] Block (and unblock) specific strategies that you don't like
--   [ ] Prevent multiple strategies that conflict with one another (only applicable if multiple strategies can be active at once)
-
-#### Backend-supported features
-
--   [ ] Like/dislike strategies to globally tweak their weightings
-    -   Store total positive, total negative
--   [ ] Provide feedback to increase/decrease a strategy's listed difficulty
-    -   Store total votes, and total difficulty points.
-    -   [ ] Select difficulty range for generated strategies
-    -   [ ] Mode to continually increase difficulty until a strategy is failed
+    -   [ ] Prevent multiple strategies that conflict with one another
 
 ## Development server
 

@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Angular CDK
@@ -31,9 +32,11 @@ import { AppComponent } from './app.component';
 import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
 import { SnackbarWithIconComponent } from './components/snackbar-with-icon/snackbar-with-icon.component';
 import { WelcomeDialogComponent } from './components/welcome-dialog/welcome-dialog.component';
+import { StratsComponent } from './components/strats/strats.component';
+import { AchievementsComponent } from './components/achievements/achievements.component';
 
 @NgModule({
-	declarations: [AppComponent, FeedbackDialogComponent, SnackbarWithIconComponent, WelcomeDialogComponent],
+	declarations: [AppComponent, FeedbackDialogComponent, SnackbarWithIconComponent, WelcomeDialogComponent, StratsComponent, AchievementsComponent],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
@@ -51,6 +54,7 @@ import { WelcomeDialogComponent } from './components/welcome-dialog/welcome-dial
 		MatSelectModule,
 		MatSidenavModule,
 		MatSnackBarModule,
+		MatTabsModule,
 		MatTooltipModule,
 	],
 	providers: [],
