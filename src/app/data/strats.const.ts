@@ -1,4 +1,4 @@
-import { ActivePerkType, PassivePerkType, RandomBuild } from '../models/build.interface';
+import { ActivePerkType, PassivePerkType } from '../models/build.interface';
 import {
 	AnomalyType,
 	BiomeType,
@@ -9,7 +9,6 @@ import {
 import { Strategy, StratTag } from '../models/strat.interface';
 import { DwarfClass } from '../models/team.interface';
 import { sample, shuffle } from 'lodash-es';
-import { getAllCombinations } from '../utilities/general-functions.utils';
 import {
 	specificPrimaries,
 	specificNotPrimaries,
@@ -678,27 +677,8 @@ export const strategies: Strategy[] = [
 	{
 		id: 67,
 		name: 'Rolling the Dice',
-		summary: "All dwarves' builds are chosen at random",
+		summary: "All dwarves must drink a Randoweisser beer before starting the mission.",
 		details: '',
-		tags: [StratTag.loadout],
-		generateDynamicContent: (t) => {
-			let bestCombo: DwarfClass[];
-			// Select a class for every dwarf, while taking into account what they're willing to play as and maximizing the number of distinct classes.
-			if (t.dwarves.length > 1) {
-				// Shuffle is not necessary, but it randomizes the result in the event of a tie
-				const allCombos = shuffle(getAllCombinations<DwarfClass>(t.dwarves.map((dwarf) => dwarf.classes)));
-				bestCombo = allCombos.reduce((best, combo) =>
-					new Set(best).size > new Set(combo).size ? best : combo
-				);
-			} else {
-				// If just one dwarf, just pick a random class they're willing to play as
-				bestCombo = t.dwarves.map((dwarf) => sample(dwarf.classes)!);
-			}
-			// Generate a randomized build for each dwarf and return their descriptions.
-			return t.dwarves
-				.map((dwarf, i) => `Build for ${dwarf.name}:\n` + new RandomBuild(bestCombo[i]).toString())
-				.join('\n');
-		},
 	},
 	{
 		id: 68,
@@ -2170,9 +2150,4 @@ export const strategies: Strategy[] = [
 		},
 		writtenRequirements: `All dwarves must play as ${DwarfClass.scout}.`,
 	},
-	// Leave lithophage until the end
-	// Break lithophage by hand (C4, drills, pickaxe)
-	// Rockpox enemies must be melee'd
-	// Bombardier - throw prox mines, run to them and pick them up. If triggered, wait for it to depleted then continue // Too boring?
-	// Meteor event with only 1 rock cracker (queue)
 ];
