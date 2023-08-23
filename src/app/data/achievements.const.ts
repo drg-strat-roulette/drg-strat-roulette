@@ -4,17 +4,17 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 1,
 		name: 'The Real A-Team',
-		description: 'Put an Aquarq in every seat of the Drop Pod.',
+		description: 'Put an Aquarq in every seat of the Escape Pod.',
 	},
 	{
 		id: 2,
 		name: 'The G-Team',
-		description: 'Put a Gunk Seed in every seat of the Drop Pod.',
+		description: 'Put a Gunk Seed in every seat of the Escape Pod.',
 	},
 	{
 		id: 3,
 		name: 'The P-Team',
-		description: 'Put a Plagueheart in every seat of the Drop Pod.',
+		description: 'Put a Plagueheart in every seat of the Escape Pod.',
 	},
 	{
 		id: 4,
@@ -72,18 +72,17 @@ export const achievementsList: Achievement[] = [
 		id: 13,
 		name: 'Industrial Sabotage Conservationist',
 		description:
-			'Complete a Hazard 5 mission without anyone dying and only 1 resupply on an Industrial Sabotage mission.',
+			'Complete a Hazard 5 mission without anyone dying and only one resupply on an Industrial Sabotage mission.',
 	},
 	{
 		id: 14,
 		name: 'Budget Cuts',
-		description: 'Complete a length 3, complexity 3 mission without calling a resupply.',
+		description: 'Complete a Length 3, Complexity 3 mission without calling a resupply.',
 	},
 	{
 		id: 15,
-		name: 'Shepherd Over the Flock',
-		description:
-			'Complete an Elite Deep Dive with a Gold promotion dwarf and a team of 3 Bronze promotion dwarves.',
+		name: 'Four Bugs With One Stone',
+		description: 'Hit four enemies with a single shot using Super Blowthrough Rounds on the M1000 or LOK-1.',
 	},
 	{
 		id: 16,
@@ -218,7 +217,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 42,
 		name: "We're in the Endgame Now",
-		description: 'Bring 3 different colored gems together.',
+		description: 'Bring three different colored gems (Bittergem, Compressed gold, Jadiz, or Aquarq) together.',
 	},
 	{
 		id: 43,
@@ -243,7 +242,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 47,
 		name: 'Korlok Tyrant-Weed Speedrun',
-		description: 'Kill a Korlok Tyrant-Weed in under 2 minutes.',
+		description: 'Kill a Korlok Tyrant-Weed in under two minutes.',
 	},
 	{
 		id: 48,
@@ -253,7 +252,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 49,
 		name: 'Dreadnought Speedrun',
-		description: 'Kill a dreadnought in under 2 minutes.',
+		description: 'Kill a dreadnought in under two minutes.',
 	},
 	{
 		id: 50,
@@ -268,7 +267,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 52,
 		name: 'Weapons Expert',
-		description: 'Complete 1 mission with every weapon in the game.',
+		description: 'Complete a mission with every weapon in the game.',
 	},
 	{
 		id: 53,
@@ -288,7 +287,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 56,
 		name: 'Buried Alive',
-		description: 'Bury a downed dwarf with a platform.',
+		description: 'Bury a downed teammate with a platform.',
 	},
 	{
 		id: 57,
@@ -378,7 +377,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 74,
 		name: 'All Your Eggs in One Basket',
-		description: 'Bring 8 eggs to the Drop Pod hole.',
+		description: 'Put eight eggs in the hole left by the Drop Pod.',
 	},
 	{
 		id: 75,
@@ -418,7 +417,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 82,
 		name: 'Pipe Rider',
-		description: 'Ride all 3 refinery pipes without standing on the ground.',
+		description: 'Ride all three refinery pipes without touching on the ground.',
 	},
 	{
 		id: 83,
@@ -438,12 +437,12 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 86,
 		name: 'Easter Hunt',
-		description: 'Pull 8 eggs in 30 seconds and complete the mission.',
+		description: 'Complete a mission after disturbing eight eggs within 30 seconds.',
 	},
 	{
 		id: 87,
 		name: 'Dreadnought Party',
-		description: 'Pop all 3 dreadnought eggs within 10 seconds.',
+		description: 'Complete a mission after popping three dreadnought eggs within 10 seconds.',
 	},
 	{
 		id: 88,
@@ -488,12 +487,12 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 96,
 		name: 'In the Nick of Time',
-		description: 'Escape from a mission after the Drop Pod countdown has reached 0:00.',
+		description: 'Enter the Escape Pod after the countdown has reached zero.',
 	},
 	{
 		id: 97,
 		name: 'See Ya Later Detonators',
-		description: 'Complete a mission with 3 or more bulk detonators.',
+		description: 'Complete a mission with three or more bulk detonators.',
 	},
 	{
 		id: 98,
@@ -578,12 +577,12 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 114,
 		name: 'Down to the Wire',
-		description: 'Complete a machine event which was started after the Drop Pod was called.',
+		description: 'Complete a machine event which was started after the Escape Pod was called.',
 	},
 	{
 		id: 115,
 		name: 'Dwarfsicle',
-		description: 'Thaw a fellow dwarf by hitting them with your pickaxe.',
+		description: 'Thaw a teammate by hitting them with your pickaxe.',
 	},
 	{
 		id: 116,
@@ -618,7 +617,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 122,
 		name: "Leave No 'Quarq Behind",
-		description: 'Deposit 4 aquarqs more than necessary.',
+		description: 'Deposit three aquarqs more than necessary.',
 	},
 	{
 		id: 123,
@@ -718,7 +717,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 142,
 		name: 'Assembly Line',
-		description: 'Hit the tritilyte deposit with a nanite bomb that all 4 players have held.',
+		description: 'Hit the tritilyte deposit with a nanite bomb that all four players have held.',
 	},
 	{
 		id: 143,
@@ -728,7 +727,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 144,
 		name: 'Desperate Times Call for Desperate Measures',
-		description: 'Use Iron Will when your whole team is down to escape to the Drop Pod.',
+		description: 'Use Iron Will when your whole team is down to get to the Escape Pod.',
 	},
 	{
 		id: 145,
@@ -743,7 +742,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 147,
 		name: 'Make It Count',
-		description: 'Complete an Elite Deep Dive with only 1 resupply pod.',
+		description: 'Complete an Elite Deep Dive with only one resupply pod.',
 	},
 	{
 		id: 148,
@@ -829,7 +828,7 @@ export const achievementsList: Achievement[] = [
 		id: 164,
 		name: 'Out of Patience',
 		description:
-			'Instantly Field Medic to instantly revive a dwarf with less than 10% of the revive time remaining.',
+			'Instantly Field Medic to instantly revive a teammate with less than 10% of the revive time remaining.',
 	},
 	{
 		id: 165,
@@ -839,22 +838,24 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 166,
 		name: 'All for Me, and None for Thee',
-		description: 'Buy a round of 4 beers and drink all of them yourself.',
+		description: 'Buy a full round of beers and drink all of them yourself.',
 	},
 	{
 		id: 167,
 		name: 'Hitting Rock Bottom',
-		description: 'Reach the final room of a 3-3 Mining Expedition without collecting any minerals.',
+		description:
+			'Reach the final room of a Length 3, Complexity 3 Mining Expedition without collecting any minerals.',
 	},
 	{
 		id: 168,
-		name: 'A Twinkle in My Rig',
-		description: 'Play twinkle twinkle little star on the steel drum.',
+		name: 'Slow as Molasses',
+		description:
+			'Apply Corrosion, Sludge Puddle, Neurotoxin, and Electrocution effects to an enemy at the same time.',
 	},
 	{
 		id: 169,
 		name: 'Touched by an Angel',
-		description: 'Escape to the Drop Pod by riding a Cave Angel.',
+		description: 'Get to the Escape Pod by riding a Cave Angel.',
 	},
 	{
 		id: 170,
@@ -879,7 +880,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 174,
 		name: 'Modular Extermination',
-		description: 'Destroy an OMEN Modular Exterminator 1 segment at a time.',
+		description: 'Destroy an OMEN Modular Exterminator one segment at a time.',
 	},
 	{
 		id: 175,
@@ -959,7 +960,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 190,
 		name: "It's Like She's Bigger on the Inside!",
-		description: 'Add 7 different resources to Molly in a single deposit.',
+		description: 'Add seven different types of resources to Molly in a single deposit.',
 	},
 	{
 		id: 191,
@@ -974,7 +975,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 193,
 		name: 'Karl Would Be Very Proud',
-		description: 'Complete a hazard 5 mission with 2 warnings, no downs, and no resupplies.',
+		description: 'Complete a Hazard 5 mission with two warnings, no downs, and no resupplies.',
 	},
 	{
 		id: 194,
@@ -988,7 +989,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 196,
-		name: 'Point Defense',
+		name: 'Living in a Bubble',
 		description: 'Collectively kill X enemies while inside a single shield generator.',
 	},
 	{
@@ -999,7 +1000,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 198,
 		name: 'Timeout!',
-		description: 'Revive 3 teammates while inside a single shield generator.',
+		description: 'Revive three teammates while inside a single shield generator.',
 	},
 	{
 		id: 199,
@@ -1019,7 +1020,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 202,
 		name: 'I Could Really Use a Vacation',
-		description: 'Complete a Hazard 1 mission.',
+		description: 'Complete a Hazard 1 mission on a promoted dwarf.',
 	},
 	{
 		id: 203,
@@ -1088,7 +1089,7 @@ export const achievementsList: Achievement[] = [
 		id: 215,
 		name: 'Most Valuable Dwarf',
 		description:
-			'Complete a mission with 3 other dwarves where you had the most kills, mined the most minerals, revived the most teammates, and went down the least.',
+			'Complete a mission with a full team where you had the most kills, mined the most minerals, revived the most teammates, and went down the least.',
 	},
 	{
 		id: 216,
@@ -1355,7 +1356,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 268,
 		name: 'Leave a Crawler',
-		description: 'Keep a hostile bug alive for 5 minutes.',
+		description: 'Keep a hostile bug alive for five minutes.',
 	},
 	{
 		id: 269,
@@ -1449,8 +1450,8 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 287,
-		name: 'Only Takes a Second',
-		description: 'Complete the whole secondary objective in a single deposit.',
+		name: 'A Joint Venture',
+		description: 'Complete a mission which progresses the assignment of all four dwarves.',
 	},
 	{
 		id: 288,
@@ -1466,7 +1467,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 290,
 		name: 'A Daring Escape',
-		description: 'Complete a mission without killing any enemies after having called the Drop Pod.',
+		description: 'Complete a mission without killing any enemies after having called the Escape Pod.',
 	},
 	{
 		id: 291,
@@ -1531,12 +1532,12 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 303,
 		name: 'Strong Support Structure',
-		description: 'Get revived by 3 dwarves at once.',
+		description: 'Get revived by three dwarves at once.',
 	},
 	{
 		id: 304,
 		name: 'Transit System',
-		description: 'Ride on 5 different ziplines without touching the ground.',
+		description: 'Ride on five different ziplines without touching the ground.',
 	},
 	{
 		id: 305,
@@ -1546,7 +1547,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 306,
 		name: 'Not the Most Comfortable Ride',
-		description: 'Have 4 dwarves ride Molly at the same time for 5 seconds.',
+		description: 'Have a full team ride Molly at the same time for five seconds.',
 	},
 	{
 		id: 307,
@@ -1555,7 +1556,63 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 308,
-		name: 'A Joint Venture',
-		description: 'Complete a mission which progresses the assignment of all 4 dwarves.',
+		name: 'Secondary Savant',
+		description: 'Complete all achievements requiring rapid completion of secondary objectives.',
+	},
+	{
+		id: 309,
+		name: 'Apoca Admirer',
+		description: 'Complete the entire Apoca Bloom secondary objective in a single deposit.',
+	},
+	{
+		id: 310,
+		name: 'Beloved Boolos',
+		description: 'Complete the entire Boolo Cap secondary objective in a single deposit.',
+	},
+	{
+		id: 311,
+		name: 'Ebonut Enjoyer',
+		description: 'Complete the entire Ebonut secondary objective in a single deposit.',
+	},
+	{
+		id: 312,
+		name: 'Fester Fiend',
+		description: 'Kill two Fester Fleas with a single attack.',
+	},
+	{
+		id: 313,
+		name: 'Fossil Frenzy',
+		description: 'Complete the entire Fossil secondary objective in a single deposit.',
+	},
+	{
+		id: 314,
+		name: 'Gunk Gatherer',
+		description: 'Deposit the entirety of the Gunk Seed secondary objective into Molly in a 10 second window.',
+	},
+	{
+		id: 315,
+		name: 'Hollomite Hoarder',
+		description: 'Complete the entire Hollomite secondary objective in a single deposit.',
+	},
+	{
+		id: 316,
+		name: 'Triple Threat',
+		description: 'Progress all three of your season challenges by completing a single mission.',
+	},
+	{
+		id: 317,
+		name: 'Engineer Point Defense',
+		description:
+			'Complete a mission with at least three Engineers collectively equipped with Turret Whip, Turret Arc, and Turret EM Discharge.',
+	},
+	{
+		id: 318,
+		name: 'The Best Offense...',
+		description: "Destroy one of the Caretaker's Robotic Appendages with a Shield Battery.",
+	},
+	{
+		id: 319,
+		name: "I'm Gonna Build My Own Mini MULE",
+		description: 'Bring a Mini MULE Leg home with you.',
 	},
 ];
