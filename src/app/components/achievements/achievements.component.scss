@@ -1,22 +1,20 @@
-.drawer-content-container {
-	width: 100%;
+.achievements-page-container {
 	height: 100%;
-	padding-top: 24px;
 	width: auto;
+    overflow: auto;
+
+    // Hide scrollbar
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-.drawer-focus-content-container {
-	width: auto;
-	background-color: rgba(25, 27, 28, 0.5);
-	height: calc(100% - 24px);
-	padding: 12px;
-	border-radius: 12px;
-	overflow: auto;
+.achievements-list {
+    padding-top: 24px;
+}
 
-	// Hide scrollbar
-	&::-webkit-scrollbar {
-		display: none;
-	}
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+.strat-card {
+    margin-bottom: 16px;
 }

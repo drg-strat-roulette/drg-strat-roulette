@@ -1,5 +1,6 @@
 <!-- Header bar -->
 <div class="d-flex flex-row justify-content-between header-bar">
+	<!-- TODO: Stack tabs below certain width -->
 	<mat-tab-group animationDuration="0ms" [(selectedIndex)]="activeTabIndex" (selectedIndexChange)="tabIndexChanged()">
 		<mat-tab *ngFor="let tab of tabs" label="{{ tab.displayName }}"></mat-tab>
 	</mat-tab-group>

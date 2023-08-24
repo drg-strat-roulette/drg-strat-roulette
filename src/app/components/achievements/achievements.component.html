@@ -1,9 +1,11 @@
-<div class="drawer-content-container">
-    <div class="container p-4 drawer-focus-content-container">
+<div class="achievements-page-container">
+    <div class="container achievements-list">
         <div *ngFor="let achievement of achievements">
-            <mat-card>
+            <mat-card class="strat-card">
                 <mat-card-content style="display: flex">
-                    <mat-checkbox style="margin: auto 14px;"></mat-checkbox>
+                    <button mat-mini-fab matTooltip="Mark completed" matTooltipShowDelay="500" color="primary" aria-label="Mark achievement as completed">
+                        <mat-icon>check</mat-icon>
+                      </button>
                     <div>
                         <mat-card-header>
                             <mat-card-title style="margin-top: 0px !important;">{{ achievement.name }}</mat-card-title>
@@ -11,8 +13,7 @@
                         </mat-card-header>
                     </div>
                 </mat-card-content>
-              </mat-card>
-              <br>
+            </mat-card>
         </div>
     </div>
 </div>

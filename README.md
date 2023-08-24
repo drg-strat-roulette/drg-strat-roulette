@@ -44,7 +44,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
         -   [x] Titles
         -   [x] Descriptions
         -   [ ] Links
-        -   [x] Checkboxes
+        -   [x] Complete button
             -   [ ] Sub-checkboxes
             -   [ ] Auto-check up/down
     -   [ ] Categories
