@@ -5,7 +5,7 @@ import { StratsComponent } from './components/strats/strats.component';
 
 const routes: Routes = [
 	{ path: 'strats', component: StratsComponent },
-	// { path: 'achievements', component: AchievementsComponent },
+	{ path: 'achievements', component: AchievementsComponent },
 	{ path: '**', redirectTo: 'strats' },
 ];
 

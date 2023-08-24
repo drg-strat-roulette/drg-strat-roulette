@@ -21,10 +21,8 @@ body {
 
 /* Angular overrides */
 .mat-select-panel,
-.mat-menu-panel {
-	background-color: #191b1c !important;
-}
-
-.mat-dialog-container {
+.mat-menu-panel,
+.mat-dialog-container,
+.mat-card {
 	background-color: #191b1c !important;
 }

@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 	// Tabs
 	tabs = [
 		{ id: 'strats', displayName: 'Strat Roulette' },
-		// { id: 'achievements', displayName: 'Achievements' },
+		{ id: 'achievements', displayName: 'Achievements' },
 	];
 	activeTabIndex = 0;
 

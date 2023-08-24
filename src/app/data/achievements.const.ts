@@ -20,59 +20,78 @@ export const achievementsList: Achievement[] = [
 		id: 4,
 		name: 'Well Versed',
 		description: 'Complete one of every mission type.',
+		subCheckboxes: [
+			{ id: 0, name: 'Mining Expedition' },
+			{ id: 1, name: 'Egg Hunt' },
+			{ id: 2, name: 'On-site Refining' },
+			{ id: 3, name: 'Salvage Operation' },
+			{ id: 4, name: 'Point Extraction' },
+			{ id: 5, name: 'Escort Duty' },
+			{ id: 6, name: 'Elimination' },
+			{ id: 7, name: 'Industrial Sabotage' },
+		],
 	},
 	{
 		id: 5,
 		name: 'Master Ammo Conservationist',
 		description: 'Complete all other Ammo Conservationist achievements.',
+		// TODO: Sub?
 	},
 	{
 		id: 6,
 		name: 'Mining Expedition Ammo Conservationist',
 		description:
 			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on a Mining Expedition mission.',
+		ignoreHazard: true,
 	},
 	{
 		id: 7,
 		name: 'Egg Hunt Ammo Conservationist',
 		description:
 			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on an Egg Hunt mission.',
+		ignoreHazard: true,
 	},
 	{
 		id: 8,
 		name: 'On-Site Refining Ammo Conservationist',
 		description:
 			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on an On-Site Refining mission.',
+		ignoreHazard: true,
 	},
 	{
 		id: 9,
 		name: 'Salvage Operation Ammo Conservationist',
 		description:
 			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on a Salvage Operation mission.',
+		ignoreHazard: true,
 	},
 	{
 		id: 10,
 		name: 'Point Extraction Ammo Conservationist',
 		description:
 			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on a Point Extraction mission.',
+		ignoreHazard: true,
 	},
 	{
 		id: 11,
 		name: 'Escort Duty Ammo Conservationist',
 		description:
 			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on an Escort Duty mission.',
+		ignoreHazard: true,
 	},
 	{
 		id: 12,
 		name: 'Elimination Ammo Conservationist',
 		description:
 			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on an Elimination mission.',
+		ignoreHazard: true,
 	},
 	{
 		id: 13,
 		name: 'Industrial Sabotage Conservationist',
 		description:
 			'Complete a Hazard 5 mission without anyone dying and only one resupply on an Industrial Sabotage mission.',
+		ignoreHazard: true,
 	},
 	{
 		id: 14,
@@ -162,12 +181,38 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 31,
 		name: 'Glyphid Slammer',
-		description: 'Get a pickaxe kill on all small to medium Glyphids in the game.',
+		description: 'Get a pickaxe kill on all Glyphid bugs. (Excluding Dreadnoughts and Detonators)',
+		link: { text: 'Glyphids', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Glyphid' },
+		subCheckboxes: [
+			{ id: 0, name: 'Glyphid Spawn' },
+			{ id: 1, name: 'Glyphid Swarmer' },
+			{ id: 2, name: 'Glyphid Grunt' },
+			{ id: 3, name: 'Glyphid Grunt Slasher' },
+			{ id: 4, name: 'Glyphid Grunt Guard' },
+			{ id: 5, name: 'Glyphid Stingtail' },
+			{ id: 6, name: 'Glyphid Praetorian' },
+			{ id: 7, name: 'Glyphid Warden' },
+			{ id: 8, name: 'Glyphid Oppressor' },
+			{ id: 9, name: 'Glyphid Exploder' },
+			{ id: 10, name: 'Glyphid Web Spitter' },
+			{ id: 11, name: 'Glyphid Acid Spitter' },
+			{ id: 12, name: 'Glyphid Septic Spreader' },
+			{ id: 13, name: 'Glyphid Menace' },
+			{ id: 14, name: 'Glyphid Sentinel' },
+		],
 	},
 	{
 		id: 32,
 		name: 'Mactera Swatter',
-		description: 'Get a pickaxe kill on all Macteras in the game.',
+		description: 'Get a pickaxe kill on all Macteras.',
+		link: { text: 'Macteras', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Mactera' },
+		subCheckboxes: [
+			{ id: 0, name: 'Mactera Spawn' },
+			{ id: 1, name: 'Mactera Grabber' },
+			{ id: 2, name: 'Mactera Goo Bomber' },
+			{ id: 3, name: 'Mactera Tri-Jaw' },
+			{ id: 4, name: 'Mactera Brundle' },
+		],
 	},
 	{
 		id: 33,
@@ -183,11 +228,30 @@ export const achievementsList: Achievement[] = [
 		id: 35,
 		name: 'Naedocide',
 		description: 'Get a pickaxe kill on all Naedocytes in the game.',
+		link: { text: 'Naedocytes', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Naedocyte' },
+		subCheckboxes: [
+			{ id: 0, name: 'Naedocyte Shocker' },
+			{ id: 1, name: 'Naedocyte Hatchling' },
+			{ id: 2, name: 'Naedocyte Roe' },
+			{ id: 3, name: 'Naedocyte Breeder' },
+		],
 	},
 	{
 		id: 36,
 		name: "You Can't Run and You Can't Hide",
 		description: 'Get a pickaxe kill on all Stationary Threats in the game.',
+		link: {
+			text: 'All Stationary Threats can be found here',
+			url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures',
+		},
+		subCheckboxes: [
+			{ id: 0, name: 'Cave Leech' },
+			{ id: 1, name: 'Deeptora Honeycomb' },
+			{ id: 2, name: 'Spitball Infector' },
+			{ id: 3, name: 'Glyphid Brood Nexus' },
+			{ id: 4, name: 'Stabber Vine' },
+			{ id: 5, name: 'Deeptora Bough Wasp Nest' },
+		],
 	},
 	{
 		id: 37,
@@ -198,6 +262,11 @@ export const achievementsList: Achievement[] = [
 		id: 38,
 		name: 'I Hate Everything Ball-Shaped!',
 		description: "Get a pickaxe kill on all Q'ronars in the game.",
+		link: { text: "Q'ronar", url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Q%E2%80%99ronar' },
+		subCheckboxes: [
+			{ id: 0, name: "Q'ronar Youngling" },
+			{ id: 1, name: "Q'ronar Shellback" },
+		],
 	},
 	{
 		id: 39,
@@ -207,7 +276,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 40,
 		name: 'Spreading Like Spreaders',
-		description: 'Complete a mission with Septic Spreaders without killing any of them.',
+		description: 'Complete a mission with Septic Spreaders without anyone on the team killing any.',
 	},
 	{
 		id: 41,
@@ -227,7 +296,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 44,
 		name: 'Too Pushy for Your Own Good',
-		description: 'Kill a Stingtail that pulls you in with a Pickaxe Power Attack.',
+		description: 'Kill a Stingtail with a Pickaxe Power Attack as it pulls you in.',
 	},
 	{
 		id: 45,
@@ -263,11 +332,38 @@ export const achievementsList: Achievement[] = [
 		id: 51,
 		name: 'Danger Zone',
 		description: 'Complete 10 missions with two warnings modifiers.',
+		counter: 10,
 	},
 	{
 		id: 52,
 		name: 'Weapons Expert',
-		description: 'Complete a mission with every weapon in the game.',
+		description: 'Complete a mission with each primary and secondary weapon.',
+		subCheckboxes: [
+			{ id: 0, name: 'CRSPR Flamethrower' },
+			{ id: 1, name: 'Cryo cannon' },
+			{ id: 2, name: 'Corrosive Sludge Pump' },
+			{ id: 3, name: 'Subata 120' },
+			{ id: 4, name: 'Experimental Plasma Charger' },
+			{ id: 5, name: 'Colette Wave Cooker' },
+			{ id: 6, name: '"Warthog" Auto 210' },
+			{ id: 7, name: '"Stubby" Voltaic SMG' },
+			{ id: 8, name: 'LOK-1 Smart Rifle' },
+			{ id: 9, name: 'Deepcore 40mm PGL' },
+			{ id: 10, name: 'Breach Cutter' },
+			{ id: 11, name: 'Shard Diffractor' },
+			{ id: 12, name: '"Lead Storm" Powered Minigun' },
+			{ id: 13, name: '"Thunderhead" Heavy Autocannon' },
+			{ id: 14, name: '"Hurricane" Guided Rocket System' },
+			{ id: 15, name: '"Bulldog" Heavy Revolver' },
+			{ id: 16, name: 'BRT7 Burst Fire Gun' },
+			{ id: 17, name: 'ArmsKore Coil Gun' },
+			{ id: 18, name: 'Deepcore GK2' },
+			{ id: 19, name: 'M1000 Classic' },
+			{ id: 20, name: 'DRAK-25 Plasma Carbine' },
+			{ id: 21, name: 'Jury-Rigged Boomstick' },
+			{ id: 22, name: 'Zhukov NUK17' },
+			{ id: 23, name: 'Nishanka Boltshark X-80' },
+		],
 	},
 	{
 		id: 53,
@@ -293,6 +389,7 @@ export const achievementsList: Achievement[] = [
 		id: 57,
 		name: 'Rock and Milestone!',
 		description: 'Complete all milestones.',
+		// TODO: Sub?
 	},
 	{
 		id: 58,
@@ -323,11 +420,18 @@ export const achievementsList: Achievement[] = [
 		id: 63,
 		name: 'Another Round on Me',
 		description: 'Order the special beer for a full team 10 times.',
+		counter: 10,
 	},
 	{
 		id: 64,
 		name: 'Marathon Pro',
 		description: 'Complete a marathon as each class (42.4km distance traveled).',
+		subCheckboxes: [
+			{ id: 0, name: 'Driller' },
+			{ id: 1, name: 'Engineer' },
+			{ id: 2, name: 'Gunner' },
+			{ id: 3, name: 'Scout' },
+		],
 	},
 	{
 		id: 65,
@@ -343,11 +447,12 @@ export const achievementsList: Achievement[] = [
 		id: 67,
 		name: 'Stonks',
 		description: 'Take the daily deal 25 times.',
+		counter: 25,
 	},
 	{
 		id: 68,
 		name: 'Glyphid-Dex',
-		description: "Complete the miner's manual bestiary tab.",
+		description: "Complete the Miner's Manual Bestiary tab.",
 	},
 	{
 		id: 69,
@@ -356,13 +461,24 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 70,
-		name: 'Vampire',
-		description: 'Go from 15% to 100% health using only vampire.',
+		name: "What Doesn't Kill You",
+		description: 'Go from 15% to 100% health using only Vampire.',
 	},
 	{
 		id: 71,
 		name: 'Bar Crawl',
 		description: 'Buy one of each special beer.',
+		link: { text: 'Special Beers', url: "https://deeprockgalactic.wiki.gg/wiki/Abyss_Bar#Today's_Special" },
+		subCheckboxes: [
+			{ id: 0, name: 'Backbreaker Stout' },
+			{ id: 1, name: 'Dark Morkite' },
+			{ id: 2, name: "Pots O' Gold" },
+			{ id: 3, name: 'Red Rock Blaster' },
+			{ id: 4, name: 'Rocky Mountain' },
+			{ id: 5, name: 'Skull Crusher Ale' },
+			{ id: 6, name: 'Slayer Stout' },
+			{ id: 7, name: 'Tunnel Rat' },
+		],
 	},
 	{
 		id: 72,
@@ -377,12 +493,12 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 74,
 		name: 'All Your Eggs in One Basket',
-		description: 'Put eight eggs in the hole left by the Drop Pod.',
+		description: 'Put eight eggs at once in the hole left by the Drop Pod.',
 	},
 	{
 		id: 75,
 		name: 'Hammer Time!',
-		description: 'Kick a hammer into the barrel hoop.',
+		description: 'Kick the hammer into the barrel hoop.',
 	},
 	{
 		id: 76,
@@ -393,6 +509,12 @@ export const achievementsList: Achievement[] = [
 		id: 77,
 		name: 'Graybeard',
 		description: 'Earn Platinum promotions for all four dwarves.',
+		subCheckboxes: [
+			{ id: 0, name: 'Driller' },
+			{ id: 1, name: 'Engineer' },
+			{ id: 2, name: 'Gunner' },
+			{ id: 3, name: 'Scout' },
+		],
 	},
 	{
 		id: 78,
@@ -403,6 +525,12 @@ export const achievementsList: Achievement[] = [
 		id: 79,
 		name: '-Dary!',
 		description: 'Earn Legendary promotions for all four dwarves.',
+		subCheckboxes: [
+			{ id: 0, name: 'Driller' },
+			{ id: 1, name: 'Engineer' },
+			{ id: 2, name: 'Gunner' },
+			{ id: 3, name: 'Scout' },
+		],
 	},
 	{
 		id: 80,
@@ -412,7 +540,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 81,
 		name: 'Contingency Plans',
-		description: 'Complete a mission without calling a resupply pod and 240 nitra to spare.',
+		description: 'Complete a mission without calling a Resupply Pod and 240 Nitra to spare.',
 	},
 	{
 		id: 82,
@@ -457,22 +585,22 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 90,
 		name: 'Up and Away',
-		description: 'Acquire jetty boots in the Space Rig.',
+		description: 'Acquire Jetty Boots in the Space Rig.',
 	},
 	{
 		id: 91,
 		name: "Sock 'Em in the Jaw",
-		description: 'Land a Pickaxe Power Attack a Mactera Trijaw.',
+		description: 'Land a Pickaxe Power Attack against a Mactera Trijaw.',
 	},
 	{
 		id: 92,
 		name: 'Rocked',
-		description: 'Complete a mission while tipsy.',
+		description: 'Complete a mission while tipsy. (1x Oily Oaf Brew + 1x Glyphid Slammer)',
 	},
 	{
 		id: 93,
 		name: 'And Stoned',
-		description: 'Complete a mission while drunk.',
+		description: 'Complete a mission while drunk. (1x Oily Oaf Brew + 2x Glyphid Slammers)',
 	},
 	{
 		id: 94,
@@ -512,37 +640,46 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 101,
 		name: 'Firing Squad!',
-		description: 'Play a mission where all dwarves are Gunner.',
+		description: 'Play a mission where all four dwarves are Gunner.',
 	},
 	{
 		id: 102,
 		name: 'Engineer Is Engi-Here',
-		description: 'Play a mission where all dwarves are Engineer.',
+		description: 'Play a mission where all four dwarves are Engineer.',
 	},
 	{
 		id: 103,
 		name: "Drill 'Em and Grill 'Em",
-		description: 'Play a mission where all dwarves are Driller.',
+		description: 'Play a mission where all four dwarves are Driller.',
 	},
 	{
 		id: 104,
 		name: 'Zippity!',
-		description: 'Play a mission where all dwarves are Scout.',
+		description: 'Play a mission where all four dwarves are Scout.',
 	},
 	{
 		id: 105,
-		name: 'Legging It',
-		description: 'Complete a mission with one of each class without anyone using traversal tools.',
+		name: 'Rival Wrecker',
+		description: 'Get a pickaxe kill on all Rival Tech. (Excluding Prospector, Nemesis, and Caretaker)',
+		link: { text: 'Rival Tech', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Rival_Tech' },
+		subCheckboxes: [
+			{ id: 0, name: 'Rival Shredder' },
+			{ id: 1, name: 'Rival Sniper Turret' },
+			{ id: 2, name: 'Rival Repulsion Turret' },
+			{ id: 3, name: 'Rival Robotic Appendage' },
+			{ id: 4, name: 'Rival Burst Turret' },
+			{ id: 5, name: 'Rival Patrol Bot' },
+		],
 	},
 	{
 		id: 106,
 		name: 'Take Your Pick',
-		description: 'Defeat a dreadnought using only pickaxes.',
+		description: 'Defeat a Dreadnought using only pickaxes.',
 	},
 	{
 		id: 107,
-		name: 'DDOS',
-		description: 'Perform both hacking pods at same time on industrial sabotage.',
+		name: 'DDOS Attack',
+		description: 'Perform both Hacking Pods at same time on an Industrial Sabotage mission.',
 	},
 	{
 		id: 108,
@@ -552,22 +689,22 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 109,
 		name: 'Best Buds',
-		description: 'Bring a comba bud home.',
+		description: 'Bring a Comba Bud into the Escape Pod.',
 	},
 	{
 		id: 110,
 		name: "That Won't Make It Through Customs",
-		description: 'Bring a bough cone or tumble weed home with you.',
+		description: 'Bring a Bough Cone or Tumble Weed into the Escape Pod.',
 	},
 	{
 		id: 111,
 		name: 'Cave Leech Club',
-		description: 'Complete a cave leech cluster mission without killing any cave leeches.',
+		description: 'Complete a Cave Leech Cluster mission without killing any Cave Leeches.',
 	},
 	{
 		id: 112,
 		name: 'Cutting Back on E-Waste',
-		description: 'Complete an industrial sabotage mission without destroying any ground turrets or bouncers.',
+		description: 'Complete an Industrial Sabotage mission without destroying any ground turrets or bouncers.',
 	},
 	{
 		id: 113,
@@ -582,7 +719,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 115,
 		name: 'Dwarfsicle',
-		description: 'Thaw a teammate by hitting them with your pickaxe.',
+		description: 'Thaw a frozen teammate by hitting them with your pickaxe.',
 	},
 	{
 		id: 116,
@@ -592,12 +729,12 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 117,
 		name: 'Let the Onslaught Begin',
-		description: 'Complete a point extraction mission which lasts longer than 30 minutes.',
+		description: 'Complete a Point Extraction mission which lasts longer than 30 minutes.',
 	},
 	{
 		id: 118,
 		name: 'Crossed Wires',
-		description: 'Pair each hacking pod to the wrong power station on industrial sabotage.',
+		description: 'Pair each hacking pod to the wrong power station on an Industrial Sabotage mission.',
 	},
 	{
 		id: 119,
@@ -607,32 +744,32 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 120,
 		name: 'Boil Scraping',
-		description: 'Clear a contagion spike without calling in a cleansing pod.',
+		description: 'Clear a Contagion Spike without calling in a Cleansing Pod.',
 	},
 	{
 		id: 121,
 		name: 'The Dice Are Loaded',
-		description: 'Drink a Randoweisser beer and complete a mission.',
+		description: 'Complete a mission after drinking a Randoweisser beer.',
 	},
 	{
 		id: 122,
 		name: "Leave No 'Quarq Behind",
-		description: 'Deposit three aquarqs more than necessary.',
+		description: 'Deposit three aquarqs more than necessary into the Mine Head.',
 	},
 	{
 		id: 123,
 		name: 'A War of Attrition',
-		description: 'Complete a Deep Dive without calling a resupply pod.',
+		description: 'Complete a Deep Dive without calling a Resupply Pod.',
 	},
 	{
 		id: 124,
 		name: 'The Arbalest Is Arba-Dead ',
-		description: 'Kill the dreadnought Arbalest without dealing any damage to the Lacerator.',
+		description: 'Kill a Dreadnought Arbalest without dealing any damage to the Lacerator.',
 	},
 	{
 		id: 125,
 		name: 'See Yah Later, Lacerator!',
-		description: 'Kill the dreadnought Lacerator without dealing any damage to the Arbalest.',
+		description: 'Kill a Dreadnought Lacerator without dealing any damage to the Arbalest.',
 	},
 	{
 		id: 126,
@@ -642,27 +779,39 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 127,
 		name: 'Bomb Threat',
-		description: 'Bring a nanite bomb home with you.',
+		description: 'Bring a Nanite Bomb into the Escape Pod.',
 	},
 	{
 		id: 128,
 		name: 'Responsible Recycler',
-		description: 'Bring a shield battery home with you.',
+		description: 'Bring a Shield Battery into the Escape Pod.',
 	},
 	{
 		id: 129,
 		name: "I Just Think They're Neat",
-		description: 'Complete all achievements requiring bringing items home with you.',
+		description: 'Complete all achievements requiring bringing items into the Escape Pod.',
+		// TODO: Sub?
 	},
 	{
 		id: 130,
 		name: 'Overdose',
-		description: 'Heal 100 health at once from red sugar.',
+		description: 'Heal 100 total health from a single Red Sugar crystal.',
 	},
 	{
 		id: 131,
 		name: 'You Can Pet the Bug!',
 		description: 'Pet everything that can be petted.',
+		subCheckboxes: [
+			{ id: 0, name: 'Breather (Radioactive Exclusion Zone)' },
+			{ id: 1, name: 'Cave Vine (Radioactive Exclusion Zone)' },
+			{ id: 2, name: 'Drilldozer' },
+			{ id: 3, name: 'Glyphid Grunt' },
+			{ id: 4, name: 'Glyphid Grunt Guard' },
+			{ id: 5, name: 'Glyphid Grunt Slasher' },
+			{ id: 6, name: 'Golden Loot Bug' },
+			{ id: 7, name: 'Hexawing Gniffer (Azure Weald)' },
+			{ id: 8, name: 'Loot Bug' },
+		],
 	},
 	{
 		id: 132,
@@ -678,21 +827,28 @@ export const achievementsList: Achievement[] = [
 		id: 134,
 		name: 'Mecha Mayhem',
 		description: 'Complete one of each machine event.',
+		link: { text: 'Machine Events', url: 'https://deeprockgalactic.wiki.gg/wiki/Machine_Events' },
+		subCheckboxes: [
+			{ id: 0, name: 'Ebonite Mutation' },
+			{ id: 1, name: 'Kursite Infection' },
+			{ id: 2, name: 'Omen Modular Exterminator' },
+			{ id: 3, name: 'Tritilyte Crystal' },
+		],
 	},
 	{
 		id: 135,
 		name: 'Communication Is Key',
-		description: 'Hack a comms router.',
+		description: 'Hack a Rival Communications Router.',
 	},
 	{
 		id: 136,
 		name: "I'm In!",
-		description: 'Hack a data deposit.',
+		description: 'Hack a Prospector Data Deposit.',
 	},
 	{
 		id: 137,
 		name: 'Rock Cracker',
-		description: 'Crack an impacted meteor.',
+		description: 'Crack an Impacted Meteor.',
 	},
 	{
 		id: 138,
@@ -702,22 +858,22 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 139,
 		name: 'Better Dead Than Spread',
-		description: 'Die to a septic spreader which is already dead.',
+		description: 'Die to a Septic Spreader which is already dead.',
 	},
 	{
 		id: 140,
 		name: 'Prepare for Trouble',
-		description: 'Participate in a mission with two concurrent bulk detonators.',
+		description: 'Participate in a mission with two Bulk Detonators alive at once.',
 	},
 	{
 		id: 141,
 		name: 'And Make It Double',
-		description: "Kill a bulk detonator with another bulk detonator's explosion.",
+		description: "Kill a Bulk Detonator with another Bulk Detonator's explosion.",
 	},
 	{
 		id: 142,
 		name: 'Assembly Line',
-		description: 'Hit the tritilyte deposit with a nanite bomb that all four players have held.',
+		description: 'Hit a Tritilyte Deposit with a Nanite Bomb that all four players have held.',
 	},
 	{
 		id: 143,
@@ -757,7 +913,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 150,
 		name: 'Spendthrift',
-		description: 'Buy out the cosmetic shop.',
+		description: 'Buy all items from the Accessory Shop.',
 	},
 	{
 		id: 151,
@@ -768,6 +924,14 @@ export const achievementsList: Achievement[] = [
 		id: 152,
 		name: 'Core Mineral Unlocked',
 		description: 'Get one of each mineral core.',
+		subCheckboxes: [
+			{ id: 0, name: 'Bismor' },
+			{ id: 1, name: 'Croppa' },
+			{ id: 2, name: 'Enor Pearl' },
+			{ id: 3, name: 'Jadiz' },
+			{ id: 4, name: 'Magnite' },
+			{ id: 5, name: 'Umanite' },
+		],
 	},
 	{
 		id: 153,
@@ -782,7 +946,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 155,
 		name: 'Fashionista',
-		description: 'Unlock all free cosmetics.',
+		description: 'Unlock all cosmetics. (Excluding DLC)',
 	},
 	{
 		id: 156,
@@ -792,27 +956,39 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 157,
 		name: 'Do You Want Your Shell Back',
-		description: 'Peel a Shellback.',
+		description: 'Peel all the armor off of a Shellback.',
 	},
 	{
 		id: 158,
 		name: 'Obey Your Master!',
-		description: 'Peel a Steeve.',
+		description: 'Peel all the armor off of a Steeve.',
 	},
 	{
 		id: 159,
 		name: 'Popped a Big One!',
-		description: 'Peel a Praetorian.',
+		description: 'Peel all the armor off of a Praetorian.',
 	},
 	{
 		id: 160,
 		name: 'Beast Master',
 		description: 'Tame each kind of Steeve.',
+		subCheckboxes: [
+			{ id: 0, name: 'Glyphid Grunt' },
+			{ id: 1, name: 'Glyphid Grunt Guard' },
+			{ id: 2, name: 'Glyphid Grunt Slasher' },
+		],
 	},
 	{
 		id: 161,
 		name: 'Escape Artist',
-		description: 'Escape a Cave Leech, Mactera Grabber, Nemesis, and Nayaka Trawler using Heightened Senses.',
+		description: 'Escape all possible enemies using Heightened Senses.',
+		link: { text: 'Heightened Senses', url: 'https://deeprockgalactic.wiki.gg/wiki/Heightened_Senses' },
+		subCheckboxes: [
+			{ id: 0, name: 'Cave Leech' },
+			{ id: 1, name: 'Mactera Grabber' },
+			{ id: 2, name: 'Nemesis' },
+			{ id: 3, name: 'Nayaka Trawler' },
+		],
 	},
 	{
 		id: 162,
@@ -827,13 +1003,12 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 164,
 		name: 'Out of Patience',
-		description:
-			'Instantly Field Medic to instantly revive a teammate with less than 10% of the revive time remaining.',
+		description: 'Use Field Medic to instantly revive a teammate with less than 10% of the revive time remaining.',
 	},
 	{
 		id: 165,
-		name: 'Takeoff!',
-		description: 'Ride to the top of the map.',
+		name: "I'm Off!",
+		description: 'Ride to the very top of a cave using recalled equipment.',
 	},
 	{
 		id: 166,
@@ -875,7 +1050,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 173,
 		name: 'Fratricide',
-		description: 'Kill shredders with shredders.',
+		description: 'Kill a Shredder with a Shredder Swarm Grenade.',
 	},
 	{
 		id: 174,
@@ -906,11 +1081,61 @@ export const achievementsList: Achievement[] = [
 		id: 179,
 		name: 'Data Master',
 		description: 'Deposit 20 data cells.',
+		counter: 20,
 	},
 	{
 		id: 180,
 		name: 'I Hate Nature',
-		description: 'Destroy one of every kind of plant.',
+		description: 'Destroy one of every kind of passive plant or fungi.',
+		link: {
+			text: 'Images of all plants and fungi can be found on the DRG Wiki.',
+			url: 'https://deeprockgalactic.wiki.gg/wiki/Biome_Features',
+		},
+		subCheckboxes: [
+			{ id: 0, name: 'Wall Eye (Radioactive Exclusion Zone, Crystalline Caverns)' },
+			{ id: 1, name: 'Elevator Plant (Dense Biozone)' },
+			{ id: 2, name: 'Glowlit (Dense Biozone)' },
+			{ id: 3, name: 'Blue Exploding Plant (Dense Biozone)' },
+			{ id: 4, name: 'Ejector Cacti (Dense Biozone)' },
+			{ id: 5, name: 'Cave Urchin (Dense Biozone)' },
+			{ id: 6, name: 'Trapatactus (Dense Biozone)' },
+			{ id: 7, name: 'Coral Tongue (Dense Biozone)' },
+			{ id: 8, name: 'Glowing Flora (Dense Biozone)' },
+			{ id: 9, name: 'Glow Tree (Fungus Bogs)' },
+			{ id: 10, name: 'Red Exploding Plant (Fungus Bogs, Magma Core)' },
+			{ id: 11, name: 'Poison Spores Fungus (Fungus Bogs)' },
+			{ id: 12, name: 'Tall Helmet Xenofungus (Fungus Bogs)' },
+			{ id: 13, name: 'Grey Bell Xenofungus (Fungus Bogs)' },
+			{ id: 14, name: 'Brown Puffball Fungus (Fungus Bogs)' },
+			{ id: 15, name: 'Hanging Grassy Vines (Fungus Bogs)' },
+			{ id: 16, name: 'Rare Glowing Xenofungus (Fungus Bogs)' },
+			{ id: 17, name: 'Cryo Foamer (Glacial Strata)' },
+			{ id: 18, name: 'Cryo Bulb (Glacial Strata)' },
+			{ id: 19, name: 'Yellow Tubel (Magma Core)' },
+			{ id: 20, name: 'Chromepuff (Magma Core)' },
+			{ id: 21, name: 'Radipuff (Radioactive Exclusion Zone)' },
+			{ id: 22, name: 'Breather (Radioactive Exclusion Zone)' },
+			{ id: 23, name: 'Rock-Tree (Radioactive Exclusion Zone, Sandblasted Corridors)' },
+			{ id: 24, name: 'Explosive Spore (Sandblasted Corridors)' },
+			{ id: 25, name: 'Bough Cone (Hollow Bough)' },
+			{ id: 26, name: 'Creeper Vine (Hollow Bough)' },
+			{ id: 27, name: 'Bloated Vine (Hollow Bough)' },
+			{ id: 28, name: 'Thorn Pot (Hollow Bough)' },
+			{ id: 29, name: 'Goo Sack (Hollow Bough)' },
+			{ id: 30, name: 'Thorny Weed (Hollow Bough)' },
+			{ id: 31, name: 'Lichen (Hollow Bough)' },
+			{ id: 32, name: 'Bloopy Fruit (Azure Weald)' },
+			{ id: 33, name: 'Callow Seeder (Azure Weald)' },
+			{ id: 34, name: 'Comba Charm (Azure Weald)' },
+			{ id: 35, name: 'Gurken Shuck (Azure Weald)' },
+			{ id: 36, name: 'Nectar Rind (Azure Weald)' },
+			{ id: 37, name: 'Orchey Shy (Azure Weald)' },
+			{ id: 38, name: 'Oripricot (Azure Weald)' },
+			{ id: 39, name: 'Pulsa Stickpod (Azure Weald)' },
+			{ id: 40, name: 'Umbra Seeker (Azure Weald)' },
+			{ id: 41, name: 'Void Basket (Azure Weald)' },
+			{ id: 42, name: 'Wall Azaph (Azure Weald)' },
+		],
 	},
 	{
 		id: 181,
@@ -921,6 +1146,7 @@ export const achievementsList: Achievement[] = [
 		id: 182,
 		name: 'At Least One of Us Has Heightened Senses',
 		description: 'Rescue a teammate from all enemies that can grab.',
+		// TODO: Sub?
 	},
 	{
 		id: 183,
@@ -966,6 +1192,7 @@ export const achievementsList: Achievement[] = [
 		id: 191,
 		name: "Who's There?",
 		description: 'Knock on a lithophage container 100 times.',
+		counter: 100,
 	},
 	{
 		id: 192,
@@ -976,6 +1203,7 @@ export const achievementsList: Achievement[] = [
 		id: 193,
 		name: 'Karl Would Be Very Proud',
 		description: 'Complete a Hazard 5 mission with two warnings, no downs, and no resupplies.',
+		ignoreHazard: true,
 	},
 	{
 		id: 194,
@@ -990,17 +1218,17 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 196,
 		name: 'Living in a Bubble',
-		description: 'Collectively kill X enemies while inside a single shield generator.',
+		description: 'As a team, kill 25 enemies while inside a single Shield Generator.',
 	},
 	{
 		id: 197,
 		name: 'Like Shooting Fish in a Barrel',
-		description: 'Kill X enemies that are distracted by a single L.U.R.E.',
+		description: 'Kill 10 enemies that are distracted by a single L.U.R.E.',
 	},
 	{
 		id: 198,
 		name: 'Timeout!',
-		description: 'Revive three teammates while inside a single shield generator.',
+		description: 'Revive three teammates while inside a single Shield Generator.',
 	},
 	{
 		id: 199,
@@ -1011,32 +1239,47 @@ export const achievementsList: Achievement[] = [
 		id: 200,
 		name: 'Elite Threats',
 		description: 'Kill every type of Elite enemy.',
+		link: { text: 'Elite Enemies', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Elite_Enemies' },
+		subCheckboxes: [
+			{ id: 0, name: 'Glyphid Guard' },
+			{ id: 1, name: 'Glyphid Slasher' },
+			{ id: 2, name: 'Glyphid Praetorian' },
+			{ id: 3, name: 'Glyphid Acid Spitter' },
+			{ id: 4, name: 'Glyphid Menace' },
+			{ id: 5, name: 'Mactera Spawn' },
+			{ id: 6, name: 'Mactera Brundle' },
+			{ id: 7, name: 'Mactera Tri-Jaw' },
+			{ id: 8, name: 'Mactera Grabber' },
+			{ id: 9, name: 'Glyphid Bulk Detonator' },
+		],
 	},
 	{
 		id: 201,
 		name: 'When It Rains It Swarms',
-		description: 'Have two swarms at once.',
+		description: 'Survive an attack from two swarms at once.',
 	},
 	{
 		id: 202,
 		name: 'I Could Really Use a Vacation',
 		description: 'Complete a Hazard 1 mission on a promoted dwarf.',
+		ignoreHazard: true,
 	},
 	{
 		id: 203,
 		name: 'The Greenbeard Experience',
 		description:
 			'Complete a Hazard 5 mission on a promoted dwarf without bringing any equipment mods or overclocks.',
+		ignoreHazard: true,
 	},
 	{
 		id: 204,
 		name: 'Locked On',
-		description: 'Kill X enemies in a single burst of the LOK-1.',
+		description: 'Kill 10 enemies in a single burst of the LOK-1.',
 	},
 	{
 		id: 205,
 		name: "You're Hot and You're Cold!",
-		description: 'Temperature shock the same enemy X times.',
+		description: 'Temperature shock the same enemy five times.',
 	},
 	{
 		id: 206,
@@ -1046,7 +1289,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 207,
 		name: 'Drrr-r-r-r-r-r-rah!',
-		description: 'Kill X enemies with the "Lead Storm" Powered Minigun without releasing the trigger.',
+		description: 'Kill 20 enemies with the "Lead Storm" Powered Minigun without releasing the trigger.',
 	},
 	{
 		id: 208,
@@ -1062,7 +1305,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 210,
 		name: 'High Lung Capacity',
-		description: 'Complete a Low Oxygen mission where no dwarf begins to suffocate.',
+		description: 'Complete a Low Oxygen mission where no dwarf takes suffocation damage.',
 	},
 	{
 		id: 211,
@@ -1135,6 +1378,7 @@ export const achievementsList: Achievement[] = [
 		id: 224,
 		name: 'Lightweight',
 		description: 'Pass out 10 times.',
+		counter: 10,
 	},
 	{
 		id: 225,
@@ -1186,137 +1430,167 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 234,
 		name: 'The Sky Is Falling!',
-		description: 'Complete a mission with both a Meteor Impact and a Meteor Shower.',
+		description: 'Complete a single mission with both a Meteor Impact and a Meteor Shower.',
 	},
 	{
 		id: 235,
 		name: 'Ultimate Weapons Expert',
 		description: 'Complete all Weapons Expert achievements.',
+		// TODO: Sub
 	},
 	{
 		id: 236,
 		name: 'Flamethrower Weapons Expert',
 		description: 'Complete 10 missions with the Flamethrower equipped.',
+		counter: 10,
 	},
 	{
 		id: 237,
 		name: 'Cryo Cannon Weapons Expert',
 		description: 'Complete 10 missions with the Cryo Cannon equipped.',
+		counter: 10,
 	},
 	{
 		id: 238,
 		name: 'Corrosive Sludge Pump Weapons Expert',
 		description: 'Complete 10 missions with the Corrosive Sludge Pump equipped.',
+		counter: 10,
 	},
 	{
 		id: 239,
 		name: 'Subata Weapons Expert',
 		description: 'Complete 10 missions with the Subata equipped.',
+		counter: 10,
 	},
 	{
 		id: 240,
 		name: 'Experimental Plasma Charger Weapons Expert',
 		description: 'Complete 10 missions with the Experimental Plasma Charger equipped.',
+		counter: 10,
 	},
 	{
 		id: 241,
 		name: 'Wave Cooker Weapons Expert',
 		description: 'Complete 10 missions with the Wave Cooker equipped.',
+		counter: 10,
 	},
 	{
 		id: 242,
 		name: 'Warthog Weapons Expert',
 		description: 'Complete 10 missions with the Warthog equipped.',
+		counter: 10,
 	},
 	{
 		id: 243,
 		name: 'Stubby Weapons Expert',
 		description: 'Complete 10 missions with the Stubby equipped.',
+		counter: 10,
 	},
 	{
 		id: 244,
 		name: 'LOK-1 Weapons Expert',
 		description: 'Complete 10 missions with the LOK-1 equipped.',
+		counter: 10,
 	},
 	{
 		id: 245,
 		name: 'Deepcore PGL Weapons Expert',
 		description: 'Complete 10 missions with the Deepcore PGL equipped.',
+		counter: 10,
 	},
 	{
 		id: 246,
 		name: 'Breach Cutter Weapons Expert',
 		description: 'Complete 10 missions with the Breach Cutter equipped.',
+		counter: 10,
 	},
 	{
 		id: 247,
 		name: 'Shard Diffractor Weapons Expert',
 		description: 'Complete 10 missions with the Shard Diffractor equipped.',
+		counter: 10,
 	},
 	{
 		id: 248,
 		name: 'Minigun Weapons Expert',
 		description: 'Complete 10 missions with the Minigun equipped.',
+		counter: 10,
 	},
 	{
 		id: 249,
 		name: 'Autocannon Weapons Expert',
 		description: 'Complete 10 missions with the Autocannon equipped.',
+		counter: 10,
 	},
 	{
 		id: 250,
 		name: 'Hurricane Weapons Expert',
 		description: 'Complete 10 missions with the Hurricane equipped.',
+		counter: 10,
 	},
 	{
 		id: 251,
 		name: 'Bulldog Weapons Expert',
 		description: 'Complete 10 missions with the Bulldog equipped.',
+		counter: 10,
 	},
 	{
 		id: 252,
 		name: 'BRT7 Weapons Expert',
 		description: 'Complete 10 missions with the BRT7 equipped.',
+		counter: 10,
 	},
 	{
 		id: 253,
 		name: 'Coil Gun Weapons Expert',
 		description: 'Complete 10 missions with the Coil Gun equipped.',
+		counter: 10,
 	},
 	{
 		id: 254,
 		name: 'GK2 Weapons Expert',
 		description: 'Complete 10 missions with the GK2 equipped.',
+		counter: 10,
 	},
 	{
 		id: 255,
 		name: 'M1000 Weapons Expert',
 		description: 'Complete 10 missions with the M1000 equipped.',
+		counter: 10,
 	},
 	{
 		id: 256,
 		name: 'DRAK-25 Weapons Expert',
 		description: 'Complete 10 missions with the DRAK-25 equipped.',
+		counter: 10,
 	},
 	{
 		id: 257,
 		name: 'Boomstick Weapons Expert',
 		description: 'Complete 10 missions with the Boomstick equipped.',
+		counter: 10,
 	},
 	{
 		id: 258,
 		name: 'Zhukov Weapons Expert',
 		description: 'Complete 10 missions with the Zhukovs equipped.',
+		counter: 10,
 	},
 	{
 		id: 259,
 		name: 'Nishanka Boltshark Weapons Expert',
 		description: 'Complete 10 missions with the Nishanka Boltshark equipped.',
+		counter: 10,
 	},
 	{
 		id: 260,
 		name: 'Turret Weapons Expert',
 		description: 'Kill 10 enemies each with Turret Whip, Turret Arc, and Turret EM Discharge.',
+		subCheckboxes: [
+			{ id: 0, name: 'Kill 10 enemies with Turret Whip' },
+			{ id: 1, name: 'Kill 10 enemies with Turret Arc' },
+			{ id: 2, name: 'Kill 10 enemies with Turret EM Discharge' },
+		],
 	},
 	{
 		id: 261,
@@ -1327,26 +1601,48 @@ export const achievementsList: Achievement[] = [
 		id: 262,
 		name: 'Drills Weapons Expert',
 		description: 'Kills 50 enemies with Drills.',
+		counter: 10,
 	},
 	{
 		id: 263,
 		name: 'Throwable Weapons Expert',
 		description: 'Use of every kind of throwable.',
+		subCheckboxes: [
+			{ id: 0, name: 'Impact Axe' },
+			{ id: 1, name: 'High Explosive Grenade' },
+			{ id: 2, name: 'Neurotoxin Grenade' },
+			{ id: 3, name: 'Springloaded Ripper' },
+			{ id: 4, name: 'L.U.R.E.' },
+			{ id: 5, name: 'Plasma Burster' },
+			{ id: 6, name: 'Proximity Mine' },
+			{ id: 7, name: 'Shredder Swarm' },
+			{ id: 8, name: 'Sticky Grenade' },
+			{ id: 9, name: 'Incendiary Grenade' },
+			{ id: 10, name: 'Cluster Grenade' },
+			{ id: 11, name: 'Tactical Leadburster' },
+			{ id: 12, name: 'Inhibitor-Field Generator' },
+			{ id: 13, name: 'Cryo Grenade' },
+			{ id: 14, name: 'Pheromone Canister' },
+			{ id: 15, name: 'Voltaic Stun Sweeper' },
+		],
 	},
 	{
 		id: 264,
 		name: 'Fried Circuits',
 		description: 'Use the flamethrower on Industrial Sabotage 10 times.',
+		counter: 10,
 	},
 	{
 		id: 265,
 		name: "I'm Hacker Man",
 		description: 'Perform 50 hacks.',
+		counter: 50,
 	},
 	{
 		id: 266,
 		name: "Yes, Yes, You're Rich",
 		description: 'Say "We\'re rich" 100 times.',
+		counter: 100,
 	},
 	{
 		id: 267,
@@ -1362,21 +1658,25 @@ export const achievementsList: Achievement[] = [
 		id: 269,
 		name: 'Candy Crush Saga',
 		description: 'Break 50 Red Sugar crystals.',
+		counter: 50,
 	},
 	{
 		id: 270,
 		name: "I've Got You!",
 		description: 'Use Shield Link on a player with low health 10 times.',
+		counter: 10,
 	},
 	{
 		id: 271,
 		name: 'Generous Tipper',
 		description: 'Tip Lloyd 50 times.',
+		counter: 50,
 	},
 	{
 		id: 272,
 		name: 'To the Bone!',
 		description: 'Rock and stone 100 times.',
+		counter: 100,
 	},
 	{
 		id: 273,
@@ -1387,21 +1687,46 @@ export const achievementsList: Achievement[] = [
 		id: 274,
 		name: 'Elemental Instigation',
 		description: 'Deal every type of elemental damage to enemies.',
+		link: { text: 'Status Effects', url: 'https://deeprockgalactic.wiki.gg/wiki/Status_Effects' },
+		subCheckboxes: [
+			{ id: 0, name: 'Corrosion' },
+			{ id: 1, name: 'Electrocution' },
+			{ id: 2, name: 'Explosion' },
+			{ id: 3, name: 'Fire' },
+			{ id: 4, name: 'Frost' },
+			{ id: 5, name: 'Neurotoxin' },
+			{ id: 6, name: 'Radiation' },
+			{ id: 7, name: 'Temperature Shock' },
+		],
 	},
 	{
 		id: 275,
 		name: 'You Slackjawed Dimwits!',
 		description: 'Get downed 10 times by friendly fire.',
+		counter: 10,
 	},
 	{
 		id: 276,
-		name: "I'm Off!",
-		description: 'Ride to the very top of a cave using recalled equipment.',
+		name: "I'm Gonna Build My Own Mini MULE",
+		description: 'Bring a Mini MULE Leg home with you.',
 	},
 	{
 		id: 277,
 		name: 'Wildlife Conservationist',
-		description: 'Complete a mission in every biome without killing any plants or passive creatures.',
+		description:
+			'Complete a mission in every biome without killing any plants or passive creatures. (Excluding Fester Fleas and Mineral Hoarders)',
+		subCheckboxes: [
+			{ id: 0, name: 'Azure Weald' },
+			{ id: 1, name: 'Crystalline Caverns' },
+			{ id: 2, name: 'Dense Biozone' },
+			{ id: 3, name: 'Fungus Bogs' },
+			{ id: 4, name: 'Glacial Strata' },
+			{ id: 5, name: 'Hollow Bough' },
+			{ id: 6, name: 'Magma Core' },
+			{ id: 7, name: 'Radioactive Exclusion Zone' },
+			{ id: 8, name: 'Salt Pits' },
+			{ id: 9, name: 'Sandblasted Corridors' },
+		],
 	},
 	{
 		id: 278,
@@ -1430,7 +1755,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 283,
-		name: 'Trouble Getting Around',
+		name: 'Legging It',
 		description: 'Complete a mission with a full team where no dwarf uses their traversal tool.',
 	},
 	{
@@ -1446,7 +1771,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 286,
 		name: 'Full Pockets',
-		description: 'Complete a mission with 100 or more non-deposited minerals in your inventory.',
+		description: 'Complete a mission with 200 or more non-deposited minerals in your inventory.',
 	},
 	{
 		id: 287,
@@ -1473,6 +1798,7 @@ export const achievementsList: Achievement[] = [
 		id: 291,
 		name: 'To the Fallen',
 		description: 'Prevent lethal fall damage in all possible ways.',
+		// TODO: Sub
 	},
 	{
 		id: 292,
@@ -1532,7 +1858,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 303,
 		name: 'Strong Support Structure',
-		description: 'Get revived by three dwarves at once.',
+		description: 'Get revived by three teammates at once.',
 	},
 	{
 		id: 304,
@@ -1558,6 +1884,7 @@ export const achievementsList: Achievement[] = [
 		id: 308,
 		name: 'Secondary Savant',
 		description: 'Complete all achievements requiring rapid completion of secondary objectives.',
+		// TODO: Sub
 	},
 	{
 		id: 309,
@@ -1571,48 +1898,50 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 311,
+		name: 'Dystrum Depositors',
+		description: 'Deposit the entire Dystrum secondary objective in a 10 second window.',
+	},
+	{
+		id: 312,
 		name: 'Ebonut Enjoyer',
 		description: 'Complete the entire Ebonut secondary objective in a single deposit.',
 	},
 	{
-		id: 312,
+		id: 313,
 		name: 'Fester Fiend',
 		description: 'Kill two Fester Fleas with a single attack.',
 	},
 	{
-		id: 313,
+		id: 314,
 		name: 'Fossil Frenzy',
 		description: 'Complete the entire Fossil secondary objective in a single deposit.',
 	},
 	{
-		id: 314,
+		id: 315,
 		name: 'Gunk Gatherer',
-		description: 'Deposit the entirety of the Gunk Seed secondary objective into Molly in a 10 second window.',
+		description: 'Deposit the entire Gunk Seed secondary objective into Molly in a 10 second window.',
 	},
 	{
-		id: 315,
+		id: 316,
 		name: 'Hollomite Hoarder',
 		description: 'Complete the entire Hollomite secondary objective in a single deposit.',
 	},
 	{
-		id: 316,
+		id: 317,
 		name: 'Triple Threat',
 		description: 'Progress all three of your season challenges by completing a single mission.',
 	},
 	{
-		id: 317,
+		id: 318,
 		name: 'Engineer Point Defense',
 		description:
 			'Complete a mission with at least three Engineers collectively equipped with Turret Whip, Turret Arc, and Turret EM Discharge.',
 	},
 	{
-		id: 318,
+		id: 319,
 		name: 'The Best Offense...',
 		description: "Destroy one of the Caretaker's Robotic Appendages with a Shield Battery.",
 	},
-	{
-		id: 319,
-		name: "I'm Gonna Build My Own Mini MULE",
-		description: 'Bring a Mini MULE Leg home with you.',
-	},
+	// TODO: Remove milestone achievements?
+	// TODO: Assign UUIDs to achievements?
 ];

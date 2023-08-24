@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,9 +35,18 @@ import { SnackbarWithIconComponent } from './components/snackbar-with-icon/snack
 import { WelcomeDialogComponent } from './components/welcome-dialog/welcome-dialog.component';
 import { StratsComponent } from './components/strats/strats.component';
 import { AchievementsComponent } from './components/achievements/achievements.component';
+import { AchievementsWelcomeDialogComponent } from './components/achievements-welcome-dialog/achievements-welcome-dialog.component';
 
 @NgModule({
-	declarations: [AppComponent, FeedbackDialogComponent, SnackbarWithIconComponent, WelcomeDialogComponent, StratsComponent, AchievementsComponent],
+	declarations: [
+		AppComponent,
+		FeedbackDialogComponent,
+		SnackbarWithIconComponent,
+		WelcomeDialogComponent,
+		StratsComponent,
+		AchievementsComponent,
+		AchievementsWelcomeDialogComponent,
+	],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
@@ -46,6 +56,7 @@ import { AchievementsComponent } from './components/achievements/achievements.co
 		CommonModule,
 		FormsModule,
 		MatButtonModule,
+		MatCardModule,
 		MatCheckboxModule,
 		MatDialogModule,
 		MatIconModule,

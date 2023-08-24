@@ -3,6 +3,7 @@ export enum StoredKeys {
 	queuedStrategies = 'queued-strategies',
 	recentStrategies = 'recent-strategies',
 	hasSeenWelcomeDialog = 'has-seen-welcome-dialog',
+	hasSeenAchievementsWelcomeDialog = 'has-seen-achievements-welcome-dialog',
 }
 
 export const queuedStrategiesVersion = 1;

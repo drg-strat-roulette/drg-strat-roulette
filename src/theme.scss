@@ -1,12 +1,12 @@
 @import '@angular/material/theming';
 @include mat-core();
 
-$my-custom-primary: mat-palette($mat-amber);
-$my-custom-accent: mat-palette($mat-amber);
-$my-custom-warn: mat-palette($mat-red);
-$my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
+$drg-custom-primary: mat-palette($mat-amber);
+$drg-custom-accent: mat-palette($mat-amber);
+$drg-custom-warn: mat-palette($mat-red);
+$drg-custom-theme: mat-light-theme($drg-custom-primary, $drg-custom-accent, $drg-custom-warn);
 
-@function my-mat-light-theme-foreground($color) {
+@function drg-mat-light-theme-foreground($color) {
 	@return (
 		base: $color,
 		divider: $white-12-opacity,
@@ -25,14 +25,12 @@ $my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-cus
 	);
 }
 
-$white-foreground: my-mat-light-theme-foreground(white);
-$my-app-theme-custom: map-merge(
-	$my-custom-theme,
+$white-foreground: drg-mat-light-theme-foreground(white);
+$drg-app-theme-custom: map-merge(
+	$drg-custom-theme,
 	(
 		foreground: $white-foreground,
 	)
 );
 
-@include angular-material-theme($my-app-theme-custom);
-
-// @include angular-material-theme($my-custom-theme);
+@include angular-material-theme($drg-app-theme-custom);

@@ -39,6 +39,37 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Bug reports, feature requests, and strategy submissions
 -   [x] Weight strategies based on chance of mission requirements being met
 -   [ ] Achievements? :eyes:
+    -   [ ] Define 351 total achievements
+    -   [x] Display achievements
+        -   [x] Titles
+        -   [x] Descriptions
+        -   [ ] Links
+        -   [x] Checkboxes
+            -   [ ] Sub-checkboxes
+            -   [ ] Auto-check up/down
+    -   [ ] Categories
+    -   [ ] Visual affordance for completed
+    -   [ ] Move completed to bottom
+    -   [ ] Track hazard completion
+    -   [ ] Counters
+        -   [ ] Variable additions/subtractions
+        -   [ ] Counter reset
+        -   [ ] Max at full
+        -   [ ] Auto-check at full
+    -   [ ] Autosave
+    -   [ ] Ability to undo achievement completion
+    -   [ ] Show % completion
+    -   [ ] Filter by hazard completion
+    -   [ ] Organize completed by order
+    -   [ ] Achievement search
+    -   [ ] Track completion datetime
+    -   [ ] Visual indicator for 100%
+    -   [ ] Share completion with URL
+    -   [ ] Share completion with dynamic image URL
+    -   [ ] Popup congrats for 100%
+        -   [ ] Suggest completing on higher hazard
+    -   [ ] Reset progress
+    -   [ ] Import/export progress
 
 ## Potential features
 
@@ -55,6 +86,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [ ] (BE) Provide feedback to increase/decrease a strategy's listed difficulty
     -   [ ] Select difficulty range for generated strategies
     -   [ ] Mode to continually increase difficulty until a strategy is failed
+-   [ ] (BE) Save achievement progress to an account
 
 ## Development server
 

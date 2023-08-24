@@ -59,14 +59,15 @@ describe('Achievement list', () => {
 
 	it('should have descriptions that start with capital letters and end with periods', () => {
 		for (const achievement of achievements) {
-			const startsWithCapital = achievement.description[0] === achievement.description[0].toUpperCase();
-			const endsWithPeriod = achievement.description[achievement.description.length - 1] === '.';
-			if (!startsWithCapital)
-				console.error(`Achievement desc does not start with capital letter: "${achievement.description}"`);
-			if (!endsWithPeriod)
-				console.error(`Achievement desc does not end with a period: "${achievement.description}"`);
+			const desc = achievement.description;
+			const startsWithCapital = desc[0] === desc[0].toUpperCase();
+			const endsWithPeriod = desc[desc.length - 1] === '.';
+			const endsWithParenAndHasPeriod = desc[desc.length - 1] === ')' && desc.includes('.');
+			if (!startsWithCapital) console.error(`Achievement desc does not start with capital letter: "${desc}"`);
+			if (!endsWithPeriod && !endsWithParenAndHasPeriod)
+				console.error(`Achievement desc does not end with a period or paren: "${desc}"`);
 			expect(startsWithCapital).toBeTrue();
-			expect(endsWithPeriod).toBeTrue();
+			expect(endsWithPeriod || endsWithParenAndHasPeriod).toBeTrue();
 		}
 	});
 
@@ -84,6 +85,16 @@ describe('Achievement list', () => {
 			if (shortNumberInDesc) console.error(`[1-9] in description: "${achievement.description}"`);
 			expect(shortNumberInName).toBeFalse();
 			expect(shortNumberInDesc).toBeFalse();
+		}
+	});
+
+	it('should have distinct IDs and Names for each subCheckbox', () => {
+		const achievementsWithSubCheckboxes = achievements.filter((a) => a.subCheckboxes);
+		for (const achievement of achievementsWithSubCheckboxes) {
+			const numUniqueIds = new Set(achievement?.subCheckboxes?.map((a) => a.id)).size;
+			const numUniqueNames = new Set(achievement?.subCheckboxes?.map((a) => a.name)).size;
+			expect(numUniqueIds).toBe(achievement.subCheckboxes?.length ?? 0);
+			expect(numUniqueNames).toBe(achievement.subCheckboxes?.length ?? 0);
 		}
 	});
 
