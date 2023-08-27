@@ -58,12 +58,11 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Visual affordance for completed
 -   [x] Move completed to bottom
 -   [x] Animate completion
--   [ ] Autosave
--   [ ] Ability to undo achievement completion
-    -   [x] By unchecking
-    -   [ ] By clicking something in the top-right of the page for 10 seconds
--   [ ] Show % completion
+-   [x] Ability to undo achievement completion by unchecking
+-   [x] Autosave
 -   [ ] Organize completed by order
+-   [ ] Ability to undo achievement completion with popup for 10 seconds
+-   [ ] Show % completion
 -   [ ] Achievement search
 -   [ ] Track completion datetime
 -   [ ] Visual indicator for 100%

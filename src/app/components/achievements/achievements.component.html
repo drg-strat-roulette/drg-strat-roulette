@@ -19,8 +19,6 @@
                 *ngIf="!!achievement.completedAt"
                 [achievement]="achievement"
                 (toggleComplete)="toggleComplete(achievement)"
-                (changeCounter)="changeCounter(achievement, $event)"
-                (subTaskCompleted)="subTaskCompleted(achievement, $event.subTaskId, $event.completed)"
                 @slideInOutLeft
                 [@.disabled]="disableAnimations">
             </app-achievement-card>

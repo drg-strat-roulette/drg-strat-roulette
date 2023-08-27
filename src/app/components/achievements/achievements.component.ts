@@ -1,7 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject, takeUntil } from 'rxjs';
+import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { AchievementKeys } from 'src/app/models/local-storage.interface';
 import { HeaderControlsService } from 'src/app/services/header-controls.service';
 import { AchievementsWelcomeDialogComponent } from '../achievements-welcome-dialog/achievements-welcome-dialog.component';
@@ -43,6 +43,7 @@ export class AchievementsComponent implements OnInit {
 	achievements: DisplayedAchievement[] = [];
 	disableAnimations = true;
 
+	private saveProgressSubject: Subject<void> = new Subject();
 	private destroy: Subject<void> = new Subject();
 
 	constructor(
@@ -52,17 +53,19 @@ export class AchievementsComponent implements OnInit {
 		private clipboard: Clipboard
 	) {}
 
-	@HostListener('document:keypress', ['$event'])
-	handleKeyboardEvent(event: KeyboardEvent) {
-		if (event.key === 'Enter') this.saveProgress();
-	}
-
 	ngOnInit(): void {
 		// Display welcome dialog to new users
 		const hasSeenAchievementsWelcomeDialog = localStorage.getItem(AchievementKeys.hasSeenAchievementsWelcomeDialog);
 		if (hasSeenAchievementsWelcomeDialog !== 'true') {
 			this.openWelcomeDialog();
 		}
+
+		// Load and merge achievements and completion statuses
+		const progress: AchievementProgress[] = JSON.parse(localStorage.getItem(AchievementKeys.progress) ?? '[]');
+		this.achievements = achievementsList.map((a) => ({
+			...a,
+			...progress.find((p) => p.id === a.id),
+		}));
 
 		// Subscribe to events from header control button presses
 		this.headerControlsService.infoButtonPressed$
@@ -72,17 +75,24 @@ export class AchievementsComponent implements OnInit {
 			.pipe(takeUntil(this.destroy))
 			.subscribe(() => this.copyShareText());
 		this.headerControlsService.settingsButtonPressed$.pipe(takeUntil(this.destroy));
-		// .subscribe(() => (this.settingsMenuCollapsed = !this.settingsMenuCollapsed));
-
-		// Load and merge achievements and completion statuses
-		const progress: AchievementProgress[] = [{ id: 4, subTasksCompleted: [1] }];
-		this.achievements = achievementsList.map((a) => ({
-			...a,
-			...progress.find((p) => p.id === a.id),
-		}));
+		// .subscribe(() => (this.settingsMenuCollapsed = !this.settingsMenuCollapsed)); // TODO: Settings
 
 		// Prevent animations from being applied to the initial list of achievements
 		setTimeout(() => (this.disableAnimations = false), 0);
+
+		// By debouncing the input, we can force multiple save requests performed in a single synchronous context to only be processed once
+		this.saveProgressSubject.pipe(takeUntil(this.destroy), debounceTime(0)).subscribe(() => {
+			const progress: AchievementProgress[] = this.achievements
+				.filter((a) => a.completedAt || a.count || a.subTasksCompleted)
+				.map((a) => ({
+					id: a.id,
+					completedAt: a.completedAt,
+					count: a.count,
+					subTasksCompleted: a.subTasksCompleted,
+				}));
+			const progressString = JSON.stringify(progress);
+			localStorage.setItem(AchievementKeys.progress, progressString);
+		});
 	}
 
 	ngOnDestroy(): void {
@@ -111,6 +121,7 @@ export class AchievementsComponent implements OnInit {
 			}
 			achievement.count = achievement.countNeeded;
 		}
+		this.saveProgressSubject.next();
 	}
 
 	/**
@@ -136,6 +147,7 @@ export class AchievementsComponent implements OnInit {
 			// Mark subTask uncompleted
 			achievement?.subTasksCompleted?.splice(achievement?.subTasksCompleted?.indexOf(subTaskId), 1);
 		}
+		this.saveProgressSubject.next();
 	}
 
 	/**
@@ -150,23 +162,7 @@ export class AchievementsComponent implements OnInit {
 			// Mark achievement completed
 			this.toggleComplete(achievement);
 		}
-	}
-
-	saveProgress() {
-		// Function to generate random number
-		function randomNumber(min: number, max: number) {
-			return Math.random() * (max - min) + min;
-		}
-		this.achievements.splice(0, 0, { ...this.achievements[0], id: randomNumber(1000, 100000) });
-		const progress: AchievementProgress[] = this.achievements
-			.filter((a) => a.completedAt || a.count || a.subTasksCompleted)
-			.map((a) => ({
-				id: a.id,
-				completedAt: a.completedAt,
-				count: a.count,
-				subTasksCompleted: a.subTasksCompleted,
-			}));
-		console.log(JSON.stringify(progress));
+		this.saveProgressSubject.next();
 	}
 
 	/**
