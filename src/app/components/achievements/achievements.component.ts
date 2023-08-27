@@ -10,15 +10,38 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { AchievementProgress, DisplayedAchievement } from 'src/app/models/achievement.model';
 import { achievementsList } from 'src/app/data/achievements.const';
 import { clamp } from 'lodash-es';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
 	selector: 'app-achievements',
 	templateUrl: './achievements.component.html',
 	styleUrls: ['./achievements.component.scss'],
+	animations: [
+		trigger('slideInOutRight', [
+			transition(':enter', [
+				style({ opacity: 0, transform: 'translateX(100%)' }),
+				animate('250ms ease-in-out', style({ opacity: 1, transform: 'translateX(0)' })),
+			]),
+			transition(':leave', [
+				style({ opacity: 1, transform: 'translateX(0)' }),
+				animate('250ms ease-in-out', style({ opacity: 0, transform: 'translateX(100%)' })),
+			]),
+		]),
+		trigger('slideInOutLeft', [
+			transition(':enter', [
+				style({ opacity: 0, transform: 'translateX(-100%)' }),
+				animate('250ms ease-in-out', style({ opacity: 1, transform: 'translateX(0)' })),
+			]),
+			transition(':leave', [
+				style({ opacity: 1, transform: 'translateX(0)' }),
+				animate('250ms ease-in-out', style({ opacity: 0, transform: 'translateX(-100%)' })),
+			]),
+		]),
+	],
 })
 export class AchievementsComponent implements OnInit {
-	hazardLevel = 5;
 	achievements: DisplayedAchievement[] = [];
+	disableAnimations = true;
 
 	private destroy: Subject<void> = new Subject();
 
@@ -57,6 +80,9 @@ export class AchievementsComponent implements OnInit {
 			...a,
 			...progress.find((p) => p.id === a.id),
 		}));
+
+		// Prevent animations from being applied to the initial list of achievements
+		setTimeout(() => (this.disableAnimations = false), 0);
 	}
 
 	ngOnDestroy(): void {
@@ -127,6 +153,11 @@ export class AchievementsComponent implements OnInit {
 	}
 
 	saveProgress() {
+		// Function to generate random number
+		function randomNumber(min: number, max: number) {
+			return Math.random() * (max - min) + min;
+		}
+		this.achievements.splice(0, 0, { ...this.achievements[0], id: randomNumber(1000, 100000) });
 		const progress: AchievementProgress[] = this.achievements
 			.filter((a) => a.completedAt || a.count || a.subTasksCompleted)
 			.map((a) => ({

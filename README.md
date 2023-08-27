@@ -10,6 +10,8 @@ Some strategies have specific mission or team requirements, but otherwise there 
 
 ## Planned features
 
+### Strategies
+
 -   [x] Roll a random strategy
 -   [x] Exclude strategies with certain tags
 -   [x] Exclude strategies based on team setup
@@ -38,37 +40,39 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Deploy to public location
 -   [x] Bug reports, feature requests, and strategy submissions
 -   [x] Weight strategies based on chance of mission requirements being met
--   [ ] Achievements? :eyes:
-    -   [ ] Define 351 total achievements
-    -   [x] Display achievements
-        -   [x] Titles
-        -   [x] Descriptions
-        -   [x] Links
-    -   [x] Complete achievement buttons
-    -   [x] Sub-tasks
-        -   [x] Auto-check up/down
-    -   [x] Counters
-        -   [x] Increment/decrement
-        -   [x] Limit range
-        -   [x] Auto-complete at full
-    -   [x] Visual affordance for completed
-    -   [ ] Move completed to bottom
-    -   [ ] Autosave
-    -   [ ] Animate completion (at component level?)
-    -   [ ] Ability to undo achievement completion
-        -   [x] By unchecking
-        -   [ ] By clicking something in the top-right of the page for 10 seconds
-    -   [ ] Show % completion
-    -   [ ] Organize completed by order
-    -   [ ] Achievement search
-    -   [ ] Track completion datetime
-    -   [ ] Visual indicator for 100%
-    -   [ ] Share completion with URL
-    -   [ ] Share completion with dynamic image URL
-    -   [ ] Popup congrats for 100%
-        -   [ ] Suggest completing on higher hazard
-    -   [ ] Reset progress
-    -   [ ] Import/export progress
+
+### Achievements
+
+-   [ ] Define 351 total achievements
+-   [x] Display achievements
+    -   [x] Titles
+    -   [x] Descriptions
+    -   [x] Links
+-   [x] Complete achievement buttons
+-   [x] Sub-tasks
+    -   [x] Auto-check up/down
+-   [x] Counters
+    -   [x] Increment/decrement
+    -   [x] Limit range
+    -   [x] Auto-complete at full
+-   [x] Visual affordance for completed
+-   [x] Move completed to bottom
+-   [x] Animate completion
+-   [ ] Autosave
+-   [ ] Ability to undo achievement completion
+    -   [x] By unchecking
+    -   [ ] By clicking something in the top-right of the page for 10 seconds
+-   [ ] Show % completion
+-   [ ] Organize completed by order
+-   [ ] Achievement search
+-   [ ] Track completion datetime
+-   [ ] Visual indicator for 100%
+-   [ ] Share completion with URL
+-   [ ] Share completion with dynamic image URL
+-   [ ] Popup congrats for 100%
+    -   [ ] Suggest completing on higher hazard
+-   [ ] Reset progress
+-   [ ] Import/export progress
 
 ## Potential features
 

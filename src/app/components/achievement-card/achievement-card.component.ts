@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DisplayedAchievement } from 'src/app/models/achievement.model';
 
@@ -6,14 +5,6 @@ import { DisplayedAchievement } from 'src/app/models/achievement.model';
 	selector: 'app-achievement-card',
 	templateUrl: './achievement-card.component.html',
 	styleUrls: ['./achievement-card.component.scss'],
-	animations: [
-		trigger('slideInOut', [
-			transition(':enter', [
-				style({ marginTop: '-100%' }),
-				animate('800ms ease-in-out', style({ marginTop: '0px' })),
-			]),
-		]),
-	],
 })
 export class AchievementCardComponent implements OnInit {
 	@Input() achievement: DisplayedAchievement | undefined;

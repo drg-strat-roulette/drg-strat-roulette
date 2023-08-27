@@ -1,8 +1,26 @@
-mat-card-content {
-    display: flex
+.achievement-card {
+    font: 400 14px / 20px Roboto, "Helvetica Neue", sans-serif;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: #191b1c !important;
+    width: 100%;
 }
 
-mat-card-header {
+.card-content {
     display: flex;
     flex-direction: column;
+}
+
+.card-title {
+    letter-spacing: normal;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.54);
+    font-size: 14px;
 }

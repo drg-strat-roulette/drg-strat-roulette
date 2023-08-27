@@ -2,12 +2,28 @@
     <!-- Achievements list -->
     <div class="container pt-4">
         <!-- Achievement cards -->
-        <app-achievement-card
-            *ngFor="let achievement of achievements"
-            [achievement]="achievement"
-            (toggleComplete)="toggleComplete(achievement)"
-            (changeCounter)="changeCounter(achievement, $event)"
-            (subTaskCompleted)="subTaskCompleted(achievement, $event.subTaskId, $event.completed)">
-        </app-achievement-card>
+        <ng-container *ngFor="let achievement of achievements">
+            <app-achievement-card
+                *ngIf="!achievement.completedAt"
+                [achievement]="achievement"
+                (toggleComplete)="toggleComplete(achievement)"
+                (changeCounter)="changeCounter(achievement, $event)"
+                (subTaskCompleted)="subTaskCompleted(achievement, $event.subTaskId, $event.completed)"
+                @slideInOutRight
+                [@.disabled]="disableAnimations">
+            </app-achievement-card>
+        </ng-container>
+        <h1>Completed</h1>
+        <ng-container *ngFor="let achievement of achievements">
+            <app-achievement-card
+                *ngIf="!!achievement.completedAt"
+                [achievement]="achievement"
+                (toggleComplete)="toggleComplete(achievement)"
+                (changeCounter)="changeCounter(achievement, $event)"
+                (subTaskCompleted)="subTaskCompleted(achievement, $event.subTaskId, $event.completed)"
+                @slideInOutLeft
+                [@.disabled]="disableAnimations">
+            </app-achievement-card>
+        </ng-container>
     </div>
 </div>
