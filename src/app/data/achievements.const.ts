@@ -35,7 +35,6 @@ export const achievementsList: Achievement[] = [
 		id: 5,
 		name: 'Master Ammo Conservationist',
 		description: 'Complete all other Ammo Conservationist achievements.',
-		// TODO: Sub?
 	},
 	{
 		id: 6,
@@ -381,7 +380,6 @@ export const achievementsList: Achievement[] = [
 		id: 57,
 		name: 'Rock and Milestone!',
 		description: 'Complete all milestones.',
-		// TODO: Sub?
 	},
 	{
 		id: 58,
@@ -782,7 +780,6 @@ export const achievementsList: Achievement[] = [
 		id: 129,
 		name: "I Just Think They're Neat",
 		description: 'Complete all achievements requiring bringing items into the Escape Pod.',
-		// TODO: Sub?
 	},
 	{
 		id: 130,
@@ -1138,7 +1135,6 @@ export const achievementsList: Achievement[] = [
 		id: 182,
 		name: 'At Least One of Us Has Heightened Senses',
 		description: 'Rescue a teammate from all enemies that can grab.',
-		// TODO: Sub?
 	},
 	{
 		id: 183,
@@ -1425,7 +1421,6 @@ export const achievementsList: Achievement[] = [
 		id: 235,
 		name: 'Ultimate Weapons Expert',
 		description: 'Complete all Weapons Expert achievements.',
-		// TODO: Sub
 	},
 	{
 		id: 236,
@@ -1787,7 +1782,6 @@ export const achievementsList: Achievement[] = [
 		id: 291,
 		name: 'To the Fallen',
 		description: 'Prevent lethal fall damage in all possible ways.',
-		// TODO: Sub
 	},
 	{
 		id: 292,
@@ -1873,7 +1867,6 @@ export const achievementsList: Achievement[] = [
 		id: 308,
 		name: 'Secondary Savant',
 		description: 'Complete all achievements requiring rapid completion of secondary objectives.',
-		// TODO: Sub
 	},
 	{
 		id: 309,
@@ -1980,5 +1973,4 @@ export const achievementsList: Achievement[] = [
 	},
 	// TODO: Remove milestone achievements?
 	// TODO: Assign different IDs to achievements?
-	// TODO: Remove achievements with sub-achievements?
 ];
