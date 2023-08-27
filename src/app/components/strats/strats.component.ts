@@ -14,7 +14,7 @@ import {
 } from '../../models/missions.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Settings, settingsVersion } from '../../models/settings.interface';
-import { queuedStrategiesVersion, StoredKeys } from '../../models/local-storage.interface';
+import { queuedStrategiesVersion, StratKeys } from '../../models/local-storage.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
 	SnackbarConfig,
@@ -135,12 +135,12 @@ export class StratsComponent implements OnInit, OnDestroy {
 		});
 
 		// Check for cached settings to be loaded
-		const settingsString = localStorage.getItem(StoredKeys.settings);
+		const settingsString = localStorage.getItem(StratKeys.settings);
 		if (settingsString) {
 			const settings: Settings = JSON.parse(settingsString);
 			if (settings.version !== settingsVersion) {
 				// Delete old settings if version is outdated
-				localStorage.removeItem(StoredKeys.settings);
+				localStorage.removeItem(StratKeys.settings);
 			} else {
 				this.tags.forEach((tag) => (tag.checked = !settings.excludedTags.includes(tag.type)));
 				this.dwarves = settings.dwarves;
@@ -151,13 +151,13 @@ export class StratsComponent implements OnInit, OnDestroy {
 		}
 
 		// Load cached queued strategies
-		const queuedStrategiesString = localStorage.getItem(StoredKeys.queuedStrategies);
+		const queuedStrategiesString = localStorage.getItem(StratKeys.queuedStrategies);
 		if (queuedStrategiesString) {
 			const cachedQueuedStrats: CachedQueuedStrats = JSON.parse(queuedStrategiesString);
 			if (cachedQueuedStrats) {
 				if (cachedQueuedStrats.version !== queuedStrategiesVersion) {
 					// Delete old queued strategies if version is outdated
-					localStorage.removeItem(StoredKeys.queuedStrategies);
+					localStorage.removeItem(StratKeys.queuedStrategies);
 				} else {
 					this.queuedStrats = cachedQueuedStrats.queue;
 				}
@@ -165,7 +165,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 		}
 
 		// Load list of recently chosen strategies from cache
-		const recentStrategiesString = localStorage.getItem(StoredKeys.recentStrategies);
+		const recentStrategiesString = localStorage.getItem(StratKeys.recentStrategies);
 		if (recentStrategiesString) {
 			const recentStrategies: number[] = JSON.parse(recentStrategiesString);
 			if (recentStrategies) {
@@ -174,7 +174,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 		}
 
 		// Display welcome dialog to new users
-		const hasSeenWelcomeDialog = localStorage.getItem(StoredKeys.hasSeenWelcomeDialog);
+		const hasSeenWelcomeDialog = localStorage.getItem(StratKeys.hasSeenWelcomeDialog);
 		if (hasSeenWelcomeDialog !== 'true') {
 			this.openWelcomeDialog();
 		}
@@ -265,7 +265,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 	 * Resets all settings to their default configurations and reloads the page
 	 */
 	resetAllSettings(): void {
-		localStorage.removeItem(StoredKeys.settings);
+		localStorage.removeItem(StratKeys.settings);
 		location.reload();
 	}
 
@@ -273,7 +273,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 	 * Clears all items from localStorage and reloads the page
 	 */
 	clearAllCachedData(): void {
-		for (let key of Object.values(StoredKeys)) {
+		for (let key of Object.values(StratKeys)) {
 			localStorage.removeItem(key);
 		}
 		this.router.navigate([], {
@@ -317,7 +317,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 			preChosenMissions: this.preChosenMissions,
 			mission: this.mission,
 		};
-		localStorage.setItem(StoredKeys.settings, JSON.stringify(settings));
+		localStorage.setItem(StratKeys.settings, JSON.stringify(settings));
 	}
 
 	/**
@@ -363,7 +363,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 			version: queuedStrategiesVersion,
 			queue: this.queuedStrats,
 		};
-		localStorage.setItem(StoredKeys.queuedStrategies, JSON.stringify(cachedQueuedStrats));
+		localStorage.setItem(StratKeys.queuedStrategies, JSON.stringify(cachedQueuedStrats));
 	}
 
 	/**
@@ -391,7 +391,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 			this.recentStrats.splice(0, 1); // Remove oldest item
 		}
 		this.recentStrats.push(this.strat?.id);
-		localStorage.setItem(StoredKeys.recentStrategies, JSON.stringify(this.recentStrats));
+		localStorage.setItem(StratKeys.recentStrategies, JSON.stringify(this.recentStrats));
 	}
 
 	/**
@@ -467,7 +467,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 	 */
 	openWelcomeDialog(): void {
 		const welcomeDialog = this.dialog.open(WelcomeDialogComponent);
-		welcomeDialog.afterClosed().subscribe(() => localStorage.setItem(StoredKeys.hasSeenWelcomeDialog, 'true'));
+		welcomeDialog.afterClosed().subscribe(() => localStorage.setItem(StratKeys.hasSeenWelcomeDialog, 'true'));
 	}
 
 	/**

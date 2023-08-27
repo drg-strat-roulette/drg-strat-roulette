@@ -69,17 +69,6 @@ export function sampleWithWeights<T>(sourceList: T[], weights: number[]): T | un
 }
 
 /**
- * Clamps a number to fall within a specified range
- * @param num - Number to be clamped
- * @param min - Minimum value for resulting number
- * @param max - Maximum value for resulting number
- * @returns The resulting number after the clamp has been applied to the input
- */
-export function clamp(num: number, min: number, max: number): number {
-	return Math.min(Math.max(num, min), max);
-}
-
-/**
  * Articles, conjunctions, and short prepositions should not be capitalized in titles (unless they're the first or last word)
  */
 export const validLowerInTitleCase = [

@@ -4,6 +4,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AchievementsComponent } from './achievements.component';
@@ -21,6 +22,7 @@ describe('AchievementsComponent', () => {
 				MatDialogModule,
 				MatIconModule,
 				MatSnackBarModule,
+				MatTooltipModule,
 			],
 			declarations: [AchievementsComponent],
 		}).compileComponents();

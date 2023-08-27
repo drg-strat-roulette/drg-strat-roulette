@@ -11,10 +11,15 @@
     scrollbar-width: none;
 }
 
-.achievements-list {
-    padding-top: 24px;
+mat-card-content {
+    display: flex
 }
 
-.strat-card {
-    margin-bottom: 16px;
+mat-card-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.count-progress {
+    pointer-events: none;
 }

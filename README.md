@@ -43,23 +43,22 @@ Some strategies have specific mission or team requirements, but otherwise there 
     -   [x] Display achievements
         -   [x] Titles
         -   [x] Descriptions
-        -   [ ] Links
-        -   [x] Complete button
-            -   [ ] Sub-checkboxes
-            -   [ ] Auto-check up/down
-    -   [ ] Categories
-    -   [ ] Visual affordance for completed
+        -   [x] Links
+    -   [x] Complete achievement buttons
+    -   [x] Sub-tasks
+        -   [x] Auto-check up/down
+    -   [x] Counters
+        -   [x] Increment/decrement
+        -   [x] Limit range
+        -   [x] Auto-complete at full
+    -   [x] Visual affordance for completed
     -   [ ] Move completed to bottom
-    -   [ ] Track hazard completion
-    -   [ ] Counters
-        -   [ ] Variable additions/subtractions
-        -   [ ] Counter reset
-        -   [ ] Max at full
-        -   [ ] Auto-check at full
     -   [ ] Autosave
+    -   [ ] Animate completion (at component level?)
     -   [ ] Ability to undo achievement completion
+        -   [x] By unchecking
+        -   [ ] By clicking something in the top-right of the page for 10 seconds
     -   [ ] Show % completion
-    -   [ ] Filter by hazard completion
     -   [ ] Organize completed by order
     -   [ ] Achievement search
     -   [ ] Track completion datetime

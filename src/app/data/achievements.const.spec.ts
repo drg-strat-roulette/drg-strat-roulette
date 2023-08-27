@@ -89,12 +89,18 @@ describe('Achievement list', () => {
 	});
 
 	it('should have distinct IDs and Names for each subCheckbox', () => {
-		const achievementsWithSubCheckboxes = achievements.filter((a) => a.subCheckboxes);
+		const achievementsWithSubCheckboxes = achievements.filter((a) => a.subTasks);
 		for (const achievement of achievementsWithSubCheckboxes) {
-			const numUniqueIds = new Set(achievement?.subCheckboxes?.map((a) => a.id)).size;
-			const numUniqueNames = new Set(achievement?.subCheckboxes?.map((a) => a.name)).size;
-			expect(numUniqueIds).toBe(achievement.subCheckboxes?.length ?? 0);
-			expect(numUniqueNames).toBe(achievement.subCheckboxes?.length ?? 0);
+			const numUniqueIds = new Set(achievement?.subTasks?.map((a) => a.id)).size;
+			const numUniqueNames = new Set(achievement?.subTasks?.map((a) => a.name)).size;
+			expect(numUniqueIds).toBe(achievement.subTasks?.length ?? 0);
+			expect(numUniqueNames).toBe(achievement.subTasks?.length ?? 0);
+		}
+	});
+
+	it('should not have any Fandom links!', () => {
+		for (const achievement of achievements) {
+			expect(achievement.link?.url.toLowerCase()).not.toContain('fandom');
 		}
 	});
 

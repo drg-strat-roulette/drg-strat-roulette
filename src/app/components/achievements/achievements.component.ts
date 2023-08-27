@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject, takeUntil } from 'rxjs';
-import { StoredKeys } from 'src/app/models/local-storage.interface';
+import { AchievementKeys } from 'src/app/models/local-storage.interface';
 import { HeaderControlsService } from 'src/app/services/header-controls.service';
 import { AchievementsWelcomeDialogComponent } from '../achievements-welcome-dialog/achievements-welcome-dialog.component';
 import { SnackbarConfig, SnackbarWithIconComponent } from '../snackbar-with-icon/snackbar-with-icon.component';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Achievement } from 'src/app/models/achievement.model';
+import { AchievementProgress, DisplayedAchievement } from 'src/app/models/achievement.model';
 import { achievementsList } from 'src/app/data/achievements.const';
+import { clamp } from 'lodash-es';
 
 @Component({
 	selector: 'app-achievements',
@@ -16,7 +17,8 @@ import { achievementsList } from 'src/app/data/achievements.const';
 	styleUrls: ['./achievements.component.scss'],
 })
 export class AchievementsComponent implements OnInit {
-	achievements: Achievement[] = achievementsList;
+	hazardLevel = 5;
+	achievements: DisplayedAchievement[] = [];
 
 	private destroy: Subject<void> = new Subject();
 
@@ -27,9 +29,14 @@ export class AchievementsComponent implements OnInit {
 		private clipboard: Clipboard
 	) {}
 
+	@HostListener('document:keypress', ['$event'])
+	handleKeyboardEvent(event: KeyboardEvent) {
+		if (event.key === 'Enter') this.saveProgress();
+	}
+
 	ngOnInit(): void {
 		// Display welcome dialog to new users
-		const hasSeenAchievementsWelcomeDialog = localStorage.getItem(StoredKeys.hasSeenAchievementsWelcomeDialog);
+		const hasSeenAchievementsWelcomeDialog = localStorage.getItem(AchievementKeys.hasSeenAchievementsWelcomeDialog);
 		if (hasSeenAchievementsWelcomeDialog !== 'true') {
 			this.openWelcomeDialog();
 		}
@@ -43,11 +50,92 @@ export class AchievementsComponent implements OnInit {
 			.subscribe(() => this.copyShareText());
 		this.headerControlsService.settingsButtonPressed$.pipe(takeUntil(this.destroy));
 		// .subscribe(() => (this.settingsMenuCollapsed = !this.settingsMenuCollapsed));
+
+		// Load and merge achievements and completion statuses
+		const progress: AchievementProgress[] = [{ id: 4, subTasksCompleted: [1] }];
+		this.achievements = achievementsList.map((a) => ({
+			...a,
+			...progress.find((p) => p.id === a.id),
+		}));
 	}
 
 	ngOnDestroy(): void {
 		this.destroy.next();
 		this.destroy.complete();
+	}
+
+	/**
+	 * Marks an achievement as having been (un)completed
+	 * Also updates the state of all subTasks and counters
+	 * @param achievement - Achievement to be updated
+	 */
+	toggleComplete(achievement: DisplayedAchievement) {
+		if (achievement.completedAt) {
+			// Mark uncompleted
+			achievement.completedAt = undefined;
+			achievement.subTasksCompleted = achievement.subTasks ? [] : undefined;
+			if (achievement.countNeeded) {
+				achievement.count = 0;
+			}
+		} else {
+			// Mark completed
+			achievement.completedAt = new Date();
+			if (!this.allSubTasksCompleted(achievement)) {
+				achievement.subTasksCompleted = achievement.subTasks?.map((t) => t.id);
+			}
+			achievement.count = achievement.countNeeded;
+		}
+	}
+
+	/**
+	 * Marks a subTask of an achievement as having been (un)completed
+	 * Updates the completion state
+	 * @param achievement - Achievement to be updated
+	 * @param subTaskId - ID of subTask which has been changed
+	 * @param checked - New completion state of the subTask
+	 */
+	subTaskCompleted(achievement: DisplayedAchievement, subTaskId: number, checked: boolean) {
+		if (!achievement?.subTasksCompleted) {
+			// Init list if undefined
+			achievement.subTasksCompleted = [];
+		}
+		if (checked) {
+			// Mark subTask completed
+			achievement?.subTasksCompleted?.push(subTaskId);
+			// If all subTasks are completed, the achievement is also completed
+			if (this.allSubTasksCompleted(achievement)) {
+				this.toggleComplete(achievement);
+			}
+		} else {
+			// Mark subTask uncompleted
+			achievement?.subTasksCompleted?.splice(achievement?.subTasksCompleted?.indexOf(subTaskId), 1);
+		}
+	}
+
+	/**
+	 * Increments/decrements an achievement counter while keeping the counter within [0, countNeeded]
+	 * Marks the achievement as completed if countNeeded has been reached
+	 * @param achievement - Achievement to update counter on
+	 * @param delta - Number to increase/decrease counter by
+	 */
+	changeCounter(achievement: DisplayedAchievement, delta: number) {
+		achievement.count = clamp((achievement.count ?? 0) + delta, 0, achievement.countNeeded!);
+		if (!achievement.completedAt && achievement.count === achievement.countNeeded) {
+			// Mark achievement completed
+			this.toggleComplete(achievement);
+		}
+	}
+
+	saveProgress() {
+		const progress: AchievementProgress[] = this.achievements
+			.filter((a) => a.completedAt || a.count || a.subTasksCompleted)
+			.map((a) => ({
+				id: a.id,
+				completedAt: a.completedAt,
+				count: a.count,
+				subTasksCompleted: a.subTasksCompleted,
+			}));
+		console.log(JSON.stringify(progress));
 	}
 
 	/**
@@ -57,7 +145,7 @@ export class AchievementsComponent implements OnInit {
 		const welcomeDialog = this.dialog.open(AchievementsWelcomeDialogComponent);
 		welcomeDialog
 			.afterClosed()
-			.subscribe(() => localStorage.setItem(StoredKeys.hasSeenAchievementsWelcomeDialog, 'true'));
+			.subscribe(() => localStorage.setItem(AchievementKeys.hasSeenAchievementsWelcomeDialog, 'true'));
 	}
 
 	/**
@@ -75,5 +163,14 @@ export class AchievementsComponent implements OnInit {
 				prefixIcon: 'assignment',
 			} as SnackbarConfig,
 		});
+	}
+
+	/**
+	 * Checks whether all subTasks in an achievement have been completed
+	 * @param achievement - Achievement to check
+	 * @returns true is all subTasks in an achievement have been completed, false otherwise
+	 */
+	private allSubTasksCompleted(achievement: DisplayedAchievement) {
+		return achievement?.subTasks?.every((t) => achievement?.subTasksCompleted?.includes(t.id));
 	}
 }
