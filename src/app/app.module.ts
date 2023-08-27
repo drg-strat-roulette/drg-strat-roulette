@@ -36,6 +36,7 @@ import { WelcomeDialogComponent } from './components/welcome-dialog/welcome-dial
 import { StratsComponent } from './components/strats/strats.component';
 import { AchievementsComponent } from './components/achievements/achievements.component';
 import { AchievementsWelcomeDialogComponent } from './components/achievements-welcome-dialog/achievements-welcome-dialog.component';
+import { AchievementCardComponent } from './components/achievement-card/achievement-card.component';
 
 @NgModule({
 	declarations: [
@@ -46,6 +47,7 @@ import { AchievementsWelcomeDialogComponent } from './components/achievements-we
 		StratsComponent,
 		AchievementsComponent,
 		AchievementsWelcomeDialogComponent,
+		AchievementCardComponent,
 	],
 	imports: [
 		AppRoutingModule,

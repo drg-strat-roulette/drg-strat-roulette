@@ -1,11 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AchievementCardComponent } from '../achievement-card/achievement-card.component';
+import { MockComponent } from 'ng-mocks';
 
 import { AchievementsComponent } from './achievements.component';
 
@@ -15,16 +13,8 @@ describe('AchievementsComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [
-				BrowserAnimationsModule,
-				MatCardModule,
-				MatCheckboxModule,
-				MatDialogModule,
-				MatIconModule,
-				MatSnackBarModule,
-				MatTooltipModule,
-			],
-			declarations: [AchievementsComponent],
+			imports: [BrowserAnimationsModule, MatDialogModule, MatSnackBarModule],
+			declarations: [AchievementsComponent, MockComponent(AchievementCardComponent)],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(AchievementsComponent);
