@@ -48,7 +48,7 @@
                         <!-- Achievements completion progress -->
                         <div class="d-flex justify-content-between">
                             <div>
-                                {{ numAchievementsCompleted }} of {{ achievements.length }} completed
+                                {{ numAchievementsCompleted }} of {{ achievements.length }} completed ({{100 * numAchievementsCompleted / achievements.length | number : '1.0-0'}}%)
                             </div>
                             <div>
                                 ({{ numAchievementsDisplayed }} displayed)
