@@ -1,3 +1,14 @@
+.recently-completed-achievements-container {
+    position: absolute;
+    top: 62px; // 50px header + 12px margin
+    right: 12px;
+    z-index: 999;
+    width: 320px;
+    max-width: 50%;
+    max-height: calc(100% - 62px);
+    overflow: hidden;
+}
+
 .achievements-page-container {
     display: flex;
     flex-direction: column;

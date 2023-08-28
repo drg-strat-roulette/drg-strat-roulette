@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
@@ -34,6 +34,9 @@ export class AchievementsComponent implements OnInit {
 	/** List of all achievements */
 	achievements: DisplayedAchievement[] = [];
 
+	/** Recently completed achievements */
+	recentlyCompletedAchievements: { achievement: DisplayedAchievement; kill: () => void; undo: () => void }[] = [];
+
 	/** Whether to animate achievements being (un)completed */
 	disableAnimations = true;
 
@@ -60,9 +63,7 @@ export class AchievementsComponent implements OnInit {
 		private dialog: MatDialog,
 		private snackbar: MatSnackBar,
 		private clipboard: Clipboard,
-		private changeDetectorRef: ChangeDetectorRef,
-		private renderer2: Renderer2,
-		private elementRef: ElementRef
+		private changeDetectorRef: ChangeDetectorRef
 	) {}
 
 	ngOnInit(): void {
@@ -111,7 +112,13 @@ export class AchievementsComponent implements OnInit {
 		// Register development functions
 		(window as any).unlockAll = (s: string) => {
 			if (s !== 'please') return;
-			this.achievements.filter((a) => !a.completedAt).forEach((a) => this.toggleComplete(a));
+			this.achievements.filter((a) => !a.completedAt).forEach((a) => this.toggleComplete(a, true));
+			this.changeDetectorRef.detectChanges();
+		};
+
+		(window as any).lockAll = (s: string) => {
+			if (s !== 'please') return;
+			this.achievements.filter((a) => a.completedAt).forEach((a) => this.toggleComplete(a));
 			this.changeDetectorRef.detectChanges();
 		};
 	}
@@ -126,7 +133,7 @@ export class AchievementsComponent implements OnInit {
 	 * Also updates the state of all subTasks and counters
 	 * @param achievement - Achievement to be updated
 	 */
-	toggleComplete(achievement: DisplayedAchievement) {
+	toggleComplete(achievement: DisplayedAchievement, skipRecentlyCompleted = false) {
 		if (achievement.completedAt) {
 			// Mark uncompleted
 			achievement.completedAt = undefined;
@@ -134,7 +141,13 @@ export class AchievementsComponent implements OnInit {
 			if (achievement.countNeeded) {
 				achievement.count = 0;
 			}
-			this.achievements[this.achievements.indexOf(achievement)] = { ...achievement }; // Force animation to play
+			this.achievements[this.achievements.findIndex((a) => a.id === achievement.id)] = { ...achievement }; // Force animation to play
+
+			// Remove from recentlyCompletedAchievements
+			const rcaIndex = this.recentlyCompletedAchievements.findIndex((r) => r.achievement.id === achievement.id);
+			if (rcaIndex !== -1) {
+				this.recentlyCompletedAchievements.splice(rcaIndex, 1);
+			}
 		} else {
 			// Mark completed
 			achievement.completedAt = new Date().toISOString();
@@ -142,7 +155,24 @@ export class AchievementsComponent implements OnInit {
 				achievement.subTasksCompleted = achievement.subTasks?.map((t) => t.id);
 			}
 			achievement.count = achievement.countNeeded;
-			this.achievements[this.achievements.indexOf(achievement)] = { ...achievement }; // Force animation to play
+			this.achievements[this.achievements.findIndex((a) => a.id === achievement.id)] = { ...achievement }; // Force animation to play
+
+			// Add to list of recently completed achievements
+			if (!skipRecentlyCompleted) {
+				const killFn = () => {
+					const rcaIndex = this.recentlyCompletedAchievements.findIndex(
+						(r) => r.achievement.id === achievement.id
+					);
+					if (rcaIndex !== -1) {
+						this.recentlyCompletedAchievements.splice(rcaIndex, 1);
+					}
+				};
+				this.recentlyCompletedAchievements.push({
+					achievement,
+					kill: killFn,
+					undo: () => this.toggleComplete(achievement),
+				});
+			}
 		}
 		this.sortAchievements();
 		this.saveProgressSubject.next();
@@ -255,7 +285,11 @@ export class AchievementsComponent implements OnInit {
 		this.numAchievementsCompleted = this.achievements.filter((a) => a.completedAt).length;
 		this.numAchievementsDisplayed = this.achievements.filter((a) => a.display).length;
 		this.numCompletedDisplayed = this.achievements.filter((a) => a.display && a.completedAt).length;
-		// TODO: Display congratulations when 100% completed
+
+		// Check if all achievements have been completed
+		if (this.numAchievementsCompleted === this.achievements.length) {
+			// TODO: Something
+		}
 	}
 
 	/**

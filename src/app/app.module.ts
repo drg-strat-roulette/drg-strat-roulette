@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -37,6 +38,7 @@ import { StratsComponent } from './components/strats/strats.component';
 import { AchievementsComponent } from './components/achievements/achievements.component';
 import { AchievementsWelcomeDialogComponent } from './components/achievements-welcome-dialog/achievements-welcome-dialog.component';
 import { AchievementCardComponent } from './components/achievement-card/achievement-card.component';
+import { RecentlyCompletedAchievementComponent } from './components/recently-completed-achievement/recently-completed-achievement.component';
 
 @NgModule({
 	declarations: [
@@ -48,6 +50,7 @@ import { AchievementCardComponent } from './components/achievement-card/achievem
 		AchievementsComponent,
 		AchievementsWelcomeDialogComponent,
 		AchievementCardComponent,
+		RecentlyCompletedAchievementComponent,
 	],
 	imports: [
 		AppRoutingModule,
@@ -64,6 +67,7 @@ import { AchievementCardComponent } from './components/achievement-card/achievem
 		MatInputModule,
 		MatMenuModule,
 		MatProgressBarModule,
+		MatProgressSpinnerModule,
 		MatSelectModule,
 		MatSidenavModule,
 		MatSnackBarModule,
