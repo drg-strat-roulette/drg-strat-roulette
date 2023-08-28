@@ -4,7 +4,7 @@
 $drg-custom-primary: mat-palette($mat-amber);
 $drg-custom-accent: mat-palette($mat-amber);
 $drg-custom-warn: mat-palette($mat-red);
-$drg-custom-theme: mat-light-theme($drg-custom-primary, $drg-custom-accent, $drg-custom-warn);
+$drg-custom-theme: mat-dark-theme($drg-custom-primary, $drg-custom-accent, $drg-custom-warn);
 
 @function drg-mat-light-theme-foreground($color) {
 	@return (

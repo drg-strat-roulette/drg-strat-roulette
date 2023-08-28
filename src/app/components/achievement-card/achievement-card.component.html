@@ -2,13 +2,12 @@
  <div class="drg-card mb-2" [style.opacity]="achievement?.completedAt ? 0.6 : 1">
     <!-- (Un)complete button -->
     <button
-        mat-mini-fab
+        mat-icon-button
         [matTooltip]="achievement?.completedAt ? 'Mark uncompleted' : 'Mark completed'"
         matTooltipShowDelay="500"
-        color="primary"
         aria-label="Toggle achievement completion"
         (click)="toggleComplete.emit()">
-        <mat-icon>check</mat-icon>
+        <mat-icon>{{ achievement?.completedAt ? 'close' : 'check' }}</mat-icon>
     </button>
     <div class="row ms-2">
         <!-- Datetime completed -->
@@ -48,9 +47,12 @@
             </button>
         </div>
         <!-- Sub-tasks -->
-        <div *ngIf="achievement?.subTasks" class="mt-1 ms-3">
-            <div *ngFor="let sub of achievement?.subTasks" class="mt-1">
-                <mat-checkbox [checked]="achievement?.subTasksCompleted?.includes(sub.id)" [disabled]="!!achievement?.completedAt" (change)="subTaskCompleted.next({ subTaskId: sub.id, completed: $event.checked})">
+        <div *ngIf="achievement?.subTasks" class="mt-1">
+            <div *ngFor="let sub of achievement?.subTasks">
+                <mat-checkbox
+                    [checked]="achievement?.subTasksCompleted?.includes(sub.id)"
+                    [disabled]="!!achievement?.completedAt"
+                    (change)="subTaskCompleted.next({ subTaskId: sub.id, completed: $event.checked})">
                     {{ sub.name }}
                 </mat-checkbox>
             </div>

@@ -244,7 +244,7 @@
 				</div>
 
 				<!-- Roll a strategy -->
-				<div>
+				<div class="d-flex">
 					<button class="m-2" mat-raised-button color="primary" (click)="rollStrat()">Roll a strategy</button>
 					<button
 						*ngIf="strat"
@@ -252,7 +252,8 @@
 						[matMenuTriggerFor]="clipboardMenu"
 						#copyStratTooltip="matTooltip"
 						matTooltip="Copy to clipboard"
-						matTooltipShowDelay="500">
+						matTooltipShowDelay="500"
+						aria-label="Copy to clipboard">
 						<mat-icon class="white-icon">content_copy</mat-icon>
 					</button>
 					<button
@@ -261,7 +262,8 @@
 						#showQueuedStratsTooltip="matTooltip"
 						matTooltip="Show queued strategies"
 						matTooltipShowDelay="500"
-						(click)="queuedStratsDrawer.toggle()">
+						(click)="queuedStratsDrawer.toggle()"
+						aria-label="Show queued strategies">
 						<mat-icon class="white-icon">list_alt</mat-icon>
 					</button>
 					<button
@@ -274,7 +276,8 @@
 								: 'Generate randomized strategy decisions'
 						"
 						matTooltipShowDelay="500"
-						(click)="generateDynamicContent()">
+						(click)="generateDynamicContent()"
+						aria-label="Regenerate dynamic content">
 						<mat-icon class="white-icon">refresh</mat-icon>
 					</button>
 

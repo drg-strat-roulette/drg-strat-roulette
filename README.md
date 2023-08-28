@@ -63,7 +63,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Autosave
 -   [x] Show % completion
 -   [x] Organize completed by order
--   [ ] Achievement search
+-   [ ] Achievement search/filter
 -   [ ] Ability to undo achievement completion with popup for 10 seconds
 -   [ ] Visual indicator for 100%
 -   [ ] Popup congrats for 100%

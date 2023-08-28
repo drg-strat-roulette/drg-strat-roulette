@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { backgroundImages } from './data/backgrounds.const';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,6 +12,11 @@ import { HeaderControlsService } from './services/header-controls.service';
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+	@HostListener('window:resize', ['$event'])
+	onResize(event: any) {
+		this.collapseButtons = event.target.innerWidth < 500;
+	}
+
 	// Current background image
 	background: string = backgroundImages[0];
 
@@ -21,6 +26,7 @@ export class AppComponent implements OnInit {
 		{ id: 'achievements', displayName: 'Achievements' },
 	];
 	activeTabIndex = 0;
+	collapseButtons = window.innerWidth < 500;
 
 	constructor(
 		private router: Router,
