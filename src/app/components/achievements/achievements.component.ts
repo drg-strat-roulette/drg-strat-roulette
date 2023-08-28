@@ -11,6 +11,7 @@ import { AchievementProgress, DisplayedAchievement } from 'src/app/models/achiev
 import { achievementsList } from 'src/app/data/achievements.const';
 import { clamp } from 'lodash-es';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { byCompletionDateThenById } from 'src/app/utilities/sorters.utils';
 
 @Component({
 	selector: 'app-achievements',
@@ -27,21 +28,12 @@ import { animate, style, transition, trigger } from '@angular/animations';
 				animate('250ms ease-in-out', style({ opacity: 0, transform: 'translateX(100%)' })),
 			]),
 		]),
-		trigger('slideInOutLeft', [
-			transition(':enter', [
-				style({ opacity: 0, transform: 'translateX(-100%)' }),
-				animate('250ms ease-in-out', style({ opacity: 1, transform: 'translateX(0)' })),
-			]),
-			transition(':leave', [
-				style({ opacity: 1, transform: 'translateX(0)' }),
-				animate('250ms ease-in-out', style({ opacity: 0, transform: 'translateX(-100%)' })),
-			]),
-		]),
 	],
 })
 export class AchievementsComponent implements OnInit {
 	achievements: DisplayedAchievement[] = [];
 	disableAnimations = true;
+	numAchievementsCompleted = 0;
 
 	private saveProgressSubject: Subject<void> = new Subject();
 	private destroy: Subject<void> = new Subject();
@@ -66,6 +58,7 @@ export class AchievementsComponent implements OnInit {
 			...a,
 			...progress.find((p) => p.id === a.id),
 		}));
+		this.sortAchievements();
 
 		// Subscribe to events from header control button presses
 		this.headerControlsService.infoButtonPressed$
@@ -92,7 +85,9 @@ export class AchievementsComponent implements OnInit {
 				}));
 			const progressString = JSON.stringify(progress);
 			localStorage.setItem(AchievementKeys.progress, progressString);
+			this.updateProgressState();
 		});
+		this.updateProgressState();
 	}
 
 	ngOnDestroy(): void {
@@ -113,14 +108,17 @@ export class AchievementsComponent implements OnInit {
 			if (achievement.countNeeded) {
 				achievement.count = 0;
 			}
+			this.achievements[this.achievements.indexOf(achievement)] = { ...achievement }; // Force animation to play
 		} else {
 			// Mark completed
-			achievement.completedAt = new Date();
+			achievement.completedAt = new Date().toISOString();
 			if (!this.allSubTasksCompleted(achievement)) {
 				achievement.subTasksCompleted = achievement.subTasks?.map((t) => t.id);
 			}
 			achievement.count = achievement.countNeeded;
+			this.achievements[this.achievements.indexOf(achievement)] = { ...achievement }; // Force animation to play
 		}
+		this.sortAchievements();
 		this.saveProgressSubject.next();
 	}
 
@@ -190,6 +188,22 @@ export class AchievementsComponent implements OnInit {
 				prefixIcon: 'assignment',
 			} as SnackbarConfig,
 		});
+	}
+
+	/**
+	 * Sort achievements by completion date
+	 */
+	private sortAchievements() {
+		this.achievements.sort(byCompletionDateThenById);
+	}
+
+	/**
+	 * Update state variables following change to achievement progress
+	 * and conditionally display
+	 */
+	private updateProgressState() {
+		this.numAchievementsCompleted = this.achievements.filter((a) => a.completedAt).length;
+		// TODO: Display congratulations when 100% completed
 	}
 
 	/**

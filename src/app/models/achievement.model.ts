@@ -10,7 +10,7 @@ export interface Achievement {
 
 export interface AchievementProgress {
 	id: number;
-	completedAt?: Date;
+	completedAt?: string;
 	count?: number;
 	subTasksCompleted?: number[];
 }

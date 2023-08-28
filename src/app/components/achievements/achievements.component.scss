@@ -1,7 +1,14 @@
 .achievements-page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.achievements-list-container {
 	height: 100%;
 	width: auto;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     // Hide scrollbar
     &::-webkit-scrollbar {

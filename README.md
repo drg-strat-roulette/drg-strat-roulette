@@ -56,15 +56,15 @@ Some strategies have specific mission or team requirements, but otherwise there 
     -   [x] Limit range
     -   [x] Auto-complete at full
 -   [x] Visual affordance for completed
+-   [x] Track completion datetime
 -   [x] Move completed to bottom
 -   [x] Animate completion
 -   [x] Ability to undo achievement completion by unchecking
 -   [x] Autosave
--   [ ] Organize completed by order
+-   [x] Show % completion
+-   [x] Organize completed by order
 -   [ ] Ability to undo achievement completion with popup for 10 seconds
--   [ ] Show % completion
 -   [ ] Achievement search
--   [ ] Track completion datetime
 -   [ ] Visual indicator for 100%
 -   [ ] Share completion with URL
 -   [ ] Share completion with dynamic image URL

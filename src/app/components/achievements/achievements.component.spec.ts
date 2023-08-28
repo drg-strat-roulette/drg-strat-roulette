@@ -6,6 +6,7 @@ import { AchievementCardComponent } from '../achievement-card/achievement-card.c
 import { MockComponent } from 'ng-mocks';
 
 import { AchievementsComponent } from './achievements.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 describe('AchievementsComponent', () => {
 	let component: AchievementsComponent;
@@ -13,7 +14,7 @@ describe('AchievementsComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [BrowserAnimationsModule, MatDialogModule, MatSnackBarModule],
+			imports: [BrowserAnimationsModule, MatDialogModule, MatProgressBarModule, MatSnackBarModule],
 			declarations: [AchievementsComponent, MockComponent(AchievementCardComponent)],
 		}).compileComponents();
 
