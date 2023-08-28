@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
@@ -59,7 +59,10 @@ export class AchievementsComponent implements OnInit {
 		private headerControlsService: HeaderControlsService,
 		private dialog: MatDialog,
 		private snackbar: MatSnackBar,
-		private clipboard: Clipboard
+		private clipboard: Clipboard,
+		private changeDetectorRef: ChangeDetectorRef,
+		private renderer2: Renderer2,
+		private elementRef: ElementRef
 	) {}
 
 	ngOnInit(): void {
@@ -104,6 +107,13 @@ export class AchievementsComponent implements OnInit {
 			const progressString = JSON.stringify(progress);
 			localStorage.setItem(AchievementKeys.progress, progressString);
 		});
+
+		// Register development functions
+		(window as any).unlockAll = (s: string) => {
+			if (s !== 'please') return;
+			this.achievements.filter((a) => !a.completedAt).forEach((a) => this.toggleComplete(a));
+			this.changeDetectorRef.detectChanges();
+		};
 	}
 
 	ngOnDestroy(): void {

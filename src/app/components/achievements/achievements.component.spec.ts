@@ -6,6 +6,10 @@ import { AchievementCardComponent } from '../achievement-card/achievement-card.c
 import { MockComponent } from 'ng-mocks';
 import { AchievementsComponent } from './achievements.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 describe('AchievementsComponent', () => {
 	let component: AchievementsComponent;
@@ -13,7 +17,16 @@ describe('AchievementsComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [BrowserAnimationsModule, MatDialogModule, MatProgressBarModule, MatSnackBarModule],
+			imports: [
+				BrowserAnimationsModule,
+				FormsModule,
+				MatDialogModule,
+				MatInputModule,
+				MatFormFieldModule,
+				MatProgressBarModule,
+				MatSelectModule,
+				MatSnackBarModule,
+			],
 			declarations: [AchievementsComponent, MockComponent(AchievementCardComponent)],
 		}).compileComponents();
 
