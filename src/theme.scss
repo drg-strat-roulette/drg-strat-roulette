@@ -1,36 +1,19 @@
-@import '@angular/material/theming';
-@include mat-core();
+@use '@angular/material' as mat;
 
-$drg-custom-primary: mat-palette($mat-amber);
-$drg-custom-accent: mat-palette($mat-amber);
-$drg-custom-warn: mat-palette($mat-red);
-$drg-custom-theme: mat-dark-theme($drg-custom-primary, $drg-custom-accent, $drg-custom-warn);
+@include mat.core();
 
-@function drg-mat-light-theme-foreground($color) {
-	@return (
-		base: $color,
-		divider: $white-12-opacity,
-		dividers: $white-12-opacity,
-		disabled: rgba($color, 0.38),
-		disabled-button: rgba($color, 0.38),
-		disabled-text: rgba($color, 0.38),
-		hint-text: rgba($color, 0.38),
-		secondary-text: rgba($color, 0.54),
-		icon: rgba($color, 0.54),
-		icons: rgba($color, 0.54),
-		text: rgba($color, 0.87),
-		slider-off: rgba($color, 0.26),
-		slider-off-active: rgba($color, 0.38),
-		slider-min: rgba($color, 0.38)
-	);
-}
+$drg-primary: mat.define-palette(mat.$amber-palette);
+$drg-accent: mat.define-palette(mat.$amber-palette);
+$drg-warn: mat.define-palette(mat.$red-palette);
 
-$white-foreground: drg-mat-light-theme-foreground(white);
-$drg-app-theme-custom: map-merge(
-	$drg-custom-theme,
-	(
-		foreground: $white-foreground,
-	)
-);
+$drg-theme: mat.define-dark-theme((
+	color: (
+		primary: $drg-primary,
+		accent: $drg-accent,
+		warn: $drg-warn,
+	),
+	typography: mat.define-typography-config(),
+	density: 0,
+));
 
-@include angular-material-theme($drg-app-theme-custom);
+@include mat.all-component-themes($drg-theme);
