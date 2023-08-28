@@ -64,7 +64,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Show % completion
 -   [x] Organize completed by order
 -   [x] Achievement search/filter
--   [ ] Ability to undo achievement completion with popup for 10 seconds
+-   [x] Ability to undo achievement completion with popup for 10 seconds
 -   [ ] Visual indicator for 100%
 -   [ ] Popup congrats for 100%
     -   [ ] Suggest completing on higher hazard
