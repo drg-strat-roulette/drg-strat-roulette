@@ -15,4 +15,6 @@ export interface AchievementProgress {
 	subTasksCompleted?: number[];
 }
 
-export interface DisplayedAchievement extends AchievementProgress, Achievement {}
+export interface DisplayedAchievement extends AchievementProgress, Achievement {
+	display: boolean;
+}

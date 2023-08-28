@@ -4,6 +4,21 @@
     height: 100%;
 }
 
+.header-form {
+    min-width: 150px;
+    width: 100%;
+}
+
+.header-form-completion {
+    @extend .header-form;
+    max-width: 260px;
+}
+
+.header-form-search {
+    @extend .header-form;
+    max-width: 600px;
+}
+
 .achievements-list-container {
 	height: 100%;
 	width: auto;
@@ -16,8 +31,4 @@
     }
     -ms-overflow-style: none;
     scrollbar-width: none;
-}
-
-app-achievement-card {
-    display: flex;
 }

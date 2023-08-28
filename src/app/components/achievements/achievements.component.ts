@@ -31,9 +31,26 @@ import { byCompletionDateThenById } from 'src/app/utilities/sorters.utils';
 	],
 })
 export class AchievementsComponent implements OnInit {
+	/** List of all achievements */
 	achievements: DisplayedAchievement[] = [];
+
+	/** Whether to animate achievements being (un)completed */
 	disableAnimations = true;
+
+	/** Total number of completed achievements */
 	numAchievementsCompleted = 0;
+
+	/** Number of achievements displayed after search/filter */
+	numAchievementsDisplayed = 0;
+
+	/** Number of completed achievements displayed after search/filter */
+	numCompletedDisplayed = 0;
+
+	/** Filter criteria */
+	displayedCompletions: 'all' | 'completed' | 'uncompleted' = 'all';
+
+	/** Achievement search input */
+	searchInput: string = '';
 
 	private saveProgressSubject: Subject<void> = new Subject();
 	private destroy: Subject<void> = new Subject();
@@ -57,6 +74,7 @@ export class AchievementsComponent implements OnInit {
 		this.achievements = achievementsList.map((a) => ({
 			...a,
 			...progress.find((p) => p.id === a.id),
+			display: true,
 		}));
 		this.sortAchievements();
 
@@ -85,9 +103,7 @@ export class AchievementsComponent implements OnInit {
 				}));
 			const progressString = JSON.stringify(progress);
 			localStorage.setItem(AchievementKeys.progress, progressString);
-			this.updateProgressState();
 		});
-		this.updateProgressState();
 	}
 
 	ngOnDestroy(): void {
@@ -164,6 +180,30 @@ export class AchievementsComponent implements OnInit {
 	}
 
 	/**
+	 * Updates the list of currently displayed achievements based on the search input and filter criteria
+	 */
+	updateDisplayedAchievements() {
+		// Apply search/filter
+		const allowedCompletions =
+			this.displayedCompletions === 'completed'
+				? [true]
+				: this.displayedCompletions === 'uncompleted'
+				? [false]
+				: [true, false];
+		const lowerSearch = this.searchInput.toLowerCase();
+		this.achievements.forEach(
+			(a) =>
+				(a.display = !!(
+					allowedCompletions.includes(!!a.completedAt) &&
+					(a.name.toLowerCase().includes(lowerSearch) ||
+						a.description.toLowerCase().includes(lowerSearch) ||
+						a.subTasks?.some((t) => t.name.toLowerCase().includes(lowerSearch)))
+				))
+		);
+		this.updateStateVars();
+	}
+
+	/**
 	 * Opens the welcome dialog which explains how to use the app
 	 */
 	openWelcomeDialog(): void {
@@ -194,15 +234,17 @@ export class AchievementsComponent implements OnInit {
 	 * Sort achievements by completion date
 	 */
 	private sortAchievements() {
+		this.updateDisplayedAchievements();
 		this.achievements.sort(byCompletionDateThenById);
 	}
 
 	/**
 	 * Update state variables following change to achievement progress
-	 * and conditionally display
 	 */
-	private updateProgressState() {
+	private updateStateVars() {
 		this.numAchievementsCompleted = this.achievements.filter((a) => a.completedAt).length;
+		this.numAchievementsDisplayed = this.achievements.filter((a) => a.display).length;
+		this.numCompletedDisplayed = this.achievements.filter((a) => a.display && a.completedAt).length;
 		// TODO: Display congratulations when 100% completed
 	}
 
