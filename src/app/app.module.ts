@@ -39,6 +39,7 @@ import { AchievementsComponent } from './components/achievements/achievements.co
 import { AchievementsWelcomeDialogComponent } from './components/achievements-welcome-dialog/achievements-welcome-dialog.component';
 import { AchievementCardComponent } from './components/achievement-card/achievement-card.component';
 import { RecentlyCompletedAchievementComponent } from './components/recently-completed-achievement/recently-completed-achievement.component';
+import { AchievementsCompletedDialog } from './components/achievements-completed-dialog/achievements-completed-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -51,6 +52,7 @@ import { RecentlyCompletedAchievementComponent } from './components/recently-com
 		AchievementsWelcomeDialogComponent,
 		AchievementCardComponent,
 		RecentlyCompletedAchievementComponent,
+		AchievementsCompletedDialog,
 	],
 	imports: [
 		AppRoutingModule,

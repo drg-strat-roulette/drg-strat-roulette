@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { debounceTime, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { AchievementKeys } from 'src/app/models/local-storage.interface';
 import { HeaderControlsService } from 'src/app/services/header-controls.service';
 import { AchievementsWelcomeDialogComponent } from '../achievements-welcome-dialog/achievements-welcome-dialog.component';
@@ -12,6 +12,7 @@ import { achievementsList } from 'src/app/data/achievements.const';
 import { clamp } from 'lodash-es';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { byCompletionDateThenById } from 'src/app/utilities/sorters.utils';
+import { AchievementsCompletedDialog } from '../achievements-completed-dialog/achievements-completed-dialog.component';
 
 @Component({
 	selector: 'app-achievements',
@@ -55,7 +56,6 @@ export class AchievementsComponent implements OnInit {
 	/** Achievement search input */
 	searchInput: string = '';
 
-	private saveProgressSubject: Subject<void> = new Subject();
 	private destroy: Subject<void> = new Subject();
 
 	constructor(
@@ -94,20 +94,6 @@ export class AchievementsComponent implements OnInit {
 
 		// Prevent animations from being applied to the initial list of achievements
 		setTimeout(() => (this.disableAnimations = false), 0);
-
-		// By debouncing the input, we can force multiple save requests performed in a single synchronous context to only be processed once
-		this.saveProgressSubject.pipe(takeUntil(this.destroy), debounceTime(0)).subscribe(() => {
-			const progress: AchievementProgress[] = this.achievements
-				.filter((a) => a.completedAt || a.count || a.subTasksCompleted)
-				.map((a) => ({
-					id: a.id,
-					completedAt: a.completedAt,
-					count: a.count,
-					subTasksCompleted: a.subTasksCompleted,
-				}));
-			const progressString = JSON.stringify(progress);
-			localStorage.setItem(AchievementKeys.progress, progressString);
-		});
 
 		// Register development functions
 		(window as any).unlockAll = (s: string) => {
@@ -175,7 +161,7 @@ export class AchievementsComponent implements OnInit {
 			}
 		}
 		this.sortAchievements();
-		this.saveProgressSubject.next();
+		this.saveProgress();
 	}
 
 	/**
@@ -201,7 +187,7 @@ export class AchievementsComponent implements OnInit {
 			// Mark subTask uncompleted
 			achievement?.subTasksCompleted?.splice(achievement?.subTasksCompleted?.indexOf(subTaskId), 1);
 		}
-		this.saveProgressSubject.next();
+		this.saveProgress();
 	}
 
 	/**
@@ -216,7 +202,7 @@ export class AchievementsComponent implements OnInit {
 			// Mark achievement completed
 			this.toggleComplete(achievement);
 		}
-		this.saveProgressSubject.next();
+		this.saveProgress();
 	}
 
 	/**
@@ -271,6 +257,39 @@ export class AchievementsComponent implements OnInit {
 	}
 
 	/**
+	 * Save achievement progress to localStorage
+	 */
+	private saveProgress() {
+		const progress: AchievementProgress[] = this.achievements
+			.filter((a) => a.completedAt || a.count || a.subTasksCompleted)
+			.map((a) => ({
+				id: a.id,
+				completedAt: a.completedAt,
+				count: a.count,
+				subTasksCompleted: a.subTasksCompleted,
+			}));
+		const progressString = JSON.stringify(progress);
+		localStorage.setItem(AchievementKeys.progress, progressString);
+
+		// If all achievements are completed for the first time, display a congratulations
+		if (
+			this.numAchievementsCompleted === this.achievements.length &&
+			!(localStorage.getItem(AchievementKeys.completedAll) === 'true')
+		) {
+			// Don't show again
+			localStorage.setItem(AchievementKeys.completedAll, 'true');
+
+			// Play "Yeah! Rock and Stone!" audio clip
+			const audio = new Audio(`assets/audio/yeah-rock-and-stone.ogg`);
+			audio.load();
+			audio.play();
+
+			// Open congratulatory dialog
+			this.dialog.open(AchievementsCompletedDialog);
+		}
+	}
+
+	/**
 	 * Sort achievements by completion date
 	 */
 	private sortAchievements() {
@@ -285,11 +304,6 @@ export class AchievementsComponent implements OnInit {
 		this.numAchievementsCompleted = this.achievements.filter((a) => a.completedAt).length;
 		this.numAchievementsDisplayed = this.achievements.filter((a) => a.display).length;
 		this.numCompletedDisplayed = this.achievements.filter((a) => a.display && a.completedAt).length;
-
-		// Check if all achievements have been completed
-		if (this.numAchievementsCompleted === this.achievements.length) {
-			// TODO: Something
-		}
 	}
 
 	/**

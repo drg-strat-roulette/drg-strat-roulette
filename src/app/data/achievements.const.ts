@@ -1910,12 +1910,12 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 317,
-		name: 'Triple Threat',
+		name: 'Oh Baby',
 		description: 'Progress all three of your season challenges by completing a single mission.',
 	},
 	{
 		id: 318,
-		name: 'Engineer Point Defense',
+		name: 'Triple Threat',
 		description:
 			'Complete a mission with at least three Engineers collectively equipped with Turret Whip, Turret Arc, and Turret EM Discharge.',
 	},

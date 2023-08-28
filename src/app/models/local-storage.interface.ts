@@ -8,6 +8,7 @@ export enum StratKeys {
 export enum AchievementKeys {
 	hasSeenAchievementsWelcomeDialog = 'has-seen-achievements-welcome-dialog',
 	progress = 'achievement-progress',
+	completedAll = 'completed-all-achievements',
 }
 
 export const queuedStrategiesVersion = 1;
