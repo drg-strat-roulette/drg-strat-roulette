@@ -68,9 +68,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Popup congrats for 100%
 -   [x] Visual indicator for 100%
 -   [x] Reset progress
--   [ ] Import/export progress
--   [ ] Share completion with URL
--   [ ] Share completion with dynamic image URL
+-   [x] Import/export progress
 
 ## Potential features
 
