@@ -279,8 +279,8 @@ export class AchievementsComponent implements OnInit {
 			// Don't show again
 			localStorage.setItem(AchievementKeys.completedAll, 'true');
 
-			// Play "Yeah! Rock and Stone!" audio clip
-			const audio = new Audio(`assets/audio/yeah-rock-and-stone.ogg`);
+			// Play "Congratulations, you've proved yourself an exceptional miner!" audio from management
+			const audio = new Audio(`assets/audio/congratulations.ogg`);
 			audio.load();
 			audio.play();
 
