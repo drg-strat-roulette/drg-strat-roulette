@@ -2029,5 +2029,17 @@ export const achievementsList: Achievement[] = [
 		name: 'Pallbearer',
 		description: 'Bring a mineral bag (from a dwarf who left early) to the Escape Pod.',
 	},
+	{
+		id: 338,
+		name: 'Hide and Seek',
+		description:
+			'Play a round of hide and seek in the Space Rig. (Seekers may not cheat by revealing teammate outlines)',
+	},
+	{
+		id: 339,
+		name: 'Where Is That Damn Mule!',
+		description:
+			'Between four dwarves, hold enough Morkite to complete the primary objective without anyone having deposited any.',
+	},
 	// TODO: Assign different IDs to achievements?
 ];
