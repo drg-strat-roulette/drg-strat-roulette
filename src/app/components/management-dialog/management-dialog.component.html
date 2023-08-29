@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{ data.title }}</h1>
 <div mat-dialog-content>
 	<div class="d-flex flex-wrap">
-		<img class="management-avatar" src="assets/images/mission-control.png">
+		<img class="management-avatar" src="assets/images/mission-control.png" alt="Management avatar">
 		<div class="management-dialog-text">
 			<p *ngFor="let paragraph of data.text" [innerHtml]="paragraph"></p>
 			<ng-container *ngIf="data.signedManagement">

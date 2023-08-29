@@ -44,20 +44,24 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="d-flex">
                         <!-- Achievements completion progress -->
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                {{ numAchievementsCompleted }} of {{ achievements.length }} completed ({{100 * numAchievementsCompleted / achievements.length | number : '1.0-0'}}%)
+                        <img *ngIf="numAchievementsCompleted === achievements.length" class="me-2" src="assets/icons/award.svg" height="40" width="40" alt="100% completion award">
+                        <div class="d-flex flex-column w-100">
+                            <div class="mb-1 d-flex justify-content-between">
+                                <div>
+                                    {{ numAchievementsCompleted }} of {{ achievements.length }} completed ({{100 * numAchievementsCompleted / achievements.length | number : '1.0-0'}}%)
+                                </div>
+                                <div>
+                                    ({{ numAchievementsDisplayed }} displayed)
+                                </div>
                             </div>
-                            <div>
-                                ({{ numAchievementsDisplayed }} displayed)
-                            </div>
+                            <mat-progress-bar
+                                aria-label="Achievements progress"
+                                mode="determinate"
+                                [value]="100 * numAchievementsCompleted / achievements.length">
+                            </mat-progress-bar>
                         </div>
-                        <mat-progress-bar
-                            mode="determinate"
-                            [value]="100 * numAchievementsCompleted / achievements.length">
-                        </mat-progress-bar>
                     </div>
                 </div>
             </div>
