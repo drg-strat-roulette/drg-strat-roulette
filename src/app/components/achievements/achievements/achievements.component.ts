@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject, takeUntil } from 'rxjs';
 import { AchievementKeys } from 'src/app/models/local-storage.interface';
@@ -12,6 +12,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { byCompletionDateThenById } from 'src/app/utilities/sorters.utils';
 import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
 import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-achievements',
@@ -31,6 +33,8 @@ import { ManagementDialogConfigs } from 'src/app/services/management-dialog/mana
 	],
 })
 export class AchievementsComponent implements OnInit {
+	@ViewChild('achievementsSettings') achievementSettingsDialog: TemplateRef<any> | undefined;
+
 	/** List of all achievements */
 	achievements: DisplayedAchievement[] = [];
 
@@ -55,6 +59,9 @@ export class AchievementsComponent implements OnInit {
 	/** Achievement search input */
 	searchInput: string = '';
 
+	/** Enables confirming user wants to reset achievement progress */
+	resetConfirmed = false;
+
 	private destroy: Subject<void> = new Subject();
 
 	constructor(
@@ -62,7 +69,9 @@ export class AchievementsComponent implements OnInit {
 		private managementDialogService: ManagementDialogService,
 		private snackbar: MatSnackBar,
 		private clipboard: Clipboard,
-		private changeDetectorRef: ChangeDetectorRef
+		private changeDetectorRef: ChangeDetectorRef,
+		private dialog: MatDialog,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {
@@ -88,8 +97,12 @@ export class AchievementsComponent implements OnInit {
 		this.headerControlsService.shareButtonPressed$
 			.pipe(takeUntil(this.destroy))
 			.subscribe(() => this.copyShareText());
-		this.headerControlsService.settingsButtonPressed$.pipe(takeUntil(this.destroy));
-		// .subscribe(() => (this.settingsMenuCollapsed = !this.settingsMenuCollapsed)); // TODO: Settings
+		this.headerControlsService.settingsButtonPressed$.pipe(takeUntil(this.destroy)).subscribe(() => {
+			// Open settings dialog
+			if (this.achievementSettingsDialog) {
+				this.dialog.open(this.achievementSettingsDialog);
+			}
+		});
 
 		// Prevent animations from being applied to the initial list of achievements
 		setTimeout(() => (this.disableAnimations = false), 0);
@@ -253,6 +266,30 @@ export class AchievementsComponent implements OnInit {
 				prefixIcon: 'assignment',
 			} as SnackbarConfig,
 		});
+	}
+
+	/**
+	 * Clears all cached data associated with achievements and reloads the page.
+	 * If user has not confirmed reset (by clicking twice), display alert prompting to click again
+	 */
+	resetProgress() {
+		if (this.resetConfirmed) {
+			for (let key of Object.values(AchievementKeys)) {
+				localStorage.removeItem(key);
+			}
+			this.router.navigate([]);
+			setTimeout(() => location.reload());
+		} else {
+			this.snackbar.openFromComponent(SnackbarWithIconComponent, {
+				duration: 10_000,
+				data: {
+					text: 'Click again to confirm progress reset.',
+					prefixIcon: 'information',
+				} as SnackbarConfig,
+			});
+			this.resetConfirmed = true;
+			setTimeout(() => (this.resetConfirmed = true), 10_000);
+		}
 	}
 
 	/**

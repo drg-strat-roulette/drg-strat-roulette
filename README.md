@@ -67,7 +67,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Ability to undo achievement completion with popup for 10 seconds
 -   [x] Popup congrats for 100%
 -   [x] Visual indicator for 100%
--   [ ] Reset progress
+-   [x] Reset progress
 -   [ ] Import/export progress
 -   [ ] Share completion with URL
 -   [ ] Share completion with dynamic image URL
