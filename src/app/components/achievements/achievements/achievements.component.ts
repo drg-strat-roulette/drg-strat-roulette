@@ -1,10 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject, takeUntil } from 'rxjs';
 import { AchievementKeys } from 'src/app/models/local-storage.interface';
-import { HeaderControlsService } from 'src/app/services/header-controls.service';
-import { AchievementsWelcomeDialogComponent } from '../../dialogs/achievements-welcome-dialog/achievements-welcome-dialog.component';
+import { HeaderControlsService } from 'src/app/services/header-controls/header-controls.service';
 import { SnackbarConfig, SnackbarWithIconComponent } from '../../snackbar-with-icon/snackbar-with-icon.component';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { AchievementProgress, DisplayedAchievement } from 'src/app/models/achievement.model';
@@ -12,7 +10,8 @@ import { achievementsList } from 'src/app/data/achievements.const';
 import { clamp } from 'lodash-es';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { byCompletionDateThenById } from 'src/app/utilities/sorters.utils';
-import { AchievementsCompletedDialog } from '../../dialogs/achievements-completed-dialog/achievements-completed-dialog.component';
+import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
+import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
 
 @Component({
 	selector: 'app-achievements',
@@ -60,7 +59,7 @@ export class AchievementsComponent implements OnInit {
 
 	constructor(
 		private headerControlsService: HeaderControlsService,
-		private dialog: MatDialog,
+		private managementDialogService: ManagementDialogService,
 		private snackbar: MatSnackBar,
 		private clipboard: Clipboard,
 		private changeDetectorRef: ChangeDetectorRef
@@ -233,7 +232,7 @@ export class AchievementsComponent implements OnInit {
 	 * Opens the welcome dialog which explains how to use the app
 	 */
 	openWelcomeDialog(): void {
-		const welcomeDialog = this.dialog.open(AchievementsWelcomeDialogComponent);
+		const welcomeDialog = this.managementDialogService.open(ManagementDialogConfigs.welcomeAchievements);
 		welcomeDialog
 			.afterClosed()
 			.subscribe(() => localStorage.setItem(AchievementKeys.hasSeenAchievementsWelcomeDialog, 'true'));
@@ -284,8 +283,8 @@ export class AchievementsComponent implements OnInit {
 			audio.load();
 			audio.play();
 
-			// Open congratulatory dialog
-			this.dialog.open(AchievementsCompletedDialog);
+			// Open achievements completed dialog
+			this.managementDialogService.open(ManagementDialogConfigs.achievementsCompleted);
 		}
 	}
 

@@ -1,10 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { backgroundImages } from './data/backgrounds.const';
-import { MatDialog } from '@angular/material/dialog';
-import { FeedbackDialogComponent } from './components/dialogs/feedback-dialog/feedback-dialog.component';
 import { filter } from 'rxjs';
-import { HeaderControlsService } from './services/header-controls.service';
+import { HeaderControlsService } from './services/header-controls/header-controls.service';
+import { ManagementDialogService } from './services/management-dialog/management-dialog.service';
+import { ManagementDialogConfigs } from './services/management-dialog/management-dialog.const';
 
 @Component({
 	selector: 'app-root',
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
 
 	constructor(
 		private router: Router,
-		private dialog: MatDialog,
+		private managementDialogService: ManagementDialogService,
 		public headerControlsService: HeaderControlsService
 	) {}
 
@@ -67,6 +67,6 @@ export class AppComponent implements OnInit {
 	 * Opens the feedback dialog
 	 */
 	openFeedbackDialog(): void {
-		this.dialog.open(FeedbackDialogComponent);
+		this.managementDialogService.open(ManagementDialogConfigs.feedback);
 	}
 }

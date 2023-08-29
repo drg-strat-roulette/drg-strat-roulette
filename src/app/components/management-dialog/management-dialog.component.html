@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+	<div class="d-flex flex-wrap">
+		<img class="management-avatar" src="assets/images/mission-control.png">
+		<div class="management-dialog-text">
+			<p *ngFor="let paragraph of data.text" [innerHtml]="paragraph"></p>
+			<ng-container *ngIf="data.signedManagement">
+				<br>
+				<p>
+					- Management
+				</p>
+			</ng-container>
+		</div>
+	</div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+	<button mat-button cdkFocusInitial mat-dialog-close="">{{ data.buttonText }}</button>
+</div>

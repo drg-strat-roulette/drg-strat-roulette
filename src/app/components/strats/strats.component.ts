@@ -21,11 +21,11 @@ import {
 	SnackbarWithIconComponent,
 } from '../../components/snackbar-with-icon/snackbar-with-icon.component';
 import { MatDrawer } from '@angular/material/sidenav';
-import { MatDialog } from '@angular/material/dialog';
-import { WelcomeDialogComponent } from '../dialogs/welcome-dialog/welcome-dialog.component';
 import { sampleWithWeights } from '../../utilities/general-functions.utils';
-import { HeaderControlsService } from 'src/app/services/header-controls.service';
+import { HeaderControlsService } from 'src/app/services/header-controls/header-controls.service';
 import { Subject, takeUntil } from 'rxjs';
+import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
+import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
 
 const RECENT_STRAT_MAX_COUNT = 10;
 
@@ -99,7 +99,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 		private router: Router,
 		private clipboard: Clipboard,
 		private snackbar: MatSnackBar,
-		private dialog: MatDialog,
+		private managementDialogService: ManagementDialogService,
 		private headerControlsService: HeaderControlsService
 	) {}
 
@@ -466,7 +466,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 	 * Opens the welcome dialog which explains how to use the app
 	 */
 	openWelcomeDialog(): void {
-		const welcomeDialog = this.dialog.open(WelcomeDialogComponent);
+		const welcomeDialog = this.managementDialogService.open(ManagementDialogConfigs.welcomeStrats);
 		welcomeDialog.afterClosed().subscribe(() => localStorage.setItem(StratKeys.hasSeenWelcomeDialog, 'true'));
 	}
 

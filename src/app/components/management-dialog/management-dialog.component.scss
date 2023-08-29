@@ -1,8 +1,10 @@
-.dialog-text {
+.management-dialog-text {
     max-width: 900px;
 }
 
-img {
+.management-avatar {
     -webkit-filter: drop-shadow(5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);
+	height: 200px;
+	width: 200px;
 }
