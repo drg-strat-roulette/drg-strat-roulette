@@ -31,15 +31,15 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 // Custom components
 import { AppComponent } from './app.component';
-import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
+import { FeedbackDialogComponent } from './components/dialogs/feedback-dialog/feedback-dialog.component';
 import { SnackbarWithIconComponent } from './components/snackbar-with-icon/snackbar-with-icon.component';
-import { WelcomeDialogComponent } from './components/welcome-dialog/welcome-dialog.component';
+import { WelcomeDialogComponent } from './components/dialogs/welcome-dialog/welcome-dialog.component';
 import { StratsComponent } from './components/strats/strats.component';
 import { AchievementsComponent } from './components/achievements/achievements.component';
-import { AchievementsWelcomeDialogComponent } from './components/achievements-welcome-dialog/achievements-welcome-dialog.component';
-import { AchievementCardComponent } from './components/achievement-card/achievement-card.component';
-import { RecentlyCompletedAchievementComponent } from './components/recently-completed-achievement/recently-completed-achievement.component';
-import { AchievementsCompletedDialog } from './components/achievements-completed-dialog/achievements-completed-dialog.component';
+import { AchievementsWelcomeDialogComponent } from './components/dialogs/achievements-welcome-dialog/achievements-welcome-dialog.component';
+import { AchievementCardComponent } from './components/achievements/achievement-card/achievement-card.component';
+import { RecentlyCompletedAchievementComponent } from './components/achievements/recently-completed-achievement/recently-completed-achievement.component';
+import { AchievementsCompletedDialog } from './components/dialogs/achievements-completed-dialog/achievements-completed-dialog.component';
 
 @NgModule({
 	declarations: [

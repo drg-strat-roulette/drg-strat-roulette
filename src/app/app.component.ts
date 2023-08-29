@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { backgroundImages } from './data/backgrounds.const';
 import { MatDialog } from '@angular/material/dialog';
-import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
+import { FeedbackDialogComponent } from './components/dialogs/feedback-dialog/feedback-dialog.component';
 import { filter } from 'rxjs';
 import { HeaderControlsService } from './services/header-controls.service';
 

@@ -22,7 +22,7 @@ import {
 } from '../../components/snackbar-with-icon/snackbar-with-icon.component';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
-import { WelcomeDialogComponent } from '../../components/welcome-dialog/welcome-dialog.component';
+import { WelcomeDialogComponent } from '../dialogs/welcome-dialog/welcome-dialog.component';
 import { sampleWithWeights } from '../../utilities/general-functions.utils';
 import { HeaderControlsService } from 'src/app/services/header-controls.service';
 import { Subject, takeUntil } from 'rxjs';
