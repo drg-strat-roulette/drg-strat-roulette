@@ -940,7 +940,8 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 156,
 		name: 'Heavy Hitter',
-		description: 'Deal 2000 damage in one hit.',
+		description:
+			'Deal 1000 damage in one hit. (Hyper Propellant / Ice Spear / Volatile Bullets (flaming enemy) to a weak point or Hyper Propellant / Ice Spear to a frozen enemy)',
 	},
 	{
 		id: 157,
@@ -1269,7 +1270,8 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 206,
 		name: 'The Avatar',
-		description: 'Apply every type of effect with the Nishanka Boltshark X-80.',
+		description:
+			'Apply every type of effect with the Nishanka Boltshark X-80. (Cryo, Electric, Explosive, Fire, Pheromone)',
 	},
 	{
 		id: 207,
@@ -1332,7 +1334,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 218,
 		name: 'Immersive Experience',
-		description: 'Complete a mission with HUD disabled.',
+		description: 'Complete a mission with HUD disabled. (Press and hold "H" to disable)',
 	},
 	{
 		id: 219,
@@ -1971,6 +1973,61 @@ export const achievementsList: Achievement[] = [
 		name: "You've Been Warned",
 		description: 'Complete a mission with a Warning Hazard Bonus of greater than +50%.',
 	},
-	// TODO: Remove milestone achievements?
+	{
+		id: 327,
+		name: 'Piggyback Ride',
+		description: 'Bounce 10 times in a row on a teammates head without touching the ground.',
+	},
+	{
+		id: 328,
+		name: 'Tightrope Walker',
+		description: 'Travel 20m by bouncing on a teammates head as they ride a zipline.',
+	},
+	{
+		id: 329,
+		name: 'Maybe I Can Do a 360',
+		description:
+			'Jump off of a refinery pipe and do a 360 degree rotation before landing on another pipe. (All without stopping)',
+	},
+	{
+		id: 330,
+		name: 'Spear Fishing',
+		description: 'Use Ice Spear (Cryo Cannon) on a Nayaka Trawler.',
+	},
+	{
+		id: 331,
+		name: 'Arsonist',
+		description: 'Ignite an entire charge shot of the Corrosive Sludge Pump through fire spread from one puddle.',
+	},
+	{
+		id: 332,
+		name: 'Sorry to Burst Your Bubble',
+		description: "Pop another dwarf's EPC Charge Shot with Thin Containment Field.",
+	},
+	{
+		id: 333,
+		name: 'Hop, Skip, and a Jump',
+		description: 'Use RJ250 Compound (Deepcore PGL) to jump a 20m gap.',
+	},
+	{
+		id: 334,
+		name: 'Deadshot',
+		description: 'Get 14 kills with a single clip of the M1000.',
+	},
+	{
+		id: 335,
+		name: 'Babysitter',
+		description: 'Complete a mission with a full team in which you are the only one with any kills.',
+	},
+	{
+		id: 336,
+		name: 'Sinkhole',
+		description: 'Destroy a Rival Burst Turret by breaking the ground underneath it.',
+	},
+	{
+		id: 337,
+		name: 'Pallbearer',
+		description: 'Bring a mineral bag (from a dwarf who left early) to the Escape Pod.',
+	},
 	// TODO: Assign different IDs to achievements?
 ];
