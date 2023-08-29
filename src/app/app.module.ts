@@ -35,7 +35,7 @@ import { FeedbackDialogComponent } from './components/dialogs/feedback-dialog/fe
 import { SnackbarWithIconComponent } from './components/snackbar-with-icon/snackbar-with-icon.component';
 import { WelcomeDialogComponent } from './components/dialogs/welcome-dialog/welcome-dialog.component';
 import { StratsComponent } from './components/strats/strats.component';
-import { AchievementsComponent } from './components/achievements/achievements.component';
+import { AchievementsComponent } from './components/achievements/achievements/achievements.component';
 import { AchievementsWelcomeDialogComponent } from './components/dialogs/achievements-welcome-dialog/achievements-welcome-dialog.component';
 import { AchievementCardComponent } from './components/achievements/achievement-card/achievement-card.component';
 import { RecentlyCompletedAchievementComponent } from './components/achievements/recently-completed-achievement/recently-completed-achievement.component';

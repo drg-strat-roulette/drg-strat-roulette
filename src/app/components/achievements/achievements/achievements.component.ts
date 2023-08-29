@@ -4,15 +4,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject, takeUntil } from 'rxjs';
 import { AchievementKeys } from 'src/app/models/local-storage.interface';
 import { HeaderControlsService } from 'src/app/services/header-controls.service';
-import { AchievementsWelcomeDialogComponent } from '../dialogs/achievements-welcome-dialog/achievements-welcome-dialog.component';
-import { SnackbarConfig, SnackbarWithIconComponent } from '../snackbar-with-icon/snackbar-with-icon.component';
+import { AchievementsWelcomeDialogComponent } from '../../dialogs/achievements-welcome-dialog/achievements-welcome-dialog.component';
+import { SnackbarConfig, SnackbarWithIconComponent } from '../../snackbar-with-icon/snackbar-with-icon.component';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { AchievementProgress, DisplayedAchievement } from 'src/app/models/achievement.model';
 import { achievementsList } from 'src/app/data/achievements.const';
 import { clamp } from 'lodash-es';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { byCompletionDateThenById } from 'src/app/utilities/sorters.utils';
-import { AchievementsCompletedDialog } from '../dialogs/achievements-completed-dialog/achievements-completed-dialog.component';
+import { AchievementsCompletedDialog } from '../../dialogs/achievements-completed-dialog/achievements-completed-dialog.component';
 
 @Component({
 	selector: 'app-achievements',
