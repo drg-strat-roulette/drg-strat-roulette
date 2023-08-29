@@ -81,14 +81,8 @@ export class AchievementsComponent implements OnInit {
 			this.openWelcomeDialog();
 		}
 
-		// Load and merge achievements and completion statuses
-		const progress: AchievementProgress[] = JSON.parse(localStorage.getItem(AchievementKeys.progress) ?? '[]');
-		this.achievements = achievementsList.map((a) => ({
-			...a,
-			...progress.find((p) => p.id === a.id),
-			display: true,
-		}));
-		this.sortAchievements();
+		// Load achievement progress from localStorage
+		this.loadProgress(localStorage.getItem(AchievementKeys.progress), 'load');
 
 		// Subscribe to events from header control button presses
 		this.headerControlsService.infoButtonPressed$
@@ -124,6 +118,50 @@ export class AchievementsComponent implements OnInit {
 	ngOnDestroy(): void {
 		this.destroy.next();
 		this.destroy.complete();
+	}
+
+	/**
+	 * Loads achievement progress from JSON string and merges progress with static achievements list
+	 * @param p - Achievement progress, as a JSON string
+	 * @param reason - Reason for initiating this progress load
+	 */
+	loadProgress(p: string | undefined | null, reason: 'load' | 'import') {
+		try {
+			// Parse and load progress
+			const progress: AchievementProgress[] = JSON.parse(p ?? '[]');
+			this.achievements = achievementsList.map((a) => ({
+				...a,
+				...progress.find((p) => p.id === a.id),
+				display: true,
+			}));
+			this.sortAchievements();
+
+			// Display alert indicating successful import
+			if (reason === 'import') {
+				this.snackbar.openFromComponent(SnackbarWithIconComponent, {
+					duration: 5000,
+					data: {
+						text: 'Successfully imported progress.',
+						prefixIcon: 'check_circle',
+					} as SnackbarConfig,
+				});
+			}
+		} catch {
+			// Display alert indicating unsuccessful load/import
+			this.snackbar.openFromComponent(SnackbarWithIconComponent, {
+				duration: 10_000,
+				data: {
+					text: `Failed to ${reason} progress. ${reason === 'load' ? 'Resetting data to fix issue.' : ''}`,
+					prefixIcon: 'error',
+				} as SnackbarConfig,
+			});
+
+			// If we failed on a load, the stored data is corrupted and we must remove it
+			if (reason === 'load') {
+				this.loadProgress(null, 'load');
+				localStorage.setItem(AchievementKeys.progress, '[]');
+			}
+		}
 	}
 
 	/**
@@ -290,6 +328,33 @@ export class AchievementsComponent implements OnInit {
 			this.resetConfirmed = true;
 			setTimeout(() => (this.resetConfirmed = true), 10_000);
 		}
+	}
+
+	/**
+	 * Import achievement progress from an uploaded file
+	 */
+	importProgress(e: any) {
+		const file: File = e.target.files[0];
+		let fileReader = new FileReader();
+		fileReader.onload = () => {
+			const fileContents = fileReader.result?.toString();
+			this.loadProgress(fileContents, 'import');
+		};
+		fileReader.readAsText(file);
+	}
+
+	/**
+	 * Export achievement progress to a downloaded file
+	 */
+	exportProgress() {
+		const progress = localStorage.getItem(AchievementKeys.progress) ?? '[]';
+		var element = document.createElement('a');
+		element.setAttribute('href', 'data:text/json;charset=UTF-8,' + encodeURIComponent(progress));
+		element.setAttribute('download', `${new Date().toISOString()}.drg-sr-achievements`);
+		element.style.display = 'none';
+		document.body.appendChild(element);
+		element.click();
+		document.body.removeChild(element);
 	}
 
 	/**
