@@ -81,6 +81,8 @@ Some strategies have specific mission or team requirements, but otherwise there 
     -   [ ] Tell you which strats are "new" in general
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
     -   [ ] Prevent multiple strategies that conflict with one another
+-   [ ] Share achievement completion with URL
+-   [ ] Share achievement completion with dynamic image URL
 -   [ ] (BE) Like/dislike strategies to globally tweak their weightings
 -   [ ] (BE) Provide feedback to increase/decrease a strategy's listed difficulty
     -   [ ] Select difficulty range for generated strategies
