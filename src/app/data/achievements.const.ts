@@ -780,6 +780,7 @@ export const achievementsList: Achievement[] = [
 		id: 129,
 		name: "I Just Think They're Neat",
 		description: 'Complete all achievements requiring bringing items into the Escape Pod.',
+		// TODO: Move and collect sub-achievements
 	},
 	{
 		id: 130,
@@ -1694,7 +1695,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 276,
 		name: "I'm Gonna Build My Own Mini MULE",
-		description: 'Bring a Mini MULE Leg home with you.',
+		description: 'Bring three Mini MULE legs into the Escape Pod.',
 	},
 	{
 		id: 277,
@@ -2027,7 +2028,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 337,
 		name: 'Pallbearer',
-		description: 'Bring a mineral bag (from a dwarf who left early) to the Escape Pod.',
+		description: 'Bring a mineral bag (from a dwarf who left early) into the Escape Pod.',
 	},
 	{
 		id: 338,
@@ -2040,6 +2041,17 @@ export const achievementsList: Achievement[] = [
 		name: 'Where Is That Damn Mule!',
 		description:
 			'Between four dwarves, hold enough Morkite to complete the primary objective without anyone having deposited any.',
+	},
+	{
+		id: 340,
+		name: 'Stand Your Ground',
+		description: 'Get 30 kills in a row while stationary.',
+	},
+	{
+		id: 341,
+		name: 'Tritical Weakness',
+		description: 'Kill 10 enemies with Nanite Bombs.',
+		countNeeded: 10,
 	},
 	// TODO: Assign different IDs to achievements?
 ];
