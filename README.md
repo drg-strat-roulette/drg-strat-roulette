@@ -1,7 +1,5 @@
 # DRG Strat Roulette
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
-
 ## How to play
 
 Welcome to DRG Strat Roulette! Before getting started, it's recommended to visit the settings to configure which kinds of strategies to exclude, whether you want strategies that are compatible with a specific mission, as well as your team and the classes they're willing to play as. Once thats's done, you're ready to click "Roll a strategy". A strategy compatible with your provided settings will be chosen at random and displayed every time you roll a new strategy. Your team's job is to successfully complete a mission while following the chosen strategy. The chosen strategy can be shared with your team by sharing the URL, using the copy to clipboard functionality, or by reading the details aloud.
