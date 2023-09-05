@@ -172,7 +172,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 31,
 		name: 'Glyphid Slammer',
-		description: 'Get a pickaxe kill on all Glyphid bugs. (Excluding Dreadnoughts and Detonators)',
+		description: 'Get a pickaxe kill on all Glyphids. (Excluding Dreadnoughts and Detonators)',
 		link: { text: 'Glyphids', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Glyphid' },
 		subTasks: [
 			{ id: 0, name: 'Glyphid Spawn' },
@@ -218,7 +218,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 35,
 		name: 'Naedocide',
-		description: 'Get a pickaxe kill on all Naedocytes in the game.',
+		description: 'Get a pickaxe kill on all Naedocytes.',
 		link: { text: 'Naedocytes', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Naedocyte' },
 		subTasks: [
 			{ id: 0, name: 'Naedocyte Shocker' },
@@ -230,7 +230,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 36,
 		name: "You Can't Run and You Can't Hide",
-		description: 'Get a pickaxe kill on all Stationary Threats in the game.',
+		description: 'Get a pickaxe kill on all Stationary Threats.',
 		link: {
 			text: 'Stationary Threats',
 			url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures',
@@ -252,7 +252,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 38,
 		name: 'I Hate Everything Ball-Shaped!',
-		description: "Get a pickaxe kill on all Q'ronars in the game.",
+		description: "Get a pickaxe kill on all Q'ronars.",
 		link: { text: "Q'ronar", url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Q%E2%80%99ronar' },
 		subTasks: [
 			{ id: 0, name: "Q'ronar Youngling" },
@@ -719,7 +719,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 117,
 		name: 'Let the Onslaught Begin',
-		description: 'Complete a Point Extraction mission which lasts longer than 30 minutes.',
+		description: 'Complete a Point Extraction mission which lasts longer than 45 minutes.',
 	},
 	{
 		id: 118,
@@ -1046,7 +1046,8 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 174,
 		name: 'Modular Extermination',
-		description: 'Destroy an OMEN Modular Exterminator one segment at a time.',
+		description:
+			'Destroy an OMEN Modular Exterminator by only damaging one segment at a time working top to bottom.',
 	},
 	{
 		id: 175,
@@ -2002,7 +2003,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 332,
-		name: 'Sorry to Burst Your Bubble',
+		name: 'Hate to Burst Your Bubble',
 		description: "Pop another dwarf's EPC Charge Shot with Thin Containment Field.",
 	},
 	{
@@ -2053,5 +2054,60 @@ export const achievementsList: Achievement[] = [
 		description: 'Kill 10 enemies with Nanite Bombs.',
 		countNeeded: 10,
 	},
-	// TODO: Assign different IDs to achievements?
+	{
+		id: 342,
+		name: 'Paratrooper',
+		description:
+			'Leave the Space Rig through the launch tube force field without being in the Drop Pod when it deploys.',
+	},
+	{
+		id: 343,
+		name: 'Package Deal',
+		description: 'Have a single Stingtail grab both you and a teammate at the same time.',
+	},
+	{
+		id: 344,
+		name: 'Keeping It Cool',
+		description: 'Complete an Industrial Sabotage mission without lighting any robots on fire.',
+	},
+	{
+		id: 345,
+		name: 'Diesection',
+		description: 'Get a pickaxe kill on all Rockpox enemies.',
+		link: { text: 'Rockpox Enemies', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Lithophage' },
+		subTasks: [
+			{ id: 0, name: 'Rockpox Larvae' },
+			{ id: 1, name: 'Rockpox Exploder' },
+			{ id: 2, name: 'Rockpox Grunt' },
+			{ id: 3, name: 'Rockpox Spitter' },
+			{ id: 4, name: 'Rockpox Praetorian' },
+			{ id: 5, name: 'Rockpox Goo Bomber' },
+			{ id: 6, name: 'Rockpox Naedocyte Breeder' },
+		],
+	},
+	{
+		id: 346,
+		name: 'Hack Away, Hack-C Bot!',
+		description: 'Complete an Industrial Sabotage mission without needing to reboot Hack-C.',
+	},
+	{
+		id: 347,
+		name: 'Scrap Collecting',
+		description:
+			'Call in a Resupply Pod without anyone having destroyed a Nitra vein. (Repairing Mini-MULEs rewards Nitra)',
+	},
+	{
+		id: 348,
+		name: 'Exploder Invitation',
+		description: 'Complete an Exploder Infestation mission without dealing any direct damage to the Exploders.',
+	},
+	{
+		id: 349,
+		name: 'Controlled Demolition',
+		description:
+			'Successfully destroy a Tritilyte Shard using only one explosion. (By detonating a pile of Nanite Bombs)',
+	},
+	// TODO: Assign UUIDs to achievements?
+	// Achievement for all other melee achievements?
+	// Remove the 4 "do every other achievement" achievements?
 ];
