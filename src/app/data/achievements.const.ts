@@ -5,7 +5,7 @@ export const achievementsList: Achievement[] = [
 		id: '98d46acb-618d-47f4-8d8f-f1d3162485fc',
 		name: 'The Real A-Team',
 		description: 'Put an Aquarq in every seat of the Escape Pod.',
-		// TODO: Possible?
+		// TODO: Confirm this is possible
 	},
 	{
 		id: 'd6fad610-b7b5-422a-a8ad-849b8693465d',
@@ -153,7 +153,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '4f222615-2688-49dc-841c-39a98b0a7f69',
 		name: 'Overclocked',
-		description: 'Unlock all weapon overclocks.',
+		description: 'Unlock all weapon Overclocks.',
 	},
 	{
 		id: 'a94e5f48-035c-40c7-b3ca-b7cab5aace83',
@@ -168,7 +168,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '28f4b7bb-fba5-47c8-b469-f6188bd6c66c',
 		name: 'Glyphid Slammer',
-		description: 'Get a pickaxe kill on all Glyphids. (Excluding Dreadnoughts and Detonators)',
+		description: 'Get a Pickaxe kill on all Glyphids. (Excluding Dreadnoughts and Detonators)',
 		link: { text: 'Glyphids', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Glyphid' },
 		subTasks: [
 			{ id: 'df57205f-439b-41b4-a5b0-996a30f9f2d0', name: 'Glyphid Spawn' },
@@ -191,7 +191,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '1b8f806c-43f3-4464-ad59-d2c340c343f6',
 		name: 'Mactera Swatter',
-		description: 'Get a pickaxe kill on all Macteras.',
+		description: 'Get a Pickaxe kill on all Macteras.',
 		link: { text: 'Macteras', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Mactera' },
 		subTasks: [
 			{ id: '02db7d4e-7078-4991-9db9-ae46a48b0192', name: 'Mactera Spawn' },
@@ -204,17 +204,17 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '77a25a71-40ef-4574-952f-44f03fbeefca',
 		name: 'An Eye for an Eye',
-		description: 'Deal the final blow to a Caretaker with your pickaxe.',
+		description: 'Deal the final blow to a Caretaker with your Pickaxe.',
 	},
 	{
 		id: 'bc9506ca-b8c8-4487-837b-749e9e794d54',
 		name: 'I Think I Have a Chance to Make It Out Alive',
-		description: 'Deal the final blow to a Bulk Detonator with your pickaxe.',
+		description: 'Deal the final blow to a Bulk Detonator with your Pickaxe.',
 	},
 	{
 		id: '86ac8f54-4e73-4336-8041-fd661024b943',
 		name: 'Naedocide',
-		description: 'Get a pickaxe kill on all Naedocytes.',
+		description: 'Get a Pickaxe kill on all Naedocytes.',
 		link: { text: 'Naedocytes', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Naedocyte' },
 		subTasks: [
 			{ id: '2f5ea5c3-2680-4399-80cb-8310fa959387', name: 'Naedocyte Shocker' },
@@ -226,7 +226,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '8d08bfa6-59bf-410c-b689-37d989d63129',
 		name: "You Can't Run and You Can't Hide",
-		description: 'Get a pickaxe kill on all Stationary Threats.',
+		description: 'Get a Pickaxe kill on all Stationary Threats.',
 		link: { text: 'Stationary Threats', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures' },
 		subTasks: [
 			{ id: '9ad13044-f15e-4c81-8304-efa4ff1dea6b', name: 'Cave Leech' },
@@ -240,12 +240,12 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'af715a4f-81e1-479c-ab1c-696ddd596ba2',
 		name: 'Trawler Brawler',
-		description: 'Get a pickaxe kill on a Nayaka Trawler.',
+		description: 'Get a Pickaxe kill on a Nayaka Trawler.',
 	},
 	{
 		id: 'c7257fc9-de58-46da-b5f6-19219e73786c',
 		name: 'I Hate Everything Ball-Shaped!',
-		description: "Get a pickaxe kill on all Q'ronars.",
+		description: "Get a Pickaxe kill on all Q'ronars.",
 		link: { text: "Q'ronar", url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Q%E2%80%99ronar' },
 		subTasks: [
 			{ id: '5dcff100-74ac-41dd-87dd-7bbcf6f3f2d5', name: "Q'ronar Youngling" },
@@ -255,7 +255,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '22461048-a28a-4b13-81ed-040497f90862',
 		name: 'Regicide',
-		description: 'Deal the final blow to a Dreadnought with your pickaxe.',
+		description: 'Deal the final blow to a Dreadnought with your Pickaxe.',
 	},
 	{
 		id: 'a5a2eb3d-b935-4e00-bbc3-4b629891a5d8',
@@ -290,7 +290,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'c241ed12-5587-411a-a833-30f05a84e6f8',
 		name: 'Gunker Dunker',
-		description: 'Complete the Gunk Seed secondary objective by releasing every Gunk Seed with your pickaxe.',
+		description: 'Complete the Gunk Seed secondary objective by releasing every Gunk Seed with your Pickaxe.',
 	},
 	{
 		id: '627e0bb6-b0fd-4f0a-ac89-9ffc15d8441b',
@@ -643,7 +643,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'fd92ed8d-779c-4c61-9e7a-8e3bd6d8ea0e',
 		name: 'Rival Wrecker',
-		description: 'Get a pickaxe kill on all Rival Tech. (Excluding Prospector, Nemesis, and Caretaker)',
+		description: 'Get a Pickaxe kill on all Rival Tech. (Excluding Prospector, Nemesis, and Caretaker)',
 		link: { text: 'Rival Tech', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Rival_Tech' },
 		subTasks: [
 			{ id: '572065fa-c7c6-4463-83e4-a288d3fea1ce', name: 'Rival Shredder' },
@@ -657,7 +657,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'f3fa3501-b463-40e1-b54b-a0ffd792cb22',
 		name: 'Take Your Pick',
-		description: 'Defeat a Dreadnought using only pickaxes.',
+		description: 'Defeat a Dreadnought using only Pickaxes.',
 	},
 	{
 		id: 'c135a4e8-87d1-4c23-84d6-397f13ddb24e',
@@ -702,7 +702,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '722e0dfa-0d63-4d32-b447-fbfa3c38682e',
 		name: 'Dwarfsicle',
-		description: 'Thaw a frozen teammate by hitting them with your pickaxe.',
+		description: 'Thaw a frozen teammate by hitting them with your Pickaxe.',
 	},
 	{
 		id: '49084a31-c8c1-4538-9277-ca10ef7c886d',
@@ -850,7 +850,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '61ff2881-802d-4253-bcb0-e27c68eda9e4',
 		name: 'Assembly Line',
-		description: 'Hit a Tritilyte Deposit with a Nanite Bomb that all four players have held.',
+		description: 'Hit a Tritilyte Crystal with a Nanite Bomb that all four players have held.',
 	},
 	{
 		id: '8583030a-75e9-4fdb-82ae-9d9f707f5c40',
@@ -895,7 +895,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'd28873ee-460a-4edc-8604-4fcc1564022d',
 		name: 'Over Socked',
-		description: 'Complete all cosmetic overclocks.',
+		description: 'Complete all cosmetic Overclocks.',
 	},
 	{
 		id: '8d9494ee-ec7e-4b60-b1ef-36eefcb5db3d',
@@ -976,7 +976,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'fd0bdfe9-9217-4a5b-a59d-94f613a82b5a',
 		name: 'Berserker Rage',
-		description: 'Get 10 pickaxe kills within the effect of Berserk.',
+		description: 'Get 10 Pickaxe kills within the effect of Berserk.',
 	},
 	{
 		id: '74a5e5df-021f-4129-96bc-c18444b0a4ee',
@@ -1209,7 +1209,7 @@ export const achievementsList: Achievement[] = [
 		id: 'e1ac66a2-fa2b-4484-8f14-276b9579d81b',
 		name: 'Skyway',
 		description:
-			'By placing then destroying platforms or terrain, create a pipeline which connects the refinery to a pumpjack without touching the ground.',
+			'By placing then destroying Platforms or terrain, create a Pipeline which connects the Refinery to a Pumpjack without touching the ground.',
 	},
 	{
 		id: 'd9423285-5325-4c03-aba8-48cdd8afe001',
@@ -1243,7 +1243,7 @@ export const achievementsList: Achievement[] = [
 		id: 'a11eed19-f639-491e-9bed-3d637758b5a2',
 		name: 'The Greenbeard Experience',
 		description:
-			'Complete a Hazard 5 mission on a promoted dwarf without bringing any equipment mods or overclocks.',
+			'Complete a Hazard 5 mission on a promoted dwarf without bringing any Equipment Mods or Overclocks.',
 	},
 	{
 		id: 'c50cf80e-4962-4efe-86f3-b34fabeb1d04',
@@ -1276,7 +1276,7 @@ export const achievementsList: Achievement[] = [
 		id: '9f575ff6-4e07-4e27-b15a-42b77e1a87f2',
 		name: 'Premeditated',
 		description:
-			'Have a teammate die from fall damage while landing on your platform without the Plastcrete MK-II mod.',
+			'Have a teammate die from fall damage while landing on your Platform without the Plastcrete MK-II mod.',
 	},
 	{
 		id: 'bf4788a1-cbe9-47ff-82bd-0d4ea104f61b',
@@ -1375,7 +1375,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '79ebd988-3887-4fe4-bdff-85d492d37d8d',
 		name: 'Up Close and Personal',
-		description: 'Get 50 pickaxe kills in a single mission.',
+		description: 'Get 50 Pickaxe kills in a single mission.',
 	},
 	{
 		id: 'f2d6f071-a96f-490a-b5b6-f1ad0d2ff816',
@@ -1401,7 +1401,7 @@ export const achievementsList: Achievement[] = [
 		id: '84ff7f0e-fc9a-49c4-8924-e28aeb833c03',
 		name: "We're Gonna Need a Bigger Pick",
 		description:
-			'Swing your pickaxe at the Ommoran Heartstone while the Drilldozer is still in the container it arrived in.',
+			'Swing your Pickaxe at the Ommoran Heartstone while the Drilldozer is still in the container it arrived in.',
 	},
 	{
 		id: 'ac0b36f9-25ce-4829-83cd-0f440b67c1b3',
@@ -1792,7 +1792,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '67a0faa2-986d-4f74-98f0-857278dbd8d5',
 		name: 'Fluffy Pancake',
-		description: 'Prevent lethal fall damage by landing on a platform.',
+		description: 'Prevent lethal fall damage by landing on a Platform.',
 	},
 	{
 		id: '9727ac1d-4392-4464-87f8-d6852d7d693f',
@@ -1961,7 +1961,7 @@ export const achievementsList: Achievement[] = [
 		id: '9cdd4683-db3a-4173-a11b-440525a181c0',
 		name: 'Maybe I Can Do a 360',
 		description:
-			'Jump off of a refinery pipeline and do a 360 degree rotation before landing on another pipeline. (All without stopping)',
+			'Jump off of a Refinery Pipeline and do a 360 degree rotation before landing on another Pipeline. (All without stopping)',
 	},
 	{
 		id: '5632321a-60e1-4cf4-a61f-65838deffa57',
@@ -2045,7 +2045,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'a622220e-3c59-4888-93e1-32f7e5d3ae21',
 		name: 'Rock Your Pox Off',
-		description: 'Get a pickaxe kill on all Rockpox enemies.',
+		description: 'Get a Pickaxe kill on all Rockpox enemies.',
 		link: { text: 'Rockpox Enemies', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Lithophage' },
 		subTasks: [
 			{ id: '87ca9fc4-6152-4f27-a584-15052de06819', name: 'Rockpox Larvae' },
@@ -2077,7 +2077,7 @@ export const achievementsList: Achievement[] = [
 		id: '881c8128-a4f7-479b-908f-736c503ede4e',
 		name: 'Controlled Demolition',
 		description:
-			'Successfully destroy a Tritilyte Shard using only one explosion. (By detonating a pile of Nanite Bombs)',
+			'Successfully destroy a Tritilyte Crystal using only one explosion. (By detonating a pile of Nanite Bombs)',
 	},
 	{
 		id: '046f4da8-4939-4b24-af4d-e338434c820d',
@@ -2103,7 +2103,7 @@ export const achievementsList: Achievement[] = [
 		id: 'f8e0c6fb-3373-4046-9d6a-3ecb41ba325b',
 		name: 'Tunnel Rat',
 		description:
-			'Complete an On-site Refining mission in which all refinery pipelines are built completely in tunnels. (Except for a very short stretch at the starts and ends)',
+			'Complete an On-site Refining mission in which all Refinery Pipelines are built completely in tunnels. (Except for a very short stretch at the starts and ends)',
 	},
 	{
 		id: '9cec18bb-b815-41cc-95f8-835a98136e42',
