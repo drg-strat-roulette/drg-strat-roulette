@@ -19,6 +19,6 @@ export class AchievementCardComponent implements OnInit {
 }
 
 export interface SubTaskCompletedEvent {
-	subTaskId: number;
+	subTaskId: string;
 	completed: boolean;
 }

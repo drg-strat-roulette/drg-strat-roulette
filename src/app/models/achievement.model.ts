@@ -1,18 +1,18 @@
 export interface Achievement {
-	id: number;
+	id: string;
 	name: string;
 	description: string;
-	subTasks?: { id: number; name: string }[];
+	subTasks?: { id: string; name: string }[];
 	countNeeded?: number;
 	link?: { text: string; url: string };
 	// category?: string; // Category or subAchievements or both?
 }
 
 export interface AchievementProgress {
-	id: number;
+	id: string;
 	completedAt?: string;
 	count?: number;
-	subTasksCompleted?: number[];
+	subTasksCompleted?: string[];
 }
 
 export interface DisplayedAchievement extends AchievementProgress, Achievement {

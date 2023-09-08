@@ -16,11 +16,27 @@ describe('Achievement list', () => {
 		expect(numUniqueIds).toBe(achievements.length);
 	});
 
-	// it('should have UUIDs for each achievement', () => {
-	// 	for (const a of achievements) {
-	// 		expect(isUUID(a.id)).toBe(true);
-	// 	}
-	// });
+	it('should have unique ids for each subTask', () => {
+		for (const a of achievements) {
+			const subTasks = a.subTasks ?? [];
+			const numUniqueIds = new Set(subTasks.map((s) => s.id)).size;
+			expect(numUniqueIds).toBe(subTasks.length);
+		}
+	});
+
+	it('should have UUIDs for each subTask', () => {
+		for (const a of achievements) {
+			for (const s of a.subTasks ?? []) {
+				expect(isUUID(s.id)).toBe(true);
+			}
+		}
+	});
+
+	it('should have UUIDs for each achievement', () => {
+		for (const a of achievements) {
+			expect(isUUID(a.id)).toBe(true);
+		}
+	});
 
 	it('should have unique names for each achievement', () => {
 		const numUniqueNames = new Set(achievements.map((a) => a.name)).size;
@@ -30,13 +46,6 @@ describe('Achievement list', () => {
 	it('should have unique descriptions for each achievement', () => {
 		const numUniqueDescriptions = new Set(achievements.map((a) => a.description)).size;
 		expect(numUniqueDescriptions).toBe(achievements.length);
-	});
-
-	it('should be sorted by id', () => {
-		const sortedAchievements = cloneDeep(achievements).sort((a, b) => a.id - b.id);
-		for (const [idx, strat] of achievements.entries()) {
-			expect(strat.id).toBe(sortedAchievements[idx].id);
-		}
 	});
 
 	it('should have Title Cased names for each achievement', () => {

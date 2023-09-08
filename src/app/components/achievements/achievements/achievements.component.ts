@@ -222,7 +222,7 @@ export class AchievementsComponent implements OnInit {
 	 * @param subTaskId - ID of subTask which has been changed
 	 * @param checked - New completion state of the subTask
 	 */
-	subTaskCompleted(achievement: DisplayedAchievement, subTaskId: number, checked: boolean) {
+	subTaskCompleted(achievement: DisplayedAchievement, subTaskId: string, checked: boolean) {
 		if (!achievement?.subTasksCompleted) {
 			// Init list if undefined
 			achievement.subTasksCompleted = [];
