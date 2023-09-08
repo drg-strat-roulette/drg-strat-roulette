@@ -1258,9 +1258,14 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'f6a19386-d1f1-46a9-8b62-ddc91748f95f',
 		name: 'The Avatar',
-		description:
-			'Apply every type of effect with the Nishanka Boltshark X-80. (Cryo, Electric, Explosive, Fire, Pheromone)',
-		// TODO: subTasks
+		description: 'Apply every type of effect with the Nishanka Boltshark X-80.',
+		subTasks: [
+			{ id: '51c09ac3-0444-44bb-a441-6e397df4cc9f', name: 'Cryo' },
+			{ id: '155553f1-1277-4c27-9fff-bcd998fe0f34', name: 'Electric' },
+			{ id: '01e02ac6-5fec-4ddc-91b8-718b64903255', name: 'Explosive' },
+			{ id: 'eb7e658d-1c38-4972-bf3f-d4071ef4535c', name: 'Fire' },
+			{ id: 'eaf5bc7e-60c3-4c2c-99b5-796b9b776155', name: 'Pheromone' },
+		],
 	},
 	{
 		id: 'af80803b-acbe-445f-a7b6-19c3eaa644f1',
@@ -2123,5 +2128,4 @@ export const achievementsList: Achievement[] = [
 		description: 'Description for Last3.',
 		// TODO: Define
 	},
-	// TODO: Unit test for words that should be capitalized?
 ];
