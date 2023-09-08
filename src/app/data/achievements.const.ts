@@ -5,6 +5,7 @@ export const achievementsList: Achievement[] = [
 		id: '98d46acb-618d-47f4-8d8f-f1d3162485fc',
 		name: 'The Real A-Team',
 		description: 'Put an Aquarq in every seat of the Escape Pod.',
+		// TODO: Possible?
 	},
 	{
 		id: 'd6fad610-b7b5-422a-a8ad-849b8693465d',
@@ -35,54 +36,54 @@ export const achievementsList: Achievement[] = [
 		id: '999e3dd8-56c4-4a84-bf06-a0e5892d07fe',
 		name: 'Mining Expedition Ammo Conservationist',
 		description:
-			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on a Mining Expedition mission.',
+			'Complete a Hazard 5 mission without anyone dying or ordering any Resupply Pods on a Mining Expedition mission.',
 	},
 	{
 		id: 'b1d1d72d-4810-4a89-a347-25c44866f23b',
 		name: 'Egg Hunt Ammo Conservationist',
 		description:
-			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on an Egg Hunt mission.',
+			'Complete a Hazard 5 mission without anyone dying or ordering any Resupply Pods on an Egg Hunt mission.',
 	},
 	{
 		id: '01bf2d03-ecb0-49df-a4cd-69474d76f18d',
 		name: 'On-Site Refining Ammo Conservationist',
 		description:
-			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on an On-Site Refining mission.',
+			'Complete a Hazard 5 mission without anyone dying or ordering any Resupply Pods on an On-Site Refining mission.',
 	},
 	{
 		id: '4746fb3f-ac9c-44e6-ad6a-d8b41439e5b4',
 		name: 'Salvage Operation Ammo Conservationist',
 		description:
-			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on a Salvage Operation mission.',
+			'Complete a Hazard 5 mission without anyone dying or ordering any Resupply Pods on a Salvage Operation mission.',
 	},
 	{
 		id: 'd253eeab-837a-4f20-9a53-ee7a919fdf8f',
 		name: 'Point Extraction Ammo Conservationist',
 		description:
-			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on a Point Extraction mission.',
+			'Complete a Hazard 5 mission without anyone dying or ordering any Resupply Pods on a Point Extraction mission.',
 	},
 	{
 		id: 'b3c9df26-0878-4549-a301-6da2d51b9d74',
 		name: 'Escort Duty Ammo Conservationist',
 		description:
-			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on an Escort Duty mission.',
+			'Complete a Hazard 5 mission without anyone dying or ordering any Resupply Pods on an Escort Duty mission.',
 	},
 	{
 		id: 'd522e616-1280-4ba3-bd8b-0c62bc6d4c4b',
 		name: 'Elimination Ammo Conservationist',
 		description:
-			'Complete a Hazard 5 mission without anyone dying or ordering any resupplies on an Elimination mission.',
+			'Complete a Hazard 5 mission without anyone dying or ordering any Resupply Pods on an Elimination mission.',
 	},
 	{
 		id: 'fcbef6ce-b801-4bc9-9397-5068146de38d',
 		name: 'Industrial Sabotage Conservationist',
 		description:
-			'Complete a Hazard 5 mission without anyone dying and only one resupply on an Industrial Sabotage mission.',
+			'Complete a Hazard 5 mission without anyone dying and only one Resupply Pod on an Industrial Sabotage mission.',
 	},
 	{
 		id: 'f1087e48-455a-45a9-a513-5dc3448f2850',
 		name: 'Budget Cuts',
-		description: 'Complete a Length 3, Complexity 3 mission on Hazard 5 without calling a resupply.',
+		description: 'Complete a Length 3, Complexity 3 mission on Hazard 5 without calling a Resupply Pod.',
 	},
 	{
 		id: '35c61dfd-b9d5-4c71-ac2b-3c5109e7f431',
@@ -162,7 +163,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'e89bedf4-ee53-4170-a7e7-1ca0192f51e1',
 		name: 'Jetty Boot Master',
-		description: 'Reach level 5 in Jetty Boot.',
+		description: 'Reach Level 5 in Jetty Boot.',
 	},
 	{
 		id: '28f4b7bb-fba5-47c8-b469-f6188bd6c66c',
@@ -284,7 +285,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '35af758b-3a68-4fbb-9ce0-ac3e00c5a4e4',
 		name: 'Orange Crush',
-		description: 'Crush a teammate with a resupply pod.',
+		description: 'Crush a teammate with a Resupply Pod.',
 	},
 	{
 		id: 'c241ed12-5587-411a-a833-30f05a84e6f8',
@@ -309,7 +310,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '601aff20-dfbd-4552-a46b-08e171da3fe6',
 		name: 'Advanced Darkness',
-		description: 'Complete a mission with no flares or flare gun.',
+		description: 'Complete a mission with no Flares or Flare Gun.',
 	},
 	{
 		id: '68a7f5f2-f7c3-46b3-8cd4-68d19e18918f',
@@ -371,32 +372,32 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'e0785400-8459-4b1e-b3ab-dbb9ce875414',
 		name: 'Rock and Milestone!',
-		description: 'Complete all milestones.',
+		description: 'Complete all Milestones.',
 	},
 	{
 		id: '36956071-72cc-42f5-a17f-ef6b9e401e86',
 		name: 'Primary Milestones',
-		description: 'Complete all primary objective milestones.',
+		description: 'Complete all primary objective Milestones.',
 	},
 	{
 		id: '8bdd62d9-42e4-4ef9-839f-c83951608e57',
 		name: 'Secondary Milestones',
-		description: 'Complete all secondary objective milestones.',
+		description: 'Complete all secondary objective Milestones.',
 	},
 	{
 		id: 'faa00763-aea7-44a8-86b7-775a11a6dc2a',
 		name: 'Ecologist',
-		description: 'Complete all biome milestones.',
+		description: 'Complete all biome Milestones.',
 	},
 	{
 		id: '277941d2-f865-407b-a7ce-7579c3d59527',
 		name: 'Thrill Seeker',
-		description: 'Complete all warning milestones.',
+		description: 'Complete all warning Milestones.',
 	},
 	{
 		id: 'd7cfac0c-56b3-41ba-8553-e39a7a9c1f1c',
 		name: 'Up Your Arsenal',
-		description: 'Unlock all weapon licenses.',
+		description: 'Unlock all Weapon Licenses.',
 	},
 	{
 		id: '8fffeb0f-f07d-405b-a6ac-5d7ef7666e30',
@@ -480,7 +481,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'b4c46bbc-9da4-45c5-ac88-c5ebb333fc77',
 		name: 'Hammer Time!',
-		description: 'Kick the hammer into the barrel hoop.',
+		description: 'Kick the hammer into the Barrel Hoop.',
 	},
 	{
 		id: '393c022a-eb5d-436b-89ef-bf1614b9e446',
@@ -527,7 +528,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '6686f5d0-5a3e-45ab-9f69-447164411edf',
 		name: 'Pipe Rider',
-		description: 'Ride all three refinery pipes without touching on the ground.',
+		description: 'Ride all three Refinery Pipelines without touching on the ground.',
 	},
 	{
 		id: '20b98a17-4c4d-4619-be34-304857306c66',
@@ -542,7 +543,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'cfdb8377-c087-4d16-850a-ce2d73a8ef37',
 		name: 'Dropping Like Flies',
-		description: 'Freeze 10 macteras with a single Cryo Grenade.',
+		description: 'Freeze 10 Macteras with a single Cryo Grenade.',
 	},
 	{
 		id: '4f174153-efc4-460b-a035-a9a6edb8dd82',
@@ -602,7 +603,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'a3c9cd4f-177c-450e-97d3-9827d148984e',
 		name: 'See Ya Later Detonators',
-		description: 'Complete a mission with three or more bulk detonators.',
+		description: 'Complete a mission with three or more Bulk Detonators.',
 	},
 	{
 		id: '1d012a4b-4a5a-4ffc-992a-1eda02747fbe',
@@ -666,7 +667,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '23300f1d-03f3-4973-9e08-405fdc5dfdfe',
 		name: "Shouldn't Have Left My Tools on the Bloody Space Rig!",
-		description: 'Complete an Escort Duty mission without repairing the drilldozer.',
+		description: 'Complete an Escort Duty mission without repairing the Drilldozer.',
 	},
 	{
 		id: '09a143bc-fd2a-442f-85b5-37105ccbee88',
@@ -686,17 +687,17 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'f11ba0fd-570b-482d-b8e4-5aac404620c8',
 		name: 'Cutting Back on E-Waste',
-		description: 'Complete an Industrial Sabotage mission without destroying any ground turrets or bouncers.',
+		description: 'Complete an Industrial Sabotage mission without destroying any Ground Turrets or Bouncers.',
 	},
 	{
 		id: '61b81a88-276a-4467-893d-cf77fb357818',
 		name: 'Bad Navigator',
-		description: 'Complete a mission without anyone using the terrain scanner.',
+		description: 'Complete a mission without anyone using the Terrain Scanner.',
 	},
 	{
 		id: '929bb3b6-68d0-40c1-b4fc-db20a6ea8d64',
 		name: 'Down to the Wire',
-		description: 'Complete a machine event which was started after the Escape Pod was called.',
+		description: 'Complete a Machine Event which was started after the Escape Pod was called.',
 	},
 	{
 		id: '722e0dfa-0d63-4d32-b447-fbfa3c38682e',
@@ -716,7 +717,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'cc25adf0-9963-41d8-ad46-3e089ff7872d',
 		name: 'Crossed Wires',
-		description: 'Pair each hacking pod to the wrong power station on an Industrial Sabotage mission.',
+		description: 'Pair each Hacking Pod to the wrong power station on an Industrial Sabotage mission.',
 	},
 	{
 		id: '30f994aa-008f-44d6-b570-600294537d9f',
@@ -736,7 +737,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'e00ee9f3-0507-4db6-8db5-eba3edba6d5a',
 		name: "Leave No 'Quarq Behind",
-		description: 'Deposit three aquarqs more than necessary into the Mine Head.',
+		description: 'Deposit three Aquarqs more than necessary into the Mine Head.',
 	},
 	{
 		id: '6b9dcd04-761a-4fec-a2f3-b1d6a7dc2088',
@@ -756,7 +757,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '8a51d5f8-3136-439b-93e5-c9eb271982db',
 		name: 'Going Up!',
-		description: 'Ride an elevator plant.',
+		description: 'Ride an Elevator Plant.',
 	},
 	{
 		id: 'b91918ed-b5fe-481f-b17a-8e30fd3158bf',
@@ -792,17 +793,17 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '4b23d16b-9367-4083-9800-9ed3cafd5da6',
 		name: "Nature's Revenge",
-		description: 'Get killed by an exploding plant.',
+		description: 'Get killed by an Exploding Plant.',
 	},
 	{
 		id: '293605ec-3c82-47db-91ca-5951a78f59c3',
 		name: 'Commanding Nature',
-		description: 'Kill 10 bugs at once with exploding plants.',
+		description: 'Kill 10 bugs at once with Exploding Plants.',
 	},
 	{
 		id: '57d48a83-2851-46f9-b261-b4d2fd2ad6bd',
 		name: 'Mecha Mayhem',
-		description: 'Complete one of each machine event.',
+		description: 'Complete one of each Machine Event.',
 		link: { text: 'Machine Events', url: 'https://deeprockgalactic.wiki.gg/wiki/Machine_Events' },
 		subTasks: [
 			{ id: '1144e1f7-d324-4d78-bbfd-facf30fabf31', name: 'Ebonite Mutation' },
@@ -874,7 +875,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'ab836dfc-f88b-40fd-8508-9368b75f3264',
 		name: 'Make It Count',
-		description: 'Complete an Elite Deep Dive with only one resupply pod.',
+		description: 'Complete an Elite Deep Dive with only one Resupply Pod.',
 	},
 	{
 		id: '384f784f-93b5-45a8-93a7-a48df41bfd53',
@@ -1012,7 +1013,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '960d0d0b-b543-4941-8182-a8cc1b6293dd',
 		name: 'Wide Receiver',
-		description: 'Catch an item thrown 40 meters.',
+		description: 'Catch a heavy item thrown 40 meters.',
 	},
 	{
 		id: '145753a7-4684-417b-a763-f33c13cba038',
@@ -1048,17 +1049,17 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '0f0e8b3c-b536-46b2-97e9-f3d0bf1ea2b5',
 		name: "It's Not Rocket Surgery",
-		description: 'Perform a flawless hack on a turret controller.',
+		description: 'Perform a flawless hack on a Turret Controller.',
 	},
 	{
 		id: '0f8c9054-2a89-460e-84f8-e1f6cd99170d',
 		name: 'Takes Years of Practice to Get This Good, Lads.',
-		description: 'Perform a flawless hack on a patrol bot.',
+		description: 'Perform a flawless hack on a Patrol Bot.',
 	},
 	{
 		id: '81e6d02d-067b-4aba-aa3d-7983cd29887b',
 		name: 'Data Master',
-		description: 'Deposit 20 data cells.',
+		description: 'Deposit 20 Data Cells.',
 		countNeeded: 20,
 	},
 	{
@@ -1121,12 +1122,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '081ff8d8-5945-4d69-b1e1-523f63092b6a',
 		name: 'Self Pass',
-		description: 'Throw an item and catch it 50m away without letting it hit the ground.',
-	},
-	{
-		id: '38cf5577-a7fa-440e-a00e-fe519285efa2',
-		name: 'At Least One of Us Has Heightened Senses',
-		description: 'Rescue a teammate from all enemies that can grab.',
+		description: 'Throw an item and catch it yourself 50m away without letting it hit the ground.',
 	},
 	{
 		id: '2e16fd88-fae6-4822-b44e-241285b33743',
@@ -1171,18 +1167,18 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '84f0c0cd-8d49-4b14-8d48-a09d8b528fcf',
 		name: "Who's There?",
-		description: 'Knock on a lithophage container 100 times.',
+		description: 'Knock on a Lithophage Container 100 times.',
 		countNeeded: 100,
 	},
 	{
 		id: 'c8e2e500-3ee2-46ea-a2fe-2334a91b174f',
 		name: "That's Not the Goal!",
-		description: 'Throw the Space Ball into the barrel hoop.',
+		description: 'Throw the Space Ball into the Barrel Hoop.',
 	},
 	{
 		id: '98270fb0-6c79-424a-ba85-72f050ff11c2',
 		name: 'Karl Would Be Stunned',
-		description: 'Complete a Hazard 5 mission with two warnings, no downs, and no resupplies.',
+		description: 'Complete a Hazard 5 mission with two warnings, no downs, and no Resupply Pods.',
 	},
 	{
 		id: 'c7716e13-eade-457a-b1db-6cb47851f309',
@@ -1207,7 +1203,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '749838ec-63a8-4846-82aa-75196e2b54c2',
 		name: 'Timeout!',
-		description: 'Revive three teammates while inside a single Shield Generator.',
+		description: 'Help with reviving three teammates while inside a single Shield Generator.',
 	},
 	{
 		id: 'e1ac66a2-fa2b-4484-8f14-276b9579d81b',
@@ -1264,6 +1260,7 @@ export const achievementsList: Achievement[] = [
 		name: 'The Avatar',
 		description:
 			'Apply every type of effect with the Nishanka Boltshark X-80. (Cryo, Electric, Explosive, Fire, Pheromone)',
+		// TODO: subTasks
 	},
 	{
 		id: 'af80803b-acbe-445f-a7b6-19c3eaa644f1',
@@ -1290,7 +1287,7 @@ export const achievementsList: Achievement[] = [
 		id: '267bfe79-65b4-4411-8c82-1242de431ae3',
 		name: 'Situational Awareness',
 		description:
-			'Complete a Cave Leech Cluster mission with a full team where no dwarf is grabbed by a cave leech.',
+			'Complete a Cave Leech Cluster mission with a full team where no dwarf is grabbed by a Cave Leech.',
 	},
 	{
 		id: '52142f4b-a502-4419-b953-93a23fd6cdf2',
@@ -1341,7 +1338,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '57a790d9-39c5-44eb-bca9-5395b41b1e9e',
 		name: 'Long Live Steeve!',
-		description: 'Keep a tamed grunt alive for 10 minutes.',
+		description: 'Keep a Steeve alive for 10 minutes.',
 	},
 	{
 		id: '68f648ac-77be-4383-aa39-2d5ba6885246',
@@ -1356,7 +1353,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'f3deaf90-229b-42ff-ad8d-dea104677405',
 		name: 'Lightweight',
-		description: 'Pass out 10 times.',
+		description: 'Pass out from drinking 10 times.',
 		countNeeded: 10,
 	},
 	{
@@ -1383,7 +1380,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'f2d6f071-a96f-490a-b5b6-f1ad0d2ff816',
 		name: 'Snipe This!',
-		description: 'Kill any enemy from over 100m away .',
+		description: 'Kill any enemy from over 100m away.',
 	},
 	{
 		id: 'beda25f9-2569-48d3-b748-400f9c261f80',
@@ -1602,7 +1599,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '4dad9c6c-b73a-4d63-ab33-e6f8c89aaa12',
 		name: 'Fried Circuits',
-		description: 'Use the flamethrower on Industrial Sabotage 10 times.',
+		description: 'Use the Flamethrower on Industrial Sabotage 10 times.',
 		countNeeded: 10,
 	},
 	{
@@ -1768,11 +1765,6 @@ export const achievementsList: Achievement[] = [
 		description: 'Complete a mission without killing any enemies after having called the Escape Pod.',
 	},
 	{
-		id: '4017616c-d4af-425f-8beb-741752b203b5',
-		name: 'To the Fallen',
-		description: 'Prevent lethal fall damage in all possible ways.',
-	},
-	{
 		id: '39a41759-9b1f-4df2-abf8-9427a91beaaf',
 		name: 'You Snooze, You Lose!',
 		description: 'Prevent lethal fall damage by grappling at the last second.',
@@ -1911,7 +1903,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'eb4f06a2-0bd2-4b59-b476-ef8611064d21',
 		name: 'Taste the Pickaxe!',
-		description: 'Kill three grunts with a single Pickaxe Power Attack.',
+		description: 'Kill three enemies (Glyphid Grunt or larger) with a single Pickaxe Power Attack.',
 	},
 	{
 		id: 'e5b68bcd-1d79-4cd6-b981-c8c2b452db35',
@@ -1931,7 +1923,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'a33473d0-52cc-4cf4-adc2-f4d77d7010b7',
 		name: 'He Shoots, He Scores!',
-		description: 'Score a Space Ball goal in the Space Rig.',
+		description: 'Score a goal with the Space Ball in the Space Rig.',
 	},
 	{
 		id: '5f9fcfe7-9f63-40c8-a90f-d5b84830bc75',
@@ -1963,13 +1955,13 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'd71b385b-8d8d-4a74-b262-95af73c2a0df',
 		name: 'Tightrope Walker',
-		description: 'Travel 20m by bouncing on a teammates head as they ride a zipline.',
+		description: 'Travel 20m by bouncing on a teammates head as they ride a Zipline.',
 	},
 	{
 		id: '9cdd4683-db3a-4173-a11b-440525a181c0',
 		name: 'Maybe I Can Do a 360',
 		description:
-			'Jump off of a refinery pipe and do a 360 degree rotation before landing on another pipe. (All without stopping)',
+			'Jump off of a refinery pipeline and do a 360 degree rotation before landing on another pipeline. (All without stopping)',
 	},
 	{
 		id: '5632321a-60e1-4cf4-a61f-65838deffa57',
@@ -2009,13 +2001,13 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '124774d9-c20a-4ada-bd78-60fad9975ba3',
 		name: 'Pallbearer',
-		description: 'Bring a mineral bag (from a dwarf who left early) into the Escape Pod.',
+		description: 'Bring a Mineral Bag (from a dwarf who left early) into the Escape Pod.',
 	},
 	{
 		id: '3ea3c73e-eb0e-4813-a5b5-e8f7af6e9ecb',
 		name: 'Hide and Seek',
 		description:
-			'Play a round of hide and seek in the Space Rig. (Seekers may not cheat by revealing teammate outlines)',
+			'Play a round of Hide and Seek in the Space Rig. (Seekers may not cheat by revealing teammate outlines)',
 	},
 	{
 		id: '0ad0ee1e-edc0-4d69-aa16-0ee9f2567fdb',
@@ -2074,7 +2066,7 @@ export const achievementsList: Achievement[] = [
 		id: 'ebbd554e-1e17-4dcd-97b2-f65438a11976',
 		name: 'Scrap Collecting',
 		description:
-			'Call in a Resupply Pod without anyone having destroyed a Nitra vein. (Repairing Mini-MULEs rewards Nitra)',
+			'Call in a Resupply Pod without anyone having destroyed a Nitra vein. (Repair Mini-MULEs or kill Loot Bugs for Nitra)',
 	},
 	{
 		id: '3b79c849-bfc3-4d59-bb86-cc2265b0d369',
@@ -2090,7 +2082,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '046f4da8-4939-4b24-af4d-e338434c820d',
 		name: 'Not a Fun Guy',
-		description: 'Annoy mission control by pinging Mushrooms.',
+		description: 'Annoy Mission Control by pinging Mushrooms.',
 	},
 	{
 		id: 'd9857403-a7f4-47bd-b6a5-dee9ce6d1266',
@@ -2104,19 +2096,31 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 'd6aa81b9-2901-4faf-a2b7-4010020a086f',
-		name: 'Keep Your Hive Guarded',
+		name: "Don't Let Your Guard Down",
 		description: 'Kill a Dreadnought Hiveguard whose weak-point is revealed four or less times.',
 	},
 	{
 		id: 'f8e0c6fb-3373-4046-9d6a-3ecb41ba325b',
-		name: 'Second Last',
-		description: 'Description for Second Last.',
-		// TODO: Define
+		name: 'Tunnel Rat',
+		description:
+			'Complete an On-site Refining mission in which all refinery pipelines are built completely in tunnels. (Except for a very short stretch at the starts and ends)',
 	},
 	{
 		id: '9cec18bb-b815-41cc-95f8-835a98136e42',
-		name: 'Last',
-		description: 'Description for Last.',
+		name: 'Last1',
+		description: 'Description for Last1.',
+		// TODO: Define
+	},
+	{
+		id: '9592f4fa-d354-4988-b572-4e9dcff3a3e8',
+		name: 'Last2',
+		description: 'Description for Last2.',
+		// TODO: Define
+	},
+	{
+		id: '9f702224-9756-4964-88cf-94f80c4d50e7',
+		name: 'Last3',
+		description: 'Description for Last3.',
 		// TODO: Define
 	},
 	// TODO: Unit test for words that should be capitalized?

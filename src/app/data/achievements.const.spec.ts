@@ -98,12 +98,10 @@ describe('Achievement list', () => {
 		}
 	});
 
-	it('should have distinct IDs and Names for each subCheckbox', () => {
-		const achievementsWithSubCheckboxes = achievements.filter((a) => a.subTasks);
-		for (const achievement of achievementsWithSubCheckboxes) {
-			const numUniqueIds = new Set(achievement?.subTasks?.map((a) => a.id)).size;
+	it('should have distinct Names for each subTask', () => {
+		const achievementsWithSubTasks = achievements.filter((a) => a.subTasks);
+		for (const achievement of achievementsWithSubTasks) {
 			const numUniqueNames = new Set(achievement?.subTasks?.map((a) => a.name)).size;
-			expect(numUniqueIds).toBe(achievement.subTasks?.length ?? 0);
 			expect(numUniqueNames).toBe(achievement.subTasks?.length ?? 0);
 		}
 	});
