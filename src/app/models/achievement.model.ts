@@ -16,5 +16,6 @@ export interface AchievementProgress {
 }
 
 export interface DisplayedAchievement extends AchievementProgress, Achievement {
+	order: number;
 	display: boolean;
 }

@@ -9,7 +9,7 @@ import { AchievementProgress, DisplayedAchievement } from 'src/app/models/achiev
 import { achievementsList } from 'src/app/data/achievements.const';
 import { clamp } from 'lodash-es';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { byCompletionDateThenById } from 'src/app/utilities/sorters.utils';
+import { byCompletionDateThenByOrder } from 'src/app/utilities/sorters.utils';
 import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
 import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
 import { MatDialog } from '@angular/material/dialog';
@@ -129,10 +129,11 @@ export class AchievementsComponent implements OnInit {
 		try {
 			// Parse and load progress
 			const progress: AchievementProgress[] = JSON.parse(p ?? '[]');
-			this.achievements = achievementsList.map((a) => ({
+			this.achievements = achievementsList.map((a, i) => ({
 				...a,
 				...progress.find((p) => p.id === a.id),
 				display: true,
+				order: i,
 			}));
 			this.sortAchievements();
 
@@ -395,7 +396,7 @@ export class AchievementsComponent implements OnInit {
 	 */
 	private sortAchievements() {
 		this.updateDisplayedAchievements();
-		this.achievements.sort(byCompletionDateThenById);
+		this.achievements.sort(byCompletionDateThenByOrder);
 	}
 
 	/**

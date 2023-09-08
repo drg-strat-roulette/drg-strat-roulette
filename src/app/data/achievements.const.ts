@@ -32,11 +32,6 @@ export const achievementsList: Achievement[] = [
 		],
 	},
 	{
-		id: 5,
-		name: 'Master Ammo Conservationist',
-		description: 'Complete all other Ammo Conservationist achievements.',
-	},
-	{
 		id: 6,
 		name: 'Mining Expedition Ammo Conservationist',
 		description:
@@ -297,7 +292,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 46,
 		name: 'Gunker Dunker',
-		description: 'Complete the gunk seed secondary objective without shooting any of them.',
+		description: 'Complete the Gunk Seed secondary objective by releasing every Gunk Seed with your pickaxe.',
 	},
 	{
 		id: 47,
@@ -312,7 +307,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 49,
 		name: 'Dreadnought Speedrun',
-		description: 'Kill a dreadnought in under two minutes.',
+		description: 'Kill a Dreadnought in under two minutes.',
 	},
 	{
 		id: 50,
@@ -560,7 +555,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 87,
 		name: 'Dreadnought Party',
-		description: 'Complete a mission after popping three dreadnought eggs within 10 seconds.',
+		description: 'Complete a mission after popping three Dreadnought eggs within 10 seconds.',
 	},
 	{
 		id: 88,
@@ -625,7 +620,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 100,
 		name: 'Slappity Slap',
-		description: 'Slap a gunk seed.',
+		description: 'Slap a Gunk Seed.',
 	},
 	{
 		id: 101,
@@ -775,12 +770,6 @@ export const achievementsList: Achievement[] = [
 		id: 128,
 		name: 'Responsible Recycler',
 		description: 'Bring a Shield Battery into the Escape Pod.',
-	},
-	{
-		id: 129,
-		name: "I Just Think They're Neat",
-		description: 'Complete all achievements requiring bringing items into the Escape Pod.',
-		// TODO: Move and collect sub-achievements
 	},
 	{
 		id: 130,
@@ -1166,7 +1155,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 188,
-		name: 'With Extreme Prejudice',
+		name: 'To Dread, or Nought to Dread',
 		description: 'Use a Bulk Detonator to kill a Dreadnought.',
 	},
 	{
@@ -1222,8 +1211,9 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 199,
-		name: 'Filicide',
-		description: 'Have a Dreadnought Hiveguard kill a Glyphid Sentinel.',
+		name: 'Skyway',
+		description:
+			'By placing then destroying platforms or terrain, create a pipeline which connects the refinery to a pumpjack without touching the ground.',
 	},
 	{
 		id: 200,
@@ -1420,11 +1410,6 @@ export const achievementsList: Achievement[] = [
 		id: 234,
 		name: 'The Sky Is Falling!',
 		description: 'Complete a single mission with both a Meteor Impact and a Meteor Shower.',
-	},
-	{
-		id: 235,
-		name: 'Ultimate Weapons Expert',
-		description: 'Complete all Weapons Expert achievements.',
 	},
 	{
 		id: 236,
@@ -1868,11 +1853,6 @@ export const achievementsList: Achievement[] = [
 		description: "Revive a teammate that is downed 100m+ away while you're in the Escape Pod.",
 	},
 	{
-		id: 308,
-		name: 'Secondary Savant',
-		description: 'Complete all achievements requiring rapid completion of secondary objectives.',
-	},
-	{
 		id: 309,
 		name: 'Apoca Admirer',
 		description: 'Complete the entire Apoca Bloom secondary objective in a single deposit.',
@@ -2072,7 +2052,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 345,
-		name: 'Diesection',
+		name: 'Rock Your Pox Off',
 		description: 'Get a pickaxe kill on all Rockpox enemies.',
 		link: { text: 'Rockpox Enemies', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Lithophage' },
 		subTasks: [
@@ -2107,7 +2087,38 @@ export const achievementsList: Achievement[] = [
 		description:
 			'Successfully destroy a Tritilyte Shard using only one explosion. (By detonating a pile of Nanite Bombs)',
 	},
+	{
+		id: 350,
+		name: 'Not a Fun Guy',
+		description: 'Annoy mission control by pinging Mushrooms.',
+	},
+	{
+		id: 351,
+		name: 'Gunk Grabber',
+		description: 'Complete the Gunk Seed secondary objective without letting any Gunk Seeds touch the ground.',
+	},
+	{
+		id: 352,
+		name: 'Dready or Nought',
+		description: 'Kill a Glyphid Dreadnought whose weak-point is revealed three or less times.',
+	},
+	{
+		id: 353,
+		name: 'Keep Your Hive Guarded',
+		description: 'Kill a Dreadnought Hiveguard whose weak-point is revealed four or less times.',
+	},
+	{
+		id: 354,
+		name: 'Second Last',
+		description: 'Description for Second Last.',
+		// TODO: Define
+	},
+	{
+		id: 355,
+		name: 'Last',
+		description: 'Description for Last.',
+		// TODO: Define
+	},
 	// TODO: Assign UUIDs to achievements?
-	// Achievement for all other melee achievements?
-	// Remove the 4 "do every other achievement" achievements?
+	// TODO: Unit test for words that should be capitalized?
 ];

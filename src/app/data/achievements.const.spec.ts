@@ -2,6 +2,7 @@ import { cloneDeep } from 'lodash-es';
 import { Achievement } from '../models/achievement.model';
 import { validLowerInTitleCase } from '../utilities/general-functions.utils';
 import { achievementsList } from './achievements.const';
+import { isUUID } from '../utilities/uuid.utils';
 
 describe('Achievement list', () => {
 	let achievements: Achievement[] = [];
@@ -15,6 +16,12 @@ describe('Achievement list', () => {
 		expect(numUniqueIds).toBe(achievements.length);
 	});
 
+	// it('should have UUIDs for each achievement', () => {
+	// 	for (const a of achievements) {
+	// 		expect(isUUID(a.id)).toBe(true);
+	// 	}
+	// });
+
 	it('should have unique names for each achievement', () => {
 		const numUniqueNames = new Set(achievements.map((a) => a.name)).size;
 		expect(numUniqueNames).toBe(achievements.length);
@@ -23,12 +30,6 @@ describe('Achievement list', () => {
 	it('should have unique descriptions for each achievement', () => {
 		const numUniqueDescriptions = new Set(achievements.map((a) => a.description)).size;
 		expect(numUniqueDescriptions).toBe(achievements.length);
-	});
-
-	it('should start with id=1 and count up from there', () => {
-		const achievementIds = achievements.map((a) => a.id);
-		expect(Math.min(...achievementIds)).toBe(1);
-		expect(Math.max(...achievementIds)).toBe(achievements.length);
 	});
 
 	it('should be sorted by id', () => {
@@ -104,7 +105,7 @@ describe('Achievement list', () => {
 		}
 	});
 
-	xit('should sum up to 420 total achievements in Deep Rock Galactic!', () => {
+	it('should sum up to 420 total achievements in Deep Rock Galactic!', () => {
 		expect(69 + achievements.length).toBe(420);
 	});
 });
