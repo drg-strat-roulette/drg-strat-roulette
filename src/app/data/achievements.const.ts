@@ -1053,7 +1053,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '0f8c9054-2a89-460e-84f8-e1f6cd99170d',
-		name: 'Takes Years of Practice to Get This Good, Lads.',
+		name: 'Takes Years of Practice to Get This Good, Lads',
 		description: 'Perform a flawless hack on a Patrol Bot.',
 	},
 	{
@@ -1317,7 +1317,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '1bd28b26-2dc1-4131-ae10-42b140442a10',
-		name: 'Destroy Dwarf..?',
+		name: 'Destroy... Dwarf?',
 		description: 'Have a nemesis pick up a L.U.R.E.',
 	},
 	{
@@ -1705,7 +1705,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 'b5f91ac3-7195-455e-b284-3bb5ca0f0ea9',
-		name: 'Oh Dear...',
+		name: 'Dready or Nought',
 		description: 'Have a Dreadnought spawn in a mission that is not Elimination.',
 	},
 	{
@@ -2096,7 +2096,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '7410af21-c715-44db-96f5-73ffd97e3987',
-		name: 'Dready or Nought',
+		name: "Show Me What You've Got",
 		description: 'Kill a Glyphid Dreadnought whose weak-point is revealed three or less times.',
 	},
 	{
