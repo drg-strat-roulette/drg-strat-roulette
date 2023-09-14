@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ManagementDialog } from './management-dialog.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BrowserModule } from '@angular/platform-browser';
 
 describe('ManagementDialog', () => {
 	let component: ManagementDialog;
@@ -9,6 +10,7 @@ describe('ManagementDialog', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [ManagementDialog],
+			imports: [BrowserModule],
 			providers: [{ provide: MAT_DIALOG_DATA, useValue: {} }],
 		}).compileComponents();
 

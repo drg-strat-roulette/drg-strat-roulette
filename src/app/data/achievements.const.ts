@@ -840,7 +840,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '87eb8b7e-f108-4dea-b34f-f56d8b8b9d9d',
 		name: 'Prepare for Trouble',
-		description: 'Participate in a mission with two Bulk Detonators alive at once.',
+		description: 'Participate in a mission with two Bulk Detonators out at once.',
 	},
 	{
 		id: '49fbe1d1-4bf0-4e01-a108-495eb8d50a0a',
@@ -2112,9 +2112,9 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '9cec18bb-b815-41cc-95f8-835a98136e42',
-		name: 'Last1',
-		description: 'Description for Last1.',
-		// TODO: Define
+		name: 'Keep Running and Nobody Explodes',
+		description:
+			"Deal the final blow to a Bulk Detonator with your Pickaxe and live to tell the tale (Don't get killed in the explosion).",
 	},
 	{
 		id: '9592f4fa-d354-4988-b572-4e9dcff3a3e8',
