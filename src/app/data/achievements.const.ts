@@ -2118,9 +2118,9 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '9592f4fa-d354-4988-b572-4e9dcff3a3e8',
-		name: 'Last2',
-		description: 'Description for Last2.',
-		// TODO: Define
+		name: 'Ready to Roll',
+		description:
+			'Use Born Ready to complete a mission without reloading any weapons. (Must use primary and secondary weapons which can be reloaded)',
 	},
 	{
 		id: '9f702224-9756-4964-88cf-94f80c4d50e7',
