@@ -38,6 +38,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Deploy to public location
 -   [x] Bug reports, feature requests, and strategy submissions
 -   [x] Weight strategies based on chance of mission requirements being met
+-   [x] Way to see the list of of all strategies
 
 ### Achievements
 
@@ -70,7 +71,6 @@ Some strategies have specific mission or team requirements, but otherwise there 
 
 ## Potential features
 
--   [ ] Way to see the list of of all strategies
 -   [ ] Add strategy hints as revealable "spoilers"
 -   [ ] Block (and unblock) specific strategies that you don't like
 -   [ ] Strat history, count of each played, other stats

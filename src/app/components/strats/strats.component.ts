@@ -205,41 +205,8 @@ export class StratsComponent implements OnInit, OnDestroy {
 		// Correct invalid inputs before rolling for a strategy
 		this.correctInvalidInputs();
 
-		// Filter out strategies based on unselected tags
-		const excludedTags = this.tags.filter((tag) => !tag.checked).map((tag) => tag.type);
-		let candidateStrats = strategies.filter((strat) => !strat.tags?.some((tag) => excludedTags.includes(tag)));
-
-		// Filter out strategies based on team requirements
-		if (this.dwarves.length > 0) {
-			candidateStrats = candidateStrats.filter((strat) => {
-				const func = strat.requirements?.team;
-				if (func) {
-					return func({ dwarves: this.dwarves });
-				} else {
-					return true;
-				}
-			});
-		}
-
-		// Filter out strategies based on mission requirements
-		if (this.preChosenMissions) {
-			candidateStrats = candidateStrats.filter((strat) => {
-				const func = strat.requirements?.mission;
-				if (func) {
-					return func(this.mission);
-				} else {
-					return true;
-				}
-			});
-		}
-
-		// Prevent a presently queued strategy from being re-chosen
-		candidateStrats = candidateStrats.filter((strat) => !this.queuedStrats.some((queue) => queue.id === strat.id));
-
-		// Prevent recently chosen strategies from being re-chosen
-		candidateStrats = candidateStrats.filter((strat) => !this.recentStrats.includes(strat.id));
-
 		// Pick a strategy from the candidate list
+		const candidateStrats = this.getCandidateStrats();
 		let chosenStrategy: Strategy | undefined;
 		if (this.preChosenMissions) {
 			// Apply weights to the list of candidate strategies in order to balance when choosing missions before strategy
@@ -471,6 +438,34 @@ export class StratsComponent implements OnInit, OnDestroy {
 	}
 
 	/**
+	 * Cycles the strategy left or right by 1
+	 */
+	cycleStrat(direction: -1 | 1): void {
+		// Correct invalid inputs before rolling for a strategy
+		this.correctInvalidInputs();
+
+		// Find the ID of the next candidate strat
+		const currentStratId = this.strat?.id ?? 0;
+		const candidateStratIds = this.getCandidateStrats(false, false).map((s) => s.id);
+		let newStratId: number | undefined;
+		if (direction > 0) {
+			newStratId = candidateStratIds.find((id) => id > currentStratId) ?? candidateStratIds[0];
+		} else {
+			newStratId = candidateStratIds.reverse().find((id) => id < currentStratId) ?? candidateStratIds[0];
+		}
+
+		// Add strategyId to query params
+		this.router.navigate([], {
+			relativeTo: this.route,
+			queryParams: {
+				strategyId: newStratId,
+				dynamicContent: null,
+			},
+			queryParamsHandling: 'merge',
+		});
+	}
+
+	/**
 	 * Clamps the values of mission.length and mission.complexity to be within the [1, 3] range
 	 */
 	private clampMissionLengthAndComplexity(): void {
@@ -482,5 +477,44 @@ export class StratsComponent implements OnInit, OnDestroy {
 		}
 		this.mission.length = clamp(this.mission.length, 1, 3);
 		this.mission.complexity = clamp(this.mission.complexity, 1, 3);
+	}
+
+	/**
+	 * Returns a list of all strategies which are valid given the current settings
+	 */
+	private getCandidateStrats(disallowRecent = true, disallowQueued = true): Strategy[] {
+		// Filter out strategies based on unselected tags
+		const excludedTags = this.tags.filter((tag) => !tag.checked).map((tag) => tag.type);
+		let candidateStrats = strategies.filter((strat) => !strat.tags?.some((tag) => excludedTags.includes(tag)));
+
+		// Filter out strategies based on team requirements
+		if (this.dwarves.length > 0) {
+			candidateStrats = candidateStrats.filter((strat) => {
+				const teamReq = strat.requirements?.team;
+				return teamReq ? teamReq({ dwarves: this.dwarves }) : true;
+			});
+		}
+
+		// Filter out strategies based on mission requirements
+		if (this.preChosenMissions) {
+			candidateStrats = candidateStrats.filter((strat) => {
+				const missionReq = strat.requirements?.mission;
+				return missionReq ? missionReq(this.mission) : true;
+			});
+		}
+
+		// Prevent a presently queued strategy from being re-chosen
+		if (disallowQueued) {
+			candidateStrats = candidateStrats.filter(
+				(strat) => !this.queuedStrats.some((queue) => queue.id === strat.id)
+			);
+		}
+
+		// Prevent recently chosen strategies from being re-chosen
+		if (disallowRecent) {
+			candidateStrats = candidateStrats.filter((strat) => !this.recentStrats.includes(strat.id));
+		}
+
+		return candidateStrats;
 	}
 }

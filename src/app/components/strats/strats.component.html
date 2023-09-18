@@ -292,38 +292,63 @@
 				<!-- Rolled strategy -->
 				<div class="active-strategy-container">
 					<div *ngIf="strat" class="d-flex strat-title-container">
+						<!-- Strat title -->
 						<h1 class="strat-title">
 							<b>#{{ strat.id }}: {{ strat.name }}</b>
 						</h1>
+						<!-- Cycle strat buttons -->
+						<div class="d-flex flex-row justify-content-center">
+							<button
+								mat-icon-button
+								matTooltip="Previous strategy"
+								matTooltipShowDelay="500"
+								(click)="cycleStrat(-1)"
+								aria-label="Previous strategy">
+								<mat-icon class="white-icon">chevron_left</mat-icon>
+							</button>
+							<button
+								mat-icon-button
+								matTooltip="Next strategy"
+								matTooltipShowDelay="500"
+								(click)="cycleStrat(1)"
+								aria-label="Next strategy">
+								<mat-icon class="white-icon">chevron_right</mat-icon>
+							</button>
+						</div>
 						<hr />
+						<!-- Strat summary -->
 						<div class="strat-info-section">
 							<div class="strat-info-section-title d-flex flex-row justify-content-between margin-bottom-16">
 								<h2 class="no-margin">Summary</h2>
 								<div class="d-flex flex-row strat-tags-container">
+									<!-- Strat tags -->
 									<ng-container *ngFor="let tag of tags">
 										<mat-icon
-											*ngIf="strat?.tags?.includes(tag.type)"
-											class="white-icon"
-											#stratTagTooltip="matTooltip"
-											(click)="stratTagTooltip.show()"
-											[matTooltip]="tag.description"
-											matTooltipShowDelay="250">
-											{{ tag.icon }}
-										</mat-icon>
-									</ng-container>
-								</div>
+										*ngIf="strat?.tags?.includes(tag.type)"
+										class="white-icon"
+										#stratTagTooltip="matTooltip"
+										(click)="stratTagTooltip.show()"
+										[matTooltip]="tag.description"
+										matTooltipShowDelay="250">
+										{{ tag.icon }}
+									</mat-icon>
+								</ng-container>
 							</div>
-							<div>{{ strat.summary }}</div>
 						</div>
+						<div>{{ strat.summary }}</div>
 					</div>
+				</div>
+					<!-- Strat additional details -->
 					<div *ngIf="strat?.details" class="strat-info-section">
 						<h2 class="strat-info-section-title">Additional details</h2>
 						<div>{{ strat?.details }}</div>
 					</div>
+					<!-- Strat requirements -->
 					<div *ngIf="strat?.writtenRequirements" class="strat-info-section">
 						<h2 class="strat-info-section-title">Requirements</h2>
 						<div>{{ strat?.writtenRequirements }}</div>
 					</div>
+					<!-- Strat dynamic content -->
 					<div *ngIf="strat?.dynamicContent" class="strat-info-section">
 						<h2 class="strat-info-section-title">This time around</h2>
 						<div>{{ strat?.dynamicContent }}</div>
