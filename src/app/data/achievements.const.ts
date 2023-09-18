@@ -577,13 +577,8 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 'acf9459b-2ee9-4a30-9dc9-80e0f143c3b4',
-		name: 'Rocked',
-		description: 'Complete a mission while tipsy. (1x Oily Oaf Brew + 1x Glyphid Slammer)',
-	},
-	{
-		id: 'e14942eb-4be4-4925-adfc-79f64ab09558',
-		name: 'And Stoned',
-		description: 'Complete a mission while drunk. (1x Oily Oaf Brew + 2x Glyphid Slammers)',
+		name: 'Rocked and Stoned!',
+		description: 'Complete a mission that was started while drunk. (2x Blacklock Lagers for maximum drunkenness)',
 	},
 	{
 		id: '4561e0af-a61e-46cf-9d9f-fa7898d49612',
@@ -2124,8 +2119,14 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '9f702224-9756-4964-88cf-94f80c4d50e7',
-		name: 'Last3',
-		description: 'Description for Last3.',
+		name: 'Last1',
+		description: 'Description for Last1.',
+		// TODO: Define
+	},
+	{
+		id: 'e14942eb-4be4-4925-adfc-79f64ab09558',
+		name: 'Last2',
+		description: 'Description for Last2.',
 		// TODO: Define
 	},
 ];
