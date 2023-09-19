@@ -82,7 +82,7 @@ describe('Achievement list', () => {
 	});
 
 	it('should spell out short numbers in achievement names and descriptions', () => {
-		const exceptionWords = ['hazard', 'length', 'complexity', 'level'];
+		const exceptionWords = ['hazard', 'length', 'complexity', 'level', 'legendary'];
 		const isShortNumber = (w: string) => /^\d+$/.test(w) && w.length === 1;
 		const followsExceptionWord = (words: string[], i: number) =>
 			i > 0 && exceptionWords.includes(words[i - 1].toLowerCase());

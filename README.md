@@ -42,7 +42,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 
 ### Achievements
 
--   [ ] Define 351 total achievements
+-   [x] Define 351 total achievements
 -   [x] Display achievements
     -   [x] Titles
     -   [x] Descriptions

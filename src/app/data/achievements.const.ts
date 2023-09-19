@@ -3,9 +3,8 @@ import { Achievement } from '../models/achievement.model';
 export const achievementsList: Achievement[] = [
 	{
 		id: '98d46acb-618d-47f4-8d8f-f1d3162485fc',
-		name: 'The Real A-Team',
-		description: 'Put an Aquarq in every seat of the Escape Pod.',
-		// TODO: Confirm this is possible
+		name: 'Precious Cargo',
+		description: 'Put a gem (Bittergem, Compressed gold, Jadiz, or Aquarq) in every seat of the Escape Pod.',
 	},
 	{
 		id: 'd6fad610-b7b5-422a-a8ad-849b8693465d',
@@ -141,6 +140,11 @@ export const achievementsList: Achievement[] = [
 		description: 'Complete an Elite Deep Dive in under 30 minutes.',
 	},
 	{
+		id: 'd3d4e8bb-13a2-455b-bc35-f2e39cc903dd',
+		name: 'Ludicrous Speed!',
+		description: 'Complete any mission in under five minutes.',
+	},
+	{
 		id: '8efcc64f-9344-402b-9363-8d15b96d3396',
 		name: 'Conscientious Objector',
 		description: 'Complete a mission with no kills.',
@@ -263,19 +267,9 @@ export const achievementsList: Achievement[] = [
 		description: 'Complete a mission with Septic Spreaders without anyone on the team killing any.',
 	},
 	{
-		id: 'c392cd9c-ecc1-4163-a765-126d70063c5c',
-		name: 'As the Prophecy Foretold',
-		description: 'Kill a Scout by detonating a C4 on a Scout mid-grapple.',
-	},
-	{
 		id: '68762b30-32e3-4968-957d-e244fe097cab',
 		name: "We're in the Endgame Now",
 		description: 'Bring three different colored gems (Bittergem, Compressed gold, Jadiz, or Aquarq) together.',
-	},
-	{
-		id: 'a3594ace-1f31-49e0-8651-e51d875e079e',
-		name: 'Long Fall Boots',
-		description: 'Prevent lethal fall damage by using Hover Boots at the last second.',
 	},
 	{
 		id: '1ebcc9c4-e6c0-4ffe-ae40-10f1d66cd516',
@@ -484,6 +478,16 @@ export const achievementsList: Achievement[] = [
 		description: 'Kick the hammer into the Barrel Hoop.',
 	},
 	{
+		id: 'd09d857b-cef1-45a0-87a8-0424a5294e43',
+		name: "A Girl's Best Friend",
+		description: 'Earn a Diamond promotion.',
+	},
+	{
+		id: '6cdab8c8-b4b0-41b1-a301-005e7092343e',
+		name: 'Cover Me With Diamonds',
+		description: 'Earn Diamond promotions for all four dwarves.',
+	},
+	{
 		id: '393c022a-eb5d-436b-89ef-bf1614b9e446',
 		name: 'Lord of the Deep',
 		description: 'Earn a Platinum promotion.',
@@ -501,18 +505,29 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '270575b8-b6a9-4fa2-985c-3c00d46c6634',
-		name: 'Legen- Wait for It...',
+		name: 'Legen-',
 		description: 'Earn a Legendary promotion.',
 	},
 	{
 		id: '925cad8e-c32b-4509-8f70-f63135afba09',
-		name: '-Dary!',
+		name: 'Wait for It...',
 		description: 'Earn Legendary promotions for all four dwarves.',
 		subTasks: [
 			{ id: '7ab8fd89-622d-429a-bca4-e1400e16cfb4', name: 'Driller' },
 			{ id: '4dc78f31-dead-42a4-811c-2aff7e349324', name: 'Engineer' },
 			{ id: 'c9551f3a-5871-485b-836f-0150fe848896', name: 'Gunner' },
 			{ id: 'caf5f060-a761-44f4-a55a-50f46adf5b6b', name: 'Scout' },
+		],
+	},
+	{
+		id: 'c392cd9c-ecc1-4163-a765-126d70063c5c',
+		name: '-Dary!',
+		description: 'Earn Legendary 3 promotions for all four dwarves.',
+		subTasks: [
+			{ id: '383adf3b-873d-43d8-8f79-86ffc3a11533', name: 'Driller' },
+			{ id: 'f2c2115a-1e4c-4478-951b-122342748c4c', name: 'Engineer' },
+			{ id: 'a5146cb3-6730-48e1-abaf-c084c0335b3e', name: 'Gunner' },
+			{ id: '1c1192f1-83ac-473c-9f32-bfa5fdcff5fe', name: 'Scout' },
 		],
 	},
 	{
@@ -588,7 +603,13 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '9c92a8bd-1697-49e5-9906-d6cb49751d76',
 		name: "Can't Touch This!",
-		description: 'Complete a mission without losing any health.',
+		description: 'Complete a mission as each class without losing any health.',
+		subTasks: [
+			{ id: '93e640a4-b699-475c-bb3d-0235342aac53', name: 'Driller' },
+			{ id: '1b89964c-ba06-4c46-b627-26e2f102d375', name: 'Engineer' },
+			{ id: '7b091efa-0fa5-44eb-b693-49c8a5c76567', name: 'Gunner' },
+			{ id: '35c4705f-35a4-4c62-a3f6-de9cf44158d4', name: 'Scout' },
+		],
 	},
 	{
 		id: 'e19e455d-2413-4491-bc2e-c96317db0d8b',
@@ -661,7 +682,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '23300f1d-03f3-4973-9e08-405fdc5dfdfe',
-		name: "Shouldn't Have Left My Tools on the Bloody Space Rig!",
+		name: 'Left My Tools on the Bloody Space Rig!',
 		description: 'Complete an Escort Duty mission without repairing the Drilldozer.',
 	},
 	{
@@ -727,7 +748,8 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'b9c822a4-7ae9-4e37-b9b3-9e48c3a8e546',
 		name: 'The Dice Are Loaded',
-		description: 'Complete a mission after drinking a Randoweisser beer.',
+		description: 'Complete 10 missions under the influence of a Randoweisser beer.',
+		countNeeded: 10,
 	},
 	{
 		id: 'e00ee9f3-0507-4db6-8db5-eba3edba6d5a',
@@ -823,9 +845,19 @@ export const achievementsList: Achievement[] = [
 		description: 'Crack an Impacted Meteor.',
 	},
 	{
+		id: '030225ef-2bf1-4d77-b0fc-01dbcafe72fd',
+		name: 'A Little Meatier',
+		description: 'Find a Plague Heart from a Meteor Shower.',
+	},
+	{
 		id: '1fab5f8c-4bad-42a3-be53-7201f1d6f3dc',
 		name: "You'll Never Take Our Jobs",
 		description: 'Kill a Prospector.',
+	},
+	{
+		id: 'e918bdd8-5d4c-4be7-902b-629acbc48704',
+		name: 'Uprooted',
+		description: 'Kill a Korlok Tyrant-Weed.',
 	},
 	{
 		id: '1708ae31-3c20-4043-99f7-ee89bd1f70c4',
@@ -918,7 +950,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '6c248f1f-c9cc-43aa-89b8-3d042b104239',
 		name: 'Fashionista',
-		description: 'Unlock all cosmetics. (Excluding DLC)',
+		description: 'Unlock all cosmetics. (Excluding DLC and limited-time cosmetics)',
 	},
 	{
 		id: '7b0dd5fa-644b-434d-b358-08fee6af1a75',
@@ -1126,7 +1158,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 'e5c06ff6-156c-4d25-9ebb-97381c2887ca',
-		name: 'Watch the Grabber! ',
+		name: 'Watch the Grabber!',
 		description: 'Rescue a teammate from a Mactera Grabber.',
 	},
 	{
@@ -1394,7 +1426,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '0fce09ba-ac44-4a93-bff4-5a21c3ba0296',
-		name: 'Pulling Weeds From the Flower Bed',
+		name: 'Weeding the Flower Bed',
 		description: 'Defeat a Korlok Tyrant-Weed without destroying any of the Healing Pods.',
 	},
 	{
@@ -1735,7 +1767,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '4b34174c-0071-4bc5-af54-f7a68979a26b',
-		name: 'Fragile Cargo',
+		name: 'Fragile: Handle With Care',
 		description: 'Complete a Point Extraction mission without throwing any Aquarqs.',
 	},
 	{
@@ -1765,44 +1797,20 @@ export const achievementsList: Achievement[] = [
 		description: 'Complete a mission without killing any enemies after having called the Escape Pod.',
 	},
 	{
-		id: '39a41759-9b1f-4df2-abf8-9427a91beaaf',
-		name: 'You Snooze, You Lose!',
-		description: 'Prevent lethal fall damage by grappling at the last second.',
-	},
-	{
-		id: 'a64237ff-70f6-409d-9ba7-e25da4548142',
-		name: 'Oops, I Slipped - Oh Wait...',
-		description: 'Prevent lethal fall damage by vaulting on a ledge.',
-	},
-	{
-		id: 'f11bfd7b-3db9-4a39-98e0-7a639d66dda3',
-		name: 'Stony Rock',
-		description: 'Prevent lethal fall damage by riding a pipe.',
-	},
-	{
-		id: 'bfdbf728-f4e6-4726-9b48-77c2eeaac746',
-		name: 'Zip! Zoom! ',
-		description: 'Prevent lethal fall damage by catching a zipline.',
-	},
-	{
-		id: '964a07ad-cbc7-49b1-9f56-4048d8929d5d',
-		name: 'My Guardian Angel',
-		description: 'Prevent lethal fall damage by catching a Cave Angel.',
-	},
-	{
-		id: '67a0faa2-986d-4f74-98f0-857278dbd8d5',
-		name: 'Fluffy Pancake',
-		description: 'Prevent lethal fall damage by landing on a Platform.',
-	},
-	{
-		id: '9727ac1d-4392-4464-87f8-d6852d7d693f',
-		name: 'A Blanket of Snow',
-		description: 'Prevent lethal fall damage by landing on a mound of snow.',
-	},
-	{
-		id: 'be93ac9a-d77e-4704-a825-738cf06f8110',
-		name: 'Catch Me!',
-		description: 'Prevent lethal fall damage by bouncing on a teammates head.',
+		id: '6dc1032e-e52d-46f3-aa54-88d30f5afbd8',
+		name: 'To the Fallen',
+		description: 'Prevent lethal fall damage by performing each of the following.',
+		subTasks: [
+			{ id: '39a41759-9b1f-4df2-abf8-9427a91beaaf', name: 'Grappling (You Snooze, You Lose!)' },
+			{ id: 'a64237ff-70f6-409d-9ba7-e25da4548142', name: 'Vaulting on a ledge (Oops, I Slipped - Oh Wait...)' },
+			{ id: 'f11bfd7b-3db9-4a39-98e0-7a639d66dda3', name: 'Riding a pipe (Stony Rock)' },
+			{ id: 'bfdbf728-f4e6-4726-9b48-77c2eeaac746', name: 'Catching a zipline. (Zip! Zoom!)' },
+			{ id: '964a07ad-cbc7-49b1-9f56-4048d8929d5d', name: 'Catching a Cave Angel. (Guardian Angel)' },
+			{ id: '67a0faa2-986d-4f74-98f0-857278dbd8d5', name: 'Landing on a Plastcrete Platform (Soft Pancake)' },
+			{ id: '9727ac1d-4392-4464-87f8-d6852d7d693f', name: 'Landing on a snow mound (A Blanket of Snow)' },
+			{ id: 'be93ac9a-d77e-4704-a825-738cf06f8110', name: 'Bouncing on a teammates head (Catch Me!)' },
+			{ id: 'a3594ace-1f31-49e0-8651-e51d875e079e', name: 'Using Hover Boots (Long Fall Boots)' },
+		],
 	},
 	{
 		id: '25f760c9-9970-482c-8168-cd598c9d9a2b',
@@ -2119,14 +2127,45 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '9f702224-9756-4964-88cf-94f80c4d50e7',
-		name: 'Last1',
-		description: 'Description for Last1.',
-		// TODO: Define
+		name: 'Clean Kills',
+		description: 'Complete a mission with each class using a Clean Overclock on both weapons.',
+		subTasks: [
+			{ id: '7d32b039-5ccb-439c-b222-e17358e8c4cd', name: 'Driller' },
+			{ id: '5a252be1-4eca-4d94-b5f6-de0107062139', name: 'Engineer' },
+			{ id: '8c2e128a-3044-4ac1-afc3-3950cc7c1e1b', name: 'Gunner' },
+			{ id: '24152a22-b1f5-44f4-8407-a01ffb7a5744', name: 'Scout' },
+		],
 	},
 	{
 		id: 'e14942eb-4be4-4925-adfc-79f64ab09558',
-		name: 'Last2',
-		description: 'Description for Last2.',
-		// TODO: Define
+		name: 'Perfectly Balanced',
+		description: 'Complete a mission with each class using a Balanced Overclock on both weapons.',
+		subTasks: [
+			{ id: 'fab35554-1273-4de7-bc73-9ff171568fb3', name: 'Driller' },
+			{ id: '8b0c2068-d16c-400c-a79b-34a7f8c52feb', name: 'Engineer' },
+			{ id: '8060ec75-9d09-44d6-9a15-6487b5289d1a', name: 'Gunner' },
+			{ id: '60a939a3-5655-453a-8bb5-ab868ac88d02', name: 'Scout' },
+		],
+	},
+	{
+		id: 'ee49ba09-dfb7-4469-91cf-adba9220ef93',
+		name: 'Like My Ex',
+		description: 'Complete a mission with each class using an Unstable Overclock on both weapons.',
+		subTasks: [
+			{ id: '6bd5bf39-6858-4e3a-b569-4c6add322824', name: 'Driller' },
+			{ id: '90d5dddb-ac42-456e-a8d9-f58aff13e91a', name: 'Engineer' },
+			{ id: 'e8b5a7e9-d658-4cf3-838c-752789d99277', name: 'Gunner' },
+			{ id: '720bbb3e-95b0-4b52-b81a-1f6c8c135e8a', name: 'Scout' },
+		],
+	},
+	{
+		id: 'ae4ca35e-fe77-4742-8c03-5ecad5f643e7',
+		name: "Rack 'Em Up",
+		description: 'Get more kills than the rest of your team combined.',
+	},
+	{
+		id: '5f677a5b-a208-46b5-8daa-8ec619288f57',
+		name: 'Spiked Round',
+		description: 'Complete the cleansing of three contagion spikes within 30 seconds.',
 	},
 ];
