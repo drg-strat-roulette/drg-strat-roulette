@@ -65,3 +65,6 @@
 	[ngStyle]="{ backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/assets/backgrounds/' + background + ')' }">
 	<router-outlet></router-outlet>
 </div>
+
+<!-- Pre-load this image to avoid displaying default text when dialogs display -->
+<img hidden src="assets/images/mission-control.png"/>

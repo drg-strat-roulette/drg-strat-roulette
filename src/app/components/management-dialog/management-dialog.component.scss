@@ -3,8 +3,16 @@
 }
 
 .management-avatar {
-    -webkit-filter: drop-shadow(5px 5px 5px #222);
-    filter: drop-shadow(5px 5px 5px #222);
 	height: 200px;
 	width: 200px;
+    filter:
+        drop-shadow(3px 0 0 black) 
+        drop-shadow(0 3px 0 black)
+        drop-shadow(-3px 0 0 black) 
+        drop-shadow(0 -3px 0 black)
+        drop-shadow(2px 0 0 #ff9c00) 
+        drop-shadow(0 2px 0 #ff9c00)
+        drop-shadow(-2px 0 0 #ff9c00) 
+        drop-shadow(0 -2px 0 #ff9c00)
+        drop-shadow(5px 5px 5px #242424);
 }
