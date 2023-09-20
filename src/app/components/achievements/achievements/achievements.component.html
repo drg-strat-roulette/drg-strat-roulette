@@ -50,7 +50,7 @@
                         <div class="d-flex flex-column w-100">
                             <div class="mb-1 d-flex justify-content-between">
                                 <div>
-                                    {{ numAchievementsCompleted }} of {{ achievements.length }} completed ({{100 * numAchievementsCompleted / achievements.length | number : '1.0-0'}}%)
+                                    {{ numAchievementsCompleted }} of {{ achievements.length }} completed ({{100 * numAchievementsCompleted / achievements.length | number : '1.1-1'}}%)
                                 </div>
                                 <div>
                                     ({{ numAchievementsDisplayed }} displayed)
@@ -72,7 +72,7 @@
         <div class="container pt-3">
             <div class="px-2">
                 <!-- Empty state -->
-                <h1 *ngIf="numAchievementsDisplayed === 0 && !searchInput">You have no {{ displayedCompletions }} achievements!</h1>
+                <h1 *ngIf="numAchievementsDisplayed === 0 && !searchInput">You have no {{ displayedCompletions }} achievements.</h1>
                 <h1 *ngIf="numAchievementsDisplayed === 0 && searchInput">No results match search.</h1>
                 <!-- Achievement cards -->
                 <ng-container *ngFor="let achievement of achievements; let i = index">

@@ -157,7 +157,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '4f222615-2688-49dc-841c-39a98b0a7f69',
 		name: 'Overclocked',
-		description: 'Unlock all weapon Overclocks.',
+		description: 'Forge all weapon Overclocks.',
 	},
 	{
 		id: 'a94e5f48-035c-40c7-b3ca-b7cab5aace83',
@@ -212,8 +212,8 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 'bc9506ca-b8c8-4487-837b-749e9e794d54',
-		name: 'I Think I Have a Chance to Make It Out Alive',
-		description: 'Deal the final blow to a Bulk Detonator with your Pickaxe.',
+		name: "Ride 'Em Cowboy",
+		description: 'Kill a Prospector while bouncing on its back.',
 	},
 	{
 		id: '86ac8f54-4e73-4336-8041-fd661024b943',
@@ -356,7 +356,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'f352e02b-b870-49e3-a590-f2271e7683a8',
 		name: 'Chill Out',
-		description: 'Freeze a teammate by shooting an ice bulb.',
+		description: 'Freeze a teammate by shooting a Cryo Bulb (in Glacial Strata).',
 	},
 	{
 		id: 'd59c02f6-0643-41e8-90a8-3501a4cb21f9',
@@ -548,7 +548,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '20b98a17-4c4d-4619-be34-304857306c66',
 		name: 'Mineral Hoarder Here',
-		description: 'Get over 500 of one special mineral in a single mission.',
+		description: 'Get over 500 of one crafting mineral in a single mission. (After Hazard Bonus)',
 	},
 	{
 		id: '2186945e-0efd-4807-8d73-ab321dee1a59',
@@ -563,12 +563,12 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '4f174153-efc4-460b-a035-a9a6edb8dd82',
 		name: 'Easter Hunt',
-		description: 'Complete a mission after disturbing eight eggs within 30 seconds.',
+		description: 'Complete a mission in which eight eggs are exhumed within a 30-second window.',
 	},
 	{
 		id: '5dc79fa4-e99c-4ae6-96dd-adfc06ec545c',
 		name: 'Dreadnought Party',
-		description: 'Complete a mission after popping three Dreadnought eggs within 10 seconds.',
+		description: 'Complete a mission after popping three Dreadnought eggs within a 10-second window.',
 	},
 	{
 		id: '7d5f2d6e-0eaf-494f-9a73-46e1eb2377b0',
@@ -693,7 +693,11 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'cfd3bd16-a7cb-4806-9631-c9051f752743',
 		name: "That Won't Make It Through Customs",
-		description: 'Bring a Bough Cone or Tumble Weed into the Escape Pod.',
+		description: 'Bring a Bough Cone or Dry Thorn Tumble into the Escape Pod.',
+		link: {
+			text: 'Hollow Bough Features',
+			url: 'https://deeprockgalactic.wiki.gg/wiki/Biome_Features#Hollow_Bough',
+		},
 	},
 	{
 		id: '9d3f14c0-0d32-4add-b254-5cb47a781fa8',
@@ -703,7 +707,8 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'f11ba0fd-570b-482d-b8e4-5aac404620c8',
 		name: 'Cutting Back on E-Waste',
-		description: 'Complete an Industrial Sabotage mission without destroying any Ground Turrets or Bouncers.',
+		description:
+			'Complete an Industrial Sabotage mission without destroying any Burst Turrets or Repulsion Turrets.',
 	},
 	{
 		id: '61b81a88-276a-4467-893d-cf77fb357818',
@@ -798,7 +803,7 @@ export const achievementsList: Achievement[] = [
 		subTasks: [
 			{ id: '9e3125bc-3ab3-44f1-b673-48fa1dee5629', name: 'Breather (Radioactive Exclusion Zone)' },
 			{ id: 'abca445a-2d7a-4f54-a23c-59da865c9b5b', name: 'Cave Vine (Radioactive Exclusion Zone)' },
-			{ id: '8ae2186e-ec9c-4195-b8f8-715e899c1787', name: 'Drilldozer' },
+			{ id: '8ae2186e-ec9c-4195-b8f8-715e899c1787', name: 'Doretta' },
 			{ id: '5728255f-e0bc-4438-90cc-d61947592219', name: 'Glyphid Grunt' },
 			{ id: '30841640-ec49-4e87-954b-62b5f338beb9', name: 'Glyphid Grunt Guard' },
 			{ id: '360b83cd-3b97-40c9-9138-82a1d3ce971c', name: 'Glyphid Grunt Slasher' },
@@ -856,8 +861,19 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 'e918bdd8-5d4c-4be7-902b-629acbc48704',
-		name: 'Uprooted',
-		description: 'Kill a Korlok Tyrant-Weed.',
+		name: 'Weed Wacker',
+		description: 'Get a Pickaxe kill on all Korloks.',
+		link: { text: 'Korloks', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Korlok' },
+		subTasks: [
+			{ id: '435895c8-4792-4b58-acf2-e9dbad474dd6', name: 'Korlok Healing Pod' },
+			{ id: 'ab2d7260-f6cd-45f3-a141-abab943e9022', name: 'Korlok Sprout' },
+			{ id: '8e490415-db05-4e23-ba48-059e22250d6a', name: 'Korlok Tyrant-Weed' },
+		],
+	},
+	{
+		id: '0fce09ba-ac44-4a93-bff4-5a21c3ba0296',
+		name: 'Weeding the Flower Bed',
+		description: 'Defeat a Korlok Tyrant-Weed without destroying any of the Healing Pods.',
 	},
 	{
 		id: '1708ae31-3c20-4043-99f7-ee89bd1f70c4',
@@ -883,16 +899,19 @@ export const achievementsList: Achievement[] = [
 		id: '8583030a-75e9-4fdb-82ae-9d9f707f5c40',
 		name: 'Coming in Clutch',
 		description: 'Use Iron Will when your whole team is down and revive the whole team.',
+		link: { text: 'Iron Will', url: 'https://deeprockgalactic.wiki.gg/wiki/Iron_Will' },
 	},
 	{
 		id: '63f0a05c-8327-4bab-9905-468fef7e678e',
 		name: 'Desperate Times Call for Desperate Measures',
 		description: 'Use Iron Will when your whole team is down to get to the Escape Pod.',
+		link: { text: 'Iron Will', url: 'https://deeprockgalactic.wiki.gg/wiki/Iron_Will' },
 	},
 	{
 		id: '96b1793d-9972-49f8-8226-cee500e76e64',
 		name: 'Second Wind',
 		description: 'Use Iron Will and Vampire to revive yourself.',
+		link: { text: 'Perks', url: 'https://deeprockgalactic.wiki.gg/wiki/Perks' },
 	},
 	{
 		id: 'ba361ce8-247c-4ddc-971a-f4a9acb6fe60',
@@ -922,7 +941,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'd28873ee-460a-4edc-8604-4fcc1564022d',
 		name: 'Over Socked',
-		description: 'Complete all cosmetic Overclocks.',
+		description: 'Forge all cosmetic Overclocks.',
 	},
 	{
 		id: '8d9494ee-ec7e-4b60-b1ef-36eefcb5db3d',
@@ -956,7 +975,7 @@ export const achievementsList: Achievement[] = [
 		id: '7b0dd5fa-644b-434d-b358-08fee6af1a75',
 		name: 'Heavy Hitter',
 		description:
-			'Deal 1000 damage in one hit. (Hyper Propellant / Ice Spear / Volatile Bullets (flaming enemy) to a weak point or Hyper Propellant / Ice Spear to a frozen enemy)',
+			'Deal 1000 damage in one hit. (Hyper Propellant / Ice Spear / Volatile Bullets (flaming enemy) to a weakpoint or Hyper Propellant / Ice Spear to a frozen enemy)',
 	},
 	{
 		id: 'f4128df1-3680-4518-be3f-901c4952332a',
@@ -982,6 +1001,7 @@ export const achievementsList: Achievement[] = [
 			{ id: '78bbd9dd-b1f1-4f20-9be8-9128a06693ed', name: 'Glyphid Grunt Guard' },
 			{ id: '1ae4a2fc-8913-4147-8911-24c0a5b4cee9', name: 'Glyphid Grunt Slasher' },
 		],
+		link: { text: 'Beast Master', url: 'https://deeprockgalactic.wiki.gg/wiki/Beast_Master' },
 	},
 	{
 		id: '8da80e9c-9652-406d-a63f-b6127776eaa7',
@@ -997,13 +1017,15 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '376ccfd1-10dc-4fac-907f-7b2712377cc7',
-		name: 'See You in Hell',
+		name: 'See You In Hell',
 		description: 'Get 10 kills at once with See You In Hell.',
+		link: { text: 'See You In Hell', url: 'https://deeprockgalactic.wiki.gg/wiki/See_You_In_Hell' },
 	},
 	{
 		id: 'fd0bdfe9-9217-4a5b-a59d-94f613a82b5a',
-		name: 'Berserker Rage',
-		description: 'Get 10 Pickaxe kills within the effect of Berserk.',
+		name: "Berzerker's Fury",
+		description: 'Get 10 Pickaxe kills with one activation of Berzerker.',
+		link: { text: 'Berzerker', url: 'https://deeprockgalactic.wiki.gg/wiki/Berzerker' },
 	},
 	{
 		id: '74a5e5df-021f-4129-96bc-c18444b0a4ee',
@@ -1174,7 +1196,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '4186d5f3-1eee-4ea0-a66e-32edefa95e0a',
 		name: "You're Never Alone!",
-		description: 'Have Bosco, Molly, Steeve, and a hacked Patrol Bot at once.',
+		description: 'Have Bosco, Molly, Steeve, and a hacked Patrol Bot at once during a solo mission.',
 	},
 	{
 		id: '1bcd3392-5df4-4c12-ba72-48461d07870f',
@@ -1365,7 +1387,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'd8ba899a-63b8-4536-830c-a4b8a8f87b4a',
 		name: 'Forager',
-		description: 'Have one or more of each beer ingredient in your inventory at the same time.',
+		description: 'Have one or more of each beer ingredient in your Mineral Bag at the same time.',
 	},
 	{
 		id: '57a790d9-39c5-44eb-bca9-5395b41b1e9e',
@@ -1391,7 +1413,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '2254085c-15df-4cfd-a1aa-c732cca675b6',
 		name: 'One for the Road',
-		description: 'Bring a full glass of beer with you into a mission.',
+		description: 'Bring a full mug of beer with you on the Drop Pod.',
 	},
 	{
 		id: 'fbf9137f-426a-47db-86a6-64e07c81b0e3',
@@ -1423,11 +1445,6 @@ export const achievementsList: Achievement[] = [
 		id: 'b0ca1166-ebe1-46d7-ad09-0491733b0061',
 		name: 'Do Bet-Cs Dream of Electric Steeves?',
 		description: 'Complete a mission with a BET-C without disturbing it.',
-	},
-	{
-		id: '0fce09ba-ac44-4a93-bff4-5a21c3ba0296',
-		name: 'Weeding the Flower Bed',
-		description: 'Defeat a Korlok Tyrant-Weed without destroying any of the Healing Pods.',
 	},
 	{
 		id: '84ff7f0e-fc9a-49c4-8924-e28aeb833c03',
@@ -1603,7 +1620,7 @@ export const achievementsList: Achievement[] = [
 		id: '9b7012e7-2657-4c57-814a-0bfa44b309e7',
 		name: 'Drills Weapons Expert',
 		description: 'Kills 50 enemies with Drills.',
-		countNeeded: 10,
+		countNeeded: 50,
 	},
 	{
 		id: '30b4ae60-9e7c-4d94-ac23-bddd22c9c239',
@@ -1637,7 +1654,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '7476171a-b9fe-4ec5-b502-53cd2947e41a',
 		name: "I'm Hacker Man",
-		description: 'Perform 50 hacks.',
+		description: 'Successfully perform 50 hacks.',
 		countNeeded: 50,
 	},
 	{
@@ -1709,8 +1726,8 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 'd5b922e0-ed47-46fc-be9d-cf74591488f4',
-		name: "I'm Gonna Build My Own Mini MULE",
-		description: 'Bring three Mini MULE legs into the Escape Pod.',
+		name: "I'm Gonna Build My Own Mini-M.U.L.E.",
+		description: 'Bring three Mini-M.U.L.E. legs into the Escape Pod.',
 	},
 	{
 		id: '20fe2bd8-23e6-4bc1-9925-be906e566c47',
@@ -1773,7 +1790,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '529039df-b65f-4bb1-bb44-a88ca3cc142f',
 		name: 'Full Pockets',
-		description: 'Complete a mission with 200 or more non-deposited minerals in your inventory.',
+		description: 'Complete a mission with 200 or more items in your Mineral Bag.',
 	},
 	{
 		id: '94e5ee0c-2add-4820-bef9-197fd0776934',
@@ -1784,12 +1801,12 @@ export const achievementsList: Achievement[] = [
 		id: 'c32b3ece-b51a-48c2-81dd-2b16b46299e4',
 		name: 'Leg Transplant',
 		description:
-			'Complete a Salvage Operation mission by repairing all Mini MULEs using only the legs from the other Mini MULEs.',
+			'Complete a Salvage Operation mission by repairing all Mini-M.U.L.E.s using only the legs from the other Mini-M.U.L.E.s.',
 	},
 	{
 		id: '57853145-61e5-49f5-9746-8fe8c6643fb8',
 		name: 'Sergeant Bosco',
-		description: 'Salute to Bosco, and have him Salute back.',
+		description: 'Salute to Bosco, and have him salute back.',
 	},
 	{
 		id: '973f084b-ff8e-452f-a598-73f09912c9cb',
@@ -1829,7 +1846,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '8447f256-2498-4cb2-94f5-d1ddc4aa29a0',
-		name: 'Strong Support Structure',
+		name: 'Surgical Team',
 		description: 'Get revived by three teammates at once.',
 	},
 	{
@@ -1865,7 +1882,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '56842200-e09a-43d1-88fe-cd7ee5d4cc13',
 		name: 'Dystrum Depositors',
-		description: 'Deposit the entire Dystrum secondary objective in a 10 second window.',
+		description: 'Deposit the entire Dystrum secondary objective within a 10-second window.',
 	},
 	{
 		id: '1b17f78a-f730-45e1-b9f6-b90ac3b0a79d',
@@ -1885,7 +1902,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'b3c3db50-c5ce-496a-87b1-cc2255c82243',
 		name: 'Gunk Gatherer',
-		description: 'Deposit the entire Gunk Seed secondary objective into Molly in a 10 second window.',
+		description: 'Deposit the entire Gunk Seed secondary objective into Molly within a 10-second window.',
 	},
 	{
 		id: '900ad0a5-d4eb-4b29-9d01-21b6ba4fce16',
@@ -1935,7 +1952,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '5f9fcfe7-9f63-40c8-a90f-d5b84830bc75',
-		name: 'Hoxxes World Tour',
+		name: 'Hoxxes IV World Tour',
 		description: 'Complete 10 consecutive missions each in a different biome with no repeats.',
 		subTasks: [
 			{ id: 'f4e1ae96-8515-4d2c-b4f8-046c0c5b1c92', name: 'Azure Weald' },
@@ -2009,7 +2026,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '124774d9-c20a-4ada-bd78-60fad9975ba3',
 		name: 'Pallbearer',
-		description: 'Bring a Mineral Bag (from a dwarf who left early) into the Escape Pod.',
+		description: 'Bring a Resource Bag (from a dwarf who left early) into the Escape Pod.',
 	},
 	{
 		id: '3ea3c73e-eb0e-4813-a5b5-e8f7af6e9ecb',
@@ -2019,7 +2036,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '0ad0ee1e-edc0-4d69-aa16-0ee9f2567fdb',
-		name: 'Where Is That Damn Mule!',
+		name: 'Where Is That Damn M.U.L.E.!',
 		description:
 			'Between four dwarves, hold enough Morkite to complete the primary objective without anyone having deposited any.',
 	},
@@ -2074,7 +2091,7 @@ export const achievementsList: Achievement[] = [
 		id: 'ebbd554e-1e17-4dcd-97b2-f65438a11976',
 		name: 'Scrap Collecting',
 		description:
-			'Call in a Resupply Pod without anyone having destroyed a Nitra vein. (Repair Mini-MULEs or kill Loot Bugs for Nitra)',
+			'Call in a Resupply Pod without anyone having destroyed a Nitra vein. (Repair Mini-M.U.L.E.s or kill Loot Bugs for Nitra)',
 	},
 	{
 		id: '3b79c849-bfc3-4d59-bb86-cc2265b0d369',
@@ -2100,12 +2117,14 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '7410af21-c715-44db-96f5-73ffd97e3987',
 		name: "Show Me What You've Got",
-		description: 'Kill a Glyphid Dreadnought whose weak-point is revealed three or less times.',
+		description: 'Kill a Glyphid Dreadnought whose weakpoint is revealed three or fewer times.',
+		// TODO: Attempt
 	},
 	{
 		id: 'd6aa81b9-2901-4faf-a2b7-4010020a086f',
 		name: "Don't Let Your Guard Down",
-		description: 'Kill a Dreadnought Hiveguard whose weak-point is revealed four or less times.',
+		description: 'Kill a Dreadnought Hiveguard whose weakpoint is revealed two or fewer times.',
+		// TODO: Attempt
 	},
 	{
 		id: 'f8e0c6fb-3373-4046-9d6a-3ecb41ba325b',
@@ -2115,7 +2134,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '9cec18bb-b815-41cc-95f8-835a98136e42',
-		name: 'Keep Running and Nobody Explodes',
+		name: 'I Think I Have a Chance to Make It Out Alive',
 		description:
 			"Deal the final blow to a Bulk Detonator with your Pickaxe and live to tell the tale (Don't get killed in the explosion).",
 	},
@@ -2168,4 +2187,8 @@ export const achievementsList: Achievement[] = [
 		name: 'Spiked Round',
 		description: 'Complete the cleansing of three contagion spikes within 30 seconds.',
 	},
+	// TODO: list of checkboxes for achievements like complete all milestones that auto-check as the necessary achievements are completed?
+	// TODO: Combine all the milestone achievements into one?
+	// TODO: Consistent parenthesis and period rules
+	// TODO: Re-add defeat Korlok (Uprooted)
 ];

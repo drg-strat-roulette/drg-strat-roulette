@@ -49,7 +49,11 @@ describe('Achievement list', () => {
 	});
 
 	it('should have Title Cased names for each achievement', () => {
+		const exceptions = ['See You In Hell'];
 		for (const achievement of achievements) {
+			if (exceptions.includes(achievement.name)) {
+				continue;
+			}
 			const wordsInName = achievement.name.replace(/[^a-z0-9 ]/gi, '').split(' ');
 			for (const [idx, word] of wordsInName.entries()) {
 				const firstLetter = word[0];
