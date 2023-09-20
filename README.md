@@ -39,6 +39,7 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Bug reports, feature requests, and strategy submissions
 -   [x] Weight strategies based on chance of mission requirements being met
 -   [x] Way to see the list of of all strategies
+-   [x] Sync concurrent tabs (settings, queued/recent strats)
 
 ### Achievements
 
@@ -68,6 +69,8 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Visual indicator for 100%
 -   [x] Reset progress
 -   [x] Import/export progress
+-   [x] Indicate reason if no achievements displayed
+-   [x] Sync concurrent tabs (unlock progress)
 
 ## Potential features
 

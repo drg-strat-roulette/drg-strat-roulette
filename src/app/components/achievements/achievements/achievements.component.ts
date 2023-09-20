@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject, takeUntil } from 'rxjs';
-import { AchievementKeys } from 'src/app/models/local-storage.interface';
+import { Subject, filter, takeUntil } from 'rxjs';
+import { AchievementKeys, CrossTabSyncType } from 'src/app/models/local-storage.interface';
 import { HeaderControlsService } from 'src/app/services/header-controls/header-controls.service';
 import { SnackbarConfig, SnackbarWithIconComponent } from '../../snackbar-with-icon/snackbar-with-icon.component';
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -13,7 +13,7 @@ import { byCompletionDateThenByOrder } from 'src/app/utilities/sorters.utils';
 import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
 import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { CrossTabSyncService } from 'src/app/services/cross-tab-sync/cross-tab-sync.service';
 
 @Component({
 	selector: 'app-achievements',
@@ -54,7 +54,7 @@ export class AchievementsComponent implements OnInit {
 	numCompletedDisplayed = 0;
 
 	/** Filter criteria */
-	displayedCompletions: 'all' | 'completed' | 'uncompleted' = 'all';
+	displayedCompletions: 'all' | 'completed' | 'incomplete' = 'all';
 
 	/** Achievement search input */
 	searchInput: string = '';
@@ -71,7 +71,7 @@ export class AchievementsComponent implements OnInit {
 		private clipboard: Clipboard,
 		private changeDetectorRef: ChangeDetectorRef,
 		private dialog: MatDialog,
-		private router: Router
+		private crossTabSyncService: CrossTabSyncService
 	) {}
 
 	ngOnInit(): void {
@@ -98,6 +98,17 @@ export class AchievementsComponent implements OnInit {
 			}
 		});
 
+		// Subscribe to achievement progress updates from other tabs
+		this.crossTabSyncService.tabSync$
+			.pipe(
+				takeUntil(this.destroy),
+				filter((u) => u === CrossTabSyncType.achievementProgressUpdated)
+			)
+			.subscribe(() => {
+				// Load latest achievement progress (which was saved by a different browser tab)
+				this.loadProgressByDiff(localStorage.getItem(AchievementKeys.progress));
+			});
+
 		// Prevent animations from being applied to the initial list of achievements
 		setTimeout(() => (this.disableAnimations = false), 0);
 
@@ -107,7 +118,6 @@ export class AchievementsComponent implements OnInit {
 			this.achievements.filter((a) => !a.completedAt).forEach((a) => this.toggleComplete(a, true));
 			this.changeDetectorRef.detectChanges();
 		};
-
 		(window as any).lockAll = (s: string) => {
 			if (s !== 'please') return;
 			this.achievements.filter((a) => a.completedAt).forEach((a) => this.toggleComplete(a));
@@ -146,6 +156,7 @@ export class AchievementsComponent implements OnInit {
 						prefixIcon: 'check_circle',
 					} as SnackbarConfig,
 				});
+				this.crossTabSyncService.postUpdate(CrossTabSyncType.forceReload);
 			}
 		} catch {
 			// Display alert indicating unsuccessful load/import
@@ -162,6 +173,51 @@ export class AchievementsComponent implements OnInit {
 				this.loadProgress(null, 'load');
 				localStorage.setItem(AchievementKeys.progress, '[]');
 			}
+		}
+	}
+
+	/**
+	 * Loads achievement progress from JSON string and applies diffs to the currently displayed achievements
+	 * @param p - Achievement progress, as a JSON string
+	 */
+	loadProgressByDiff(p: string | undefined | null) {
+		// Parse and apply progress diff
+		let updatedCompletedAt = false;
+		const progress: AchievementProgress[] = JSON.parse(p ?? '[]');
+		for (const achievement of this.achievements) {
+			const achievementProgress: AchievementProgress = progress.find((a) => a.id === achievement.id) ?? {
+				id: achievement.id,
+			};
+			// Update existing achievement if changed
+			if (serializeProgress(achievement) !== serializeProgress(achievementProgress)) {
+				if (achievement.completedAt !== achievementProgress.completedAt) {
+					// If achievement completion state changed, recreate the object to force animation
+					this.achievements[this.achievements.findIndex((a) => a.id === achievement.id)] = {
+						...achievement,
+						completedAt: achievementProgress.completedAt,
+						subTasksCompleted: achievementProgress.subTasksCompleted,
+						count: achievementProgress.count,
+					};
+					// Remove from recentlyCompletedAchievements
+					if (!achievementProgress.completedAt) {
+						const rcaIndex = this.recentlyCompletedAchievements.findIndex(
+							(r) => r.achievement.id === achievement.id
+						);
+						if (rcaIndex !== -1) {
+							this.recentlyCompletedAchievements.splice(rcaIndex, 1);
+						}
+					}
+					updatedCompletedAt = true;
+				} else {
+					// Otherwise, just update the remaining completion properties
+					achievement.subTasksCompleted = achievementProgress.subTasksCompleted;
+					achievement.count = achievementProgress.count;
+				}
+			}
+		}
+		// We need to re-sort if the completion state of an achievement changed
+		if (updatedCompletedAt) {
+			this.sortAchievements();
 		}
 	}
 
@@ -259,12 +315,12 @@ export class AchievementsComponent implements OnInit {
 	/**
 	 * Updates the list of currently displayed achievements based on the search input and filter criteria
 	 */
-	updateDisplayedAchievements() {
+	updateDisplayedAchievements(): void {
 		// Apply search/filter
 		const allowedCompletions =
 			this.displayedCompletions === 'completed'
 				? [true]
-				: this.displayedCompletions === 'uncompleted'
+				: this.displayedCompletions === 'incomplete'
 				? [false]
 				: [true, false];
 		const lowerSearch = this.searchInput.toLowerCase();
@@ -311,13 +367,13 @@ export class AchievementsComponent implements OnInit {
 	 * Clears all cached data associated with achievements and reloads the page.
 	 * If user has not confirmed reset (by clicking twice), display alert prompting to click again
 	 */
-	resetProgress() {
+	resetProgress(): void {
 		if (this.resetConfirmed) {
 			for (let key of Object.values(AchievementKeys)) {
 				localStorage.removeItem(key);
 			}
-			this.router.navigate([]);
-			setTimeout(() => location.reload());
+			this.crossTabSyncService.postUpdate(CrossTabSyncType.forceReload);
+			location.reload();
 		} else {
 			this.snackbar.openFromComponent(SnackbarWithIconComponent, {
 				duration: 10_000,
@@ -347,7 +403,7 @@ export class AchievementsComponent implements OnInit {
 	/**
 	 * Export achievement progress to a downloaded file
 	 */
-	exportProgress() {
+	exportProgress(): void {
 		const progress = localStorage.getItem(AchievementKeys.progress) ?? '[]';
 		var element = document.createElement('a');
 		element.setAttribute('href', 'data:text/json;charset=UTF-8,' + encodeURIComponent(progress));
@@ -361,7 +417,7 @@ export class AchievementsComponent implements OnInit {
 	/**
 	 * Save achievement progress to localStorage
 	 */
-	private saveProgress() {
+	private saveProgress(): void {
 		const progress: AchievementProgress[] = this.achievements
 			.filter((a) => a.completedAt || a.count || a.subTasksCompleted)
 			.map((a) => ({
@@ -372,6 +428,7 @@ export class AchievementsComponent implements OnInit {
 			}));
 		const progressString = JSON.stringify(progress);
 		localStorage.setItem(AchievementKeys.progress, progressString);
+		this.crossTabSyncService.postUpdate(CrossTabSyncType.achievementProgressUpdated);
 
 		// If all achievements are completed for the first time, display a congratulations
 		if (
@@ -394,7 +451,7 @@ export class AchievementsComponent implements OnInit {
 	/**
 	 * Sort achievements by completion date
 	 */
-	private sortAchievements() {
+	private sortAchievements(): void {
 		this.updateDisplayedAchievements();
 		this.achievements.sort(byCompletionDateThenByOrder);
 	}
@@ -402,7 +459,7 @@ export class AchievementsComponent implements OnInit {
 	/**
 	 * Update state variables following change to achievement progress
 	 */
-	private updateStateVars() {
+	private updateStateVars(): void {
 		this.numAchievementsCompleted = this.achievements.filter((a) => a.completedAt).length;
 		this.numAchievementsDisplayed = this.achievements.filter((a) => a.display).length;
 		this.numCompletedDisplayed = this.achievements.filter((a) => a.display && a.completedAt).length;
@@ -416,4 +473,12 @@ export class AchievementsComponent implements OnInit {
 	private allSubTasksCompleted(achievement: DisplayedAchievement) {
 		return achievement?.subTasks?.every((t) => achievement?.subTasksCompleted?.includes(t.id));
 	}
+}
+
+/**
+ * Generates a unique string representing an achievement's progress
+ * @param a - Achievement progress
+ */
+function serializeProgress(a: AchievementProgress): string {
+	return [a.id, a.completedAt, a.count, a.subTasksCompleted ?? []].map((p) => (p ?? 'null').toString()).join('::');
 }

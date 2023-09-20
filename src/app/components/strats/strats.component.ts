@@ -14,7 +14,7 @@ import {
 } from '../../models/missions.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Settings, settingsVersion } from '../../models/settings.interface';
-import { queuedStrategiesVersion, StratKeys } from '../../models/local-storage.interface';
+import { CrossTabSyncType, queuedStrategiesVersion, StratKeys } from '../../models/local-storage.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
 	SnackbarConfig,
@@ -26,6 +26,7 @@ import { HeaderControlsService } from 'src/app/services/header-controls/header-c
 import { Subject, takeUntil } from 'rxjs';
 import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
 import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
+import { CrossTabSyncService } from 'src/app/services/cross-tab-sync/cross-tab-sync.service';
 
 const RECENT_STRAT_MAX_COUNT = 10;
 
@@ -100,10 +101,20 @@ export class StratsComponent implements OnInit, OnDestroy {
 		private clipboard: Clipboard,
 		private snackbar: MatSnackBar,
 		private managementDialogService: ManagementDialogService,
-		private headerControlsService: HeaderControlsService
+		private headerControlsService: HeaderControlsService,
+		private crossTabSyncService: CrossTabSyncService
 	) {}
 
 	ngOnInit(): void {
+		// Check for cached settings to be loaded
+		this.loadSettings();
+
+		// Load cached queued strategies
+		this.loadQueuedStrats();
+
+		// Load list of recent strategies from cache
+		this.loadRecentStrategies();
+
 		// Subscribe to query parameters (in order to load a strategy by its Id)
 		this.route.queryParamMap.subscribe((params) => {
 			const strategyId = parseInt(params.get('strategyId') ?? '');
@@ -134,45 +145,6 @@ export class StratsComponent implements OnInit, OnDestroy {
 			}
 		});
 
-		// Check for cached settings to be loaded
-		const settingsString = localStorage.getItem(StratKeys.settings);
-		if (settingsString) {
-			const settings: Settings = JSON.parse(settingsString);
-			if (settings.version !== settingsVersion) {
-				// Delete old settings if version is outdated
-				localStorage.removeItem(StratKeys.settings);
-			} else {
-				this.tags.forEach((tag) => (tag.checked = !settings.excludedTags.includes(tag.type)));
-				this.dwarves = settings.dwarves;
-				this.preChosenMissions = settings.preChosenMissions;
-				this.mission = settings.mission;
-				this.correctInvalidInputs();
-			}
-		}
-
-		// Load cached queued strategies
-		const queuedStrategiesString = localStorage.getItem(StratKeys.queuedStrategies);
-		if (queuedStrategiesString) {
-			const cachedQueuedStrats: CachedQueuedStrats = JSON.parse(queuedStrategiesString);
-			if (cachedQueuedStrats) {
-				if (cachedQueuedStrats.version !== queuedStrategiesVersion) {
-					// Delete old queued strategies if version is outdated
-					localStorage.removeItem(StratKeys.queuedStrategies);
-				} else {
-					this.queuedStrats = cachedQueuedStrats.queue;
-				}
-			}
-		}
-
-		// Load list of recently chosen strategies from cache
-		const recentStrategiesString = localStorage.getItem(StratKeys.recentStrategies);
-		if (recentStrategiesString) {
-			const recentStrategies: number[] = JSON.parse(recentStrategiesString);
-			if (recentStrategies) {
-				this.recentStrats = recentStrategies;
-			}
-		}
-
 		// Display welcome dialog to new users
 		const hasSeenWelcomeDialog = localStorage.getItem(StratKeys.hasSeenWelcomeDialog);
 		if (hasSeenWelcomeDialog !== 'true') {
@@ -189,6 +161,17 @@ export class StratsComponent implements OnInit, OnDestroy {
 		this.headerControlsService.settingsButtonPressed$
 			.pipe(takeUntil(this.destroy))
 			.subscribe(() => (this.settingsMenuCollapsed = !this.settingsMenuCollapsed));
+
+		// Subscribe to updates from other tabs
+		this.crossTabSyncService.tabSync$.pipe(takeUntil(this.destroy)).subscribe((u) => {
+			if (u === CrossTabSyncType.queuedStratsUpdated) {
+				this.loadQueuedStrats();
+			} else if (u === CrossTabSyncType.recentStratsUpdated) {
+				this.loadRecentStrategies();
+			} else if (u === CrossTabSyncType.stratSettingsUpdated) {
+				this.loadSettings();
+			}
+		});
 	}
 
 	ngOnDestroy(): void {
@@ -229,14 +212,6 @@ export class StratsComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Resets all settings to their default configurations and reloads the page
-	 */
-	resetAllSettings(): void {
-		localStorage.removeItem(StratKeys.settings);
-		location.reload();
-	}
-
-	/**
 	 * Clears all items from localStorage and reloads the page
 	 */
 	clearAllCachedData(): void {
@@ -250,6 +225,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 			},
 			queryParamsHandling: 'merge',
 		});
+		this.crossTabSyncService.postUpdate(CrossTabSyncType.forceReload);
 		setTimeout(() => location.reload());
 	}
 
@@ -285,6 +261,35 @@ export class StratsComponent implements OnInit, OnDestroy {
 			mission: this.mission,
 		};
 		localStorage.setItem(StratKeys.settings, JSON.stringify(settings));
+		this.crossTabSyncService.postUpdate(CrossTabSyncType.stratSettingsUpdated);
+	}
+
+	/**
+	 * Resets all settings to their default configurations and reloads the page
+	 */
+	resetAllSettings(): void {
+		localStorage.removeItem(StratKeys.settings);
+		this.crossTabSyncService.postUpdate(CrossTabSyncType.forceReload);
+		location.reload();
+	}
+
+	/**
+	 * Load cached strategy settings
+	 */
+	loadSettings(): void {
+		const settingsString = localStorage.getItem(StratKeys.settings);
+		if (settingsString) {
+			const settings: Settings = JSON.parse(settingsString);
+			if (settings.version !== settingsVersion) {
+				// Delete old settings if version is outdated
+				localStorage.removeItem(StratKeys.settings);
+			} else {
+				this.tags.forEach((tag) => (tag.checked = !settings.excludedTags.includes(tag.type)));
+				this.dwarves = settings.dwarves;
+				this.preChosenMissions = settings.preChosenMissions;
+				this.mission = settings.mission;
+			}
+		}
 	}
 
 	/**
@@ -293,12 +298,19 @@ export class StratsComponent implements OnInit, OnDestroy {
 	 */
 	correctInvalidInputs(): void {
 		// If dwarf names have not been properly filled out, auto-populate with some data
+		let dwarfNameChanged = false;
 		this.dwarves.forEach((dwarf, i) => {
+			const oldName = dwarf.name;
 			dwarf.name = (dwarf.name ?? '').trim().length === 0 ? `Dwarf #${i + 1}` : dwarf.name;
+			if (oldName !== dwarf.name) {
+				dwarfNameChanged = true;
+			}
 		});
 		// If mission length or complexity are out of bounds, clamp them to the appropriate range
-		this.clampMissionLengthAndComplexity();
-		this.saveSettings();
+		const clamped = this.clampMissionLengthAndComplexity();
+		if (dwarfNameChanged || clamped) {
+			this.saveSettings();
+		}
 	}
 
 	/**
@@ -318,6 +330,49 @@ export class StratsComponent implements OnInit, OnDestroy {
 	}
 
 	/**
+	 * Adds the active strategyId to the list of recently chosen strategies
+	 * If the list of recently chosen strategies exceeds the length limit, the oldest item(s) will be removed.
+	 */
+	updateRecentStrategies(): void {
+		if (!this.strat) {
+			return;
+		}
+		const priorList = this.recentStrats.toString();
+
+		// Remove current strategyId if already exists
+		if (this.recentStrats.includes(this.strat.id)) {
+			this.recentStrats.splice(this.recentStrats.indexOf(this.strat.id), 1);
+		}
+
+		// Add current strategyId
+		this.recentStrats.push(this.strat.id);
+
+		// Enforce recentStrats length limit
+		while (this.recentStrats.length > RECENT_STRAT_MAX_COUNT) {
+			this.recentStrats.splice(0, 1); // Remove oldest item
+		}
+
+		// Update cache if changed
+		if (priorList !== this.recentStrats.toString()) {
+			localStorage.setItem(StratKeys.recentStrategies, JSON.stringify(this.recentStrats));
+			this.crossTabSyncService.postUpdate(CrossTabSyncType.recentStratsUpdated);
+		}
+	}
+
+	/**
+	 * Load list of recent strategies from cache
+	 */
+	loadRecentStrategies(): void {
+		const recentStrategiesString = localStorage.getItem(StratKeys.recentStrategies);
+		if (recentStrategiesString) {
+			const recentStrategies: number[] = JSON.parse(recentStrategiesString);
+			if (recentStrategies) {
+				this.recentStrats = recentStrategies;
+			}
+		}
+	}
+
+	/**
 	 * Updates the cached queued strategies to match the latest in-memory queued strats
 	 */
 	updateQueuedStrategies(): void {
@@ -331,6 +386,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 			queue: this.queuedStrats,
 		};
 		localStorage.setItem(StratKeys.queuedStrategies, JSON.stringify(cachedQueuedStrats));
+		this.crossTabSyncService.postUpdate(CrossTabSyncType.queuedStratsUpdated);
 	}
 
 	/**
@@ -346,22 +402,6 @@ export class StratsComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Adds the active strategyId to the list of recently chosen strategies
-	 * If the list of recently chosen strategies exceeds the length limit, the
-	 * oldest item will be removed.
-	 */
-	updateRecentStrategies() {
-		if (!this.strat) {
-			return;
-		}
-		if (this.recentStrats.length === RECENT_STRAT_MAX_COUNT) {
-			this.recentStrats.splice(0, 1); // Remove oldest item
-		}
-		this.recentStrats.push(this.strat?.id);
-		localStorage.setItem(StratKeys.recentStrategies, JSON.stringify(this.recentStrats));
-	}
-
-	/**
 	 * Remove a queued strategy from the list
 	 * @param id - ID of the strategy to be removed
 	 */
@@ -371,6 +411,28 @@ export class StratsComponent implements OnInit, OnDestroy {
 			this.queuedStrats.splice(queuedStratIndex, 1);
 		}
 		this.updateQueuedStrategies();
+	}
+
+	/**
+	 * Load cached queued strategies
+	 */
+	loadQueuedStrats(): void {
+		const queuedStrategiesString = localStorage.getItem(StratKeys.queuedStrategies);
+		if (queuedStrategiesString) {
+			const cachedQueuedStrats: CachedQueuedStrats = JSON.parse(queuedStrategiesString);
+			if (cachedQueuedStrats) {
+				if (cachedQueuedStrats.version !== queuedStrategiesVersion) {
+					// Delete old queued strategies if version is outdated
+					localStorage.removeItem(StratKeys.queuedStrategies);
+				} else {
+					this.queuedStrats = cachedQueuedStrats.queue;
+					// Close drawer if all queued strats have been removed
+					if (this.queuedStrats.length === 0) {
+						this.queuedStratsDrawer?.close();
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -467,8 +529,11 @@ export class StratsComponent implements OnInit, OnDestroy {
 
 	/**
 	 * Clamps the values of mission.length and mission.complexity to be within the [1, 3] range
+	 * Return true if something was updated, false otherwise
 	 */
-	private clampMissionLengthAndComplexity(): void {
+	private clampMissionLengthAndComplexity(): boolean {
+		const originalLength = this.mission.length;
+		const originalComplexity = this.mission.complexity;
 		if (!this.mission.length) {
 			this.mission.length = 1;
 		}
@@ -477,6 +542,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 		}
 		this.mission.length = clamp(this.mission.length, 1, 3);
 		this.mission.complexity = clamp(this.mission.complexity, 1, 3);
+		return originalLength !== this.mission.length || originalComplexity !== this.mission.complexity;
 	}
 
 	/**

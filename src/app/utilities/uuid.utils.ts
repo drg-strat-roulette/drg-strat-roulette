@@ -8,7 +8,7 @@ const NS = '68709af5-b9a3-45c2-9a34-8042ad2843e7';
  * @returns - UUID
  */
 export function getUUID(seed?: string) {
-	if (!seed) {
+	if (seed === undefined) {
 		return uuidV4();
 	} else {
 		return uuidV5(seed, NS);

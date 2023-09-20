@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
 	/**
 	 * Changes the route following active tab change
 	 */
-	tabIndexChanged() {
+	tabIndexChanged(): void {
 		this.router.navigate([this.tabs[this.activeTabIndex].id]);
 	}
 

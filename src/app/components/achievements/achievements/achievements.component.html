@@ -36,8 +36,8 @@
                                     Completed
                                 </mat-option>
                                 <mat-option
-                                    value="uncompleted">
-                                    Uncompleted
+                                    value="incomplete">
+                                    Incomplete
                                 </mat-option>
 							</mat-select>
 						</mat-form-field>
@@ -71,6 +71,9 @@
         <!-- Achievements list -->
         <div class="container pt-4">
             <div class="px-2">
+                <!-- Empty state -->
+                <h1 *ngIf="numAchievementsDisplayed === 0 && !searchInput">You have no {{ displayedCompletions }} achievements!</h1>
+                <h1 *ngIf="numAchievementsDisplayed === 0 && searchInput">No results match search.</h1>
                 <!-- Achievement cards -->
                 <ng-container *ngFor="let achievement of achievements; let i = index">
                     <h1 *ngIf="numCompletedDisplayed !== 0 && i !== 0 && !!achievement.completedAt !== !!achievements[i - 1].completedAt">Completed</h1>
