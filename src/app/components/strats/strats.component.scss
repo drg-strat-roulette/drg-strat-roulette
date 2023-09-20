@@ -29,14 +29,14 @@
 .drawer-content-container {
 	width: 100%;
 	height: 100%;
-	padding-top: 24px;
+	padding-top: 16px;
 	width: auto;
 }
 
 .drawer-focus-content-container {
 	width: auto;
-	background-color: rgba(25, 27, 28, 0.5);
-	height: calc(100% - 24px);
+	background-color: rgba(25, 27, 28, 0.8);
+	height: calc(100% - 16px);
 	padding: 12px;
 	border-radius: 12px;
 	overflow: auto;

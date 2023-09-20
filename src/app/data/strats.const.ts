@@ -677,7 +677,7 @@ export const strategies: Strategy[] = [
 	{
 		id: 67,
 		name: 'Rolling the Dice',
-		summary: "All dwarves must drink a Randoweisser beer before starting the mission.",
+		summary: 'All dwarves must drink a Randoweisser beer before starting the mission.',
 		details: '',
 	},
 	{
@@ -734,7 +734,7 @@ export const strategies: Strategy[] = [
 	},
 	{
 		id: 73,
-		name: 'Hoxxes Is Not Wheelchair Accessible',
+		name: 'From A to B',
 		summary: `All dwarves must play as ${DwarfClass.scout}. Cannot move while grounded.`,
 		details:
 			'You may use movement keys to strafe while in the air, but should remain stationary while on the ground.',
