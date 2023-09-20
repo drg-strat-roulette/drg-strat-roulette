@@ -301,11 +301,22 @@ export class StratsComponent implements OnInit, OnDestroy {
 		let dwarfNameChanged = false;
 		this.dwarves.forEach((dwarf, i) => {
 			const oldName = dwarf.name;
-			dwarf.name = (dwarf.name ?? '').trim().length === 0 ? `Dwarf #${i + 1}` : dwarf.name;
+			dwarf.name =
+				// Trim leading, trailing, and repeated spaces
+				(dwarf.name ?? '').trim().length === 0 ? `Dwarf #${i + 1}` : dwarf.name?.trim().replace(/\s\s+/g, ' ');
 			if (oldName !== dwarf.name) {
 				dwarfNameChanged = true;
 			}
 		});
+
+		// If there are duplicate names, append numbers to the end
+		const duplicates = [...new Set(this.dwarves.map((d) => d.name).filter((name, i, a) => a.indexOf(name) !== i))];
+		for (const duplicate of duplicates) {
+			for (const [index, dwarf] of this.dwarves.filter((d) => d.name === duplicate).entries()) {
+				dwarf.name += ` (${index + 1})`;
+			}
+		}
+
 		// If mission length or complexity are out of bounds, clamp them to the appropriate range
 		const clamped = this.clampMissionLengthAndComplexity();
 		if (dwarfNameChanged || clamped) {

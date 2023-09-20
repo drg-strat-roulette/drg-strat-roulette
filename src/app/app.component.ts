@@ -59,7 +59,8 @@ export class AppComponent implements OnInit {
 	 * The current background image is cycled on a daily basis
 	 */
 	updateBackgroundImage(): void {
-		const backgroundImageIndex = Math.floor(new Date().getTime() / (1000 * 60 * 60 * 24)) % backgroundImages.length;
+		const ONE_DAY_MS = 1000 * 60 * 60 * 24;
+		const backgroundImageIndex = Math.floor(new Date().getTime() / ONE_DAY_MS) % backgroundImages.length;
 		this.background = backgroundImages[backgroundImageIndex];
 	}
 
