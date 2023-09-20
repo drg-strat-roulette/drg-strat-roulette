@@ -4,7 +4,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '98d46acb-618d-47f4-8d8f-f1d3162485fc',
 		name: 'Precious Cargo',
-		description: 'Put a gem (Bittergem, Compressed gold, Jadiz, or Aquarq) in every seat of the Escape Pod.',
+		description: 'Put a gem (Bittergem, Compressed Gold, Jadiz, or Aquarq) in every seat of the Escape Pod.',
 	},
 	{
 		id: 'd6fad610-b7b5-422a-a8ad-849b8693465d',
@@ -269,7 +269,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '68762b30-32e3-4968-957d-e244fe097cab',
 		name: "We're in the Endgame Now",
-		description: 'Bring three different colored gems (Bittergem, Compressed gold, Jadiz, or Aquarq) together.',
+		description: 'Bring three different colored gems (Bittergem, Compressed Gold, Jadiz, or Aquarq) together.',
 	},
 	{
 		id: '1ebcc9c4-e6c0-4ffe-ae40-10f1d66cd516',
