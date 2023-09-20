@@ -6,6 +6,8 @@ import { HeaderControlsService } from './services/header-controls/header-control
 import { ManagementDialogService } from './services/management-dialog/management-dialog.service';
 import { ManagementDialogConfigs } from './services/management-dialog/management-dialog.const';
 
+const BETA_CODE = 'achievements';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -15,6 +17,20 @@ export class AppComponent implements OnInit {
 	@HostListener('window:resize', ['$event'])
 	onResize(event: any) {
 		this.collapseButtons = event.target.innerWidth < 500;
+	}
+
+	// Listener for BETA_CODE entered
+	betaMode = false;
+	private keySequence: string = '';
+	@HostListener('window:keypress', ['$event'])
+	onKeypress(event: KeyboardEvent) {
+		this.keySequence += event.key;
+		if (this.keySequence.length > BETA_CODE.length) {
+			this.keySequence = this.keySequence.slice(1);
+		}
+		if (this.keySequence === BETA_CODE) {
+			this.betaMode = true;
+		}
 	}
 
 	// Current background image

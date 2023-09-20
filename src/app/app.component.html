@@ -1,7 +1,9 @@
 <!-- Header bar -->
 <div class="d-flex flex-row justify-content-between header-bar">
 	<mat-tab-group animationDuration="0ms" [(selectedIndex)]="activeTabIndex" (selectedIndexChange)="tabIndexChanged()">
-		<mat-tab *ngFor="let tab of tabs" label="{{ tab.displayName }}"></mat-tab>
+		<ng-container *ngFor="let tab of tabs">
+			<mat-tab *ngIf="tab.id !== 'achievements' || betaMode" label="{{ tab.displayName }}"></mat-tab>
+		</ng-container>
 	</mat-tab-group>
 	<div *ngIf="collapseButtons; else expandedButtons">
 		<button
