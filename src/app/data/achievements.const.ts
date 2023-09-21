@@ -2189,7 +2189,6 @@ export const achievementsList: Achievement[] = [
 			{ id: '36291714-f964-431a-9058-e094e177b4c2', name: 'Rival Repulsion Turret' },
 			{ id: '9ea84670-693d-4d6f-8aac-f5107401f0ba', name: 'Drilldozer' },
 			{ id: '8be5a72a-6df8-4113-bea5-a0e56bbbc27f', name: 'Molly' },
-			{ id: '8bbd630e-fbc4-430d-acb3-2ce4e1b62e20', name: 'Mini-M.U.L.E.' },
 			{ id: '33a9806c-7099-4df8-9bab-41fa48c3dcb9', name: 'Bet-C' },
 			{ id: 'a49d2d4a-369e-4c6a-8bf9-899b7702b693', name: 'Caretaker' },
 		],
