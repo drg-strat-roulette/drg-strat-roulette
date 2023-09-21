@@ -41,7 +41,7 @@ export const managementDialogConfigs: Map<ManagementDialogConfigs, ManagementDia
 		{
 			title: 'Attention, miner!',
 			text: [
-				`This dwarven accomplishment program offers you 351 extra challenges to prove your worth to Deep Rock Galactic. This makes a total of 420 achievements if you've completed the 69 in the prior dwarven accomplishment program. Mark your achievements as you complete them and your progress will be recorded. Don't be a leaf-lover and rely on your previous accomplishments - start from scratch! Unless we say otherwise, you can do any challenge on any Hazard Level - but we expect you should face them on your regular difficulty level. And remember, if you prove your worth to Deep Rock Galactic, your efforts will be rewarded!`,
+				`This dwarven accomplishment program offers you and your fellow miners 351 extra challenges to prove your worth to Deep Rock Galactic. Mark your achievements as you complete them and your progress will be recorded. Don't be a leaf-lover and rely on your previous accomplishments - start from scratch! Unless we say otherwise, you can do any challenge on any Hazard Level but we expect you should face them on your regular Hazard Level. And remember, if you prove your worth to Deep Rock Galactic, your efforts will be rewarded!`,
 			],
 			buttonText: 'Close',
 			signedManagement: true,

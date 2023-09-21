@@ -533,7 +533,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '2186945e-0efd-4807-8d73-ab321dee1a59',
 		name: 'The Tin Can Is Surely Hungry Today!',
-		description: 'Deposit 200 mineral into Molly in a single dump.',
+		description: 'Deposit 200 mineral into Molly at once.',
 	},
 	{
 		id: 'cfdb8377-c087-4d16-850a-ce2d73a8ef37',
@@ -1199,7 +1199,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '08f7ab8d-24e9-48e1-8802-b84f5b9f661e',
 		name: "It's Like She's Bigger on the Inside!",
-		description: 'Add seven different types of resources to Molly in a single deposit.',
+		description: 'Deposit seven different types of resources into Molly in a single deposit.',
 	},
 	{
 		id: 'c8e2e500-3ee2-46ea-a2fe-2334a91b174f',
