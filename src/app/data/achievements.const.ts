@@ -1055,7 +1055,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '145753a7-4684-417b-a763-f33c13cba038',
-		name: 'Go Down, Not Down',
+		name: 'Going Down Without Going Down',
 		description: 'Complete a Deep Dive with no dwarves being downed.',
 	},
 	{
