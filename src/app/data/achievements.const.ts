@@ -1019,6 +1019,7 @@ export const achievementsList: Achievement[] = [
 		id: '74a5e5df-021f-4129-96bc-c18444b0a4ee',
 		name: 'Out of Patience',
 		description: 'Use Field Medic to instantly revive a teammate with less than 10% of the revive time remaining.',
+		link: { text: 'Field Medic', url: 'https://deeprockgalactic.wiki.gg/wiki/Field_Medic' },
 	},
 	{
 		id: 'ec392eb6-6a49-435a-944f-7577e7174be3',
