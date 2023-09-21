@@ -723,7 +723,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '30f994aa-008f-44d6-b570-600294537d9f',
-		name: 'Lone Wolf',
+		name: 'Forever Alone',
 		description: 'Complete a solo mission without Bosco.',
 	},
 	{
