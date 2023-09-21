@@ -17,7 +17,7 @@
         <!--Name -->
         <div class="card-title">{{ achievement?.name }}</div>
         <!-- Description -->
-        <div class="subtitle mt-1">{{ achievement?.description }}</div>
+        <div class="subtitle mt-1" [innerHTML]="achievement?.description"></div>
         <!-- Link -->
         <div *ngIf="achievement?.link" class="subtitle mt-1">
             <a [href]="achievement?.link?.url" target="_blank">{{ achievement?.link?.text }}</a>

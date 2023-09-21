@@ -172,7 +172,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '28f4b7bb-fba5-47c8-b469-f6188bd6c66c',
 		name: 'Glyphid Slammer',
-		description: 'Get a Pickaxe kill on all Glyphids. (Excluding Dreadnoughts and Detonators)',
+		description: 'Get a Pickaxe kill on all Glyphids excluding Dreadnoughts and Detonators.',
 		link: { text: 'Glyphids', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Glyphid' },
 		subTasks: [
 			{ id: 'df57205f-439b-41b4-a5b0-996a30f9f2d0', name: 'Glyphid Spawn' },
@@ -212,7 +212,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: 'bc9506ca-b8c8-4487-837b-749e9e794d54',
-		name: "Ride 'Em Cowboy",
+		name: 'Yee-haw!',
 		description: 'Kill a Prospector while bouncing on its back.',
 	},
 	{
@@ -367,26 +367,6 @@ export const achievementsList: Achievement[] = [
 		id: 'e0785400-8459-4b1e-b3ab-dbb9ce875414',
 		name: 'Rock and Milestone!',
 		description: 'Complete all Milestones.',
-	},
-	{
-		id: '36956071-72cc-42f5-a17f-ef6b9e401e86',
-		name: 'Primary Milestones',
-		description: 'Complete all primary objective Milestones.',
-	},
-	{
-		id: '8bdd62d9-42e4-4ef9-839f-c83951608e57',
-		name: 'Secondary Milestones',
-		description: 'Complete all secondary objective Milestones.',
-	},
-	{
-		id: 'faa00763-aea7-44a8-86b7-775a11a6dc2a',
-		name: 'Ecologist',
-		description: 'Complete all biome Milestones.',
-	},
-	{
-		id: '277941d2-f865-407b-a7ce-7579c3d59527',
-		name: 'Thrill Seeker',
-		description: 'Complete all warning Milestones.',
 	},
 	{
 		id: 'd7cfac0c-56b3-41ba-8553-e39a7a9c1f1c',
@@ -548,7 +528,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '20b98a17-4c4d-4619-be34-304857306c66',
 		name: 'Mineral Hoarder Here',
-		description: 'Get over 500 of one crafting mineral in a single mission. (After Hazard Bonus)',
+		description: 'Get over 500 of one crafting mineral in a single mission after Hazard Bonus.',
 	},
 	{
 		id: '2186945e-0efd-4807-8d73-ab321dee1a59',
@@ -593,7 +573,8 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'acf9459b-2ee9-4a30-9dc9-80e0f143c3b4',
 		name: 'Rocked and Stoned!',
-		description: 'Complete a mission that was started while drunk. (2x Blacklock Lagers for maximum drunkenness)',
+		description:
+			'Complete a mission that was started while drunk. (Drink 2x Blacklock Lagers for maximum drunkenness.)',
 	},
 	{
 		id: '4561e0af-a61e-46cf-9d9f-fa7898d49612',
@@ -659,7 +640,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'fd92ed8d-779c-4c61-9e7a-8e3bd6d8ea0e',
 		name: 'Rival Wrecker',
-		description: 'Get a Pickaxe kill on all Rival Tech. (Excluding Prospector, Nemesis, and Caretaker)',
+		description: 'Get a Pickaxe kill on all Rival Tech excluding Prospector, Nemesis, and Caretaker.',
 		link: { text: 'Rival Tech', url: 'https://deeprockgalactic.wiki.gg/wiki/Creatures#Rival_Tech' },
 		subTasks: [
 			{ id: '572065fa-c7c6-4463-83e4-a288d3fea1ce', name: 'Rival Shredder' },
@@ -759,7 +740,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'e00ee9f3-0507-4db6-8db5-eba3edba6d5a',
 		name: "Leave No 'Quarq Behind",
-		description: 'Deposit three Aquarqs more than necessary into the Mine Head.',
+		description: 'Deposit two Aquarqs more than necessary into the Mine Head.',
 	},
 	{
 		id: '6b9dcd04-761a-4fec-a2f3-b1d6a7dc2088',
@@ -852,12 +833,17 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '030225ef-2bf1-4d77-b0fc-01dbcafe72fd',
 		name: 'A Little Meatier',
-		description: 'Find a Plague Heart from a Meteor Shower.',
+		description: 'Find a Plagueheart from a Meteor Shower.',
 	},
 	{
 		id: '1fab5f8c-4bad-42a3-be53-7201f1d6f3dc',
 		name: "You'll Never Take Our Jobs",
 		description: 'Kill a Prospector.',
+	},
+	{
+		id: 'e354c427-bd88-4b85-86a9-20cd27f8d7a7',
+		name: 'Uprooted',
+		description: 'Defeat a Korlok Tyrant-Weed.',
 	},
 	{
 		id: 'e918bdd8-5d4c-4be7-902b-629acbc48704',
@@ -969,17 +955,19 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '6c248f1f-c9cc-43aa-89b8-3d042b104239',
 		name: 'Fashionista',
-		description: 'Unlock all cosmetics. (Excluding DLC and limited-time cosmetics)',
+		description: 'Unlock all cosmetics excluding DLC and limited-time cosmetics.',
 	},
 	{
 		id: '7b0dd5fa-644b-434d-b358-08fee6af1a75',
 		name: 'Heavy Hitter',
-		description:
-			'Deal 1000 damage in one hit. (Hyper Propellant / Ice Spear / Volatile Bullets (flaming enemy) to a weakpoint or Hyper Propellant / Ice Spear to a frozen enemy)',
+		description: `Deal 1000 damage in one hit. Some possible methods are:
+			<br>&nbsp;&nbsp; • Volatile Bullets (Bulldog) to a flaming enemy's weakpoint.
+			<br>&nbsp;&nbsp; • Hyper Propellant (Deepcore PGL) or Ice Spear (Cryo Cannon) to a frozen enemy or 3x weakpoint.
+			<br>&nbsp;&nbsp; • The Mole (Coil Gun) through several layers of terrain.`,
 	},
 	{
 		id: 'f4128df1-3680-4518-be3f-901c4952332a',
-		name: 'Do You Want Your Shell Back',
+		name: 'Do You Want Your Shell Back?',
 		description: 'Peel all the armor off of a Shellback.',
 	},
 	{
@@ -1024,7 +1012,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'fd0bdfe9-9217-4a5b-a59d-94f613a82b5a',
 		name: "Berzerker's Fury",
-		description: 'Get 10 Pickaxe kills with one activation of Berzerker.',
+		description: 'Get 10 Pickaxe kills within one activation of Berzerker.',
 		link: { text: 'Berzerker', url: 'https://deeprockgalactic.wiki.gg/wiki/Berzerker' },
 	},
 	{
@@ -1214,12 +1202,6 @@ export const achievementsList: Achievement[] = [
 		description: 'Add seven different types of resources to Molly in a single deposit.',
 	},
 	{
-		id: '84f0c0cd-8d49-4b14-8d48-a09d8b528fcf',
-		name: "Who's There?",
-		description: 'Knock on a Lithophage Container 100 times.',
-		countNeeded: 100,
-	},
-	{
 		id: 'c8e2e500-3ee2-46ea-a2fe-2334a91b174f',
 		name: "That's Not the Goal!",
 		description: 'Throw the Space Ball into the Barrel Hoop.',
@@ -1302,7 +1284,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'f5e3d36c-cdbc-46c2-a3f5-5fcfd67ac513',
 		name: "You're Hot and You're Cold!",
-		description: 'Temperature shock the same enemy five times.',
+		description: 'Apply Temperature Shock to the same enemy five times.',
 	},
 	{
 		id: 'f6a19386-d1f1-46a9-8b62-ddc91748f95f',
@@ -1377,7 +1359,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '253c0abc-d258-444a-a1ca-cfa2081dc60d',
 		name: 'Immersive Experience',
-		description: 'Complete a mission with HUD disabled. (Press and hold "H" to disable)',
+		description: 'Complete a mission with HUD disabled. (Press and hold "H" to toggle HUD.)',
 	},
 	{
 		id: 'f89966d4-b866-422d-b913-deec8d5cbb45',
@@ -1397,7 +1379,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '68f648ac-77be-4383-aa39-2d5ba6885246',
 		name: 'Make It Go BOOM!',
-		description: 'Kill 10 enemies with a single Bosco rocket.',
+		description: 'Kill five enemies with a single Bosco rocket.',
 	},
 	{
 		id: '825192b1-ad20-4aa3-9de3-362d8c3b3590',
@@ -1455,7 +1437,8 @@ export const achievementsList: Achievement[] = [
 	{
 		id: 'ac0b36f9-25ce-4829-83cd-0f440b67c1b3',
 		name: 'The Sky Is Falling!',
-		description: 'Complete a single mission with both a Meteor Impact and a Meteor Shower.',
+		description: 'Complete a single mission with two or more meteor events.',
+		// TODO: Remove if this becomes too rare
 	},
 	{
 		id: '04801300-73fb-4072-ab94-fc4824d98fb7',
@@ -1660,7 +1643,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '1afb3296-9e2b-4ade-abe8-904b9757a52a',
 		name: "Yes, Yes, You're Rich",
-		description: 'Say "We\'re rich" 100 times.',
+		description: `Say "We're rich" 100 times.`,
 		countNeeded: 100,
 	},
 	{
@@ -1733,7 +1716,7 @@ export const achievementsList: Achievement[] = [
 		id: '20fe2bd8-23e6-4bc1-9925-be906e566c47',
 		name: 'Wildlife Conservationist',
 		description:
-			'Complete a mission in every biome without killing any plants or passive creatures. (Excluding Fester Fleas and Mineral Hoarders)',
+			'Complete a mission in every biome without killing any plants or passive creatures excluding Fester Fleas and Mineral Hoarders.',
 		subTasks: [
 			{ id: 'dc79bc48-b166-4ec9-87bc-036746b14994', name: 'Azure Weald' },
 			{ id: 'b7962c6a-6bae-41fb-b07d-9c3909316a3d', name: 'Crystalline Caverns' },
@@ -1986,7 +1969,7 @@ export const achievementsList: Achievement[] = [
 		id: '9cdd4683-db3a-4173-a11b-440525a181c0',
 		name: 'Maybe I Can Do a 360',
 		description:
-			'Jump off of a Refinery Pipeline and do a 360 degree rotation before landing on another Pipeline. (All without stopping)',
+			'Jump off of a Refinery Pipeline and do a 360 degree rotation before landing on another Pipeline without stopping.',
 	},
 	{
 		id: '5632321a-60e1-4cf4-a61f-65838deffa57',
@@ -2032,7 +2015,7 @@ export const achievementsList: Achievement[] = [
 		id: '3ea3c73e-eb0e-4813-a5b5-e8f7af6e9ecb',
 		name: 'Hide and Seek',
 		description:
-			'Play a round of Hide and Seek in the Space Rig. (Seekers may not cheat by revealing teammate outlines)',
+			'Play a round of Hide and Seek in the Space Rig. (Seekers may not cheat by revealing teammate outlines.)',
 	},
 	{
 		id: '0ad0ee1e-edc0-4d69-aa16-0ee9f2567fdb',
@@ -2091,7 +2074,7 @@ export const achievementsList: Achievement[] = [
 		id: 'ebbd554e-1e17-4dcd-97b2-f65438a11976',
 		name: 'Scrap Collecting',
 		description:
-			'Call in a Resupply Pod without anyone having destroyed a Nitra vein. (Repair Mini-M.U.L.E.s or kill Loot Bugs for Nitra)',
+			'Call in a Resupply Pod without anyone having destroyed a Nitra vein. (Repairing Mini-M.U.L.E.s and killing Loot Bugs rewards Nitra.)',
 	},
 	{
 		id: '3b79c849-bfc3-4d59-bb86-cc2265b0d369',
@@ -2102,7 +2085,8 @@ export const achievementsList: Achievement[] = [
 		id: '881c8128-a4f7-479b-908f-736c503ede4e',
 		name: 'Controlled Demolition',
 		description:
-			'Successfully destroy a Tritilyte Crystal using only one explosion. (By detonating a pile of Nanite Bombs)',
+			'Successfully destroy a Tritilyte Crystal using only one explosion by detonating a pile of Nanite Bombs.',
+		// TODO: Attempt
 	},
 	{
 		id: '046f4da8-4939-4b24-af4d-e338434c820d',
@@ -2130,19 +2114,19 @@ export const achievementsList: Achievement[] = [
 		id: 'f8e0c6fb-3373-4046-9d6a-3ecb41ba325b',
 		name: 'Tunnel Rat',
 		description:
-			'Complete an On-site Refining mission in which all Refinery Pipelines are built completely in tunnels. (Except for a very short stretch at the starts and ends)',
+			'Complete an On-site Refining mission in which all Refinery Pipelines are built completely in tunnels except for a very short stretch at the starts and ends.',
 	},
 	{
 		id: '9cec18bb-b815-41cc-95f8-835a98136e42',
 		name: 'I Think I Have a Chance to Make It Out Alive',
 		description:
-			"Deal the final blow to a Bulk Detonator with your Pickaxe and live to tell the tale (Don't get killed in the explosion).",
+			"Deal the final blow to a Bulk Detonator with your Pickaxe and live to tell the tale. (Don't get killed in the explosion.)",
 	},
 	{
 		id: '9592f4fa-d354-4988-b572-4e9dcff3a3e8',
 		name: 'Ready to Roll',
 		description:
-			'Use Born Ready to complete a mission without reloading any weapons. (Must use primary and secondary weapons which can be reloaded)',
+			'Use Born Ready to complete a mission without reloading any weapons. (You must use primary and secondary weapons which can be reloaded.)',
 	},
 	{
 		id: '9f702224-9756-4964-88cf-94f80c4d50e7',
@@ -2187,8 +2171,42 @@ export const achievementsList: Achievement[] = [
 		name: 'Spiked Round',
 		description: 'Complete the cleansing of three contagion spikes within 30 seconds.',
 	},
-	// TODO: list of checkboxes for achievements like complete all milestones that auto-check as the necessary achievements are completed?
-	// TODO: Combine all the milestone achievements into one?
-	// TODO: Consistent parenthesis and period rules
-	// TODO: Re-add defeat Korlok (Uprooted)
+	{
+		id: '8bdd62d9-42e4-4ef9-839f-c83951608e57',
+		name: 'Taking a Stand',
+		description: 'Stand on all enemies, robots, and neutral critters which can be stood on.',
+		subTasks: [
+			{ id: '0f8fd7b3-859f-42d0-901b-2be92f7ae970', name: 'Breather' },
+			{ id: '6f03d565-0818-4613-a793-50b6fb131c52', name: 'Cave Cruiser' },
+			{ id: '6113427d-9e7e-4610-a9d7-48f078effa57', name: 'Golden Loot Bug' },
+			{ id: 'c512e2ae-08bb-4a64-893b-3778616f4f5c', name: 'Loot Bug' },
+			{ id: 'fb267a10-bca7-4e1c-9736-85faaafe505a', name: 'Silicate Harvester' },
+			{ id: '6fc51025-9765-4bbb-a5d6-b1aae5efcfb3', name: 'Glyphid Brood Nexus' },
+			{ id: 'e10f1f45-f71f-4328-be4d-98acc4ff20a2', name: 'Deeptora Honeycomb' },
+			{ id: 'b1b0b5a5-4b1d-42a6-b47e-edace845d8ab', name: 'Deeptora Bough Wasp Nest' },
+			{ id: 'd58baf93-c4fd-4829-84f0-e8539b52236a', name: 'Rival Burst Turret' },
+			{ id: '36291714-f964-431a-9058-e094e177b4c2', name: 'Rival Repulsion Turret' },
+			{ id: '9ea84670-693d-4d6f-8aac-f5107401f0ba', name: 'Drilldozer' },
+			{ id: '8be5a72a-6df8-4113-bea5-a0e56bbbc27f', name: 'Molly' },
+			{ id: '8bbd630e-fbc4-430d-acb3-2ce4e1b62e20', name: 'Mini-M.U.L.E.' },
+			{ id: '33a9806c-7099-4df8-9bab-41fa48c3dcb9', name: 'Bet-C' },
+			{ id: 'a49d2d4a-369e-4c6a-8bf9-899b7702b693', name: 'Caretaker' },
+		],
+	},
+	{
+		id: 'faa00763-aea7-44a8-86b7-775a11a6dc2a',
+		name: 'Bulk Discount',
+		description: 'Have a Bulk Detonator kill 10 total enemies with ground slams.',
+	},
+	{
+		id: '277941d2-f865-407b-a7ce-7579c3d59527',
+		name: 'A Smell Worth Fighting For',
+		description: 'Make 10 enemies kill one another using Pheromones.',
+		countNeeded: 10,
+	},
+	{
+		id: '84f0c0cd-8d49-4b14-8d48-a09d8b528fcf',
+		name: "Don't Be Picky",
+		description: 'Complete a mission where nobody uses their Pickaxe.',
+	},
 ];
