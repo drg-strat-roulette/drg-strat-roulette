@@ -225,6 +225,7 @@ export const achievementsList: Achievement[] = [
 			{ id: '77f91261-dc88-49ff-9407-66f636bf4fe0', name: 'Naedocyte Hatchling' },
 			{ id: '4e831662-62ac-4305-8cf5-851309ca2e16', name: 'Naedocyte Roe' },
 			{ id: 'ffef614c-3656-4306-ad9e-3da7436ad5b7', name: 'Naedocyte Breeder' },
+			{ id: '46d04969-ef67-4e45-9cfc-3d4b9edaf768', name: 'Naedocyte Cave Cruiser' },
 		],
 	},
 	{
@@ -1644,7 +1645,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '1afb3296-9e2b-4ade-abe8-904b9757a52a',
 		name: "Yes, Yes, You're Rich",
-		description: `Say "We're rich" 100 times.`,
+		description: `Say "We're rich!" 100 times.`,
 		countNeeded: 100,
 	},
 	{
