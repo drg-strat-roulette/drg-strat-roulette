@@ -1976,7 +1976,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '5632321a-60e1-4cf4-a61f-65838deffa57',
 		name: 'Spear Fishing',
-		description: 'Use Ice Spear (Cryo Cannon) on a Nayaka Trawler.',
+		description: 'Use Ice Spear (Cryo Cannon) to kill a Nayaka Trawler.',
 	},
 	{
 		id: '4b397fa4-ed02-4bae-860e-512aa68d3e12',
