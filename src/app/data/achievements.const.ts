@@ -127,7 +127,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '2e9002dd-633d-4641-99f4-8e1c03f85234',
 		name: 'Industrial Sabotage Speedrun',
-		description: 'Complete a Mining Expedition mission in under 25 minutes.',
+		description: 'Complete an Industrial Sabotage mission in under 25 minutes.',
 	},
 	{
 		id: '0f2d3ab4-32c6-4b59-9d23-c0aead41fa5a',
