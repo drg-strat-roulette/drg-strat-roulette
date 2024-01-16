@@ -383,7 +383,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '834555c5-dce5-4feb-8cf5-b2991f3de165',
 		name: 'Marathon Pro',
-		description: 'Complete a marathon as each class (42.4km distance traveled).',
+		description: 'Complete a marathon as each class (42.2km distance traveled).',
 		subTasks: [
 			{ id: 'a183786d-7e77-46f6-a2ae-476512f2418e', name: 'Driller' },
 			{ id: 'af7777cc-12d4-4709-939e-99a71e088668', name: 'Engineer' },
@@ -2211,3 +2211,7 @@ export const achievementsList: Achievement[] = [
 		description: 'Complete a mission where nobody uses their Pickaxe.',
 	},
 ];
+
+// No red sugar
+// Hurt me plenty
+// Remove "The Sky Is Falling!"?
