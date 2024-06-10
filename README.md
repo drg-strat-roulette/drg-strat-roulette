@@ -71,19 +71,22 @@ Some strategies have specific mission or team requirements, but otherwise there 
 -   [x] Import/export progress
 -   [x] Indicate reason if no achievements displayed
 -   [x] Sync concurrent tabs (unlock progress)
+-   [x] Improved search functionality
 
 ## Potential features
 
--   [ ] Add strategy hints as revealable "spoilers"
+-   [ ] Move settings into main body to be more discoverable
 -   [ ] Block (and unblock) specific strategies that you don't like
+-   [ ] Share achievement completion with URL
+-   [ ] Share achievement completion with dynamic image URL
+-   [ ] Add strategy hints as revealable "spoilers"
+-   [ ] Localization
 -   [ ] Strat history, count of each played, other stats
     -   [ ] Bias the rolls based on past data
     -   [ ] Tell you which strats are "new" to you
     -   [ ] Tell you which strats are "new" in general
 -   [ ] Roll another strategy without clearing the currently displayed one(s)
     -   [ ] Prevent multiple strategies that conflict with one another
--   [ ] Share achievement completion with URL
--   [ ] Share achievement completion with dynamic image URL
 -   [ ] (BE) Like/dislike strategies to globally tweak their weightings
 -   [ ] (BE) Provide feedback to increase/decrease a strategy's listed difficulty
     -   [ ] Select difficulty range for generated strategies
