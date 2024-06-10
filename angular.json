@@ -68,11 +68,11 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
-						"production": {
-							"browserTarget": "drg-strat-roulette:build:production"
-						},
-						"development": {
-							"browserTarget": "drg-strat-roulette:build:development"
+					"production": {
+						"buildTarget": "drg-strat-roulette:build:production"
+					},
+					"development": {
+					"buildTarget": "drg-strat-roulette:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
@@ -80,7 +80,7 @@
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
-						"browserTarget": "drg-strat-roulette:build"
+						"buildTarget": "drg-strat-roulette:build"
 					}
 				},
 				"test": {
@@ -98,10 +98,10 @@
 						],
 						"scripts": []
 					}
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
-        }
+				},
+				"deploy": {
+						"builder": "angular-cli-ghpages:deploy"
+				}
 			}
 		}
 	},
