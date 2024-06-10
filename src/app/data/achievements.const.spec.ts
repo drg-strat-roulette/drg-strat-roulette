@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash-es';
-import { Achievement } from '../models/achievement.model';
+import { Achievement } from '../models/achievement.interface';
 import { validLowerInTitleCase } from '../utilities/general-functions.utils';
 import { achievementsList } from './achievements.const';
 import { isUUID } from '../utilities/uuid.utils';

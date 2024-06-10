@@ -1,4 +1,4 @@
-import { Achievement } from '../models/achievement.model';
+import { Achievement } from '../models/achievement.interface';
 
 export const achievementsList: Achievement[] = [
 	{
@@ -2201,7 +2201,7 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '277941d2-f865-407b-a7ce-7579c3d59527',
-		name: 'A Smell Worth Fighting For',
+		name: 'Frenemies',
 		description: 'Make 10 enemies kill one another using Pheromones.',
 		countNeeded: 10,
 	},

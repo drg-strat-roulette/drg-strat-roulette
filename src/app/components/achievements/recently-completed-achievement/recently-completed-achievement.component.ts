@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subject, interval, takeUntil } from 'rxjs';
-import { DisplayedAchievement } from 'src/app/models/achievement.model';
+import { DisplayedAchievement } from 'src/app/models/achievement.interface';
 
 // Time before this alert auto-disappears
 const ALERT_LIFETIME_MS = 7_000;

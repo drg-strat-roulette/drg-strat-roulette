@@ -18,7 +18,7 @@
                         <!-- Search -->
                         <mat-form-field class="header-form-search">
                             <mat-label>Search...</mat-label>
-                            <input [(ngModel)]="searchInput" (ngModelChange)="updateDisplayedAchievements()" matInput>
+                            <input matInput [(ngModel)]="searchInput" (ngModelChange)="searchInputChanged.next()">
                             <button *ngIf="searchInput" mat-icon-button matSuffix aria-label="Clear" (click)="searchInput=''; updateDisplayedAchievements()">
                                 <mat-icon>close</mat-icon>
                             </button>

@@ -1,19 +1,24 @@
 import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject, filter, takeUntil } from 'rxjs';
+import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
 import { AchievementKeys, CrossTabSyncType } from 'src/app/models/local-storage.interface';
 import { HeaderControlsService } from 'src/app/services/header-controls/header-controls.service';
 import { SnackbarConfig, SnackbarWithIconComponent } from '../../snackbar-with-icon/snackbar-with-icon.component';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { AchievementProgress, DisplayedAchievement } from 'src/app/models/achievement.model';
+import {
+	AchievementProgress,
+	DisplayedAchievement,
+	RecentlyCompletedAchievement,
+} from 'src/app/models/achievement.interface';
 import { achievementsList } from 'src/app/data/achievements.const';
-import { clamp } from 'lodash-es';
+import { clamp, flatten } from 'lodash-es';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { byCompletionDateThenByOrder } from 'src/app/utilities/sorters.utils';
 import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
 import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
 import { MatDialog } from '@angular/material/dialog';
 import { CrossTabSyncService } from 'src/app/services/cross-tab-sync/cross-tab-sync.service';
+import { tokenizeString } from 'src/app/utilities/general-functions.utils';
 
 @Component({
 	selector: 'app-achievements',
@@ -39,7 +44,7 @@ export class AchievementsComponent implements OnInit {
 	achievements: DisplayedAchievement[] = [];
 
 	/** Recently completed achievements */
-	recentlyCompletedAchievements: { achievement: DisplayedAchievement; kill: () => void; undo: () => void }[] = [];
+	recentlyCompletedAchievements: RecentlyCompletedAchievement[] = [];
 
 	/** Whether to animate achievements being (un)completed */
 	disableAnimations = true;
@@ -61,6 +66,9 @@ export class AchievementsComponent implements OnInit {
 
 	/** Enables confirming user wants to reset achievement progress */
 	resetConfirmed = false;
+
+	/** Emits when search input is changed */
+	searchInputChanged: Subject<void> = new Subject();
 
 	private destroy: Subject<void> = new Subject();
 
@@ -97,6 +105,11 @@ export class AchievementsComponent implements OnInit {
 				this.dialog.open(this.achievementSettingsDialog);
 			}
 		});
+
+		// Subscribe to search input changes with a debounceTime to prevent lag
+		this.searchInputChanged
+			.pipe(debounceTime(100), takeUntil(this.destroy))
+			.subscribe(() => this.updateDisplayedAchievements());
 
 		// Subscribe to achievement progress updates from other tabs
 		this.crossTabSyncService.tabSync$
@@ -316,23 +329,32 @@ export class AchievementsComponent implements OnInit {
 	 * Updates the list of currently displayed achievements based on the search input and filter criteria
 	 */
 	updateDisplayedAchievements(): void {
-		// Apply search/filter
-		const allowedCompletions =
-			this.displayedCompletions === 'completed'
-				? [true]
-				: this.displayedCompletions === 'incomplete'
-				? [false]
-				: [true, false];
-		const lowerSearch = this.searchInput.toLowerCase();
-		this.achievements.forEach(
-			(a) =>
-				(a.display = !!(
-					allowedCompletions.includes(!!a.completedAt) &&
-					(a.name.toLowerCase().includes(lowerSearch) ||
-						a.description.toLowerCase().includes(lowerSearch) ||
-						a.subTasks?.some((t) => t.name.toLowerCase().includes(lowerSearch)))
-				))
-		);
+		// Establish (in)complete filter
+		const allowedCompletions: boolean[] = [];
+		if (this.displayedCompletions === 'completed' || this.displayedCompletions === 'all')
+			allowedCompletions.push(true);
+		if (this.displayedCompletions === 'incomplete' || this.displayedCompletions === 'all')
+			allowedCompletions.push(false);
+
+		// Generate terms from search input
+		const searchTerms = [...new Set(tokenizeString(this.searchInput))];
+		this.achievements.forEach((a) => {
+			// Generate terms from achievement name, description, and sub-tasks
+			const achievementTokens = [
+				...new Set(
+					flatten([
+						...tokenizeString(a.name),
+						...tokenizeString(a.description),
+						...(a.subTasks?.map((t) => tokenizeString(t.name)) ?? []),
+					])
+				),
+			];
+			a.display =
+				// Completion state must be selected for achievement to be displayed
+				allowedCompletions.includes(!!a.completedAt) &&
+				// All searched terms must be included for achievement to be displayed
+				searchTerms.every((term) => achievementTokens.some((token) => token.includes(term)));
+		});
 		this.updateStateVars();
 	}
 
@@ -383,7 +405,7 @@ export class AchievementsComponent implements OnInit {
 				} as SnackbarConfig,
 			});
 			this.resetConfirmed = true;
-			setTimeout(() => (this.resetConfirmed = true), 10_000);
+			setTimeout(() => (this.resetConfirmed = false), 10_000);
 		}
 	}
 
