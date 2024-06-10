@@ -89,3 +89,40 @@ export const validLowerInTitleCase = [
 	'as',
 	'per',
 ];
+
+/** Characters that can be used to separate words */
+export const DELIMITERS = /[ \-+*_.,;:|/\\]/;
+
+/** Punctuation characters */
+export const PUNCTUATION = /[!@#$%^&*()\-_=+[\]{};:'",.<>|?\/\\]/g;
+
+/**
+ * Cleans a string to be used in searches by:
+ * 1. Replacing accented characters with their non-accented equivalents
+ * 1. Removing punctuation
+ * 1. Removing leading, trailing, and repeated spaces
+ * 1. Converting the string to lowercase
+ * @param input - String to be cleaned
+ * @returns - Cleaned string
+ */
+export function cleanString(input: string): string {
+	return input
+		.normalize('NFD')
+		.replace(/\p{Diacritic}/gu, '')
+		.replace(PUNCTUATION, '')
+		.replace(/\s{2,}/g, ' ')
+		.trim()
+		.toLowerCase();
+}
+
+/**
+ * Converts a search input string into a list of cleaned search terms ("tokens")
+ * @param input - Search input string to be tokenized
+ * @returns - A list of cleaned search terms
+ */
+export function tokenizeString(input: string) {
+	return input
+		.split(DELIMITERS)
+		.map((term) => cleanString(term))
+		.filter((term) => term);
+}
