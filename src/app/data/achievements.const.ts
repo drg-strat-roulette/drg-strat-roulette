@@ -523,8 +523,8 @@ export const achievementsList: Achievement[] = [
 	},
 	{
 		id: '6686f5d0-5a3e-45ab-9f69-447164411edf',
-		name: 'Pipe Rider',
-		description: 'Ride all three Refinery Pipelines without touching on the ground.',
+		name: 'Stony Rock',
+		description: 'Ride all three Refinery pipes without touching on the ground.',
 	},
 	{
 		id: '20b98a17-4c4d-4619-be34-304857306c66',
@@ -1803,15 +1803,15 @@ export const achievementsList: Achievement[] = [
 		name: 'To the Fallen',
 		description: 'Prevent lethal fall damage by performing each of the following.',
 		subTasks: [
-			{ id: '39a41759-9b1f-4df2-abf8-9427a91beaaf', name: 'Grappling (You Snooze, You Lose!)' },
-			{ id: 'a64237ff-70f6-409d-9ba7-e25da4548142', name: 'Vaulting on a ledge (Oops, I Slipped - Oh Wait...)' },
-			{ id: 'f11bfd7b-3db9-4a39-98e0-7a639d66dda3', name: 'Riding a pipe (Stony Rock)' },
-			{ id: 'bfdbf728-f4e6-4726-9b48-77c2eeaac746', name: 'Catching a zipline. (Zip! Zoom!)' },
-			{ id: '964a07ad-cbc7-49b1-9f56-4048d8929d5d', name: 'Catching a Cave Angel. (Guardian Angel)' },
-			{ id: '67a0faa2-986d-4f74-98f0-857278dbd8d5', name: 'Landing on a Plastcrete Platform (Soft Pancake)' },
-			{ id: '9727ac1d-4392-4464-87f8-d6852d7d693f', name: 'Landing on a snow mound (A Blanket of Snow)' },
-			{ id: 'be93ac9a-d77e-4704-a825-738cf06f8110', name: 'Bouncing on a teammates head (Catch Me!)' },
-			{ id: 'a3594ace-1f31-49e0-8651-e51d875e079e', name: 'Using Hover Boots (Long Fall Boots)' },
+			{ id: '39a41759-9b1f-4df2-abf8-9427a91beaaf', name: 'Grappling' },
+			{ id: 'a64237ff-70f6-409d-9ba7-e25da4548142', name: 'Vaulting on a ledge' },
+			{ id: 'f11bfd7b-3db9-4a39-98e0-7a639d66dda3', name: 'Riding a pipe' },
+			{ id: 'bfdbf728-f4e6-4726-9b48-77c2eeaac746', name: 'Catching a zipline' },
+			{ id: '964a07ad-cbc7-49b1-9f56-4048d8929d5d', name: 'Catching a Cave Angel' },
+			{ id: '67a0faa2-986d-4f74-98f0-857278dbd8d5', name: 'Landing on a Plastcrete Platform' },
+			{ id: '9727ac1d-4392-4464-87f8-d6852d7d693f', name: 'Landing on a snow mound' },
+			{ id: 'be93ac9a-d77e-4704-a825-738cf06f8110', name: 'Bouncing on a teammates head' },
+			{ id: 'a3594ace-1f31-49e0-8651-e51d875e079e', name: 'Using Hover Boots' },
 		],
 	},
 	{
@@ -2116,7 +2116,7 @@ export const achievementsList: Achievement[] = [
 		id: 'f8e0c6fb-3373-4046-9d6a-3ecb41ba325b',
 		name: 'Tunnel Rat',
 		description:
-			'Complete an On-site Refining mission in which all Refinery Pipelines are built completely in tunnels except for a very short stretch at the starts and ends.',
+			'Complete an On-site Refining mission in which all Refinery pipes are built completely in tunnels except for a very short stretch at the starts and ends.',
 	},
 	{
 		id: '9cec18bb-b815-41cc-95f8-835a98136e42',
