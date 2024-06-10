@@ -4,7 +4,8 @@ import { Dwarf } from './team.interface';
 
 export const settingsVersion = 1;
 
-export interface Settings {
+/** Settings for Strat Roulette */
+export interface StratSettings {
 	version: number;
 	excludedTags: StratTag[];
 	dwarves: Dwarf[];
@@ -12,6 +13,7 @@ export interface Settings {
 	mission: Mission;
 }
 
+/** Strategy selection mode (Currently unused) */
 export enum SelectionMode {
 	normal = 'Normal', // Single strategy rolled at random. Option to roll multiple strats.
 	climber = 'Climber', // Multiple strategies are rolled at random. Cumulative difficulty increases after every successful mission.

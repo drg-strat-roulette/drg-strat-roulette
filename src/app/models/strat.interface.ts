@@ -1,20 +1,32 @@
 import { Mission } from './missions.interface';
-import { Settings } from './settings.interface';
+import { StratSettings } from './settings.interface';
 import { Team } from './team.interface';
 
+/** Strategy information */
 export interface Strategy {
+	/** Strategy unique identifier */
 	id: number;
+	/** Friendly name */
 	name: string;
+	/** Short summary */
 	summary: string;
+	/** Further details/clarifications */
 	details: string;
+	/** Tags for this strategy */
 	tags?: StratTag[];
+	/** Functions defining requirements needed to attempt this strategy */
 	requirements?: StratRequirements;
+	/** User-readable explanation of requirements needed to attempt this strategy */
 	writtenRequirements?: string;
+	/** The percent chance that the mission requirements for this strategy are met by a random mission [0-1] */
 	missionReqChance?: number;
+	/** Function to generate dynamic content for a given strategy (e.g. Picking a dwarf at random) */
 	generateDynamicContent?: (t: Team) => string;
+	/** Dynamic content to be displayed */
 	dynamicContent?: string;
 }
 
+/** Tags which can apply to a strategy */
 export enum StratTag {
 	settings = 'Require changing settings',
 	loadout = 'Require changing loadout',
@@ -24,6 +36,7 @@ export enum StratTag {
 	nausea = 'May cause nausea',
 }
 
+/** Further information about each `StratTag` */
 export const stratTagInfo: StratTagInfo[] = [
 	{
 		type: StratTag.settings,
@@ -65,24 +78,38 @@ export const stratTagInfo: StratTagInfo[] = [
 	},
 ];
 
+/** Further information about a `StratTag` */
 export interface StratTagInfo {
+	/** Strategy tag type */
 	type: StratTag;
+	/** Short description of the tag */
 	description: string;
+	/** Text to be displayed in a tooltip following string: 'Include strategies which ' */
 	tooltipDetails: string;
+	/** Icon symbolizing this strategy tag */
 	icon: string;
 }
 
+/** Further information about a `StratTag`, including whether or not this tag is enabled */
 export interface StratTagObject extends StratTagInfo {
+	/** Whether or not this tag is enabled */
 	checked: boolean;
 }
 
+/** Requirements which must be met for a strategy to be attempted */
 export interface StratRequirements {
+	/** Function specifying whether a mission meets a strategy's requirement */
 	mission?: (mission: Mission) => boolean;
+	/** Function specifying whether a team meets a strategy's requirement */
 	team?: (team: Team) => boolean;
-	settings?: (settings: Settings) => boolean;
+	/** Function specifying whether user's settings meet a strategy's requirement */
+	settings?: (settings: StratSettings) => boolean;
 }
 
+/** Information stored to persist queued strategies */
 export interface CachedQueuedStrats {
+	/** List of queued strategies */
 	queue: Strategy[];
+	/** Data version */
 	version: number;
 }

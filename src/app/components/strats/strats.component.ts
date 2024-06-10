@@ -13,7 +13,7 @@ import {
 	WarningType,
 } from '../../models/missions.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Settings, settingsVersion } from '../../models/settings.interface';
+import { StratSettings, settingsVersion } from '../../models/settings.interface';
 import { CrossTabSyncType, queuedStrategiesVersion, StratKeys } from '../../models/local-storage.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
@@ -253,7 +253,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 	 * Saves the latest settings to browser cache so it can be persisted across sessions
 	 */
 	saveSettings(): void {
-		const settings: Settings = {
+		const settings: StratSettings = {
 			version: settingsVersion,
 			excludedTags: this.tags.filter((tag) => !tag.checked).map((tag) => tag.type),
 			dwarves: this.dwarves,
@@ -279,7 +279,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 	loadSettings(): void {
 		const settingsString = localStorage.getItem(StratKeys.settings);
 		if (settingsString) {
-			const settings: Settings = JSON.parse(settingsString);
+			const settings: StratSettings = JSON.parse(settingsString);
 			if (settings.version !== settingsVersion) {
 				// Delete old settings if version is outdated
 				localStorage.removeItem(StratKeys.settings);

@@ -1,3 +1,4 @@
+/** Active Perk types  */
 export enum ActivePerkType {
 	beastMaster = 'Beast Master',
 	berzerker = 'Berzerker',
@@ -10,6 +11,7 @@ export enum ActivePerkType {
 	shieldLink = 'Shield Link',
 }
 
+/** Passive Perk types  */
 export enum PassivePerkType {
 	bornReady = 'Born Ready',
 	deepPockets = 'Deep Pockets',

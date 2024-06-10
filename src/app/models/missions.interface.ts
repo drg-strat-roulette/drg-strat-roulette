@@ -1,13 +1,22 @@
+/** Mission information */
 export interface Mission {
+	/** Mission primary objective */
 	primary: PrimaryObjective;
+	/** Mission secondary objective */
 	secondary: SecondaryObjective;
+	/** Mission biome */
 	biome: BiomeType;
-	length: number; // Currently unused
-	complexity: number; // Currently unused
+	/** Mission length (1-3) */
+	length: number; // Currently hidden
+	/** Mission complexity (1-3) */
+	complexity: number; // Currently hidden
+	/** Mission warning type(s) */
 	warnings: WarningType[];
+	/** Mission anomaly type */
 	anomaly: AnomalyType | null;
 }
 
+/** Primary objective types */
 export enum PrimaryObjective {
 	eggHunt = 'Egg Hunt',
 	elimination = 'Elimination',
@@ -19,6 +28,7 @@ export enum PrimaryObjective {
 	salvageOperation = 'Salvage Operation',
 }
 
+/** Secondary objective types */
 export enum SecondaryObjective {
 	alienFossils = 'Alien Fossils',
 	apocaBlooms = 'Apoca Blooms',
@@ -30,6 +40,7 @@ export enum SecondaryObjective {
 	hollomite = 'Hollomite',
 }
 
+/** Warning types */
 export enum WarningType {
 	caveLeechCluster = 'Cave Leech Cluster',
 	eliteThreat = 'Elite Threat',
@@ -46,6 +57,7 @@ export enum WarningType {
 	swarmageddon = 'Swarmageddon',
 }
 
+/** Anomaly types */
 export enum AnomalyType {
 	criticalWeakness = 'Critical Weaknesses',
 	doubleXp = 'Double XP',
@@ -57,6 +69,7 @@ export enum AnomalyType {
 	volatileGuts = 'Volatile Guts',
 }
 
+/** Biome types */
 export enum BiomeType {
 	azureWeald = 'Azure Weald',
 	crystallineCaverns = 'Crystalline Caverns',
