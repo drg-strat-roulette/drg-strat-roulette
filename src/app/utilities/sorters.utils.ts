@@ -1,4 +1,4 @@
-import { DisplayedAchievement } from '../models/achievement.model';
+import { DisplayedAchievement } from '../models/achievement.interface';
 
 export const byCompletionDateThenByOrder = (a: DisplayedAchievement, b: DisplayedAchievement) =>
 	(a.completedAt ?? 'z') > (b.completedAt ?? 'z')
