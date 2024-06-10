@@ -6,10 +6,8 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 	templateUrl: './snackbar-with-icon.component.html',
 	styleUrls: ['./snackbar-with-icon.component.scss'],
 })
-export class SnackbarWithIconComponent implements OnInit {
+export class SnackbarWithIconComponent {
 	constructor(@Inject(MAT_SNACK_BAR_DATA) public data: SnackbarConfig) {}
-
-	ngOnInit(): void {}
 }
 
 export interface SnackbarConfig {

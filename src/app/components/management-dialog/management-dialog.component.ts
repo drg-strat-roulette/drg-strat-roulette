@@ -7,8 +7,6 @@ import { ManagementDialogConfig } from 'src/app/services/management-dialog/manag
 	templateUrl: './management-dialog.component.html',
 	styleUrls: ['./management-dialog.component.scss'],
 })
-export class ManagementDialog implements OnInit {
+export class ManagementDialog {
 	constructor(@Inject(MAT_DIALOG_DATA) public data: ManagementDialogConfig) {}
-
-	ngOnInit(): void {}
 }
