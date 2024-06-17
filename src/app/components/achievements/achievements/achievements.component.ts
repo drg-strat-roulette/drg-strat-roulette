@@ -99,12 +99,6 @@ export class AchievementsComponent implements OnInit {
 		this.headerControlsService.shareButtonPressed$
 			.pipe(takeUntil(this.destroy))
 			.subscribe(() => this.copyShareText());
-		this.headerControlsService.settingsButtonPressed$.pipe(takeUntil(this.destroy)).subscribe(() => {
-			// Open settings dialog
-			if (this.achievementSettingsDialog) {
-				this.dialog.open(this.achievementSettingsDialog);
-			}
-		});
 
 		// Subscribe to search input changes with a debounceTime to prevent lag
 		this.searchInputChanged
@@ -356,6 +350,15 @@ export class AchievementsComponent implements OnInit {
 				searchTerms.every((term) => achievementTokens.some((token) => token.includes(term)));
 		});
 		this.updateStateVars();
+	}
+
+	/**
+	 * Open the achievement settings dialog
+	 */
+	openSettingsDialog() {
+		if (this.achievementSettingsDialog) {
+			this.dialog.open(this.achievementSettingsDialog);
+		}
 	}
 
 	/**

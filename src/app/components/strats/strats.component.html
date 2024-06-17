@@ -243,8 +243,19 @@
 					</div>
 				</div>
 
-				<!-- Roll a strategy -->
 				<div class="d-flex">
+					<!-- Settings button -->
+					<button
+						class="settings-button"
+						#settingsTooltip="matTooltip"
+						matTooltip="Settings"
+						matTooltipShowDelay="500"
+						mat-icon-button
+						aria-label="Settings"
+						(click)="this.settingsMenuCollapsed = !this.settingsMenuCollapsed">
+						<mat-icon class="white-icon">settings</mat-icon>
+					</button>
+					<!-- Roll a strategy -->
 					<button class="m-2" mat-raised-button color="primary" (click)="rollStrat()">Roll a strategy</button>
 					<button
 						*ngIf="strat"

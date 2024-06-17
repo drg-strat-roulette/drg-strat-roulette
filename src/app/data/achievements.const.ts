@@ -278,6 +278,7 @@ export const achievementsList: Achievement[] = [
 		description: 'Kill a Stingtail with a Pickaxe Power Attack as it pulls you in.',
 	},
 	{
+		// TODO: Change to X number of enemies
 		id: '35af758b-3a68-4fbb-9ce0-ac3e00c5a4e4',
 		name: 'Orange Crush',
 		description: 'Crush a teammate with a Resupply Pod.',
@@ -1102,6 +1103,7 @@ export const achievementsList: Achievement[] = [
 		countNeeded: 20,
 	},
 	{
+		// TODO: Up for removal
 		id: '5e15f5f8-5fc3-4e17-8f87-b045ac479ba9',
 		name: 'I Hate Nature',
 		description: 'Destroy one of every kind of passive plant or fungi.',

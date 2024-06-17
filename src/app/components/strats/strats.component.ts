@@ -158,9 +158,6 @@ export class StratsComponent implements OnInit, OnDestroy {
 		this.headerControlsService.shareButtonPressed$
 			.pipe(takeUntil(this.destroy))
 			.subscribe(() => this.copyShareText());
-		this.headerControlsService.settingsButtonPressed$
-			.pipe(takeUntil(this.destroy))
-			.subscribe(() => (this.settingsMenuCollapsed = !this.settingsMenuCollapsed));
 
 		// Subscribe to updates from other tabs
 		this.crossTabSyncService.tabSync$.pipe(takeUntil(this.destroy)).subscribe((u) => {

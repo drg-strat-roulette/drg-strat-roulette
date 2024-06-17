@@ -23,24 +23,37 @@
                                 <mat-icon>close</mat-icon>
                             </button>
                         </mat-form-field>
-                        <!-- Filter by completion -->
-                        <mat-form-field class="header-form-completion">
-							<mat-label>Completion</mat-label>
-							<mat-select [(ngModel)]="displayedCompletions" (ngModelChange)="updateDisplayedAchievements()">
-                                <mat-option
-                                    value="all">
-                                    All
-                                </mat-option>
-                                <mat-option
-                                    value="completed">
-                                    Completed
-                                </mat-option>
-                                <mat-option
-                                    value="incomplete">
-                                    Incomplete
-                                </mat-option>
-							</mat-select>
-						</mat-form-field>
+                        <div class="d-flex">
+                            <!-- Filter by completion -->
+                            <mat-form-field class="header-form-completion">
+                                <mat-label>Completion</mat-label>
+                                <mat-select [(ngModel)]="displayedCompletions" (ngModelChange)="updateDisplayedAchievements()">
+                                    <mat-option
+                                        value="all">
+                                        All
+                                    </mat-option>
+                                    <mat-option
+                                        value="completed">
+                                        Completed
+                                    </mat-option>
+                                    <mat-option
+                                        value="incomplete">
+                                        Incomplete
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <!-- Settings button -->
+                            <button
+                                class="mt-1 ms-1"
+                                #settingsTooltip="matTooltip"
+                                matTooltip="Settings"
+                                matTooltipShowDelay="500"
+                                mat-icon-button
+                                aria-label="Settings"
+                                (click)="openSettingsDialog()">
+                                <mat-icon class="white-icon">settings</mat-icon>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="row">

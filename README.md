@@ -75,7 +75,6 @@ Some strategies have specific mission or team requirements, but otherwise there 
 
 ## Potential features
 
--   [ ] Move settings into main body to be more discoverable
 -   [ ] Block (and unblock) specific strategies that you don't like
 -   [ ] Share achievement completion with URL
 -   [ ] Share achievement completion with dynamic image URL
