@@ -17,8 +17,8 @@ describe('AppComponent', () => {
 				MatTabsModule,
 				MatTooltipModule,
 				RouterTestingModule,
+				AppComponent,
 			],
-			declarations: [AppComponent],
 		}).compileComponents();
 	});
 

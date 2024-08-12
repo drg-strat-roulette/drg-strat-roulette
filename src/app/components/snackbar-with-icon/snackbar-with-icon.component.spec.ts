@@ -10,8 +10,7 @@ describe('SnackbarWithIconComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [SnackbarWithIconComponent],
-			imports: [BrowserAnimationsModule, MatIconModule],
+			imports: [BrowserAnimationsModule, MatIconModule, SnackbarWithIconComponent],
 			providers: [
 				{
 					provide: MAT_SNACK_BAR_DATA,

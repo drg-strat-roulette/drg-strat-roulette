@@ -20,13 +20,25 @@ import {
 	SnackbarConfig,
 	SnackbarWithIconComponent,
 } from '../../components/snackbar-with-icon/snackbar-with-icon.component';
-import { MatDrawer } from '@angular/material/sidenav';
+import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/material/sidenav';
 import { sampleWithWeights } from '../../utilities/general-functions.utils';
 import { HeaderControlsService } from 'src/app/services/header-controls/header-controls.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
 import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
 import { CrossTabSyncService } from 'src/app/services/cross-tab-sync/cross-tab-sync.service';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { NgFor, NgIf } from '@angular/common';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
 
 const RECENT_STRAT_MAX_COUNT = 10;
 
@@ -34,6 +46,29 @@ const RECENT_STRAT_MAX_COUNT = 10;
 	selector: 'app-strats',
 	templateUrl: './strats.component.html',
 	styleUrls: ['./strats.component.scss'],
+	standalone: true,
+	imports: [
+		MatDrawerContainer,
+		MatDrawer,
+		MatIcon,
+		MatTooltip,
+		NgFor,
+		MatIconButton,
+		MatDrawerContent,
+		CollapseModule,
+		MatCheckbox,
+		FormsModule,
+		MatButton,
+		MatFormField,
+		MatLabel,
+		MatInput,
+		MatSelect,
+		MatOption,
+		NgIf,
+		MatMenuTrigger,
+		MatMenu,
+		MatMenuItem,
+	],
 })
 export class StratsComponent implements OnInit, OnDestroy {
 	@ViewChild('queuedStratsDrawer') queuedStratsDrawer: MatDrawer | undefined;

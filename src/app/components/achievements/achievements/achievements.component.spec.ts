@@ -26,8 +26,9 @@ describe('AchievementsComponent', () => {
 				MatProgressBarModule,
 				MatSelectModule,
 				MatSnackBarModule,
+				AchievementsComponent,
+				MockComponent(AchievementCardComponent),
 			],
-			declarations: [AchievementsComponent, MockComponent(AchievementCardComponent)],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(AchievementsComponent);

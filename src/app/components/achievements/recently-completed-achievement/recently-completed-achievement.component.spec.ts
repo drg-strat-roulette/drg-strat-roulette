@@ -10,8 +10,7 @@ describe('RecentlyCompletedAchievementComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [MatIconModule, MatProgressSpinnerModule, MatTooltipModule],
-			declarations: [RecentlyCompletedAchievementComponent],
+			imports: [MatIconModule, MatProgressSpinnerModule, MatTooltipModule, RecentlyCompletedAchievementComponent],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(RecentlyCompletedAchievementComponent);

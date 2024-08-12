@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
 import { AchievementCardComponent } from './achievement-card.component';
 
 describe('AchievementCardComponent', () => {
@@ -11,8 +10,7 @@ describe('AchievementCardComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [MatCheckboxModule, MatIconModule, MatTooltipModule],
-			declarations: [AchievementCardComponent],
+			imports: [MatCheckboxModule, MatIconModule, MatTooltipModule, AchievementCardComponent],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(AchievementCardComponent);

@@ -9,8 +9,7 @@ describe('ManagementDialog', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ManagementDialog],
-			imports: [BrowserModule],
+			imports: [BrowserModule, ManagementDialog],
 			providers: [{ provide: MAT_DIALOG_DATA, useValue: {} }],
 		}).compileComponents();
 

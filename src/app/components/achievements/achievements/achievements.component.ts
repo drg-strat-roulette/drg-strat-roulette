@@ -16,9 +16,27 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { byCompletionDateThenByOrder } from 'src/app/utilities/sorters.utils';
 import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
 import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
-import { MatDialog } from '@angular/material/dialog';
+import {
+	MatDialog,
+	MatDialogTitle,
+	MatDialogContent,
+	MatDialogActions,
+	MatDialogClose,
+} from '@angular/material/dialog';
 import { CrossTabSyncService } from 'src/app/services/cross-tab-sync/cross-tab-sync.service';
 import { tokenizeString } from 'src/app/utilities/general-functions.utils';
+import { AchievementCardComponent } from '../achievement-card/achievement-card.component';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
+import { RecentlyCompletedAchievementComponent } from '../recently-completed-achievement/recently-completed-achievement.component';
+import { NgFor, NgIf, DecimalPipe } from '@angular/common';
 
 @Component({
 	selector: 'app-achievements',
@@ -35,6 +53,30 @@ import { tokenizeString } from 'src/app/utilities/general-functions.utils';
 				animate('250ms ease-in-out', style({ opacity: 0, transform: 'translateX(100%)' })),
 			]),
 		]),
+	],
+	standalone: true,
+	imports: [
+		NgFor,
+		RecentlyCompletedAchievementComponent,
+		MatFormField,
+		MatLabel,
+		MatInput,
+		FormsModule,
+		NgIf,
+		MatIconButton,
+		MatSuffix,
+		MatIcon,
+		MatSelect,
+		MatOption,
+		MatTooltip,
+		MatProgressBar,
+		AchievementCardComponent,
+		MatDialogTitle,
+		MatDialogContent,
+		MatButton,
+		MatDialogActions,
+		MatDialogClose,
+		DecimalPipe,
 	],
 })
 export class AchievementsComponent implements OnInit {

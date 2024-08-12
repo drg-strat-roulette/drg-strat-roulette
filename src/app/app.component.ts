@@ -1,15 +1,36 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { backgroundImages } from './data/backgrounds.const';
 import { filter } from 'rxjs';
 import { HeaderControlsService } from './services/header-controls/header-controls.service';
 import { ManagementDialogService } from './services/management-dialog/management-dialog.service';
 import { ManagementDialogConfigs } from './services/management-dialog/management-dialog.const';
+import { MatIcon } from '@angular/material/icon';
+import { MatMenuTrigger, MatMenu } from '@angular/material/menu';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIconButton } from '@angular/material/button';
+import { NgFor, NgIf, NgTemplateOutlet, NgStyle } from '@angular/common';
+import { MatTabGroup, MatTab } from '@angular/material/tabs';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
+	standalone: true,
+	imports: [
+		MatTabGroup,
+		NgFor,
+		MatTab,
+		NgIf,
+		MatIconButton,
+		MatTooltip,
+		MatMenuTrigger,
+		MatIcon,
+		MatMenu,
+		NgTemplateOutlet,
+		NgStyle,
+		RouterOutlet,
+	],
 })
 export class AppComponent implements OnInit {
 	@HostListener('window:resize', ['$event'])

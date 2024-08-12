@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subject, interval, takeUntil } from 'rxjs';
 import { DisplayedAchievement } from 'src/app/models/achievement.interface';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIconButton } from '@angular/material/button';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 // Time before this alert auto-disappears
 const ALERT_LIFETIME_MS = 7_000;
@@ -9,6 +13,8 @@ const ALERT_LIFETIME_MS = 7_000;
 	selector: 'app-recently-completed-achievement',
 	templateUrl: './recently-completed-achievement.component.html',
 	styleUrls: ['./recently-completed-achievement.component.scss'],
+	standalone: true,
+	imports: [MatProgressSpinner, MatIconButton, MatTooltip, MatIcon],
 })
 export class RecentlyCompletedAchievementComponent implements OnInit, OnDestroy {
 	/** Achievement to be represented by this notification */

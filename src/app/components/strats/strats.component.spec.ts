@@ -12,7 +12,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-
 import { StratsComponent } from './strats.component';
 
 describe('StratsComponent', () => {
@@ -35,8 +34,8 @@ describe('StratsComponent', () => {
 				MatSnackBarModule,
 				MatTooltipModule,
 				RouterTestingModule,
+				StratsComponent,
 			],
-			declarations: [StratsComponent],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(StratsComponent);
