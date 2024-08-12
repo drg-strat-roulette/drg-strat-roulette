@@ -278,10 +278,10 @@ export const achievementsList: Achievement[] = [
 		description: 'Kill a Stingtail with a Pickaxe Power Attack as it pulls you in.',
 	},
 	{
-		// TODO: Change to X number of enemies
-		id: '35af758b-3a68-4fbb-9ce0-ac3e00c5a4e4',
+		id: '1c3b831b-3a0e-4c8b-9b02-05da968dd945',
 		name: 'Orange Crush',
-		description: 'Crush a teammate with a Resupply Pod.',
+		description: 'Kill 10 enemies by crushing them with a Resupply Pod.',
+		countNeeded: 10,
 	},
 	{
 		id: 'c241ed12-5587-411a-a833-30f05a84e6f8',
@@ -356,9 +356,10 @@ export const achievementsList: Achievement[] = [
 		description: 'Get over 1000 personal kills in a single mission.',
 	},
 	{
-		id: 'f352e02b-b870-49e3-a590-f2271e7683a8',
+		id: '651ffed7-b9a5-4663-870a-da9ae1d35cc5',
 		name: 'Chill Out',
-		description: 'Freeze a teammate by shooting a Cryo Bulb (in Glacial Strata).',
+		description: 'Freeze 10 total enemies by destroying Cryo Bulbs (in Glacial Strata).',
+		countNeeded: 10,
 	},
 	{
 		id: 'd59c02f6-0643-41e8-90a8-3501a4cb21f9',
@@ -535,7 +536,7 @@ export const achievementsList: Achievement[] = [
 	{
 		id: '2186945e-0efd-4807-8d73-ab321dee1a59',
 		name: 'The Tin Can Is Surely Hungry Today!',
-		description: 'Deposit 200 mineral into Molly at once.',
+		description: 'Deposit 200 minerals into Molly at once.',
 	},
 	{
 		id: 'cfdb8377-c087-4d16-850a-ce2d73a8ef37',
@@ -568,6 +569,7 @@ export const achievementsList: Achievement[] = [
 		description: 'Acquire Jetty Boots in the Space Rig.',
 	},
 	{
+		// TODO: Remove? (Flyswatter)
 		id: '2bed4b1c-e7f2-428f-bf48-8b02f7c69961',
 		name: "Sock 'Em in the Jaw",
 		description: 'Land a Pickaxe Power Attack against a Mactera Trijaw.',
@@ -2106,13 +2108,11 @@ export const achievementsList: Achievement[] = [
 		id: '7410af21-c715-44db-96f5-73ffd97e3987',
 		name: "Show Me What You've Got",
 		description: 'Kill a Glyphid Dreadnought whose weakpoint is revealed three or fewer times.',
-		// TODO: Attempt
 	},
 	{
 		id: 'd6aa81b9-2901-4faf-a2b7-4010020a086f',
 		name: "Don't Let Your Guard Down",
 		description: 'Kill a Dreadnought Hiveguard whose weakpoint is revealed two or fewer times.',
-		// TODO: Attempt
 	},
 	{
 		id: 'f8e0c6fb-3373-4046-9d6a-3ecb41ba325b',
@@ -2200,6 +2200,7 @@ export const achievementsList: Achievement[] = [
 		id: 'faa00763-aea7-44a8-86b7-775a11a6dc2a',
 		name: 'Bulk Discount',
 		description: 'Have a Bulk Detonator kill 10 total enemies with ground slams.',
+		countNeeded: 10,
 	},
 	{
 		id: '277941d2-f865-407b-a7ce-7579c3d59527',
@@ -2215,5 +2216,9 @@ export const achievementsList: Achievement[] = [
 ];
 
 // No red sugar
-// Hurt me plenty
-// Remove "The Sky Is Falling!"?
+// "Hurt me plenty"
+// Remove "The Sky Is Falling!"? Or maybe change it to just experiencing both?
+// Complete a Haz 5 mission with each of the Haz5+ modifiers (more, aggro, tough, vuln)
+// Combine the 3 data cell achievements
+// Remove the weapon mastery achievements and replace with the framework unlocks
+// Achievements related to the new enemies (stalker, spreader, stingtail (add to glyphid achievement), Vartok Scalebramble, Corespawn Crawler, Barrage Infector)
