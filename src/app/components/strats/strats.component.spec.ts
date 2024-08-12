@@ -11,7 +11,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { StratsComponent } from './strats.component';
 
 describe('StratsComponent', () => {
@@ -22,7 +21,6 @@ describe('StratsComponent', () => {
 		await TestBed.configureTestingModule({
 			imports: [
 				BrowserAnimationsModule,
-				CollapseModule,
 				FormsModule,
 				MatCheckboxModule,
 				MatDialogModule,

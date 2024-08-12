@@ -6,55 +6,22 @@
 		}
 	</mat-tab-group>
 	@if (collapseButtons) {
-		<div>
-			<button
-				#feedbackTooltip="matTooltip"
-				matTooltip="Controls"
-				matTooltipShowDelay="500"
-				mat-icon-button
-				aria-label="Controls"
-				[matMenuTriggerFor]="controlsMenu"
-			>
-				<mat-icon class="white-icon">menu</mat-icon>
-			</button>
-		</div>
+		<button
+			#feedbackTooltip="matTooltip"
+			matTooltip="Controls"
+			matTooltipShowDelay="500"
+			mat-icon-button
+			aria-label="Controls"
+			[matMenuTriggerFor]="controlsMenu"
+		>
+			<mat-icon class="white-icon">menu</mat-icon>
+		</button>
+		<mat-menu #controlsMenu="matMenu">
+			<ng-container *ngTemplateOutlet="expandedButtons"></ng-container>
+		</mat-menu>
 	} @else {
-		<div class="d-flex flex-row">
-			<button
-				#feedbackTooltip="matTooltip"
-				matTooltip="Feedback"
-				matTooltipShowDelay="500"
-				mat-icon-button
-				aria-label="Feedback"
-				(click)="openFeedbackDialog()"
-			>
-				<mat-icon class="white-icon">feedback</mat-icon>
-			</button>
-			<button
-				#infoTooltip="matTooltip"
-				matTooltip="Info"
-				matTooltipShowDelay="500"
-				mat-icon-button
-				aria-label="Info"
-				(click)="headerControlsService.infoButtonPressed$.next()"
-			>
-				<mat-icon class="white-icon">info</mat-icon>
-			</button>
-			<button
-				#shareTooltip="matTooltip"
-				matTooltip="Share"
-				matTooltipShowDelay="500"
-				mat-icon-button
-				aria-label="Share"
-				(click)="headerControlsService.shareButtonPressed$.next()"
-			>
-				<mat-icon class="white-icon">share</mat-icon>
-			</button>
-		</div>
-	}
-	<mat-menu #controlsMenu="matMenu">
 		<ng-container *ngTemplateOutlet="expandedButtons"></ng-container>
-	</mat-menu>
+	}
 	<ng-template #expandedButtons>
 		<div class="d-flex flex-row">
 			<button

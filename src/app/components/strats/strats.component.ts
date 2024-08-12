@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { strategies } from '../..//data/strats.const';
 import { clamp, sample } from 'lodash-es';
 import { CachedQueuedStrats, Strategy, StratTag, stratTagInfo, StratTagObject } from '../../models/strat.interface';
@@ -34,10 +34,10 @@ import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { MatIconButton, MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIcon } from '@angular/material/icon';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 const RECENT_STRAT_MAX_COUNT = 10;
 
@@ -47,13 +47,13 @@ const RECENT_STRAT_MAX_COUNT = 10;
 	styleUrls: ['./strats.component.scss'],
 	standalone: true,
 	imports: [
+		MatDialogModule,
 		MatDrawerContainer,
 		MatDrawer,
 		MatIcon,
 		MatTooltip,
 		MatIconButton,
 		MatDrawerContent,
-		CollapseModule,
 		MatCheckbox,
 		FormsModule,
 		MatButton,
@@ -69,6 +69,7 @@ const RECENT_STRAT_MAX_COUNT = 10;
 })
 export class StratsComponent implements OnInit, OnDestroy {
 	@ViewChild('queuedStratsDrawer') queuedStratsDrawer: MatDrawer | undefined;
+	@ViewChild('stratSettings') stratSettingsDialog: TemplateRef<any> | undefined;
 
 	// Static data
 	dwarfClasses: DwarfClass[] = Object.values(DwarfClass);
@@ -98,9 +99,6 @@ export class StratsComponent implements OnInit, OnDestroy {
 	}
 	queuedStrats: Strategy[] = [];
 	recentStrats: number[] = [];
-
-	// True if the settings menu is collapsed, false otherwise
-	settingsMenuCollapsed = true;
 
 	// List of all possible strategy tags, and whether they are included or excluded
 	tags: StratTagObject[] = stratTagInfo.map((tagInfo) => ({
@@ -135,6 +133,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 		private managementDialogService: ManagementDialogService,
 		private headerControlsService: HeaderControlsService,
 		private crossTabSyncService: CrossTabSyncService,
+		private dialog: MatDialog,
 	) {}
 
 	ngOnInit(): void {
@@ -565,6 +564,15 @@ export class StratsComponent implements OnInit, OnDestroy {
 			},
 			queryParamsHandling: 'merge',
 		});
+	}
+
+	/**
+	 * Open the strat settings dialog
+	 */
+	openSettingsDialog() {
+		if (this.stratSettingsDialog) {
+			this.dialog.open(this.stratSettingsDialog);
+		}
 	}
 
 	/**

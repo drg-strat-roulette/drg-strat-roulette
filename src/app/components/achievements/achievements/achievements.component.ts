@@ -16,13 +16,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { byCompletionDateThenByOrder } from 'src/app/utilities/sorters.utils';
 import { ManagementDialogService } from 'src/app/services/management-dialog/management-dialog.service';
 import { ManagementDialogConfigs } from 'src/app/services/management-dialog/management-dialog.const';
-import {
-	MatDialog,
-	MatDialogTitle,
-	MatDialogContent,
-	MatDialogActions,
-	MatDialogClose,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CrossTabSyncService } from 'src/app/services/cross-tab-sync/cross-tab-sync.service';
 import { tokenizeString } from 'src/app/utilities/general-functions.utils';
 import { AchievementCardComponent } from '../achievement-card/achievement-card.component';
@@ -69,11 +63,8 @@ import { DecimalPipe } from '@angular/common';
 		MatTooltip,
 		MatProgressBar,
 		AchievementCardComponent,
-		MatDialogTitle,
-		MatDialogContent,
 		MatButton,
-		MatDialogActions,
-		MatDialogClose,
+		MatDialogModule,
 		DecimalPipe,
 	],
 })

@@ -16,7 +16,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
@@ -32,7 +31,6 @@ bootstrapApplication(AppComponent, {
 			AppRoutingModule,
 			BrowserModule,
 			ClipboardModule,
-			CollapseModule.forRoot(),
 			CommonModule,
 			FormsModule,
 			MatButtonModule,
