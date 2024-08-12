@@ -270,142 +270,131 @@
 
 <!-- Strat settings dialog -->
 <ng-template #stratSettings>
-	<div class="m-4">
-		<h1 mat-dialog-title>Strat settings</h1>
-		<div mat-dialog-content>
-			<div class="d-flex flex-row flex-wrap justify-content-between">
-				<div>
-					<!-- Tags selection -->
-					<h2>Include strategies that</h2>
-					@for (tag of tags; track tag.type) {
-						<div class="m-1 ms-4">
-							<mat-checkbox
-								[(ngModel)]="tag.checked"
-								(ngModelChange)="saveSettings()"
-								#tagCheckboxTooltip="matTooltip"
-								[matTooltip]="'Include strategies which ' + tag.tooltipDetails"
-								matTooltipPosition="right"
-								matTooltipShowDelay="250"
-							>
-								{{ tag.type }}
-							</mat-checkbox>
-						</div>
-					}
-
-					<!-- Specific missions selection -->
-					<h2>Missions</h2>
+	<h1 mat-dialog-title>Strat settings</h1>
+	<div mat-dialog-content>
+		<div class="d-flex flex-row flex-wrap justify-content-between">
+			<div>
+				<!-- Tags selection -->
+				<h2>Include strategies that</h2>
+				@for (tag of tags; track tag.type) {
 					<div class="m-1 ms-4">
 						<mat-checkbox
-							[(ngModel)]="preChosenMissions"
+							[(ngModel)]="tag.checked"
 							(ngModelChange)="saveSettings()"
-							#preChooseMissionTooltip="matTooltip"
-							matTooltip="Roll for strategies that are compatible with the mission entered below."
+							#tagCheckboxTooltip="matTooltip"
+							[matTooltip]="'Include strategies which ' + tag.tooltipDetails"
 							matTooltipPosition="right"
 							matTooltipShowDelay="250"
 						>
-							Specify mission
+							{{ tag.type }}
 						</mat-checkbox>
 					</div>
+				}
 
-					<!-- Other settings (settings reset and cache clear) -->
-					<h2>Other</h2>
-					<div class="d-flex flex-row flex-wrap">
-						<button
-							class="other-settings-button"
-							mat-raised-button
-							#resetSettingsTooltip="matTooltip"
-							matTooltip="Resets all settings to their default configurations"
-							matTooltipShowDelay="500"
-							color="primary"
-							(click)="resetAllSettings()"
-						>
-							Reset settings
-						</button>
-						<button
-							class="other-settings-button"
-							mat-raised-button
-							#clearCacheTooltip="matTooltip"
-							matTooltip="Clears all data from browser cache"
-							matTooltipShowDelay="500"
-							color="primary"
-							(click)="clearAllCachedData()"
-						>
-							Clear cache
-						</button>
-					</div>
-				</div>
-
-				<!-- Team configuration -->
-				<div class="team-config-container">
-					<h2>
-						Team config
-						<mat-icon
-							#teamConfigTooltip="matTooltip"
-							matTooltip="Only strategies compatible with the team config can be rolled. Dwarf names will be used for some strategies."
-							(click)="teamConfigTooltip.show()"
-						>
-							help
-						</mat-icon>
-					</h2>
-
-					<!-- Add a dwarf -->
-					<div
-						class="add-dwarf-button-container"
-						#addDwarfDisabled="matTooltip"
-						[matTooltip]="dwarves.length >= 4 ? 'Team is full' : ''"
+				<!-- Specific missions selection -->
+				<h2>Missions</h2>
+				<div class="m-1 ms-4">
+					<mat-checkbox
+						[(ngModel)]="preChosenMissions"
+						(ngModelChange)="saveSettings()"
+						#preChooseMissionTooltip="matTooltip"
+						matTooltip="Roll for strategies that are compatible with the mission entered below."
 						matTooltipPosition="right"
 						matTooltipShowDelay="250"
 					>
-						<button mat-raised-button color="primary" [disabled]="dwarves.length >= 4" (click)="addDwarf()">
-							Add a dwarf
-						</button>
-					</div>
+						Specify mission
+					</mat-checkbox>
+				</div>
 
-					<!-- Dwarf info -->
-					@for (dwarf of dwarves; track dwarf; let i = $index) {
-						<div>
-							<div class="d-flex flex-col flex-wrap">
-								<mat-form-field appearance="fill" class="m-1">
-									<mat-label>Name</mat-label>
-									<input
-										matInput
-										type="text"
-										[(ngModel)]="dwarf.name"
-										(ngModelChange)="saveSettings()"
-									/>
-								</mat-form-field>
-								<div>
-									<mat-form-field appearance="fill" class="m-1 dwarf-class-select">
-										<mat-label>Classes</mat-label>
-										<mat-select
-											[(ngModel)]="dwarf.classes"
-											(ngModelChange)="saveSettings()"
-											multiple
-										>
-											@for (dwarfClass of dwarfClasses; track dwarfClass) {
-												<mat-option
-													[value]="dwarfClass"
-													[disabled]="
-														dwarf.classes.length === 1 && dwarf.classes.includes(dwarfClass)
-													"
-												>
-													{{ dwarfClass }}
-												</mat-option>
-											}
-										</mat-select>
-									</mat-form-field>
-									<button mat-icon-button color="warn" class="m-1" (click)="removeDwarf(i)">
-										<mat-icon>close</mat-icon>
-									</button>
-								</div>
-							</div>
-						</div>
-					}
+				<!-- Other settings (settings reset and cache clear) -->
+				<h2>Other</h2>
+				<div class="d-flex flex-row flex-wrap">
+					<button
+						class="other-settings-button"
+						mat-raised-button
+						#resetSettingsTooltip="matTooltip"
+						matTooltip="Resets all settings to their default configurations"
+						matTooltipShowDelay="500"
+						color="primary"
+						(click)="resetAllSettings()"
+					>
+						Reset settings
+					</button>
+					<button
+						class="other-settings-button"
+						mat-raised-button
+						#clearCacheTooltip="matTooltip"
+						matTooltip="Clears all data from browser cache"
+						matTooltipShowDelay="500"
+						color="primary"
+						(click)="clearAllCachedData()"
+					>
+						Clear cache
+					</button>
 				</div>
 			</div>
+
+			<!-- Team configuration -->
+			<div>
+				<h2>
+					Team config
+					<mat-icon
+						#teamConfigTooltip="matTooltip"
+						matTooltip="Only strategies compatible with the team config can be rolled. Dwarf names will be used for some strategies."
+						(click)="teamConfigTooltip.show()"
+					>
+						help
+					</mat-icon>
+				</h2>
+
+				<!-- Add a dwarf -->
+				<div
+					class="add-dwarf-button-container"
+					#addDwarfDisabled="matTooltip"
+					[matTooltip]="dwarves.length >= 4 ? 'Team is full' : ''"
+					matTooltipPosition="right"
+					matTooltipShowDelay="250"
+				>
+					<button mat-raised-button color="primary" [disabled]="dwarves.length >= 4" (click)="addDwarf()">
+						Add a dwarf
+					</button>
+				</div>
+
+				<!-- Dwarf info -->
+				@for (dwarf of dwarves; track dwarf; let i = $index) {
+					<div>
+						<div class="d-flex flex-col flex-wrap">
+							<mat-form-field appearance="fill" class="m-1">
+								<mat-label>Name</mat-label>
+								<input matInput type="text" [(ngModel)]="dwarf.name" (ngModelChange)="saveSettings()" />
+							</mat-form-field>
+							<div class="d-flex flex-nowrap">
+								<mat-form-field appearance="fill" class="m-1">
+									<mat-label>Classes</mat-label>
+									<mat-select [(ngModel)]="dwarf.classes" (ngModelChange)="saveSettings()" multiple>
+										@for (dwarfClass of dwarfClasses; track dwarfClass) {
+											<mat-option
+												[value]="dwarfClass"
+												[disabled]="
+													dwarf.classes.length === 1 && dwarf.classes.includes(dwarfClass)
+												"
+											>
+												{{ dwarfClass }}
+											</mat-option>
+										}
+									</mat-select>
+								</mat-form-field>
+								<button mat-icon-button color="warn" class="m-1" (click)="removeDwarf(i)">
+									<mat-icon>close</mat-icon>
+								</button>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
 		</div>
-		<div mat-dialog-actions class="d-flex justify-content-end">
-			<button mat-button cdkFocusInitial mat-dialog-close="">Close</button>
-		</div>
+	</div>
+	<div mat-dialog-actions class="d-flex justify-content-end">
+		<button mat-button cdkFocusInitial mat-dialog-close="">Close</button>
 	</div>
 </ng-template>
