@@ -119,7 +119,7 @@ export class AchievementsComponent implements OnInit {
 		private clipboard: Clipboard,
 		private changeDetectorRef: ChangeDetectorRef,
 		private dialog: MatDialog,
-		private crossTabSyncService: CrossTabSyncService
+		private crossTabSyncService: CrossTabSyncService,
 	) {}
 
 	ngOnInit(): void {
@@ -149,7 +149,7 @@ export class AchievementsComponent implements OnInit {
 		this.crossTabSyncService.tabSync$
 			.pipe(
 				takeUntil(this.destroy),
-				filter((u) => u === CrossTabSyncType.achievementProgressUpdated)
+				filter((u) => u === CrossTabSyncType.achievementProgressUpdated),
 			)
 			.subscribe(() => {
 				// Load latest achievement progress (which was saved by a different browser tab)
@@ -248,7 +248,7 @@ export class AchievementsComponent implements OnInit {
 					// Remove from recentlyCompletedAchievements
 					if (!achievementProgress.completedAt) {
 						const rcaIndex = this.recentlyCompletedAchievements.findIndex(
-							(r) => r.achievement.id === achievement.id
+							(r) => r.achievement.id === achievement.id,
 						);
 						if (rcaIndex !== -1) {
 							this.recentlyCompletedAchievements.splice(rcaIndex, 1);
@@ -301,7 +301,7 @@ export class AchievementsComponent implements OnInit {
 			if (!skipRecentlyCompleted) {
 				const killFn = () => {
 					const rcaIndex = this.recentlyCompletedAchievements.findIndex(
-						(r) => r.achievement.id === achievement.id
+						(r) => r.achievement.id === achievement.id,
 					);
 					if (rcaIndex !== -1) {
 						this.recentlyCompletedAchievements.splice(rcaIndex, 1);
@@ -380,7 +380,7 @@ export class AchievementsComponent implements OnInit {
 						...tokenizeString(a.name),
 						...tokenizeString(a.description),
 						...(a.subTasks?.map((t) => tokenizeString(t.name)) ?? []),
-					])
+					]),
 				),
 			];
 			a.display =

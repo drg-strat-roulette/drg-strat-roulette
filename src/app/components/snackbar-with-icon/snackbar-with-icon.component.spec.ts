@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SnackbarWithIconComponent } from './snackbar-with-icon.component';
 
 describe('SnackbarWithIconComponent', () => {
@@ -10,7 +9,7 @@ describe('SnackbarWithIconComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [BrowserAnimationsModule, MatIconModule, SnackbarWithIconComponent],
+			imports: [MatIconModule, SnackbarWithIconComponent],
 			providers: [
 				{
 					provide: MAT_SNACK_BAR_DATA,

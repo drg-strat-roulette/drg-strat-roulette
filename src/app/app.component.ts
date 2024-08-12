@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private managementDialogService: ManagementDialogService,
-		public headerControlsService: HeaderControlsService
+		public headerControlsService: HeaderControlsService,
 	) {}
 
 	ngOnInit(): void {

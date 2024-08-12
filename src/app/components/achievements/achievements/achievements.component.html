@@ -101,7 +101,7 @@
 					<h1>No results match search.</h1>
 				}
 				<!-- Achievement cards -->
-				@for (achievement of achievements; track achievement.id; let i = $index) {
+				@for (achievement of achievements; track achievement; let i = $index) {
 					@if (
 						numCompletedDisplayed !== 0 &&
 						i !== 0 &&
