@@ -8,14 +8,13 @@ import {
 } from '@angular/material/dialog';
 import { ManagementDialogConfig } from 'src/app/services/management-dialog/management-dialog.const';
 import { MatButton } from '@angular/material/button';
-import { NgFor, NgIf } from '@angular/common';
 
 @Component({
 	selector: 'app-management-dialog',
 	templateUrl: './management-dialog.component.html',
 	styleUrls: ['./management-dialog.component.scss'],
 	standalone: true,
-	imports: [MatDialogTitle, MatDialogContent, NgFor, NgIf, MatDialogActions, MatButton, MatDialogClose],
+	imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatButton, MatDialogClose],
 })
 export class ManagementDialog {
 	constructor(@Inject(MAT_DIALOG_DATA) public data: ManagementDialogConfig) {}

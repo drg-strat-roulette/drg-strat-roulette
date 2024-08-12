@@ -36,7 +36,6 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { MatIconButton, MatButton } from '@angular/material/button';
-import { NgFor, NgIf } from '@angular/common';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIcon } from '@angular/material/icon';
 
@@ -52,7 +51,6 @@ const RECENT_STRAT_MAX_COUNT = 10;
 		MatDrawer,
 		MatIcon,
 		MatTooltip,
-		NgFor,
 		MatIconButton,
 		MatDrawerContent,
 		CollapseModule,
@@ -64,7 +62,6 @@ const RECENT_STRAT_MAX_COUNT = 10;
 		MatInput,
 		MatSelect,
 		MatOption,
-		NgIf,
 		MatMenuTrigger,
 		MatMenu,
 		MatMenuItem,
@@ -137,7 +134,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 		private snackbar: MatSnackBar,
 		private managementDialogService: ManagementDialogService,
 		private headerControlsService: HeaderControlsService,
-		private crossTabSyncService: CrossTabSyncService
+		private crossTabSyncService: CrossTabSyncService,
 	) {}
 
 	ngOnInit(): void {
@@ -615,7 +612,7 @@ export class StratsComponent implements OnInit, OnDestroy {
 		// Prevent a presently queued strategy from being re-chosen
 		if (disallowQueued) {
 			candidateStrats = candidateStrats.filter(
-				(strat) => !this.queuedStrats.some((queue) => queue.id === strat.id)
+				(strat) => !this.queuedStrats.some((queue) => queue.id === strat.id),
 			);
 		}
 

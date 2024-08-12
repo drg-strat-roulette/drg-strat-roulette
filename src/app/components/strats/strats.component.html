@@ -6,22 +6,22 @@
 			<mat-icon
 				#queuedStrategiesTooltip="matTooltip"
 				matTooltip="Queued strategies rely on RNG to be attempted. As such, they are queued up and can be attempted when the opportunity presents itself. They can be done in any order. Click on a queued strategy to view it again, and check it off to remove it from queue."
-                (click)="queuedStrategiesTooltip.show()">
+				(click)="queuedStrategiesTooltip.show()"
+			>
 				help
 			</mat-icon>
 		</h2>
 		<!-- List of queued strategies -->
-		<div
-			*ngFor="let queuedStrat of queuedStrats"
-			class="queued-strat d-flex flex-row"
-			(click)="strategy = queuedStrat; queuedStratsDrawer.toggle()">
-			<button mat-icon-button class="m-1" (click)="removeQueuedStrategy(queuedStrat.id)">
-				<mat-icon>check</mat-icon>
-			</button>
-			<div class="queued-strat-name">
-				{{ queuedStrat.name }}
+		@for (queuedStrat of queuedStrats; track queuedStrat.id) {
+			<div class="queued-strat d-flex flex-row" (click)="strategy = queuedStrat; queuedStratsDrawer.toggle()">
+				<button mat-icon-button class="m-1" (click)="removeQueuedStrategy(queuedStrat.id)">
+					<mat-icon>check</mat-icon>
+				</button>
+				<div class="queued-strat-name">
+					{{ queuedStrat.name }}
+				</div>
 			</div>
-		</div>
+		}
 	</mat-drawer>
 
 	<!-- Main page contents -->
@@ -34,17 +34,20 @@
 						<div>
 							<!-- Tags selection -->
 							<h2>Include strategies that</h2>
-							<div *ngFor="let tag of tags" class="m-1 ms-4">
-								<mat-checkbox
-									[(ngModel)]="tag.checked"
-									(ngModelChange)="saveSettings()"
-									#tagCheckboxTooltip="matTooltip"
-									[matTooltip]="'Include strategies which ' + tag.tooltipDetails"
-									matTooltipPosition="right"
-									matTooltipShowDelay="250">
-									{{ tag.type }}
-								</mat-checkbox>
-							</div>
+							@for (tag of tags; track tag.type) {
+								<div class="m-1 ms-4">
+									<mat-checkbox
+										[(ngModel)]="tag.checked"
+										(ngModelChange)="saveSettings()"
+										#tagCheckboxTooltip="matTooltip"
+										[matTooltip]="'Include strategies which ' + tag.tooltipDetails"
+										matTooltipPosition="right"
+										matTooltipShowDelay="250"
+									>
+										{{ tag.type }}
+									</mat-checkbox>
+								</div>
+							}
 
 							<!-- Specific missions selection -->
 							<h2>Missions</h2>
@@ -55,12 +58,13 @@
 									#preChooseMissionTooltip="matTooltip"
 									matTooltip="Roll for strategies that are compatible with the mission entered below."
 									matTooltipPosition="right"
-									matTooltipShowDelay="250">
+									matTooltipShowDelay="250"
+								>
 									Specify mission
 								</mat-checkbox>
 							</div>
 
-                            <!-- Other settings (settings reset and cache clear) -->
+							<!-- Other settings (settings reset and cache clear) -->
 							<h2>Other</h2>
 							<div class="d-flex flex-row flex-wrap">
 								<button
@@ -70,7 +74,8 @@
 									matTooltip="Resets all settings to their default configurations"
 									matTooltipShowDelay="500"
 									color="primary"
-									(click)="resetAllSettings()">
+									(click)="resetAllSettings()"
+								>
 									Reset settings
 								</button>
 								<button
@@ -80,7 +85,8 @@
 									matTooltip="Clears all data from browser cache"
 									matTooltipShowDelay="500"
 									color="primary"
-									(click)="clearAllCachedData()">
+									(click)="clearAllCachedData()"
+								>
 									Clear cache
 								</button>
 							</div>
@@ -88,14 +94,16 @@
 
 						<!-- Team configuration -->
 						<div>
-							<h2>Team config
-                                <mat-icon
-                                    #teamConfigTooltip="matTooltip"
-                                    matTooltip="Only strategies compatible with the team config can be rolled. Dwarf names will be used for some strategies."
-                                    (click)="teamConfigTooltip.show()">
-                                    help
-                                </mat-icon
-                            ></h2>
+							<h2>
+								Team config
+								<mat-icon
+									#teamConfigTooltip="matTooltip"
+									matTooltip="Only strategies compatible with the team config can be rolled. Dwarf names will be used for some strategies."
+									(click)="teamConfigTooltip.show()"
+								>
+									help
+								</mat-icon>
+							</h2>
 
 							<!-- Add a dwarf -->
 							<div
@@ -103,145 +111,169 @@
 								#addDwarfDisabled="matTooltip"
 								[matTooltip]="dwarves.length >= 4 ? 'Team is full' : ''"
 								matTooltipPosition="right"
-								matTooltipShowDelay="250">
+								matTooltipShowDelay="250"
+							>
 								<button
 									mat-raised-button
 									color="primary"
 									[disabled]="dwarves.length >= 4"
-									(click)="addDwarf()">
+									(click)="addDwarf()"
+								>
 									Add a dwarf
 								</button>
 							</div>
 
 							<!-- Dwarf info -->
-							<div *ngFor="let dwarf of dwarves; let i = index">
-								<div class="d-flex flex-col flex-wrap">
+							@for (dwarf of dwarves; track dwarf; let i = $index) {
+								<div>
+									<div class="d-flex flex-col flex-wrap">
+										<mat-form-field appearance="fill" class="m-1">
+											<mat-label>Name</mat-label>
+											<input
+												matInput
+												type="text"
+												[(ngModel)]="dwarf.name"
+												(ngModelChange)="saveSettings()"
+											/>
+										</mat-form-field>
+										<div>
+											<mat-form-field appearance="fill" class="m-1 dwarf-class-select">
+												<mat-label>Classes</mat-label>
+												<mat-select
+													[(ngModel)]="dwarf.classes"
+													(ngModelChange)="saveSettings()"
+													multiple
+												>
+													@for (dwarfClass of dwarfClasses; track dwarfClass) {
+														<mat-option
+															[value]="dwarfClass"
+															[disabled]="
+																dwarf.classes.length === 1 &&
+																dwarf.classes.includes(dwarfClass)
+															"
+														>
+															{{ dwarfClass }}
+														</mat-option>
+													}
+												</mat-select>
+											</mat-form-field>
+											<button mat-icon-button color="warn" class="m-1" (click)="removeDwarf(i)">
+												<mat-icon>close</mat-icon>
+											</button>
+										</div>
+									</div>
+								</div>
+							}
+
+							<!-- Ghost dwarf info (Rendered a 0px height for flex consistency purposes) -->
+							@if (dwarves.length === 0) {
+								<div class="d-flex flex-col flex-wrap fake-dwarf-info">
 									<mat-form-field appearance="fill" class="m-1">
-										<mat-label>Name</mat-label>
-										<input
-											matInput
-											type="text"
-											[(ngModel)]="dwarf.name"
-											(ngModelChange)="saveSettings()"
-										/>
+										<input matInput type="text" />
 									</mat-form-field>
 									<div>
 										<mat-form-field appearance="fill" class="m-1 dwarf-class-select">
-											<mat-label>Classes</mat-label>
-											<mat-select
-												[(ngModel)]="dwarf.classes"
-												(ngModelChange)="saveSettings()"
-												multiple>
-												<mat-option
-													[value]="dwarfClass"
-													*ngFor="let dwarfClass of dwarfClasses"
-													[disabled]="dwarf.classes.length === 1 && dwarf.classes.includes(dwarfClass)">
-													{{ dwarfClass }}
-												</mat-option>
-											</mat-select>
+											<mat-select> </mat-select>
 										</mat-form-field>
-										<button mat-icon-button color="warn" class="m-1" (click)="removeDwarf(i)">
+										<button mat-icon-button color="warn" class="m-1">
 											<mat-icon>close</mat-icon>
 										</button>
 									</div>
 								</div>
-							</div>
-
-							<!-- Ghost dwarf info (Rendered a 0px height for flex consistency purposes) -->
-							<div *ngIf="dwarves.length === 0" class="d-flex flex-col flex-wrap fake-dwarf-info">
-								<mat-form-field appearance="fill" class="m-1">
-									<input matInput type="text" />
-								</mat-form-field>
-								<div>
-									<mat-form-field appearance="fill" class="m-1 dwarf-class-select">
-										<mat-select> </mat-select>
-									</mat-form-field>
-									<button mat-icon-button color="warn" class="m-1"><mat-icon>close</mat-icon></button>
-								</div>
-							</div>
+							}
 						</div>
 					</div>
 					<hr />
 				</div>
 
 				<!-- Mission details -->
-				<div *ngIf="preChosenMissions">
-					<div class="d-flex flex-row flex-wrap mt-2">
-						<mat-form-field appearance="fill" class="m-1 flex-mission-input">
-							<mat-label>Primary objective</mat-label>
-							<mat-select [(ngModel)]="mission.primary" (ngModelChange)="saveSettings()">
-								<mat-option
-									*ngFor="let primaryObjective of missionPrimaryObjectives"
-									[value]="primaryObjective">
-									{{ primaryObjective }}
-								</mat-option>
-							</mat-select>
-						</mat-form-field>
-						<mat-form-field appearance="fill" class="m-1 flex-mission-input">
-							<mat-label>Secondary objective</mat-label>
-							<mat-select [(ngModel)]="mission.secondary" (ngModelChange)="saveSettings()">
-								<mat-option
-									*ngFor="let secondaryObjective of missionSecondaryObjectives"
-									[value]="secondaryObjective">
-									{{ secondaryObjective }}
-								</mat-option>
-							</mat-select>
-						</mat-form-field>
-						<mat-form-field appearance="fill" class="m-1 flex-mission-input">
-							<mat-label>Biome</mat-label>
-							<mat-select [(ngModel)]="mission.biome" (ngModelChange)="saveSettings()">
-								<mat-option *ngFor="let biome of biomes" [value]="biome">
-									{{ biome }}
-								</mat-option>
-							</mat-select>
-						</mat-form-field>
-                        <!-- Currently unused -->
-						<!-- <mat-form-field appearance="fill" class="mission-number-input m-1">
-							<mat-label>Length</mat-label>
-							<input
-								matInput
-								type="number"
-								min="1"
-								max="3"
-								id="mission-length"
-								[(ngModel)]="mission.length"
-								(ngModelChange)="saveSettings()"
-							/>
-						</mat-form-field>
-						<mat-form-field appearance="fill" class="mission-number-input m-1">
-							<mat-label>Complexity</mat-label>
-							<input
-								matInput
-								type="number"
-								min="1"
-								max="3"
-								id="mission-complexity"
-								[(ngModel)]="mission.complexity"
-								(ngModelChange)="saveSettings()"
-							/>
-						</mat-form-field> -->
-						<mat-form-field appearance="fill" class="m-1 flex-mission-input">
-							<mat-label>Warnings</mat-label>
-							<mat-select [(ngModel)]="mission.warnings" (ngModelChange)="saveSettings()" multiple>
-								<mat-option
-									[value]="warning"
-									*ngFor="let warning of warnings"
-									[disabled]="mission.warnings.length === 2 && !mission.warnings.includes(warning)">
-									{{ warning }}
-								</mat-option>
-							</mat-select>
-						</mat-form-field>
-						<mat-form-field appearance="fill" class="m-1 flex-mission-input">
-							<mat-label>Anomaly</mat-label>
-							<mat-select [(ngModel)]="mission.anomaly" (ngModelChange)="saveSettings()">
-								<mat-option [value]="null"> None </mat-option>
-								<mat-option *ngFor="let anomaly of anomalies" [value]="anomaly">
-									{{ anomaly }}
-								</mat-option>
-							</mat-select>
-						</mat-form-field>
+				@if (preChosenMissions) {
+					<div>
+						<div class="d-flex flex-row flex-wrap mt-2">
+							<mat-form-field appearance="fill" class="m-1 flex-mission-input">
+								<mat-label>Primary objective</mat-label>
+								<mat-select [(ngModel)]="mission.primary" (ngModelChange)="saveSettings()">
+									@for (primaryObjective of missionPrimaryObjectives; track primaryObjective) {
+										<mat-option [value]="primaryObjective">
+											{{ primaryObjective }}
+										</mat-option>
+									}
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field appearance="fill" class="m-1 flex-mission-input">
+								<mat-label>Secondary objective</mat-label>
+								<mat-select [(ngModel)]="mission.secondary" (ngModelChange)="saveSettings()">
+									@for (secondaryObjective of missionSecondaryObjectives; track secondaryObjective) {
+										<mat-option [value]="secondaryObjective">
+											{{ secondaryObjective }}
+										</mat-option>
+									}
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field appearance="fill" class="m-1 flex-mission-input">
+								<mat-label>Biome</mat-label>
+								<mat-select [(ngModel)]="mission.biome" (ngModelChange)="saveSettings()">
+									@for (biome of biomes; track biome) {
+										<mat-option [value]="biome">
+											{{ biome }}
+										</mat-option>
+									}
+								</mat-select>
+							</mat-form-field>
+							<!-- Currently unused -->
+							<!-- <mat-form-field appearance="fill" class="mission-number-input m-1">
+									<mat-label>Length</mat-label>
+									<input
+										matInput
+										type="number"
+										min="1"
+										max="3"
+										id="mission-length"
+										[(ngModel)]="mission.length"
+										(ngModelChange)="saveSettings()"
+										/>
+									</mat-form-field>
+									<mat-form-field appearance="fill" class="mission-number-input m-1">
+										<mat-label>Complexity</mat-label>
+										<input
+											matInput
+											type="number"
+											min="1"
+											max="3"
+											id="mission-complexity"
+											[(ngModel)]="mission.complexity"
+											(ngModelChange)="saveSettings()"
+											/>
+										</mat-form-field> -->
+							<mat-form-field appearance="fill" class="m-1 flex-mission-input">
+								<mat-label>Warnings</mat-label>
+								<mat-select [(ngModel)]="mission.warnings" (ngModelChange)="saveSettings()" multiple>
+									@for (warning of warnings; track warning) {
+										<mat-option
+											[value]="warning"
+											[disabled]="
+												mission.warnings.length === 2 && !mission.warnings.includes(warning)
+											"
+										>
+											{{ warning }}
+										</mat-option>
+									}
+								</mat-select>
+							</mat-form-field>
+							<mat-form-field appearance="fill" class="m-1 flex-mission-input">
+								<mat-label>Anomaly</mat-label>
+								<mat-select [(ngModel)]="mission.anomaly" (ngModelChange)="saveSettings()">
+									<mat-option [value]="null"> None </mat-option>
+									@for (anomaly of anomalies; track anomaly) {
+										<mat-option [value]="anomaly">
+											{{ anomaly }}
+										</mat-option>
+									}
+								</mat-select>
+							</mat-form-field>
+						</div>
 					</div>
-				</div>
+				}
 
 				<div class="d-flex">
 					<!-- Settings button -->
@@ -252,45 +284,52 @@
 						matTooltipShowDelay="500"
 						mat-icon-button
 						aria-label="Settings"
-						(click)="this.settingsMenuCollapsed = !this.settingsMenuCollapsed">
+						(click)="this.settingsMenuCollapsed = !this.settingsMenuCollapsed"
+					>
 						<mat-icon class="white-icon">settings</mat-icon>
 					</button>
 					<!-- Roll a strategy -->
 					<button class="m-2" mat-raised-button color="primary" (click)="rollStrat()">Roll a strategy</button>
-					<button
-						*ngIf="strat"
-						mat-icon-button
-						[matMenuTriggerFor]="clipboardMenu"
-						#copyStratTooltip="matTooltip"
-						matTooltip="Copy to clipboard"
-						matTooltipShowDelay="500"
-						aria-label="Copy to clipboard">
-						<mat-icon class="white-icon">content_copy</mat-icon>
-					</button>
-					<button
-						*ngIf="queuedStrats.length > 0"
-						mat-icon-button
-						#showQueuedStratsTooltip="matTooltip"
-						matTooltip="Show queued strategies"
-						matTooltipShowDelay="500"
-						(click)="queuedStratsDrawer.toggle()"
-						aria-label="Show queued strategies">
-						<mat-icon class="white-icon">list_alt</mat-icon>
-					</button>
-					<button
-						*ngIf="strat?.generateDynamicContent && dwarves.length > 0"
-						mat-icon-button
-						#regenerateDynamicContentTooltip="matTooltip"
-						[matTooltip]="
-							strat?.generateDynamicContent && strat?.dynamicContent
-								? 'Re-generate randomized strategy decisions'
-								: 'Generate randomized strategy decisions'
-						"
-						matTooltipShowDelay="500"
-						(click)="generateDynamicContent()"
-						aria-label="Regenerate dynamic content">
-						<mat-icon class="white-icon">refresh</mat-icon>
-					</button>
+					@if (strat) {
+						<button
+							mat-icon-button
+							[matMenuTriggerFor]="clipboardMenu"
+							#copyStratTooltip="matTooltip"
+							matTooltip="Copy to clipboard"
+							matTooltipShowDelay="500"
+							aria-label="Copy to clipboard"
+						>
+							<mat-icon class="white-icon">content_copy</mat-icon>
+						</button>
+					}
+					@if (queuedStrats.length > 0) {
+						<button
+							mat-icon-button
+							#showQueuedStratsTooltip="matTooltip"
+							matTooltip="Show queued strategies"
+							matTooltipShowDelay="500"
+							(click)="queuedStratsDrawer.toggle()"
+							aria-label="Show queued strategies"
+						>
+							<mat-icon class="white-icon">list_alt</mat-icon>
+						</button>
+					}
+					@if (strat?.generateDynamicContent && dwarves.length > 0) {
+						<button
+							mat-icon-button
+							#regenerateDynamicContentTooltip="matTooltip"
+							[matTooltip]="
+								strat?.generateDynamicContent && strat?.dynamicContent
+									? 'Re-generate randomized strategy decisions'
+									: 'Generate randomized strategy decisions'
+							"
+							matTooltipShowDelay="500"
+							(click)="generateDynamicContent()"
+							aria-label="Regenerate dynamic content"
+						>
+							<mat-icon class="white-icon">refresh</mat-icon>
+						</button>
+					}
 
 					<!-- Copy intro/strategy to clipboard -->
 					<mat-menu #clipboardMenu="matMenu">
@@ -302,68 +341,82 @@
 
 				<!-- Rolled strategy -->
 				<div class="active-strategy-container">
-					<div *ngIf="strat" class="d-flex strat-title-container">
-						<!-- Strat title -->
-						<h1 class="strat-title">
-							<b>#{{ strat.id }}: {{ strat.name }}</b>
-						</h1>
-						<!-- Cycle strat buttons -->
-						<div class="d-flex flex-row justify-content-center">
-							<button
-								mat-icon-button
-								matTooltip="Previous strategy"
-								matTooltipShowDelay="500"
-								(click)="cycleStrat(-1)"
-								aria-label="Previous strategy">
-								<mat-icon class="white-icon">chevron_left</mat-icon>
-							</button>
-							<button
-								mat-icon-button
-								matTooltip="Next strategy"
-								matTooltipShowDelay="500"
-								(click)="cycleStrat(1)"
-								aria-label="Next strategy">
-								<mat-icon class="white-icon">chevron_right</mat-icon>
-							</button>
-						</div>
-						<hr />
-						<!-- Strat summary -->
-						<div class="strat-info-section">
-							<div class="strat-info-section-title d-flex flex-row justify-content-between margin-bottom-16">
-								<h2 class="no-margin">Summary</h2>
-								<div class="d-flex flex-row strat-tags-container">
-									<!-- Strat tags -->
-									<ng-container *ngFor="let tag of tags">
-										<mat-icon
-										*ngIf="strat?.tags?.includes(tag.type)"
-										class="white-icon"
-										#stratTagTooltip="matTooltip"
-										(click)="stratTagTooltip.show()"
-										[matTooltip]="tag.description"
-										matTooltipShowDelay="250">
-										{{ tag.icon }}
-									</mat-icon>
-								</ng-container>
+					@if (strat) {
+						<div class="d-flex strat-title-container">
+							<!-- Strat title -->
+							<h1 class="strat-title">
+								<b>#{{ strat.id }}: {{ strat.name }}</b>
+							</h1>
+							<!-- Cycle strat buttons -->
+							<div class="d-flex flex-row justify-content-center">
+								<button
+									mat-icon-button
+									matTooltip="Previous strategy"
+									matTooltipShowDelay="500"
+									(click)="cycleStrat(-1)"
+									aria-label="Previous strategy"
+								>
+									<mat-icon class="white-icon">chevron_left</mat-icon>
+								</button>
+								<button
+									mat-icon-button
+									matTooltip="Next strategy"
+									matTooltipShowDelay="500"
+									(click)="cycleStrat(1)"
+									aria-label="Next strategy"
+								>
+									<mat-icon class="white-icon">chevron_right</mat-icon>
+								</button>
+							</div>
+							<hr />
+							<!-- Strat summary -->
+							<div class="strat-info-section">
+								<div
+									class="strat-info-section-title d-flex flex-row justify-content-between margin-bottom-16"
+								>
+									<h2 class="no-margin">Summary</h2>
+									<div class="d-flex flex-row strat-tags-container">
+										<!-- Strat tags -->
+										@for (tag of tags; track tag.type) {
+											@if (strat.tags?.includes(tag.type)) {
+												<mat-icon
+													class="white-icon"
+													#stratTagTooltip="matTooltip"
+													(click)="stratTagTooltip.show()"
+													[matTooltip]="tag.description"
+													matTooltipShowDelay="250"
+												>
+													{{ tag.icon }}
+												</mat-icon>
+											}
+										}
+									</div>
+								</div>
+								<div>{{ strat.summary }}</div>
 							</div>
 						</div>
-						<div>{{ strat.summary }}</div>
-					</div>
-				</div>
+					}
 					<!-- Strat additional details -->
-					<div *ngIf="strat?.details" class="strat-info-section">
-						<h2 class="strat-info-section-title">Additional details</h2>
-						<div>{{ strat?.details }}</div>
-					</div>
+					@if (strat?.details) {
+						<div class="strat-info-section">
+							<h2 class="strat-info-section-title">Additional details</h2>
+							<div>{{ strat?.details }}</div>
+						</div>
+					}
 					<!-- Strat requirements -->
-					<div *ngIf="strat?.writtenRequirements" class="strat-info-section">
-						<h2 class="strat-info-section-title">Requirements</h2>
-						<div>{{ strat?.writtenRequirements }}</div>
-					</div>
+					@if (strat?.writtenRequirements) {
+						<div class="strat-info-section">
+							<h2 class="strat-info-section-title">Requirements</h2>
+							<div>{{ strat?.writtenRequirements }}</div>
+						</div>
+					}
 					<!-- Strat dynamic content -->
-					<div *ngIf="strat?.dynamicContent" class="strat-info-section">
-						<h2 class="strat-info-section-title">This time around</h2>
-						<div>{{ strat?.dynamicContent }}</div>
-					</div>
+					@if (strat?.dynamicContent) {
+						<div class="strat-info-section">
+							<h2 class="strat-info-section-title">This time around</h2>
+							<div>{{ strat?.dynamicContent }}</div>
+						</div>
+					}
 				</div>
 			</div>
 		</div>

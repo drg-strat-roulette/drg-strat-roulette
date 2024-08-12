@@ -1,122 +1,142 @@
 <!-- Recently completed achievement popups -->
 <div class="recently-completed-achievements-container">
-    <app-recently-completed-achievement
-        *ngFor="let rca of recentlyCompletedAchievements"
-        [achievement]="rca.achievement"
-        (kill)="rca.kill()"
-        (undo)="rca.undo()">
-    </app-recently-completed-achievement>
+	@for (rca of recentlyCompletedAchievements; track rca.achievement.id) {
+		<app-recently-completed-achievement [achievement]="rca.achievement" (kill)="rca.kill()" (undo)="rca.undo()">
+		</app-recently-completed-achievement>
+	}
 </div>
 
 <!-- Achievements page content -->
 <div class="achievements-page-container">
-    <div class="container mt-3">
-        <div class="drg-card-light">
-            <div class="col">
-                <div class="row">
-                    <div class="col d-flex flex-wrap justify-content-between">
-                        <!-- Search -->
-                        <mat-form-field class="header-form-search">
-                            <mat-label>Search...</mat-label>
-                            <input matInput [(ngModel)]="searchInput" (ngModelChange)="searchInputChanged.next()">
-                            <button *ngIf="searchInput" mat-icon-button matSuffix aria-label="Clear" (click)="searchInput=''; updateDisplayedAchievements()">
-                                <mat-icon>close</mat-icon>
-                            </button>
-                        </mat-form-field>
-                        <div class="d-flex">
-                            <!-- Filter by completion -->
-                            <mat-form-field class="header-form-completion">
-                                <mat-label>Completion</mat-label>
-                                <mat-select [(ngModel)]="displayedCompletions" (ngModelChange)="updateDisplayedAchievements()">
-                                    <mat-option
-                                        value="all">
-                                        All
-                                    </mat-option>
-                                    <mat-option
-                                        value="completed">
-                                        Completed
-                                    </mat-option>
-                                    <mat-option
-                                        value="incomplete">
-                                        Incomplete
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <!-- Settings button -->
-                            <button
-                                class="mt-1 ms-1"
-                                #settingsTooltip="matTooltip"
-                                matTooltip="Settings"
-                                matTooltipShowDelay="500"
-                                mat-icon-button
-                                aria-label="Settings"
-                                (click)="openSettingsDialog()">
-                                <mat-icon class="white-icon">settings</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="d-flex">
-                        <!-- Achievements completion progress -->
-                        <img *ngIf="numAchievementsCompleted === achievements.length" class="me-2" src="assets/icons/award.svg" height="40" width="40" alt="100% completion award">
-                        <div class="d-flex flex-column w-100">
-                            <div class="mb-1 d-flex justify-content-between">
-                                <div>
-                                    {{ numAchievementsCompleted }} of {{ achievements.length }} completed ({{100 * numAchievementsCompleted / achievements.length | number : '1.1-1'}}%)
-                                </div>
-                                <div>
-                                    ({{ numAchievementsDisplayed }} displayed)
-                                </div>
-                            </div>
-                            <mat-progress-bar
-                                aria-label="Achievements progress"
-                                mode="determinate"
-                                [value]="100 * numAchievementsCompleted / achievements.length">
-                            </mat-progress-bar>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="achievements-list-container">
-        <!-- Achievements list -->
-        <div class="container pt-3">
-            <div class="px-2">
-                <!-- Empty state -->
-                <h1 *ngIf="numAchievementsDisplayed === 0 && !searchInput">You have no {{ displayedCompletions }} achievements.</h1>
-                <h1 *ngIf="numAchievementsDisplayed === 0 && searchInput">No results match search.</h1>
-                <!-- Achievement cards -->
-                <ng-container *ngFor="let achievement of achievements; let i = index">
-                    <h1 *ngIf="numCompletedDisplayed !== 0 && i !== 0 && !!achievement.completedAt !== !!achievements[i - 1].completedAt">Completed</h1>
-                    <app-achievement-card
-                        [style.display]="achievement.display ? 'flex' : 'none'"
-                        [achievement]="achievement"
-                        (toggleComplete)="toggleComplete(achievement)"
-                        (changeCounter)="changeCounter(achievement, $event)"
-                        (subTaskCompleted)="subTaskCompleted(achievement, $event.subTaskId, $event.completed)"
-                        @slideInOutRight
-                        [@.disabled]="disableAnimations">
-                    </app-achievement-card>
-                </ng-container>
-            </div>
-        </div>
-    </div>
+	<div class="container mt-3">
+		<div class="drg-card-light">
+			<div class="col">
+				<div class="row">
+					<div class="col d-flex flex-wrap justify-content-between">
+						<!-- Search -->
+						<mat-form-field class="header-form-search">
+							<mat-label>Search...</mat-label>
+							<input matInput [(ngModel)]="searchInput" (ngModelChange)="searchInputChanged.next()" />
+							@if (searchInput) {
+								<button
+									mat-icon-button
+									matSuffix
+									aria-label="Clear"
+									(click)="searchInput = ''; updateDisplayedAchievements()"
+								>
+									<mat-icon>close</mat-icon>
+								</button>
+							}
+						</mat-form-field>
+						<div class="d-flex">
+							<!-- Filter by completion -->
+							<mat-form-field class="header-form-completion">
+								<mat-label>Completion</mat-label>
+								<mat-select
+									[(ngModel)]="displayedCompletions"
+									(ngModelChange)="updateDisplayedAchievements()"
+								>
+									<mat-option value="all"> All </mat-option>
+									<mat-option value="completed"> Completed </mat-option>
+									<mat-option value="incomplete"> Incomplete </mat-option>
+								</mat-select>
+							</mat-form-field>
+							<!-- Settings button -->
+							<button
+								class="mt-1 ms-1"
+								#settingsTooltip="matTooltip"
+								matTooltip="Settings"
+								matTooltipShowDelay="500"
+								mat-icon-button
+								aria-label="Settings"
+								(click)="openSettingsDialog()"
+							>
+								<mat-icon class="white-icon">settings</mat-icon>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="d-flex">
+						<!-- Achievements completion progress -->
+						@if (numAchievementsCompleted === achievements.length) {
+							<img
+								class="me-2"
+								src="assets/icons/award.svg"
+								height="40"
+								width="40"
+								alt="100% completion award"
+							/>
+						}
+						<div class="d-flex flex-column w-100">
+							<div class="mb-1 d-flex justify-content-between">
+								<div>
+									{{ numAchievementsCompleted }} of {{ achievements.length }} completed ({{
+										(100 * numAchievementsCompleted) / achievements.length | number: '1.1-1'
+									}}%)
+								</div>
+								<div>({{ numAchievementsDisplayed }} displayed)</div>
+							</div>
+							<mat-progress-bar
+								aria-label="Achievements progress"
+								mode="determinate"
+								[value]="(100 * numAchievementsCompleted) / achievements.length"
+							>
+							</mat-progress-bar>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="achievements-list-container">
+		<!-- Achievements list -->
+		<div class="container pt-3">
+			<div class="px-2">
+				<!-- Empty state -->
+				@if (numAchievementsDisplayed === 0 && !searchInput) {
+					<h1>You have no {{ displayedCompletions }} achievements.</h1>
+				}
+				@if (numAchievementsDisplayed === 0 && searchInput) {
+					<h1>No results match search.</h1>
+				}
+				<!-- Achievement cards -->
+				@for (achievement of achievements; track achievement.id; let i = $index) {
+					@if (
+						numCompletedDisplayed !== 0 &&
+						i !== 0 &&
+						!!achievement.completedAt !== !!achievements[i - 1].completedAt
+					) {
+						<h1>Completed</h1>
+					}
+					<app-achievement-card
+						[style.display]="achievement.display ? 'flex' : 'none'"
+						[achievement]="achievement"
+						(toggleComplete)="toggleComplete(achievement)"
+						(changeCounter)="changeCounter(achievement, $event)"
+						(subTaskCompleted)="subTaskCompleted(achievement, $event.subTaskId, $event.completed)"
+						@slideInOutRight
+						[@.disabled]="disableAnimations"
+					>
+					</app-achievement-card>
+				}
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Achievements settings dialog -->
 <ng-template #achievementsSettings>
-    <h1 mat-dialog-title>Achievements settings</h1>
-    <div mat-dialog-content>
-        <div class="d-flex flex-column">
-            <button class="m-2" mat-raised-button color="primary" (click)="resetProgress()">Reset progress</button>
-            <button class="m-2" mat-raised-button color="primary" (click)="fileUpload.click()">Import progress</button>
-            <button class="m-2" mat-raised-button color="primary" (click)="exportProgress()">Export progress</button>
-        </div>
-        <input #fileUpload class="d-none" type="file" accept=".drg-sr-achievements" (change)="importProgress($event)">
-    </div>
-    <div mat-dialog-actions class="d-flex justify-content-end">
-        <button mat-button cdkFocusInitial mat-dialog-close="">Close</button>
-    </div>
+	<h1 mat-dialog-title>Achievements settings</h1>
+	<div mat-dialog-content>
+		<div class="d-flex flex-column">
+			<button class="m-2" mat-raised-button color="primary" (click)="resetProgress()">Reset progress</button>
+			<button class="m-2" mat-raised-button color="primary" (click)="fileUpload.click()">Import progress</button>
+			<button class="m-2" mat-raised-button color="primary" (click)="exportProgress()">Export progress</button>
+		</div>
+		<input #fileUpload class="d-none" type="file" accept=".drg-sr-achievements" (change)="importProgress($event)" />
+	</div>
+	<div mat-dialog-actions class="d-flex justify-content-end">
+		<button mat-button cdkFocusInitial mat-dialog-close="">Close</button>
+	</div>
 </ng-template>

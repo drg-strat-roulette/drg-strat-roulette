@@ -18,7 +18,7 @@ const ALERT_LIFETIME_MS = 7_000;
 })
 export class RecentlyCompletedAchievementComponent implements OnInit, OnDestroy {
 	/** Achievement to be represented by this notification */
-	@Input() achievement: DisplayedAchievement | undefined;
+	@Input({ required: true }) achievement!: DisplayedAchievement;
 
 	/** Function to call when this component has exceeded its lifespan */
 	@Output() kill: EventEmitter<void> = new EventEmitter();

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DisplayedAchievement } from 'src/app/models/achievement.interface';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconButton, MatButton } from '@angular/material/button';
@@ -11,11 +11,11 @@ import { MatIconButton, MatButton } from '@angular/material/button';
 	templateUrl: './achievement-card.component.html',
 	styleUrls: ['./achievement-card.component.scss'],
 	standalone: true,
-	imports: [MatIconButton, MatTooltip, MatIcon, NgIf, MatButton, NgFor, MatCheckbox, DatePipe],
+	imports: [MatIconButton, MatTooltip, MatIcon, MatButton, MatCheckbox, DatePipe],
 })
 export class AchievementCardComponent {
 	/** Achievement to be displayed in this card */
-	@Input() achievement: DisplayedAchievement | undefined;
+	@Input({ required: true }) achievement!: DisplayedAchievement;
 
 	/** Emits when complete button is pressed (with throttle) */
 	@Output() toggleComplete: EventEmitter<void> = new EventEmitter();

@@ -1,19 +1,57 @@
 <!-- Header bar -->
 <div class="d-flex flex-row justify-content-between header-bar">
 	<mat-tab-group animationDuration="0ms" [(selectedIndex)]="activeTabIndex" (selectedIndexChange)="tabIndexChanged()">
-		<mat-tab *ngFor="let tab of tabs" label="{{ tab.displayName }}"></mat-tab>
+		@for (tab of tabs; track tab.id) {
+			<mat-tab label="{{ tab.displayName }}"></mat-tab>
+		}
 	</mat-tab-group>
-	<div *ngIf="collapseButtons; else expandedButtons">
-		<button
-			#feedbackTooltip="matTooltip"
-			matTooltip="Controls"
-			matTooltipShowDelay="500"
-			mat-icon-button
-			aria-label="Controls"
-			[matMenuTriggerFor]="controlsMenu">
-			<mat-icon class="white-icon">menu</mat-icon>
-		</button>
-	</div>
+	@if (collapseButtons) {
+		<div>
+			<button
+				#feedbackTooltip="matTooltip"
+				matTooltip="Controls"
+				matTooltipShowDelay="500"
+				mat-icon-button
+				aria-label="Controls"
+				[matMenuTriggerFor]="controlsMenu"
+			>
+				<mat-icon class="white-icon">menu</mat-icon>
+			</button>
+		</div>
+	} @else {
+		<div class="d-flex flex-row">
+			<button
+				#feedbackTooltip="matTooltip"
+				matTooltip="Feedback"
+				matTooltipShowDelay="500"
+				mat-icon-button
+				aria-label="Feedback"
+				(click)="openFeedbackDialog()"
+			>
+				<mat-icon class="white-icon">feedback</mat-icon>
+			</button>
+			<button
+				#infoTooltip="matTooltip"
+				matTooltip="Info"
+				matTooltipShowDelay="500"
+				mat-icon-button
+				aria-label="Info"
+				(click)="headerControlsService.infoButtonPressed$.next()"
+			>
+				<mat-icon class="white-icon">info</mat-icon>
+			</button>
+			<button
+				#shareTooltip="matTooltip"
+				matTooltip="Share"
+				matTooltipShowDelay="500"
+				mat-icon-button
+				aria-label="Share"
+				(click)="headerControlsService.shareButtonPressed$.next()"
+			>
+				<mat-icon class="white-icon">share</mat-icon>
+			</button>
+		</div>
+	}
 	<mat-menu #controlsMenu="matMenu">
 		<ng-container *ngTemplateOutlet="expandedButtons"></ng-container>
 	</mat-menu>
@@ -25,7 +63,8 @@
 				matTooltipShowDelay="500"
 				mat-icon-button
 				aria-label="Feedback"
-				(click)="openFeedbackDialog()">
+				(click)="openFeedbackDialog()"
+			>
 				<mat-icon class="white-icon">feedback</mat-icon>
 			</button>
 			<button
@@ -34,7 +73,8 @@
 				matTooltipShowDelay="500"
 				mat-icon-button
 				aria-label="Info"
-				(click)="headerControlsService.infoButtonPressed$.next()">
+				(click)="headerControlsService.infoButtonPressed$.next()"
+			>
 				<mat-icon class="white-icon">info</mat-icon>
 			</button>
 			<button
@@ -43,7 +83,8 @@
 				matTooltipShowDelay="500"
 				mat-icon-button
 				aria-label="Share"
-				(click)="headerControlsService.shareButtonPressed$.next()">
+				(click)="headerControlsService.shareButtonPressed$.next()"
+			>
 				<mat-icon class="white-icon">share</mat-icon>
 			</button>
 		</div>
@@ -53,10 +94,14 @@
 <!-- Router outlet -->
 <div
 	class="tab-contents-container"
-	[ngStyle]="{ backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/assets/backgrounds/' + background + ')' }">
+	[ngStyle]="{
+		backgroundImage:
+			'linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/assets/backgrounds/' + background + ')',
+	}"
+>
 	<router-outlet></router-outlet>
 </div>
 
 <!-- Pre-load these images to avoid displaying default text when displayed -->
-<img hidden src="assets/images/mission-control.png"/>
-<img hidden src="assets/icons/award.svg"/>
+<img hidden src="assets/images/mission-control.png" />
+<img hidden src="assets/icons/award.svg" />

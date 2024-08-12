@@ -1,25 +1,20 @@
- <!-- Achievement cards -->
- <div class="drg-card mb-2">
-    <mat-progress-spinner
-        class="example-margin"
-        [diameter]="48"
-        [value]="timeAlive">
-    </mat-progress-spinner>
-    <button
-        mat-icon-button
-        class="position-absolute"
-        matTooltip="Undo"
-        matTooltipShowDelay="500"
-        aria-label="Undo"
-        (click)="undo.emit()">
-        <mat-icon>undo</mat-icon>
-    </button>
-    <div class="ms-3">
-        <div class="subtitle">
-        Just completed:
-        </div>
-        <div class="card-title">
-            {{ achievement?.name }}
-        </div>
-    </div>
+<!-- Achievement cards -->
+<div class="drg-card mb-2">
+	<mat-progress-spinner class="example-margin" [diameter]="48" [value]="timeAlive"> </mat-progress-spinner>
+	<button
+		mat-icon-button
+		class="position-absolute"
+		matTooltip="Undo"
+		matTooltipShowDelay="500"
+		aria-label="Undo"
+		(click)="undo.emit()"
+	>
+		<mat-icon>undo</mat-icon>
+	</button>
+	<div class="ms-3">
+		<div class="subtitle">Just completed:</div>
+		<div class="card-title">
+			{{ achievement.name }}
+		</div>
+	</div>
 </div>

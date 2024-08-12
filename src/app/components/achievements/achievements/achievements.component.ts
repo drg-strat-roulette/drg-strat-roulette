@@ -36,7 +36,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { RecentlyCompletedAchievementComponent } from '../recently-completed-achievement/recently-completed-achievement.component';
-import { NgFor, NgIf, DecimalPipe } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
 	selector: 'app-achievements',
@@ -56,13 +56,11 @@ import { NgFor, NgIf, DecimalPipe } from '@angular/common';
 	],
 	standalone: true,
 	imports: [
-		NgFor,
 		RecentlyCompletedAchievementComponent,
 		MatFormField,
 		MatLabel,
 		MatInput,
 		FormsModule,
-		NgIf,
 		MatIconButton,
 		MatSuffix,
 		MatIcon,

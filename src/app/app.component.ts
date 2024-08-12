@@ -9,7 +9,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatMenuTrigger, MatMenu } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconButton } from '@angular/material/button';
-import { NgFor, NgIf, NgTemplateOutlet, NgStyle } from '@angular/common';
+import { NgTemplateOutlet, NgStyle } from '@angular/common';
 import { MatTabGroup, MatTab } from '@angular/material/tabs';
 
 @Component({
@@ -19,9 +19,7 @@ import { MatTabGroup, MatTab } from '@angular/material/tabs';
 	standalone: true,
 	imports: [
 		MatTabGroup,
-		NgFor,
 		MatTab,
-		NgIf,
 		MatIconButton,
 		MatTooltip,
 		MatMenuTrigger,

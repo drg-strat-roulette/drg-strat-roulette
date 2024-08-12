@@ -3,6 +3,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AchievementCardComponent } from './achievement-card.component';
+import { MOCK_DISPLAYED_ACHIEVEMENT } from 'src/app/mocks/achievements.mock';
 
 describe('AchievementCardComponent', () => {
 	let component: AchievementCardComponent;
@@ -15,6 +16,7 @@ describe('AchievementCardComponent', () => {
 
 		fixture = TestBed.createComponent(AchievementCardComponent);
 		component = fixture.componentInstance;
+		component.achievement = MOCK_DISPLAYED_ACHIEVEMENT;
 		fixture.detectChanges();
 	});
 

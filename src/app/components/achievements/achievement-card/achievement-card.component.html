@@ -1,61 +1,76 @@
- <!-- Achievement cards -->
- <div class="drg-card mb-2" [style.opacity]="achievement?.completedAt ? 0.6 : 1">
-    <!-- (Un)complete button -->
-    <button
-        mat-icon-button
-        [matTooltip]="achievement?.completedAt ? 'Mark uncompleted' : 'Mark completed'"
-        matTooltipShowDelay="500"
-        aria-label="Toggle achievement completion"
-        (click)="toggleComplete.emit()">
-        <mat-icon>{{ achievement?.completedAt ? 'close' : 'check' }}</mat-icon>
-    </button>
-    <div class="row ms-2">
-        <!-- Datetime completed -->
-        <div *ngIf="achievement?.completedAt" class="subtitle mb-1">
-            Completed {{ achievement?.completedAt | date:'mediumDate' }} at {{ achievement?.completedAt | date:'shortTime' }}
-        </div>
-        <!--Name -->
-        <div class="card-title">{{ achievement?.name }}</div>
-        <!-- Description -->
-        <div class="subtitle mt-1" [innerHTML]="achievement?.description"></div>
-        <!-- Link -->
-        <div *ngIf="achievement?.link" class="subtitle mt-1">
-            <a [href]="achievement?.link?.url" target="_blank">{{ achievement?.link?.text }}</a>
-        </div>
-        <!-- Count progress -->
-        <div *ngIf="achievement?.countNeeded" class="mt-1">
-            <button
-                mat-button
-                matTooltip="Decrement"
-                matTooltipShowDelay="500"
-                aria-label="Decrement counter"
-                [disabled]="(achievement?.count ?? 0) === 0 || achievement?.completedAt"
-                (click)="changeCounter.next(-1)">
-                <mat-icon>arrow_downward</mat-icon>
-            </button>
-            <button mat-button color="primary" class="pe-none">
-                {{ achievement?.count ?? 0 }} / {{ achievement?.countNeeded }}
-            </button>
-            <button
-                mat-button
-                matTooltip="Increment"
-                matTooltipShowDelay="500"
-                aria-label="Increment counter"
-                [disabled]="achievement?.count === achievement?.countNeeded || achievement?.completedAt"
-                (click)="changeCounter.next(1)">
-                <mat-icon>arrow_upward</mat-icon>
-            </button>
-        </div>
-        <!-- Sub-tasks -->
-        <div *ngIf="achievement?.subTasks" class="mt-1">
-            <div *ngFor="let sub of achievement?.subTasks">
-                <mat-checkbox
-                    [checked]="achievement?.subTasksCompleted?.includes(sub.id)"
-                    [disabled]="!!achievement?.completedAt"
-                    (change)="subTaskCompleted.next({ subTaskId: sub.id, completed: $event.checked})">
-                    {{ sub.name }}
-                </mat-checkbox>
-            </div>
-        </div>
-    </div>
+<!-- Achievement cards -->
+<div class="drg-card mb-2" [style.opacity]="achievement.completedAt ? 0.6 : 1">
+	<!-- (Un)complete button -->
+	<button
+		mat-icon-button
+		[matTooltip]="achievement.completedAt ? 'Mark uncompleted' : 'Mark completed'"
+		matTooltipShowDelay="500"
+		aria-label="Toggle achievement completion"
+		(click)="toggleComplete.emit()"
+	>
+		<mat-icon>{{ achievement.completedAt ? 'close' : 'check' }}</mat-icon>
+	</button>
+	<div class="row ms-2">
+		<!-- Datetime completed -->
+		@if (achievement.completedAt) {
+			<div class="subtitle mb-1">
+				Completed {{ achievement.completedAt | date: 'mediumDate' }} at
+				{{ achievement.completedAt | date: 'shortTime' }}
+			</div>
+		}
+		<!--Name -->
+		<div class="card-title">{{ achievement.name }}</div>
+		<!-- Description -->
+		<div class="subtitle mt-1" [innerHTML]="achievement.description"></div>
+		<!-- Link -->
+		@if (achievement.link) {
+			<div class="subtitle mt-1">
+				<a [href]="achievement.link.url" target="_blank">{{ achievement.link.text }}</a>
+			</div>
+		}
+		<!-- Count progress -->
+		@if (achievement.countNeeded) {
+			<div class="mt-1">
+				<button
+					mat-button
+					matTooltip="Decrement"
+					matTooltipShowDelay="500"
+					aria-label="Decrement counter"
+					[disabled]="(achievement.count ?? 0) === 0 || achievement.completedAt"
+					(click)="changeCounter.next(-1)"
+				>
+					<mat-icon>arrow_downward</mat-icon>
+				</button>
+				<button mat-button color="primary" class="pe-none">
+					{{ achievement.count ?? 0 }} / {{ achievement.countNeeded }}
+				</button>
+				<button
+					mat-button
+					matTooltip="Increment"
+					matTooltipShowDelay="500"
+					aria-label="Increment counter"
+					[disabled]="achievement.count === achievement.countNeeded || achievement.completedAt"
+					(click)="changeCounter.next(1)"
+				>
+					<mat-icon>arrow_upward</mat-icon>
+				</button>
+			</div>
+		}
+		<!-- Sub-tasks -->
+		@if (achievement.subTasks) {
+			<div class="mt-1">
+				@for (sub of achievement.subTasks; track sub.id) {
+					<div>
+						<mat-checkbox
+							[checked]="achievement.subTasksCompleted?.includes(sub.id)"
+							[disabled]="!!achievement.completedAt"
+							(change)="subTaskCompleted.next({ subTaskId: sub.id, completed: $event.checked })"
+						>
+							{{ sub.name }}
+						</mat-checkbox>
+					</div>
+				}
+			</div>
+		}
+	</div>
 </div>

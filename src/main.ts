@@ -47,7 +47,7 @@ bootstrapApplication(AppComponent, {
 			MatSidenavModule,
 			MatSnackBarModule,
 			MatTabsModule,
-			MatTooltipModule
+			MatTooltipModule,
 		),
 		provideAnimations(),
 	],
